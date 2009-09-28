@@ -1,0 +1,12 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  register: "Register"
+  successfully_logged_in: "Successfully logged in"
+  successfully_logged_out: "Successfully logged out"
+  login: 'Log in'
+  logout: 'Log out'
+  login_button: 'Log in…'
+  edit_profile: 'Edit profile'
+  profile_successfully_updated: 'Profile successfully updated'

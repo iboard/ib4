@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%= yield :html_title %></title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= yield :html_head %>
+  <body>
+      <div id='banner'>
+          <div id='user_nav'>
+              <%- if current_user -%>
+                <%= link_to t(:edit_profile), edit_user_path(:current) %> |
+                <%= link_to t(:logout), logout_path -%>
+              <%- else -%>
+                <%= link_to t(:register), new_user_path %> |
+                <%= link_to t(:login), login_path %>
+              <%- end -%>
+          </div>
+          <h3>iBoard 4 Development</h3>
+          <%- if show_title? -%>
+            <h1><%=h yield(:title) -%></h1>
+          <%- end -%>
+      </div>
+      
+      <div id='container'>
+        <%- flash.each do |name,msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+        <%= yield -%>
+      </div>
+
+      <div id='copyright'>
+          © 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%>
+      </div>
+
+  </body>
+</html>
