@@ -1,6 +1,8 @@
 .DS_Store
 tmp/**/*
 log/*.log
+config/environments/development.rb
+config/environments/production.rb
 db/*.sqlite3
 public/dispatch*
 public/image_attachments/*
