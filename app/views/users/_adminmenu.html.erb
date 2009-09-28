@@ -1,0 +1,3 @@
+<%- if current_user.is_admin? -%>
+  <%= link_to t(:user_listing), users_path %>
+<%- end -%>

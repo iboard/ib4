@@ -1,0 +1,8 @@
+<% title t(:reset_your_password) %>
+
+<% form_tag reset_passwords_path do %>
+  <label><%= t(:please_enter_your_email)%>:</label><br />
+  <%= text_field_tag "email",params[:email], :size => 40 %><br />
+  <br />
+  <%= submit_tag t(:reset_password_button) %>
+<% end %>

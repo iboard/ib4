@@ -157,3 +157,14 @@ body {
   line-height: 80%;
   background: #aaa;
 }
+
+#usermenu {
+  color: white;
+  width: 75%;
+  margin-bottom: 5px;
+}
+
+#usermenu a {
+	color: white;
+	text-decoration: none;
+}

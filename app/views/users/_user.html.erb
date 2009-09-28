@@ -1,0 +1,28 @@
+<h2><%=h user.username %><br/><span style='font-size: 12px;font-weight:normal;'>
+    <%= link_to t(:edit), edit_user_path(user) -%> |
+    <%= link_to(
+           t(:destroy), user_path(user),
+           :confirm => t(:are_you_sure, :what => t(:delete_user, :username => h(user.username))),
+           :method => :delete
+       ) 
+-%></span></h2>
+
+<blockquote><small>
+      <strong><%= t(:id                 ) -%></strong>: <%=h user.id                  -%><br/>
+      <strong><%= t(:username           ) -%></strong>: <%=h user.username            -%><br/>
+      <strong><%= t(:email              ) -%></strong>: <%=h user.email               -%><br/>
+      <strong><%= t(:current_login_ip   ) -%></strong>: <%=h user.current_login_ip    -%><br/>
+      <strong><%= t(:current_login_at   ) -%></strong>: <%=h user.current_login_at    -%><br/>
+      <strong><%= t(:last_login_ip      ) -%></strong>: <%=h user.last_login_ip       -%><br/>
+      <strong><%= t(:last_login_at      ) -%></strong>: <%=h user.last_login_at       -%><br/>
+      <strong><%= t(:login_count        ) -%></strong>: <%=h user.login_count         -%><br/>
+      <strong><%= t(:failed_login_count ) -%></strong>: <%=h user.failed_login_count  -%><br/>
+      <strong><%= t(:last_request_at    ) -%></strong>: <%=h user.last_request_at     -%><br/>
+      <strong><%= t(:crypted_password   ) -%></strong>: <%=truncate(h(user.crypted_password),40) -%><br/>
+      <strong><%= t(:persistence_token  ) -%></strong>: <%=truncate(h(user.persistence_token),40)-%><br/>
+      <strong><%= t(:password_salt      ) -%></strong>: <%=h user.password_salt       -%><br/>
+      <strong><%= t(:perishable_token   ) -%></strong>: <%=h user.perishable_token    -%><br/>
+      <strong><%= t(:created_at         ) -%></strong>: <%=h user.created_at          -%><br/>
+      <strong><%= t(:updated_at         ) -%></strong>: <%=h user.updated_at          -%><br/>
+</small></blockquote>
+      

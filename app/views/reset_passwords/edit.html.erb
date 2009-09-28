@@ -1,0 +1,12 @@
+<% title t(:change_your_password) %>
+ 
+<% form_for @user, :url => reset_password_path, :method => :put do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :password %><br />
+  <%= f.password_field :password %><br />
+  <br />
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %><br />
+  <br />
+  <%= f.submit t(:update_password_and_login) %>
+<% end %>
