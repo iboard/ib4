@@ -1,3 +1,9 @@
+# File        users_controller.rb
+# Project     iboard4
+# Author      Andreas Altendorfer
+# Copyright   2009 by Andreas Altendorfer
+#
+# UserController makes use of AuthLogic-Gem
 class UsersController < ApplicationController
  
   before_filter :require_user,    :only => [:show, :edit, :update,:destroy]
@@ -10,11 +16,12 @@ class UsersController < ApplicationController
   end
   
   def show
-    if current_user.is_admin? && !params[:id].blank? && params[:id] != 'current'
+    if !params[:id].blank? && params[:id] != 'current'
       @user = User.find(params[:id])
     else
       @user = current_user
     end
+    @mypostings = @user.postings.descend_by_updated_at.paginate(:page => params[:page], :per_page => 2)
   end
 
   def new
@@ -25,7 +32,7 @@ class UsersController < ApplicationController
     params[:user][:password] = Randomizer::randstr(10)
     params[:user][:password_confirmation] = params[:user][:password]
     @user = User.new(params[:user])
-
+    @user.is_admin = params[:user][:is_admin] if current_user && current_user.is_admin?
     if @user.save
       flash[:notice] = t(:registration_successfull)
       UserSession.find.destroy
@@ -50,6 +57,7 @@ class UsersController < ApplicationController
      else
        @user = current_user
      end    
+     @user.is_admin = params[:user][:is_admin] if current_user && current_user.is_admin?
      if @user.update_attributes(params[:user])
       flash[:notice] = t(:profile_successfully_updated)
       redirect_to root_url

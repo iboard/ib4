@@ -1,3 +1,8 @@
+# Project     iboard4
+# Author      Andreas Altendorfer
+# Copyright   2009 by Andreas Altendorfer
+#
+# When emails have to be send it whith this Mailer Class.
 class UserMailer < ActionMailer::Base
   
   default_url_options[:host] = "#{LOCALHOST_NAME}"  

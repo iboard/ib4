@@ -1,0 +1,11 @@
+one:
+  user_id: 1
+  subject: MyString
+  body: MyText
+  tagstring: MyString
+
+two:
+  user_id: 1
+  subject: MyString
+  body: MyText
+  tagstring: MyString

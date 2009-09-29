@@ -1,11 +1,13 @@
-<h2><%=h user.username %><br/><span style='font-size: 12px;font-weight:normal;'>
-    <%= link_to t(:edit), edit_user_path(user) -%> |
-    <%= link_to(
-           t(:destroy), user_path(user),
-           :confirm => t(:are_you_sure, :what => t(:delete_user, :username => h(user.username))),
-           :method => :delete
-       ) 
--%></span></h2>
+<h2><%=h user.username %> <%= "<span style='font-size: 12px;'>(#{t(:is_admin)})</span>" if user.is_admin? %><br/>
+    <span style='font-size: 12px;font-weight:normal;'>
+      <%= link_to t(:edit), edit_user_path(user) -%> |
+      <%= link_to(
+             t(:destroy), user_path(user),
+             :confirm => t(:are_you_sure, :what => t(:delete_user, :username => h(user.username))),
+             :method => :delete
+         ) 
+      -%>
+    </span></h2>
 
 <blockquote><small>
       <strong><%= t(:id                 ) -%></strong>: <%=h user.id                  -%><br/>

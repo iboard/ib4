@@ -1,3 +1,12 @@
+# File        reset_passwords_controller.rb
+# Project     iboard4
+# Author      Andreas Altendorfer
+# Copyright   2009 by Andreas Altendorfer
+#
+#
+# There is no model for this controller.
+# When a user wants to reset ones password a mail will be delivered after reseting the perishable_token
+# of AuthLogic
 class ResetPasswordsController < ApplicationController
   
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]  

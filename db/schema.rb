@@ -9,7 +9,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090928083203) do
+ActiveRecord::Schema.define(:version => 20090929120831) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categorizables", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "categorizable_id"
+    t.string   "categorizable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "postings", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.text     "body"
+    t.string   "tagstring"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -17,9 +42,9 @@ ActiveRecord::Schema.define(:version => 20090928083203) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "perishable_token",   :default => "", :null => false
-    t.integer  "login_count",        :default => 0,  :null => false
-    t.integer  "failed_login_count", :default => 0,  :null => false
+    t.string   "perishable_token",   :default => "",    :null => false
+    t.integer  "login_count",        :default => 0,     :null => false
+    t.integer  "failed_login_count", :default => 0,     :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -27,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20090928083203) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_admin",           :default => false, :null => false
+    t.string   "fullname"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

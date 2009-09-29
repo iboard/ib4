@@ -1,0 +1,35 @@
+<div class='posting_short'>
+    
+  <!-- HEADER / SUBJECT AND LINKS -->
+  
+  <h2><%=h posting.subject -%>
+      <span style='font-size: 12px; font-weight: normal'>
+        <%=link_to(h(posting.user.username),posting.user) -%>, <%= posting.updated_at.to_s(:short) %>
+        <%- if posting.categories.any? %>
+          <br/><%= posting.categories.map{|c| link_to(c.name, category_postings_path(c))}.join(", ") -%>
+        <%- end -%>
+        <%- if !posting.tagstring.blank? -%>
+            <br/><%=h posting.tagstring -%>
+        <%- end -%>
+        <%- if current_user && (posting.user == current_user || current_user.is_admin?) -%>
+          <br/>
+          <%= link_to "Edit", edit_posting_path(posting) %> |
+          <%= link_to "Destroy", posting, :confirm => 'Are you sure?', :method => :delete %>
+        <%- end -%>
+      </span>
+  </h2>
+  
+  
+  <!-- INTERPRETED, TRUNCATED BODY -->
+  
+  <%=  textilize(
+         highlight_search(params[:search]||"",
+           truncate(h(posting.body),
+             :length => 250, 
+             :omission => " ... #{link_to t(:read_more), posting}"
+           )
+         )
+       )
+  -%>
+  
+</div>

@@ -1,8 +1,17 @@
+# File        user_sessions_controller.rb
+# Project     iboard4
+# Author      Andreas Altendorfer
+# Copyright   2009 by Andreas Altendorfer
+#
+#
+# There is one session at a time for one user.
+# create means login where destroy means log out.
 class UserSessionsController < ApplicationController
 
   def new
     @user_session = UserSession.new
   end
+  
   
   def create
     @user_session = UserSession.new(params[:user_session])

@@ -19,6 +19,13 @@
   </p>
 <%- end -%>
 
+<%- if current_user && current_user.is_admin? -%>
+  <p>
+    <%= f.label :is_admin %><br />
+    <%= f.check_box :is_admin %>
+  </p>
+<%- end -%>
+
 <p><%= f.submit "Submit" %></p>
 
 <% end %>

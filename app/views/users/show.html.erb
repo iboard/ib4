@@ -1,3 +1,21 @@
-<% title t(:dashboard_for_user, :username => @user.username) %>
+<% title @user.username %>
 
-<%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
+<%- if current_user && current_user == @user -%>
+  <h1>Session</h1>
+  <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
+<%- else -%>
+  <%- if @user.current_login_at %>
+    <%= t(:user_is_logged_in, :username => @user.username, :since => @user.current_login_at.to_s(:short)) -%>
+  <%- else -%>
+    <%= t(:user_last_logged_in, :username => @user.username, :date => @user.last_login_at.to_s(:short)) -%>
+  <%- end -%>
+<%- end -%>
+
+<%- if @mypostings.any? %>
+  <h1><%= t(:postings_by,:username=>@user.username) -%></h1>
+  <%= will_paginate @mypostings -%>
+  <%- @mypostings.each do |posting| -%>
+    <%= render :partial => '/postings/posting_short', :locals => { :posting => posting } -%>
+  <%- end -%>
+  <%= will_paginate @mypostings -%>
+<%- end %>
