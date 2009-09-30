@@ -7,3 +7,4 @@ db/*.sqlite3
 public/dispatch*
 public/image_attachments/*
 public/attachments/*
+public/avatars/*
