@@ -18,11 +18,9 @@
       </span>
       
   </h1>
-  <p>
-    <em><%=h @posting.user.username -%>, <%= @posting.updated_at.to_s(:short) %></em>
-  </p>
   
-  <%= textilize(h(@posting.body)) -%>
+  <%= textilize(@posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) -%>
+  
   
   <p><%= link_to t(:view_all), postings_path -%></p>
 </div>

@@ -45,3 +45,6 @@ Rails::Initializer.run do |config|
 end
 
 
+# Constants for layout
+POSTINGS_PER_PAGE=4
+USERS_PER_PAGE=1

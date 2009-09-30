@@ -14,14 +14,14 @@ class PostingsController < ApplicationController
   def index
     if params[:category_id]
       @category = Category.find(params[:category_id])
-      @postings = @category.categorizables.find_all_by_categorizable_type('Posting').map(&:categorizable).paginate( :page => params[:page], :per_page => 2 )
+      @postings = @category.categorizables.find_all_by_categorizable_type('Posting').map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
       if !params[:search].blank?
         @postings = Posting.subject_like_any_or_body_like_any(
                       params[:search].split(/[\s|,]+/)
-                    ).descend_by_updated_at.paginate( :page => params[:page], :per_page => 2 )
+                    ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
       else
-        @postings = Posting.descend_by_updated_at.paginate( :page => params[:page], :per_page => 2 )
+        @postings = Posting.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
       end
     end
   end

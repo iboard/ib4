@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   
   def index
     @search = User.search(params[:search])
-    @users = @search.paginate( :page => params[:page], :per_page => 1 )
+    @users = @search.paginate( :page => params[:page], :per_page => USERS_PER_PAGE )
   end
   
   def show
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
-    @mypostings = @user.postings.descend_by_updated_at.paginate(:page => params[:page], :per_page => 2)
+    @mypostings = @user.postings.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
   end
 
   def new
