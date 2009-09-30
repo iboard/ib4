@@ -3,8 +3,13 @@
 
 en:
   register: "Register"
-  successfully_logged_in: "Successfully logged in as <b>{{username}}</b><br/>Last logged in at: {{last_login_at}}<br/>Last logged in from: {{last_login_ip}}<br/>Login count: {{login_count}}<br/>"
+  successfully_logged_in: "Successfully logged in as <b>{{username}}</b>"
+  last_login_at_notice: "Last logged in at {{last_login_at}} from {{last_login_ip}}"
   successfully_logged_out: "Successfully logged out"
+  failed_login_count_notice: 
+    zero: ""
+    one:  "<span style='color:red';>After one failed login attampt</span>" 
+    other: "<span style='color:red';>After {{count}} failed login attampts</span>" 
   login: 'Log in'
   logout: 'Log out'
   login_button: 'Log in…'
@@ -62,3 +67,7 @@ en:
   categories: 'Categories'
   postings_in_category: 'Postings in category {{category}}'
   all_postings: 'All postings'
+  tags: 'Tags'
+  new_posting: 'New posting'
+  textilize_help_link: 'Textilize enabled'
+  fullname: 'Fullname'

@@ -1,26 +1,7 @@
 <% title t(:posting) %>
 
 <div class='posting'>
-  <h1><%=h @posting.subject -%>
-      <span style='font-size: 12px; font-weight: normal'>
-        <%=link_to(h(@posting.user.username),@posting.user) -%>, <%= @posting.updated_at.to_s(:short) %>
-        <%- if @posting.categories.any? %>
-          <br/><%= @posting.categories.map(&:name).join(", ") -%>
-        <%- end -%>
-        <%- if !@posting.tagstring.blank? -%>
-            <br/><%=h @posting.tagstring -%>
-        <%- end -%>
-        <%- if current_user && (@posting.user == current_user || current_user.is_admin?) -%>
-          <br/>
-          <%= link_to "Edit", edit_posting_path(@posting) %> |
-          <%= link_to "Destroy", @posting, :confirm => 'Are you sure?', :method => :delete %>
-        <%- end -%>
-      </span>
-      
-  </h1>
-  
+  <%= render :partial => 'posting_header', :locals => { :posting => @posting } %>
   <%= textilize(@posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) -%>
-  
-  
   <p><%= link_to t(:view_all), postings_path -%></p>
 </div>

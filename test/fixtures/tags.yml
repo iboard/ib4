@@ -1,0 +1,13 @@
+one:
+  tagable_id: 1
+  tagable_type: MyString
+  name: MyString
+  color: MyString
+  background: MyString
+
+two:
+  tagable_id: 1
+  tagable_type: MyString
+  name: MyString
+  color: MyString
+  background: MyString

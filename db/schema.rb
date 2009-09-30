@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090929120831) do
+ActiveRecord::Schema.define(:version => 20090930162435) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -31,7 +31,16 @@ ActiveRecord::Schema.define(:version => 20090929120831) do
     t.integer  "user_id"
     t.string   "subject"
     t.text     "body"
-    t.string   "tagstring"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.integer  "tagable_id"
+    t.string   "tagable_type"
+    t.string   "name"
+    t.string   "color"
+    t.string   "background"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

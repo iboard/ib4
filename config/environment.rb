@@ -48,3 +48,4 @@ end
 # Constants for layout
 POSTINGS_PER_PAGE=4
 USERS_PER_PAGE=1
+TEXTILIZE_HELP_LINK="http://redcloth.org/textile/writing-paragraph-text/"

@@ -6,7 +6,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
   has_many :postings
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation, :fullname
         
   def deliver_password_reset_instructions!(subject)
     reset_perishable_token!  

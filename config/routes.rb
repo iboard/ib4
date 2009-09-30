@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :tags
+
   map.resources :categories, :has_many => :postings
   map.resources :postings
   map.resources :reset_passwords

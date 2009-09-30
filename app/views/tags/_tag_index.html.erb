@@ -1,0 +1,8 @@
+<!-- BEGINN partial tags/_tag_index.html.erb -->
+<%= Tag.all.map(&:name).uniq.sort.map { |tagname|
+      link_to( tagname, tag_path(tagname), 
+               :style => Tag.get_tag_style(tagname)
+              )
+    }.join(" ")
+-%>
+<!-- END partial tags/_tag_index.html.erb -->
