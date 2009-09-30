@@ -6,7 +6,7 @@
     <title><%=h yield :title %></title>
     <%= stylesheet_link_tag 'application' %>
     <%= yield :html_head %>
-  <body>
+  <body><div id='page'>
       <div id='banner'>
           
           <div id='user_nav'>
@@ -40,10 +40,10 @@
         <%- end -%>
         <%= yield -%>
       </div>
-  
+      <div id='height_filler'>&nbsp;</div>
       <div id='copyright'>
         <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
       </div>
 
-  </body>
+  </div></body>
 </html>
