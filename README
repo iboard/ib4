@@ -1,3 +1,20 @@
 == Welcome to iBoard4
 
-  This is a brand new project. A usefull README will follow soon.
+iBoard 4 is the new generation iBoard version. Based on the latest RAILS and GEM features.
+The project starts at Oct 2009 and will be developed (with slow pace) while continuing iBoard3-campus development.
+
+There is no due date for iBoard 4 but the need to be as clean and streight forward as possible.
+
+== Installing
+
+# Please fetch and pull from Github (http://github.com/iboard/ib4)
+# rake db:migrate
+# rake db:seed
+# Copy environments/development.rb.sample to environments/development.rb and edit to fit your needs
+# script/server and login as root with password 'secret' and change root's profile
+# start using ib4
+
+== RDoc
+
+You will find RDocs starting from doc/app/index.html
+
