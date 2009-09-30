@@ -21,14 +21,11 @@
   
   
   <!-- INTERPRETED, TRUNCATED BODY -->
-  <%=  RedCloth.new(
-         highlight_search(params[:search]||"",
-           truncate(h(posting.body),
-             :length => 250, 
-             :omission => " ... #{link_to t(:read_more), posting}"
-           )
-         )
-       ).to_html
+  <%= textilize(truncate(
+     posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }, 
+     :length => 250, 
+     :omission => " ... #{link_to t(:read_more), posting}"))
   -%>
+  
   
 </div>
