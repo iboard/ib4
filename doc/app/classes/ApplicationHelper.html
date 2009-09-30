@@ -91,7 +91,8 @@ application.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000043">highlight_search</a>&nbsp;&nbsp;
+      <a href="#M000051">highlight_search</a>&nbsp;&nbsp;
+      <a href="#M000052">toggle_display_link</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -113,11 +114,11 @@ application.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000043" class="method-detail">
-        <a name="M000043"></a>
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
 
         <div class="method-heading">
-          <a href="#M000043" class="method-signature">
+          <a href="#M000051" class="method-signature">
           <span class="method-name">highlight_search</span><span class="method-args">(search,txt)</span>
           </a>
         </div>
@@ -128,8 +129,8 @@ search will be splitted by whitespace or colons and then text found for
 each part in txt will be highlighted by span color green&#8230;
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000043-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000043-source">
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
 <pre>
     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 9</span>
  9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">highlight_search</span>(<span class="ruby-identifier">search</span>,<span class="ruby-identifier">txt</span>)
@@ -139,6 +140,52 @@ each part in txt will be highlighted by span color green&#8230;
 13:     <span class="ruby-keyword kw">end</span>
 14:     <span class="ruby-identifier">txt</span>
 15:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">toggle_display_link</span><span class="method-args">(label='show more') {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">toggle_display_link</span>(<span class="ruby-identifier">label</span>=<span class="ruby-value str">'show more'</span>)
+19:   
+20:      <span class="ruby-identifier">ids</span> = <span class="ruby-node">&quot;details_#{rand(999999).round.to_s}&quot;</span>
+21:      
+22:      <span class="ruby-identifier">concat</span>( 
+23:        <span class="ruby-node">&quot;&lt;div id='can_open_#{ids}'&gt;
+24:           &lt;a href='##{ids}' 
+25:           onclick=\&quot;Element.blindDown(\'#{ids}\');Element.hide(\'can_open_#{ids}\'); Element.show(\'can_close_#{ids}\');return false;\&quot;&gt;#{CAN_OPEN}&amp;nbsp;#{label}&lt;/a&gt;&quot;</span> <span class="ruby-operator">+</span>
+26:         <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span> <span class="ruby-operator">+</span>
+27:         <span class="ruby-node">&quot;&lt;div id='can_close_#{ids}'  style='display: none;' &gt;
+28:           &lt;a href='##{ids}' 
+29:           onclick=\&quot;Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');return false;\&quot;&gt;#{IS_OPEN}&amp;nbsp;#{label}&lt;/a&gt;&quot;</span> <span class="ruby-operator">+</span>
+30:         <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span><span class="ruby-operator">+</span>
+31:         <span class="ruby-node">&quot;&lt;div id='#{ids}' style='display:none;'&gt;&quot;</span>
+32:      )
+33:      
+34:      <span class="ruby-keyword kw">yield</span>
+35:      
+36:      <span class="ruby-identifier">concat</span>( 
+37:        <span class="ruby-node">&quot;&lt;div id='close_up#{ids}'&gt;
+38:          &lt;a href='##{ids}' 
+39:          onclick=\&quot;Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');return false;\&quot;&gt;#{CLOSE_UP}&amp;nbsp;#{label}&lt;/a&gt;&quot;</span> <span class="ruby-operator">+</span>
+40:        <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span><span class="ruby-operator">+</span>
+41:        <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>
+42:      )
+43:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

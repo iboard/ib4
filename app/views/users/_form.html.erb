@@ -1,5 +1,15 @@
-<% form_for @user do |f| %>
+<%- #form_for @user, :html => { :multipart => true } do |f| -%>
+<% form_for  @user, :html => { :multipart => true } do |f| %>
+
 <%= f.error_messages %>
+<div style='float:right; width: 200px; margin-left: 20px; padding: 5px; border: 1px dotted #888;'>
+    <p>
+        <%= f.label :avatar %><br />
+        <%= image_tag @user.avatar.url(:avatar), :hspace => 10, :vspace => 10 unless @user.avatar.original_filename.blank? %>
+        <%= f.file_field :avatar %>
+    </p>
+</div>
+
 <p>
   <%= f.label :username %><br />
   <%= f.text_field :username %>
@@ -32,4 +42,4 @@
 
 <p><%= f.submit "Submit" %></p>
 
-<% end %>
+<%- end -%>

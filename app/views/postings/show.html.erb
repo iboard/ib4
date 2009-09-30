@@ -2,6 +2,9 @@
 
 <div class='posting'>
   <%= render :partial => 'posting_header', :locals => { :posting => @posting } %>
+  <p><%= link_to GO_BACK+'&nbsp;'+t(:view_all), postings_path -%></p>
   <%= textilize(@posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) -%>
-  <p><%= link_to t(:view_all), postings_path -%></p>
+  <p><%= link_to GO_BACK+'&nbsp;'+t(:view_all), postings_path -%></p>
 </div>
+
+<%# (9500..9800).map {|i| "#{i}=&##{i};"}.join(', ')%>

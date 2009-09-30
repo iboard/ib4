@@ -99,13 +99,13 @@ Postings belogs to a user and can have one or more categories as a
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000023">create</a>&nbsp;&nbsp;
-      <a href="#M000026">destroy</a>&nbsp;&nbsp;
-      <a href="#M000024">edit</a>&nbsp;&nbsp;
-      <a href="#M000020">index</a>&nbsp;&nbsp;
-      <a href="#M000022">new</a>&nbsp;&nbsp;
-      <a href="#M000021">show</a>&nbsp;&nbsp;
-      <a href="#M000025">update</a>&nbsp;&nbsp;
+      <a href="#M000031">create</a>&nbsp;&nbsp;
+      <a href="#M000034">destroy</a>&nbsp;&nbsp;
+      <a href="#M000032">edit</a>&nbsp;&nbsp;
+      <a href="#M000028">index</a>&nbsp;&nbsp;
+      <a href="#M000030">new</a>&nbsp;&nbsp;
+      <a href="#M000029">show</a>&nbsp;&nbsp;
+      <a href="#M000033">update</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -127,19 +127,19 @@ Postings belogs to a user and can have one or more categories as a
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000023" class="method-detail">
-        <a name="M000023"></a>
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
 
         <div class="method-heading">
-          <a href="#M000023" class="method-signature">
+          <a href="#M000031" class="method-signature">
           <span class="method-name">create</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000023-source">
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 38</span>
 38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
@@ -158,19 +158,19 @@ Postings belogs to a user and can have one or more categories as a
         </div>
       </div>
 
-      <div id="method-M000026" class="method-detail">
-        <a name="M000026"></a>
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
 
         <div class="method-heading">
-          <a href="#M000026" class="method-signature">
+          <a href="#M000034" class="method-signature">
           <span class="method-name">destroy</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000026-source">
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 65</span>
 65:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
@@ -184,19 +184,19 @@ Postings belogs to a user and can have one or more categories as a
         </div>
       </div>
 
-      <div id="method-M000024" class="method-detail">
-        <a name="M000024"></a>
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
 
         <div class="method-heading">
-          <a href="#M000024" class="method-signature">
+          <a href="#M000032" class="method-signature">
           <span class="method-name">edit</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000024-source">
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 50</span>
 50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
@@ -207,11 +207,11 @@ Postings belogs to a user and can have one or more categories as a
         </div>
       </div>
 
-      <div id="method-M000020" class="method-detail">
-        <a name="M000020"></a>
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
 
         <div class="method-heading">
-          <a href="#M000020" class="method-signature">
+          <a href="#M000028" class="method-signature">
           <span class="method-name">index</span><span class="method-args">()</span>
           </a>
         </div>
@@ -222,21 +222,21 @@ If a category_id is given postings are restricted to the given category. If
 no category_id is given postings are searched with searchlogic
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000020-source">
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 14</span>
 14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
 15:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category_id</span>]
 16:       <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category_id</span>])
-17:       <span class="ruby-ivar">@postings</span> = <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">categorizables</span>.<span class="ruby-identifier">find_all_by_categorizable_type</span>(<span class="ruby-value str">'Posting'</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:categorizable</span>).<span class="ruby-identifier">paginate</span>( <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> )
+17:       <span class="ruby-ivar">@postings</span> = <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">categorizables</span>.<span class="ruby-identifier">find_all_by_categorizable_type</span>(<span class="ruby-value str">'Posting'</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:categorizable</span>).<span class="ruby-identifier">paginate</span>( <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">POSTINGS_PER_PAGE</span> )
 18:     <span class="ruby-keyword kw">else</span>
 19:       <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-identifier">:search</span>].<span class="ruby-identifier">blank?</span>
 20:         <span class="ruby-ivar">@postings</span> = <span class="ruby-constant">Posting</span>.<span class="ruby-identifier">subject_like_any_or_body_like_any</span>(
 21:                       <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:search</span>].<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/[\s|,]+/</span>)
-22:                     ).<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>( <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> )
+22:                     ).<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>( <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">POSTINGS_PER_PAGE</span> )
 23:       <span class="ruby-keyword kw">else</span>
-24:         <span class="ruby-ivar">@postings</span> = <span class="ruby-constant">Posting</span>.<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>( <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> )
+24:         <span class="ruby-ivar">@postings</span> = <span class="ruby-constant">Posting</span>.<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>( <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">POSTINGS_PER_PAGE</span> )
 25:       <span class="ruby-keyword kw">end</span>
 26:     <span class="ruby-keyword kw">end</span>
 27:   <span class="ruby-keyword kw">end</span>
@@ -245,19 +245,19 @@ no category_id is given postings are searched with searchlogic
         </div>
       </div>
 
-      <div id="method-M000022" class="method-detail">
-        <a name="M000022"></a>
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
 
         <div class="method-heading">
-          <a href="#M000022" class="method-signature">
+          <a href="#M000030" class="method-signature">
           <span class="method-name">new</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000022-source">
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 34</span>
 34:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
@@ -268,19 +268,19 @@ no category_id is given postings are searched with searchlogic
         </div>
       </div>
 
-      <div id="method-M000021" class="method-detail">
-        <a name="M000021"></a>
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
 
         <div class="method-heading">
-          <a href="#M000021" class="method-signature">
+          <a href="#M000029" class="method-signature">
           <span class="method-name">show</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000021-source">
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 30</span>
 30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
@@ -291,19 +291,19 @@ no category_id is given postings are searched with searchlogic
         </div>
       </div>
 
-      <div id="method-M000025" class="method-detail">
-        <a name="M000025"></a>
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
 
         <div class="method-heading">
-          <a href="#M000025" class="method-signature">
+          <a href="#M000033" class="method-signature">
           <span class="method-name">update</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000025-source">
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/postings_controller.rb, line 54</span>
 54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>

@@ -11,7 +11,7 @@
   <p>
     <%= f.label :body %><br />
     <%= f.text_area :body, :rows => 15, :cols => 80 %><br/>
-    <%= link_to t(:textilize_help_link), TEXTILIZE_HELP_LINK, :target => :blank -%>
+    <%= link_to t(:textilize_help_link), TEXTILIZE_HELP_LINK, :target => :blank, :class => 'small_link'  -%>
   </p>
   <%- if Category.count > 0 -%>
   <p>

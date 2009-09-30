@@ -96,9 +96,9 @@ The <a href="User.html">User</a>-Class uses AuthLogic
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000002">deliver_new_account_instructions!</a>&nbsp;&nbsp;
-      <a href="#M000001">deliver_password_reset_instructions!</a>&nbsp;&nbsp;
-      <a href="#M000003">is_admin?</a>&nbsp;&nbsp;
+      <a href="#M000004">deliver_new_account_instructions!</a>&nbsp;&nbsp;
+      <a href="#M000003">deliver_password_reset_instructions!</a>&nbsp;&nbsp;
+      <a href="#M000005">is_admin?</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -120,49 +120,25 @@ The <a href="User.html">User</a>-Class uses AuthLogic
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
 
         <div class="method-heading">
-          <a href="#M000002" class="method-signature">
+          <a href="#M000004" class="method-signature">
           <span class="method-name">deliver_new_account_instructions!</span><span class="method-args">(subject)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000002-source">
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 16</span>
-16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_new_account_instructions!</span>(<span class="ruby-identifier">subject</span>)
-17:     <span class="ruby-identifier">reset_perishable_token!</span>  
-18:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_new_account_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
-19:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
-
-        <div class="method-heading">
-          <a href="#M000001" class="method-signature">
-          <span class="method-name">deliver_password_reset_instructions!</span><span class="method-args">(subject)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000001-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 11</span>
-11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_password_reset_instructions!</span>(<span class="ruby-identifier">subject</span>)
-12:     <span class="ruby-identifier">reset_perishable_token!</span>  
-13:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_password_reset_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
-14:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_new_account_instructions!</span>(<span class="ruby-identifier">subject</span>)
+21:     <span class="ruby-identifier">reset_perishable_token!</span>  
+22:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_new_account_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
+23:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -173,7 +149,7 @@ The <a href="User.html">User</a>-Class uses AuthLogic
 
         <div class="method-heading">
           <a href="#M000003" class="method-signature">
-          <span class="method-name">is_admin?</span><span class="method-args">()</span>
+          <span class="method-name">deliver_password_reset_instructions!</span><span class="method-args">(subject)</span>
           </a>
         </div>
       
@@ -182,10 +158,34 @@ The <a href="User.html">User</a>-Class uses AuthLogic
             onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000003-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 21</span>
-21:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_admin?</span>
-22:     <span class="ruby-identifier">is_admin</span>
-23:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 15</span>
+15:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_password_reset_instructions!</span>(<span class="ruby-identifier">subject</span>)
+16:     <span class="ruby-identifier">reset_perishable_token!</span>  
+17:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_password_reset_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
+18:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">is_admin?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 25</span>
+25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_admin?</span>
+26:     <span class="ruby-identifier">is_admin</span>
+27:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

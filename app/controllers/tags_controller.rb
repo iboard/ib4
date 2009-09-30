@@ -1,3 +1,8 @@
+# Project     iboard4
+# Author      Andreas Altendorfer
+# Copyright   2009 by Andreas Altendorfer
+#
+# Tag saving is handeld by Tabables itself. The TagsController shows a Tag-Cloud via index and all Tagables of a Tag through show(Tagname)
 class TagsController < ApplicationController
 
   # Unique tags sorted by name

@@ -23,6 +23,7 @@ Rails::Initializer.run do |config|
   config.gem "searchlogic"
   config.gem "will_paginate"
   config.gem "RedCloth", :lib => "redcloth", :source => "http://code.whytheluckystiff.net" 
+  config.gem "paperclip"  # see http://rdoc.info/projects/thoughtbot/paperclip
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -47,5 +48,9 @@ end
 
 # Constants for layout
 POSTINGS_PER_PAGE=4
-USERS_PER_PAGE=1
+USERS_PER_PAGE=4
 TEXTILIZE_HELP_LINK="http://redcloth.org/textile/writing-paragraph-text/"
+CAN_OPEN="&#9658;"
+IS_OPEN="&#9660;"
+CLOSE_UP="&#9650;"
+GO_BACK="&#9664;"

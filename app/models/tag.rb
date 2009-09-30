@@ -1,3 +1,7 @@
+# Project     iboard4
+# Author      Andreas Altendorfer
+# Copyright   2009 by Andreas Altendorfer
+#
 # Model for Tags assigned polymorphic to any tagable model
 class Tag < ActiveRecord::Base
   

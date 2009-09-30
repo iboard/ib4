@@ -5,11 +5,13 @@
   
   
   <!-- INTERPRETED, TRUNCATED BODY -->
-  <%= textilize(truncate(
-     posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }, 
-     :length => 250, 
-     :omission => " ... #{link_to t(:read_more), posting}"))
-  -%>
+  <div class='body_text'>
+    <%= textilize(truncate(
+       posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }, 
+       :length => 250, 
+       :omission => " ... #{link_to CAN_OPEN, posting}"))
+    -%>
+  </div>
   
   
 </div>

@@ -1,21 +1,22 @@
-<h2><%=h posting.subject -%>
-    <span style='font-size: 12px; font-weight: normal'>
-      <%=link_to(h(posting.user.username + " (#{posting.user.fullname})"),posting.user) -%>, <%= posting.updated_at.to_s(:short) %>
-      <%- if posting.categories.any? %>
-        <br/><b><%= t(:categories) -%></b>: <%= posting.categories.map{|c| link_to(c.name, category_postings_path(c))}.join(", ") -%>
-      <%- end -%>
-      <%- if posting.tags.any? -%>
-        <%= "<br/>" if posting.categories.empty? %>
-        <b><%= t(:tags) -%></b>: 
-            <%= posting.tags.map { |tag| 
-                  link_to tag.name, tag_path(tag.name) 
-                }.join(", ")
-            -%>
-      <%- end -%>
-      <%- if current_user && (posting.user == current_user || current_user.is_admin?) -%>
-        <br/>
-        <%= link_to "Edit", edit_posting_path(posting) %> |
-        <%= link_to "Destroy", posting, :confirm => 'Are you sure?', :method => :delete %>
-      <%- end -%>
-    </span>
-</h2>
+<h1 class='title_text'><%=h posting.subject -%></h1>
+<div class='title_box'>
+  <%= image_tag(posting.user.avatar.url(:icon), :align => :left, :hspace => 10) unless posting.user.avatar.original_filename.blank? %>
+  <%=link_to("<b>"+h(posting.user.username) + "</b> (#{posting.user.fullname})",posting.user) -%>, <%= posting.updated_at.to_s(:short) %>
+  <%- if posting.categories.any? %>
+    <br/><b><%= t(:categories) -%></b>: <%= posting.categories.map{|c| link_to(c.name, category_postings_path(c))}.join(", ") -%>
+  <%- end -%>
+  <%- if posting.tags.any? -%>
+    <%= "<br/>" if posting.categories.empty? %>
+    <b><%= t(:tags) -%></b>: 
+        <%= posting.tags.map { |tag| 
+              link_to tag.name, tag_path(tag.name) 
+            }.join(", ")
+        -%>
+  <%- end -%>
+  <%- if current_user && (posting.user == current_user || current_user.is_admin?) -%>
+    <br/>
+    <%= link_to "Edit", edit_posting_path(posting) %> |
+    <%= link_to "Destroy", posting, :confirm => 'Are you sure?', :method => :delete %>
+  <%- end -%>
+  <br clear=left />
+</div>

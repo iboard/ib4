@@ -94,6 +94,15 @@ href="Categorizable.html">Categorizable</a>
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000020">read_allowed?</a>&nbsp;&nbsp;
+      <a href="#M000018">tagstring</a>&nbsp;&nbsp;
+      <a href="#M000019">tagstring=</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -110,6 +119,91 @@ href="Categorizable.html">Categorizable</a>
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="#M000020" class="method-signature">
+          <span class="method-name">read_allowed?</span><span class="method-args">(user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+TODO: Check if user allowed to read this posting This callback is used by
+tagables and therefor it is defined as this simple placeholder yet
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/posting.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_allowed?</span>(<span class="ruby-identifier">user</span>)
+36:     <span class="ruby-keyword kw">true</span>
+37:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="#M000018" class="method-signature">
+          <span class="method-name">tagstring</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/posting.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tagstring</span>
+19:     <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:name</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+20:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="#M000019" class="method-signature">
+          <span class="method-name">tagstring=</span><span class="method-args">(newstring)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/posting.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tagstring=</span>(<span class="ruby-identifier">newstring</span>)
+23:     <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new_record?</span>
+24:       <span class="ruby-ivar">@save_tags</span> = <span class="ruby-identifier">newstring</span>
+25:     <span class="ruby-keyword kw">else</span>
+26:       <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">delete_all</span>
+27:       <span class="ruby-identifier">newstring</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+28:         <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">create</span>( <span class="ruby-identifier">:tagable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>, <span class="ruby-identifier">:tagable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">t</span> )
+29:       <span class="ruby-keyword kw">end</span>
+30:     <span class="ruby-keyword kw">end</span>
+31:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>
