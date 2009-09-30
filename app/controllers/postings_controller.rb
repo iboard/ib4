@@ -8,6 +8,7 @@
 class PostingsController < ApplicationController
 
   before_filter   :require_user, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter   :require_owner_or_admin, :only => [:edit,:update,:destroy]
   
   # If a category_id is given postings are restricted to the given category.
   # If no category_id is given postings are searched with searchlogic
@@ -48,12 +49,12 @@ class PostingsController < ApplicationController
   end
   
   def edit
-    @posting = Posting.find(params[:id])
+    @posting ||= Posting.find(params[:id])
   end
   
   def update
     params[:posting]['category_ids'] ||= []    
-    @posting = Posting.find(params[:id])
+    @posting ||= Posting.find(params[:id])
     if @posting.update_attributes(params[:posting])
       flash[:notice] = "Successfully updated posting."
       redirect_to @posting
@@ -63,9 +64,18 @@ class PostingsController < ApplicationController
   end
   
   def destroy
-    @posting = Posting.find(params[:id])
+    @posting ||= Posting.find(params[:id])
     @posting.destroy
     flash[:notice] = "Successfully destroyed posting."
     redirect_to postings_url
+  end
+  
+  private
+  def require_owner_or_admin
+    @posting ||= Posting.find(params[:id])
+    if @posting.user != current_user && !current_user.is_admin?
+      flash[:error] = t(:access_denied_edit)
+      render :show
+    end
   end
 end

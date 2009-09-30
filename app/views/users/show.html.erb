@@ -1,7 +1,10 @@
-<% title @user.username %>
+<% title t(:postings_by,:username=>@user.username) %>
 
+<%= image_tag( @user.avatar.url(:medium), :align => :right, :hspace => 10, :vspace => 10) unless @user.avatar.original_filename.blank? %>
+
+<h1><%= @user.fullname -%></h1>
 <%- if current_user && current_user == @user -%>
-  <h1>Session</h1>
+  <h3>Your Session</h3>
   <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
 <%- else -%>
   <%- if @user.current_login_at %>
@@ -12,7 +15,6 @@
 <%- end -%>
 
 <%- if @mypostings.any? %>
-  <h1><%= t(:postings_by,:username=>@user.username) -%></h1>
   <%= will_paginate @mypostings -%>
   <%- @mypostings.each do |posting| -%>
     <%= render :partial => '/postings/posting_short', :locals => { :posting => posting } -%>
