@@ -101,7 +101,8 @@ controllers.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000044">require_admin</a>&nbsp;&nbsp;
+      <a href="#M000045">require_admin</a>&nbsp;&nbsp;
+      <a href="#M000044">require_admin_and_root</a>&nbsp;&nbsp;
       <a href="#M000043">require_no_user</a>&nbsp;&nbsp;
       <a href="#M000042">require_user</a>&nbsp;&nbsp;
       </div>
@@ -125,12 +126,41 @@ controllers.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="#M000045" class="method-signature">
+          <span class="method-name">require_admin</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Redirect to login path if current_user is not admin
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000045-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin</span>
+42:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_admin?</span>
+43:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_required</span>)
+44:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
+45:     <span class="ruby-keyword kw">end</span>
+46:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
       <div id="method-M000044" class="method-detail">
         <a name="M000044"></a>
 
         <div class="method-heading">
           <a href="#M000044" class="method-signature">
-          <span class="method-name">require_admin</span><span class="method-args">()</span>
+          <span class="method-name">require_admin_and_root</span><span class="method-args">()</span>
           </a>
         </div>
       
@@ -143,9 +173,9 @@ Redirect to login path if current_user is not admin
           <div class="method-source-code" id="M000044-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 33</span>
-33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin</span>
-34:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">username</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'root'</span>
-35:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_required</span>)
+33:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin_and_root</span>
+34:     <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_admin?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">username</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'root'</span>
+35:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_root</span>)
 36:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
 37:     <span class="ruby-keyword kw">end</span>
 38:   <span class="ruby-keyword kw">end</span>
