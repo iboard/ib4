@@ -84,3 +84,4 @@ en:
     one: 'One entry'
     other: '{{count}} entries'
   home: Home
+  explain_registration_flow: "<b>Registration:</b><br/>On the left side choose a username and enter your e-mail-address. You will receive a mail with an activation-link where you can set your password.<br/><b>Avatar:</b><br/>Above upload your avatar-image. It will be resized and corped to fit."

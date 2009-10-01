@@ -29,7 +29,15 @@ class Posting < ActiveRecord::Base
       end
     end
   end  
-  
+
+
+  # short title for lists and callback for ...ables
+  def list_title(n=40)
+    st = subject[0..n].to_s
+    st += "..." unless subject.length <= n
+    st
+  end
+    
   # TODO: Check if user allowed to read this posting
   # This callback is used by tagables and therefor it is defined as this simple placeholder yet
   def read_allowed?(user)
