@@ -21,6 +21,8 @@ class CategoriesController < ApplicationController
     
     # Fetch Postings
     @items = @category.categorizables.categorizable_type_is('Posting').paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+
+    # Append other 'categorizable' models to @items here...
   end
   
   def new

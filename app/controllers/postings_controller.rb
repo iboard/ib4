@@ -14,18 +14,23 @@ class PostingsController < ApplicationController
   # If no category_id is given postings are searched with searchlogic
   def index
     if params[:category_id]
+      # fetch postings of this category only...
       @category = Category.find(params[:category_id])
       @postings = @category.categorizables.find_all_by_categorizable_type('Posting').map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
+      # fetch postings of all categories
       if params[:user_id]
+        # fetch postings of the given user only
         @user = User.find(params[:user_id])
         @postings = @user.postings.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
       else
-        if !params[:search].blank?
+        # fetch all postings in all categories of each user matching the searchlogic
+        unless params[:search].blank?
           @postings = Posting.subject_like_any_or_body_like_any(
                         params[:search].split(/[\s|,]+/)
                       ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
         else
+          # fetch ALL postings
           @postings = Posting.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
         end
       end
