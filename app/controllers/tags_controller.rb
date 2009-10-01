@@ -13,7 +13,10 @@ class TagsController < ApplicationController
   # list all tagables of this tag
   def show
     @tagname = params[:id].to_s
-    @tags = Tag.name_is(@tagname)
-    @tagables = @tags.map {|t| t.tagable }.sort { |b,a| a.updated_at <=> b.updated_at }
+    @tags = Tag.name_is(@tagname).descend_by_updated_at.reject {|r| !r.tagable.read_allowed?(current_user) }.paginate(
+      :page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    @tagables = @tags.map { |t| 
+        t.tagable
+    }.sort { |b,a| a.updated_at <=> b.updated_at }
   end
 end

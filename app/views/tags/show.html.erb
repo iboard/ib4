@@ -1,8 +1,11 @@
 <%- title( "TAG - #{@tagname}") -%>
 <%= render :partial => '/postings/searchbox' -%>
 
-<% @tagables.reject {|r| !r.read_allowed?(current_user) }.each do |tagable| %>
+<%= will_paginate @tags %>
+<% @tagables.each do |tagable| %>
   <%= render :partial => "/#{tagable.class.to_s.pluralize.downcase}/#{tagable.class.to_s.downcase}_short", :locals => { tagable.class.to_s.downcase.to_sym => tagable } %>
 <% end %>
+<%= will_paginate @tags %>
+
 
 <div style='clear:both;'></div>
