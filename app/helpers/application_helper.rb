@@ -14,8 +14,8 @@ module ApplicationHelper
     txt
   end
   
-  def box_float_right(width="25%",css_class='box_float_right')
-    concat("<div class='#{css_class}' style='width: #{width}px;'>")
+  def box_float_right(width=RIGHT_BOX_DEFAULT_WIDTH,css_class='box_float_right')
+    concat("<div class='#{css_class}' style='width: #{width}'>")
     yield
     concat("</div>")
   end
