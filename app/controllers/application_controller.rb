@@ -30,8 +30,16 @@ class ApplicationController < ActionController::Base
   end
   
   # Redirect to login path if current_user is not admin
+  def require_admin_and_root
+    if !current_user || !current_user.is_admin? || current_user.username != 'root'
+      flash[:error] = t(:admin_root)
+      redirect_to login_path
+    end
+  end
+
+  # Redirect to login path if current_user is not admin
   def require_admin
-    if !current_user || current_user.username != 'root'
+    if !current_user || !current_user.is_admin?
       flash[:error] = t(:admin_required)
       redirect_to login_path
     end

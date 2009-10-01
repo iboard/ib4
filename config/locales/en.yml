@@ -30,6 +30,7 @@ en:
   new_user: 'New User'
   please_enter_your_new_password: 'Please enter a new password'
   admin_required: 'Administration account required for this function'
+  require_root: 'This function is dedicated to be used by root only!'
   user_listing: 'User listing'
   created_at: 'Created at'
   last_request_at: 'Last request at'
