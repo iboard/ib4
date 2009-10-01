@@ -154,8 +154,10 @@ a:hover {
 
 #user_nav {
   float: right;
+  text-align: right;
   padding-top: 20px;
   font-size: 12px;
+  line-height: 110%;
 }
 
 #copyright {
@@ -203,12 +205,11 @@ a:hover {
 	
 }
 
-.searchbox_right {
+.box_float_right {
 	float: right; 
-	width: 200px; 
 	font-size: 12px; 
 	padding: 10px; 
-	border: 1px solid #888; 
+	border: 1px dotted #AAA; 
 	margin-left: 20px; 
 	margin-bottom: 20px;
 }

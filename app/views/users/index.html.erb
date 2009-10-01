@@ -1,6 +1,7 @@
 <% title t(:user_listing) %>
 
 <%- form_for @search do |f| -%>
+
     <%= f.text_field :username_like -%>
     <%= f.submit t(:search) -%>
     <%= f.submit(
@@ -9,9 +10,9 @@
         )
     -%>
     <%= t(:sort_by) -%>: 
-      <%= order @search, :by => :username, :as => t(:username) -%> |
-      <%= order @search, :by => :last_login_at, :as => t(:last_login_at) -%> |
-      <%= order @search, :by => :email, :as => t(:email) -%> 
+    <%= order @search, :by => :username, :as => t(:username) -%> |
+    <%= order @search, :by => :last_login_at, :as => t(:last_login_at) -%> |
+    <%= order @search, :by => :email, :as => t(:email) -%> 
     
 <%- end -%>
 

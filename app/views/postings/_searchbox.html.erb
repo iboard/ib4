@@ -1,14 +1,14 @@
-<div class='searchbox_right'>
+<% box_float_right(200) do %>
   
   <%- form_tag postings_path, :method => :get do  -%>
     <%= text_field_tag :search, params[:search], :size=> 15 -%>
     <%= submit_tag t(:search) -%>
   <%- end -%>
   <%- if current_user %>
-    <p><%= link_to t(:new_posting), new_posting_path %></p>
+    <h3><%= CAN_OPEN+NBSP+link_to( t(:new_posting), new_posting_path) %></h3>
   <%- end -%>
     
-  <h3><%= t(:categories)-%></h3>
+  <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>
   <ul>
     <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_postings), postings_path -%> (<%= Posting.all.length -%>)</li>
     <%- Category.ascend_by_name.each do |category| -%>
@@ -17,7 +17,7 @@
     <%- end -%>
   </ul>
   
-  <h3><br/><%= t(:tags) -%></h3>
+  <h3><br/><%= link_to CAN_OPEN+NBSP+t(:tags), tags_path -%></h3>
   <%= render :partial => '/tags/tag_index' -%>
-  
-</div>
+
+<% end %>

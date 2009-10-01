@@ -7,9 +7,10 @@
   <!-- INTERPRETED, TRUNCATED BODY -->
   <div class='body_text'>
     <%= textilize(truncate(
-       posting.body.gsub(/[&><]/) { |special| { '&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }, 
-       :length => 250, 
-       :omission => " ... #{link_to CAN_OPEN, posting}"))
+          posting.body.gsub(/[&><]/) { |special| { '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }, 
+          :length => 250, 
+          :omission => " ... #{link_to CAN_OPEN+NBSP+t(:read_more), posting}")
+        )
     -%>
   </div>
   

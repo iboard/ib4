@@ -17,12 +17,17 @@ class PostingsController < ApplicationController
       @category = Category.find(params[:category_id])
       @postings = @category.categorizables.find_all_by_categorizable_type('Posting').map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
-      if !params[:search].blank?
-        @postings = Posting.subject_like_any_or_body_like_any(
-                      params[:search].split(/[\s|,]+/)
-                    ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+        @postings = @user.postings.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
       else
-        @postings = Posting.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+        if !params[:search].blank?
+          @postings = Posting.subject_like_any_or_body_like_any(
+                        params[:search].split(/[\s|,]+/)
+                      ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+        else
+          @postings = Posting.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+        end
       end
     end
   end

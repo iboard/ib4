@@ -1,20 +1,29 @@
-<% title "Category" %>
+<% title t(:category_show, :category => h(@category.name)) %>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @category.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%=textilize(h(@category.description)) %>
-</p>
-<p>
-  <strong>Public:</strong>
-  <%=h @category.public %>
-</p>
+<% box_float_right(200) do %>
+  <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>
+  <ul>
+    <% Category.ascend_by_name.each do |cat| %>
+      <li><%= link_to cat.name, cat %> (<%= cat.categorizables.length %>)</li>
+    <% end %>
+  </ul>
+<% end %>
 
-<p>
-  <%= link_to "Edit", edit_category_path(@category) %> |
-  <%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", categories_path %>
-</p>
+<h1><%= h(@category.name) -%></h1>
+<%- if current_user && current_user.is_admin? %>
+  <p>
+    <%= link_to "Edit", edit_category_path(@category) %> |
+    <%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %> |
+    <%= link_to "View All", categories_path %>
+  </p>
+<%- end -%>
+<p><%= t(:count_entries, :count => @items.length ) -%></p>
+<%=textilize(h(@category.description)) %>
+
+
+<%= will_paginate @items %>
+<% @items.map {|itm| itm.categorizable }.reject {|r| !r.read_allowed?(current_user) }.each do |item| %>
+  <%= render :partial => "/#{item.class.to_s.pluralize.downcase}/#{item.class.to_s.downcase}_short", 
+    :locals => { item.class.to_s.downcase.to_sym => item } %>
+<% end %>
+<%= will_paginate @items %>

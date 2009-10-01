@@ -50,6 +50,7 @@ end
 POSTINGS_PER_PAGE=4
 USERS_PER_PAGE=4
 TEXTILIZE_HELP_LINK="http://redcloth.org/textile/writing-paragraph-text/"
+NBSP='&nbsp;'
 CAN_OPEN="&#9658;"
 IS_OPEN="&#9660;"
 CLOSE_UP="&#9650;"

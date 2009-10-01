@@ -12,7 +12,9 @@
           
           <div id='user_nav'>
               <%- if current_user -%>
-                <b><%= current_user.username -%></b>:
+                <b><%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%></b>:
+                <%= image_tag( current_user.avatar.url(:icon), :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? %>
+                <%= "<br clear=right />"  unless current_user.avatar.original_filename.blank? -%>
                 <%= link_to t(:dashboard), current_user -%> | 
                 <%= link_to t(:edit_profile), edit_user_path(:current) -%> |
                 <%= link_to t(:logout), logout_path -%>
@@ -27,11 +29,12 @@
             <h1><%=h yield(:title) -%></h1>
           <%- end -%>
           
-          <%- if current_user && current_user.is_admin? %>
-            <div id='usermenu'>
-                <%= render :partial => '/users/adminmenu' if current_user -%>
-            </div>
-          <%- end -%>        
+          <div id='usermenu'>
+              <%= render :partial => '/layouts/publicmenu' -%>
+              <%- if current_user && current_user.is_admin? -%>
+               | <%= render :partial => '/users/adminmenu' if current_user -%>
+              <%- end -%>
+          </div>
           
       </div>
       

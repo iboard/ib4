@@ -14,6 +14,11 @@ module ApplicationHelper
     txt
   end
   
+  def box_float_right(width=200,css_class='box_float_right')
+    concat("<div class='#{css_class}' style='width: #{width}px;'>")
+    yield
+    concat("</div>")
+  end
   
   def toggle_display_link(label='show more')
   

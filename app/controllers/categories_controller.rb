@@ -8,14 +8,19 @@
 class CategoriesController < ApplicationController
   
   # Categories accessable by admin-users only
-  before_filter :require_admin
+  before_filter :require_admin, :except => [:show,:index]
   
   def index
-    @categories = Category.all
+    @categories = Category.ascend_by_name.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
   end
   
+  # Show this category and all records of categorizable models
+  # TODO: You have to append new categorizable models like Posting which is the only model yet.
   def show
     @category = Category.find(params[:id])
+    
+    # Fetch Postings
+    @items = @category.categorizables.categorizable_type_is('Posting').paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
   end
   
   def new

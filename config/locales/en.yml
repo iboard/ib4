@@ -65,6 +65,7 @@ en:
   user_is_logged_in: 'User {{username}} is logged in since {{since}}'
   is_admin: 'admin'
   categories: 'Categories'
+  new_category: 'New category'
   postings_in_category: 'Postings in category {{category}}'
   all_postings: 'All postings'
   tags: 'Tags'
@@ -74,3 +75,11 @@ en:
   details: 'Details'
   postings: 'Postings'
   access_denied_edit: "You can't edit this record - access denied"
+  is_public: 'Public'
+  edit_category: 'Edit category'
+  category_show: 'Category {{category}}'
+  count_entries:
+    zero: 'No entry'
+    one: 'One entry'
+    other: '{{count}} entries'
+  home: Home
