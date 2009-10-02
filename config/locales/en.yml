@@ -85,3 +85,4 @@ en:
     other: '{{count}} entries'
   home: Home
   explain_registration_flow: "<b>Registration:</b><br/>On the left side choose a username and enter your e-mail-address. You will receive a mail with an activation-link where you can set your password.<br/><b>Avatar:</b><br/>Above upload your avatar-image. It will be resized and corped to fit."
+  comma_or_blank_delimited_plural: "Please use plural Tags.<br/>Comma or spaces delimiters<br/>eg. 'Music,Gasoline,Announcment'<br/>But not: <s>Announcment<b>s</b><em>;</em>Car<b>s</b></s><br/>AND NEVER USE 'new' AS A TAG! » Your posting will be marked 'new' forever ;-)"

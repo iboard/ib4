@@ -1,9 +1,26 @@
 <% form_for @posting do |f| %>
-  <%= f.error_messages %>
+  <%- box_float_right do -%>
   <p>
-    <%= f.label :tagstring %><br />
-    <%= f.text_field :tagstring %>
-  </p>
+      <%= f.label :tagstring, t(:tags) %><br />
+      <%= f.text_field :tagstring %><br/>
+      <small>
+         <%= t(:comma_or_blank_delimited_plural) -%>
+      </small>
+  </p>  
+  <%- if Category.count > 0 -%>
+    <p>
+        <%= f.label :category_ids, t(:categories) -%><br/>
+        <%- Category.ascend_by_name.each do |cat| -%>
+          <div style='margin-left: 5px;'>
+              <%= check_box_tag "posting[category_ids][]", cat.id, @posting.categories.include?(cat) -%>&nbsp;<%=h cat.name %>
+          </div>
+        <%- end -%>
+    </p>
+    <%- end -%>
+  <%- end -%>
+  
+  <%= f.error_messages %>
+  
   <p>
     <%= f.label :subject %><br />
     <%= f.text_field :subject, :size => 82 %>
@@ -13,15 +30,6 @@
     <%= f.text_area :body, :rows => 15, :cols => 80 %><br/>
     <%= link_to t(:textilize_help_link), TEXTILIZE_HELP_LINK, :target => :blank, :class => 'small_link'  -%>
   </p>
-  <%- if Category.count > 0 -%>
-  <p>
-      <%= f.label :category_ids -%><br/>
-      <%- Category.ascend_by_name.each do |cat| -%>
-        <div style='margin-left: 5px;'>
-            <%= check_box_tag "posting[category_ids][]", cat.id, @posting.categories.include?(cat) -%>&nbsp;<%=h cat.name %>
-        </div>
-      <%- end -%>
-  </p>
-  <%- end -%>
+  
   <p><%= f.submit "Submit" %></p>
 <% end %>
