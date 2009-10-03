@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = t(:registration_successfull)
       UserSession.find.destroy
-      @user.deliver_new_account_instructions!(t(:new_account_instructions_subject))
+      @user.send_later(:deliver_new_account_instructions, t(:new_account_instructions_subject))
       redirect_to root_url
     else
       render :action => 'new'

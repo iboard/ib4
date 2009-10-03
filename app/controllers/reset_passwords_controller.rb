@@ -21,7 +21,7 @@ class ResetPasswordsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user
-      @user.deliver_password_reset_instructions!(t(:reset_password_instructions_subject))
+      @user.send_later(:deliver_password_reset_instructions,t(:reset_password_instructions_subject))
       flash[:notice] = t(:password_reset_instructions)
       redirect_to root_url
     else
