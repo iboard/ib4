@@ -8,6 +8,7 @@ There is no due date for iBoard 4 but the need to be as clean and streight forwa
 == Installing
 
 # Please fetch and pull from Github (http://github.com/iboard/ib4)
+# sudo rake gems:install
 # rake db:migrate
 # rake db:seed
 # Copy environments/development.rb.sample to environments/development.rb and edit to fit your needs
@@ -16,5 +17,5 @@ There is no due date for iBoard 4 but the need to be as clean and streight forwa
 
 == RDoc
 
-You will find RDocs starting from doc/app/index.html
+You will find RDocs starting from http://ib4doc.iboard.cc/app/index.html
 

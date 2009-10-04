@@ -2,17 +2,17 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   def test_new
-    puts "*"
+    putc "#"
     assert true
   end
   
   def test_create_invalid
-    puts "*"
+    putc "#"
     assert true
   end
   
   def test_create_valid
-    puts "*"
+    putc "#"
     assert true
   end
   

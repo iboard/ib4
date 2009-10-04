@@ -7,12 +7,12 @@ class ResetPasswordsControllerTest < ActionController::TestCase
   end
   
   def test_create_invalid
-    puts "# ResetPasswords can't be tested please use your browser and email-client"
+    putc "#"
     assert true
   end
   
   def test_create_valid
-    puts "# ResetPasswords can't be tested please use your browser and email-client"
+    putc "#"
     assert true
   end
 end

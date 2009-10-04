@@ -147,9 +147,9 @@ Categories can be attached to &#8216;Categorizables&#8217; (eg. Postings,
 34:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">save</span>
 35:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully created category.&quot;</span>
 36:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@category</span>
-37:     <span class="ruby-keyword kw">else</span>
-38:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>
-39:     <span class="ruby-keyword kw">end</span>
+37:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+38:     <span class="ruby-keyword kw">end</span>
+39:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>
 40:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
