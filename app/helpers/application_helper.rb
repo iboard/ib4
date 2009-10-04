@@ -14,6 +14,10 @@ module ApplicationHelper
     txt
   end
   
+  def divider
+    "<div class='divider'></div>"
+  end
+    
   def box_float_right(width=RIGHT_BOX_DEFAULT_WIDTH,css_class='box_float_right')
     concat("<div class='#{css_class}' style='width: #{width}'>")
     yield

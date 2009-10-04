@@ -12,6 +12,9 @@ class Posting < ActiveRecord::Base
   
   has_many    :tags,     :as => :tagable, :dependent => :destroy    # Tags assigned to this posting
   
+  has_many    :comments, :as => :commentable,                       # Comments for this posting
+              :dependent => :destroy
+  
   after_create :assign_tags
   
   validates_presence_of :subject, :body

@@ -1,0 +1,7 @@
+page.insert_html :bottom, :comments, "<div id='new_flash'></div>"
+page.insert_html :bottom, :comments, :partial => @comment
+page.replace_html :comments_count, t(:count_comments,:count => @comment.commentable.comments.size)
+page[:comment_form].reset
+page.replace_html :flash, ""
+page.replace_html :new_flash, "<div id='flash_notice'>#{flash[:notice]}</div>"
+flash.discard

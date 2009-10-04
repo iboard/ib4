@@ -4,7 +4,27 @@
   <%= render :partial => 'posting_header', :locals => { :posting => @posting } %>
   <p><%= link_to GO_BACK+'&nbsp;'+t(:view_all), postings_path -%></p>
   <%= textilize(@posting.body.gsub(/[&><]/) { |special| {  '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) -%>
-  <p><%= link_to GO_BACK+'&nbsp;'+t(:view_all), postings_path -%></p>
 </div>
+
+<% if current_user || @posting.comments.any? %>
+  <div id='comments'>
+        <h3 id='comments_count'><%= t(:count_comments,:count => @posting.comments.length ) if current_user -%></h3>
+        <%= render @posting.comments  unless @posting.comments.empty? %>
+  </div>
+<% end %>
+
+<% if current_user %>
+  <% form_remote_for [@commentable, Comment.new], :url => posting_comments_path(@posting), :html => { :id => 'comment_form' } do |f| %>
+  <h3><%= t(:add_a_comment)%></h3>
+  <p>
+      <strong><%= f.label :comment -%></strong><br/>
+      <%= f.text_area :comment, :rows => 5 %>
+  </p>
+  <p> <%= f.submit t(:submit) -%></p>
+  <% end %>
+<% end %>
+
+<p><%= link_to GO_BACK+'&nbsp;'+t(:view_all), postings_path -%></p>
+
 
 <%# (9500..9800).map {|i| "#{i}=&##{i};"}.join(', ')%>

@@ -44,7 +44,6 @@ a:hover {
 #flash_notice, #flash_error {
   padding: 5px 8px;
   margin: 10px 0;
-  width: 70%;
 }
  
 #flash_notice {
@@ -81,7 +80,7 @@ a:hover {
   font-size: 12px;
   background-color: #DDD;
   padding: 0 20px;
-  width: 325px;
+  width: 50%;
   border: solid 1px #333;
 }
  
@@ -234,4 +233,10 @@ a:hover {
 
 .small_link {
   font-size: 10px;	
+}
+
+.divider {
+	border-bottom: 1px solid #aaa;
+	width: 85%;
+	margin-bottom: 5px;
 }
