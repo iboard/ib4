@@ -98,3 +98,4 @@ en:
   guest: 'guest'
   successfully_created_comment: 'Comment successfully created.'
   delete_this_comment: 'delete this comment'
+  commentable_commented: '{{username}} posted a comment on your item: {{title}}'

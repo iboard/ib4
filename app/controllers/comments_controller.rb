@@ -19,6 +19,8 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(params[:comment])
     if @comment.save
       flash[:notice] = t(:successfully_created_comment)
+      @comment.send_later(:deliver_comment_notification, 
+        :commentable_url => "http://#{LOCALHOST_NAME}/#{@comment.commentable_type.singularize.downcase}/#{@comment.commentable_id}")
       respond_to do |format|
         format.html { redirect_to @commentable }
         format.js
