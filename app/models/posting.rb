@@ -13,7 +13,8 @@ class Posting < ActiveRecord::Base
   has_many    :tags,     :as => :tagable, :dependent => :destroy    # Tags assigned to this posting
   
   after_create :assign_tags
-
+  
+  validates_presence_of :subject, :body
   
   def tagstring
     tags.map(&:name).join(",")

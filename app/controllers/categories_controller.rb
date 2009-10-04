@@ -34,9 +34,9 @@ class CategoriesController < ApplicationController
     if @category.save
       flash[:notice] = "Successfully created category."
       redirect_to @category
-    else
-      render :action => 'new'
+      return false
     end
+    render :action => 'new'
   end
   
   def edit

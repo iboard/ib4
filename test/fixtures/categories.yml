@@ -1,9 +1,11 @@
-one:
-  name: MyString
+public:
+  id: 1
+  name: "A public cateory"
   description: MyText
-  public: false
+  public: true
 
-two:
-  name: MyString
+private:
+  id: 2
+  name: "A private category"
   description: MyText
   public: false

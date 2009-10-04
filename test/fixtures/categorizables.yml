@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  category: public
+  categorizable_id: 1
+  categorizable_type: Posting
+
+two:
+  category: private
+  categorizable_id: 2
+  categorizable_type: Posting

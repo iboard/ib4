@@ -1,11 +1,9 @@
 one:
-  user_id: 1
-  subject: MyString
+  user: :root
+  subject: "A public posting"
   body: MyText
-  tagstring: MyString
 
 two:
-  user_id: 1
-  subject: MyString
+  user: :root
+  subject: "A private posting"
   body: MyText
-  tagstring: MyString

@@ -1,9 +1,12 @@
-one:
-  username: MyString
-  email: 
-  password: MyString
+root:
+  username: root
+  email: root@me.com
 
-two:
-  username: MyString
-  email: 
-  password: MyString
+registered:
+  username: user
+  email: registered@me.com
+
+guest:
+  username: guest
+  email: guest@me.com
+
