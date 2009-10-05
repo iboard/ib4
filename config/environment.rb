@@ -2,7 +2,7 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
-RAILS_ENV = 'production' unless defined? RAILS_ENV
+# doesn't work - RAILS_ENV = 'production' unless defined? RAILS_ENV
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -52,9 +52,13 @@ POSTINGS_PER_PAGE=4
 USERS_PER_PAGE=4
 TEXTILIZE_HELP_LINK="http://redcloth.org/textile/writing-paragraph-text/"
 RIGHT_BOX_DEFAULT_WIDTH="25%"
-NBSP='&nbsp;'
-CAN_OPEN="&#9658;"
-IS_OPEN="&#9660;"
-CLOSE_UP="&#9650;"
-GO_BACK="&#9664;"
 DEFAULT_TRUNCATED_BODY_LENGTH=512
+
+# CHARACTERS
+NBSP='&nbsp;'
+CAN_OPEN       = "&#9658;"
+IS_OPEN        = "&#9660;"
+CLOSE_UP       = "&#9650;"
+GO_BACK        = "&#9664;"
+BACKSPACE_CHAR = "&#9003;"
+DELETE_CHAR    = "&#9003;"

@@ -6,7 +6,7 @@
 # UserController makes use of AuthLogic-Gem
 class UsersController < ApplicationController
  
-  before_filter :require_user,    :only => [:edit, :update,:destroy]
+  before_filter :require_user,    :only => [:edit, :update, :destroy, :remove_avatar]
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_admin,   :only => [:index]
   
@@ -63,6 +63,27 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       render :action => 'edit'
+    end
+  end
+  
+  def remove_avatar
+    if current_user.is_admin? && !params[:id].blank?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+    
+    @user.avatar = nil
+    
+    if @user.save
+      flash[:notice] = t(:avatar_successfully_removed)
+      respond_to do |format|
+        format.html { redirect_to edit_user_path(@user) }
+        format.js
+      end
+    else
+      flash[:error] = t(:error_removing_avatar)
+      redirect_to edit_user_path(@user)
     end
   end
   

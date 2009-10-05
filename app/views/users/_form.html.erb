@@ -1,51 +1,64 @@
-<%- #form_for @user, :html => { :multipart => true } do |f| -%>
 <% form_for  @user, :html => { :multipart => true } do |f| %>
 
-
-<% box_float_right do %>
+  <!-- AVATAR (Box right) -->
+  <% box_float_right do %>
     <p>
         <b><%= f.label :avatar -%></b><br />
-        <%= image_tag @user.avatar.url(:avatar), :hspace => 10, :vspace => 10 unless @user.avatar.original_filename.blank? %>
+        <div id='avatar_image'>
+          <%= image_tag(@user.avatar.url(:avatar), :hspace => 10, :vspace => 10) -%>
+        </div>
         <%= f.file_field :avatar %>
     </p>
-    <%- if @user.new_record? %>
+    <p>
+        <%= DELETE_CHAR+NBSP+
+            link_to_remote(
+              t(:remove_avatar),
+              :url => { :controller => 'users', :action => 'remove_avatar', :method => :put, :id => @user.id },
+              :complete => 'Element.highlight("avatar_image")'
+            )
+        -%>
+    </p>
+    
+    <%- if @user.new_record? -%>
       <div style='border-bottom: 1px solid #aaa; width: 95%;'></div>
-      <p><%= t(:explain_registration_flow)%></p>
-    <%- end -%>
-<% end %>
-
-<%= f.error_messages %>
-
-<p>
-  <%= f.label :username %><br />
-  <%= f.text_field :username %>
-</p>
-<p>
-  <%= f.label :fullname %><br />
-  <%= f.text_field :fullname %>
-</p>
-<p>
-  <%= f.label :email %><br />
-  <%= f.text_field :email %>
-</p>
-<%- if !@user.new_record? %>
+      <p><%= t(:explain_registration_flow) -%></p>
+    <% end %>
+    
+  <% end %>
+    
+  <!-- DATA FIELDS (left) -->
+  <%= f.error_messages %>
+  
   <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
   </p>
   <p>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :fullname %><br />
+    <%= f.text_field :fullname %>
   </p>
-<%- end -%>
-
-<%- if current_user && current_user.is_admin? -%>
   <p>
-    <%= f.label :is_admin %><br />
-    <%= f.check_box :is_admin %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </p>
-<%- end -%>
-
-<p><%= f.submit "Submit" %></p>
+  <%- unless @user.new_record? -%>
+    <p>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </p>
+  <%- end -%>
+  
+  <%- if current_user && current_user.is_admin? -%>
+    <p>
+      <%= f.label :is_admin %><br />
+      <%= f.check_box :is_admin %>
+    </p>
+  <%- end -%>
+  
+  <p><%= f.submit "Submit" %></p>
 
 <%- end -%>
