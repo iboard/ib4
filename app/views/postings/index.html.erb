@@ -1,5 +1,3 @@
-<% rss_link(:rss, formatted_postings_url(:rss)) %>
-
 <%- if params[:category_id] -%>
   <%- title( t(:postings_in_category, :category => @category.name ) ) -%>
 <%- else -%>

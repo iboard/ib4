@@ -2,6 +2,8 @@
   
   <p>
     <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), formatted_postings_url(:rss) -%>
+    <% rss_link(:rss, formatted_postings_url(:rss)) %>
+    
   </p>
   
   <%- form_tag postings_path, :method => :get do  -%>
