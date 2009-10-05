@@ -14,8 +14,11 @@ xml.rss :version => "2.0" do
             :align=>:left,:hspace => 5,:vspace => 5,
             :title => posting.user.fullname+NBSP+"(#{posting.user.username})"
           ) + 
-          "<p><strong><em>#{posting.user.fullname}, at " +
-              t(:days_ago, :count => ((Time.now-posting.updated_at)/1.day).round.to_i ) +
+          "<p><strong><em>" +
+              t(:comment_days_ago, :fullname => posting.user.fullname,
+                           :username=>posting.user.username, 
+                           :count => ((Time.now-posting.updated_at)/1.day).round.to_i 
+              ) +
           "</em></strong></p>" +
           textilize(h(posting.body))
         )
