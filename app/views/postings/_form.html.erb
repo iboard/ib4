@@ -1,8 +1,8 @@
 <% form_for @posting do |f| %>
-  <%- box_float_right do -%>
+  <%- box_float_right("200px;") do -%>
   <p>
       <%= f.label :tagstring, t(:tags) %><br />
-      <%= f.text_field :tagstring %><br/>
+      <%= f.text_field :tagstring, :size => 25 %><br/>
       <small>
          <%= t(:comma_or_blank_delimited_plural) -%>
       </small>
@@ -23,11 +23,11 @@
   
   <p>
     <%= f.label :subject %><br />
-    <%= f.text_field :subject, :size => 82 %>
+    <%= f.text_field :subject, :size => 52 %>
   </p>
   <p>
     <%= f.label :body %><br />
-    <%= f.text_area :body, :rows => 15, :cols => 80 %><br/>
+    <%= f.text_area :body, :rows => 15, :cols => 50 %><br/>
     <%= link_to t(:textilize_help_link), TEXTILIZE_HELP_LINK, :target => :blank, :class => 'small_link'  -%>
   </p>
   
