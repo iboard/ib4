@@ -3,7 +3,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title t(:postings_at_host, :host => LOCALHOST_NAME)
     xml.description t(:postings_feed_description)
-    xml.link formatted_postings_url(:html)
+    xml.link postings_url
     
     for posting in @postings
       xml.item do
@@ -20,10 +20,10 @@ xml.rss :version => "2.0" do
                            :count => ((Time.now-posting.updated_at)/1.day).round.to_i 
               ) +
           "</em></strong></p>" +
-          textilize(h(posting.body))+BR+COMMENT_HAND+NBSP+t(:count_comments, :count => posting.comments.size)+BR
+          textilize(truncate(h(posting.body),DEFAULT_TRUNCATED_BODY_LENGTH))+BR+COMMENT_HAND+NBSP+t(:count_comments, :count => posting.comments.size)+BR
         )
         xml.pubDate posting.updated_at.to_s(:rfc822)
-        xml.link formatted_posting_url(posting,:html)
+        xml.link posting_url(posting)
       end
     end
   end
