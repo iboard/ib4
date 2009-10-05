@@ -17,10 +17,14 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
+    @comment.user = current_user unless current_user.nil?
     if @comment.save
       flash[:notice] = t(:successfully_created_comment)
-      @comment.send_later(:deliver_comment_notification, 
-        :commentable_url => "http://#{LOCALHOST_NAME}/#{@comment.commentable_type.singularize.downcase}/#{@comment.commentable_id}")
+      @comment.send_later(
+        :deliver_comment_notification,
+        t(:commentable_commented, :title => @comment.commentable.list_title(60), :username => @comment.user.username),
+        "http://#{LOCALHOST_NAME}/#{@comment.commentable_type.singularize.downcase}/#{@comment.commentable_id}"
+      )
       respond_to do |format|
         format.html { redirect_to @commentable }
         format.js

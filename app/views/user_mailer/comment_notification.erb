@@ -1,12 +1,12 @@
-<p><%= @receiver.fullname -%>,</p>
+<p><%= @comment.commentable.user.fullname -%>,</p>
 <p>
-    Your <%= @commentable.commentable_type %> was commented by <%= @sender.fullname %> (<%= @sender.username -%>)</p>
+    Your <%= @comment.commentable_type %> was commented by <%= @comment.user.fullname %> (<%= @comment.user.username -%>)</p>
 </p>
 
-<h3>Comment by <%= @sender.fullname -%>, at <%= @comment.updated_at.to_s(:short) %></h3>
+<h3>Comment by <%= @comment.user.fullname -%>, at <%= @comment.updated_at.to_s(:short) %></h3>
 
 <%= textilize(h(@comment.comment)) -%>
 
 <p>
-  <%= CAN_OPEN %> <%= link_to t(@commentable.commentable_type), @commentable_url -%>
+  <%= CAN_OPEN %> <%= link_to t(@comment.commentable_type)+" #{@comment.commentable.list_title}", @commentable_url -%>
 </p>

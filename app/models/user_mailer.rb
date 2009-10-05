@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   
   def password_reset_instructions(user,subject)
     subject     subject
-    from        "noreply@#{LOCALHOST_NAME}"
+    from        "noreply@#{default_url_options[:host]}"
     recipients  user.email
     sent_on     Time::now
     body        :edit_password_reset_url => edit_reset_password_url(user.perishable_token)
@@ -18,18 +18,18 @@ class UserMailer < ActionMailer::Base
   
   def new_account_instructions(user,subject)
     subject     subject
-    from        "noreply@#{LOCALHOST_NAME}"
+    from        "noreply@#{default_url_options[:host]}"
     recipients  user.email
     sent_on     Time::now
     body        :edit_password_reset_url => edit_reset_password_url(user.perishable_token)
   end
-  
-  def comment_notification(sender,receiver,comment,commentable,commentable_url)
-    subject     t(:commentable_commented, :title => commentable.list_title, :username => sender.username)
-    from        sender.email
-    recipients  receiver.email
+
+  def comment_notification(comment,t_subject,commentable_url)
+    subject     t_subject
+    from        comment.user.email
+    recipients  comment.commentable.user.email
     sent_on     Time::now
-    body        :commentable => commentable, :comment => comment, :sender => sender, :commentable_url => commentable_url
+    body        :comment => comment, :commentable_url => commentable_url
   end
   
 end

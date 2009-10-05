@@ -3,11 +3,9 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   
   
-  def deliver_comment_notification(commentable_url)
-    receiver = self.commentable.user
-    sender   = self.user
-    if receiver && sender
-      UserMailer.deliver_comment_notification(sender,receiver,comment,commentable,commentable_url)
+  def deliver_comment_notification(t_subject,commentable_url)
+    unless commentable.user.nil? || user.nil?
+      UserMailer.deliver_comment_notification(self,t_subject,commentable_url)
     end
   end
   
