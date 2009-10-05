@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       @comment.send_later(
         :deliver_comment_notification,
         t(:commentable_commented, :title => @comment.commentable.list_title(60), :username => @comment.user.username),
-        "http://#{LOCALHOST_NAME}/#{@comment.commentable_type.singularize.downcase}/#{@comment.commentable_id}"
+        "http://#{LOCALHOST_NAME}/#{@comment.commentable_type.pluralize.downcase}/#{@comment.commentable_id}"
       )
       respond_to do |format|
         format.html { redirect_to @commentable }
