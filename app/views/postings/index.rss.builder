@@ -20,7 +20,7 @@ xml.rss :version => "2.0" do
                            :count => ((Time.now-posting.updated_at)/1.day).round.to_i 
               ) +
           "</em></strong></p>" +
-          textilize(h(posting.body))
+          textilize(h(posting.body))+BR+COMMENT_HAND+NBSP+t(:count_comments, :count => posting.comments.size)+BR
         )
         xml.pubDate posting.updated_at.to_s(:rfc822)
         xml.link formatted_posting_url(posting,:html)
