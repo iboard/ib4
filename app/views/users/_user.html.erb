@@ -1,7 +1,7 @@
 <table width=100%>
   <tr>
     <td width=150 align=center valign=top>
-      <%= image_tag(user.avatar.url(:avatar)) unless user.avatar.original_filename.blank? %>
+      <%= image_tag(user.avatar.url(:avatar)) -%>
     </td>
     <td valign=top align=left>
       <span style='font-size: 18px; font-weight: bold;'><%=h user.username %> <%= "<span style='font-size: 12px;'>(#{t(:is_admin)})</span>" if user.is_admin? %><br/>
