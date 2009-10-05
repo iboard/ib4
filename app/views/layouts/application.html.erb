@@ -10,6 +10,10 @@
   <body><div id='page'>
       <div id='banner'>
           
+          <%- if RAILS_ENV != 'production' -%>
+            <p>ENVIRONMENT: <%= RAILS_ENV -%></p>
+          <%- end -%>
+          
           <div id='user_nav'>
               <%- if current_user -%>
                 <b><%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%></b>:
@@ -48,7 +52,7 @@
       </div>
       <div id='height_filler'>&nbsp;</div>
       <div id='copyright'>
-        <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
+        <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%>
       </div>
 
   </div></body>
