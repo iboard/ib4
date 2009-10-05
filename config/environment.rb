@@ -55,7 +55,8 @@ RIGHT_BOX_DEFAULT_WIDTH="25%"
 DEFAULT_TRUNCATED_BODY_LENGTH=512
 
 # CHARACTERS
-NBSP='&nbsp;'
+NBSP           = '&nbsp;'
+BR             = "<br />"
 CAN_OPEN       = "&#9658;"
 IS_OPEN        = "&#9660;"
 CLOSE_UP       = "&#9650;"

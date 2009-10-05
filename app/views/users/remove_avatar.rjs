@@ -1,0 +1,11 @@
+page.replace_html :avatar_image, image_tag(@user.avatar.url(:avatar), :hspace => 10, :vspace => 10)
+
+d =  "<div id='flash'>"
+d += "  <div id='flash_notice'></div>" unless flash[:notice].blank?
+d += "  <div id='flash_error'></div>"  unless flash[:error].blank?
+d += "</div>"
+
+page.replace_html :flash, d
+page.replace_html :flash_notice, flash[:notice] unless flash[:notice].blank?
+page.replace_html :flash_error, flash[:error] unless flash[:error].blank?
+flash.discard

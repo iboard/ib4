@@ -18,12 +18,17 @@ module LayoutHelper
   
   # Append a stylesheet to the :head for yield in application.html.erb
   def stylesheet(*args)
-    content_for(:head) { stylesheet_link_tag(*args.map(&:to_s)) }
+    content_for(:html_head) { stylesheet_link_tag(*args.map(&:to_s)) }
   end
   
   # Append a javascript to the html-head
   def javascript(*args)
     args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
-    content_for(:head) { javascript_include_tag(*args) }
+    content_for(:html_head) { javascript_include_tag(*args) }
+  end
+  
+  # Append a rss-link to the html-head
+  def rss_link(*args)
+    content_for(:html_head) { auto_discovery_link_tag(*args.map(&:to_s)) }
   end
 end

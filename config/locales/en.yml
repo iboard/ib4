@@ -103,3 +103,10 @@ en:
   remove_avatar: 'Remove avatar'
   error_removing_avatar: 'Error removing avatar'
   avatar_successfully_removed: 'Avatar successfully removed'
+  postings_at_host: 'Postings at {{host}}'
+  postings_feed_description: 'This is the RSS-feed of postings on our server. Versions XML 1.0, RSS 2.0'
+  days_ago:
+    zero: 'today'
+    one: 'yesterday'
+    other: '{{count}} days ago'
+  subscribe_rss_feed: 'Subscribe RSS'
