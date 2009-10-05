@@ -14,6 +14,7 @@ class UserMailer < ActionMailer::Base
     recipients  user.email
     sent_on     Time::now
     body        :edit_password_reset_url => edit_reset_password_url(user.perishable_token)
+    content_type  "text/html"
   end
   
   def new_account_instructions(user,subject)
@@ -22,6 +23,7 @@ class UserMailer < ActionMailer::Base
     recipients  user.email
     sent_on     Time::now
     body        :edit_password_reset_url => edit_reset_password_url(user.perishable_token)
+    content_type  "text/html"
   end
 
   def comment_notification(comment,t_subject,commentable_url)
@@ -30,6 +32,7 @@ class UserMailer < ActionMailer::Base
     recipients  comment.commentable.user.email
     sent_on     Time::now
     body        :comment => comment, :commentable_url => commentable_url
+    content_type  "text/html"
   end
   
 end
