@@ -110,3 +110,4 @@ en:
     one: 'Yesterday, {{fullname}} ({{username}}) wrote …'
     other: '{{count}} days ago, {{fullname}} ({{username}}) wrote …'
   subscribe_rss_feed: 'Subscribe RSS'
+  register_new_user: 'Register new user'
