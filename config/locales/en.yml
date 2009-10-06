@@ -111,3 +111,5 @@ en:
     other: '{{count}} days ago, {{fullname}} ({{username}}) wrote …'
   subscribe_rss_feed: 'Subscribe RSS'
   register_new_user: 'Register new user'
+  your_session: 'Your session'
+  online_status: 'Online-status'

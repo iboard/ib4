@@ -4,15 +4,21 @@
 
 <h1><%= @user.fullname -%></h1>
 <%- if current_user && current_user == @user -%>
-  <h3>Your Session</h3>
-  <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
+  <% toggle_display_link t(:your_session) do %>
+    <h3>Your Session</h3>
+    <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
+  <% end %>
 <%- else -%>
-  <%- if @user.current_login_at %>
-    <%= t(:user_is_logged_in, :username => @user.username, :since => @user.current_login_at.to_s(:short)) -%>
-  <%- else -%>
-    <%= t(:user_last_logged_in, :username => @user.username, :date => @user.last_login_at.to_s(:short)) -%>
-  <%- end -%>
+  <% toggle_display_link t(:online_status) do %>
+    <%- if @user.current_login_at %>
+      <%= t(:user_is_logged_in, :username => @user.username, :since => @user.current_login_at.to_s(:short)) -%>
+    <%- else -%>
+      <%= t(:user_last_logged_in, :username => @user.username, :date => @user.last_login_at.to_s(:short)) -%>
+    <%- end -%>
+  <% end %>
 <%- end -%>
+
+<br/>
 
 <%- if @mypostings.any? %>
   <%= will_paginate @mypostings -%>
