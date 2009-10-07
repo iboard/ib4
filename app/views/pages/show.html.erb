@@ -1,0 +1,51 @@
+<% title h(@page.list_title(60)) -%>
+
+<%= render :partial => 'page_short', :locals => {:page => @page } %>
+
+<%=textilize(h(@page.body)) %>
+
+
+<br/><br/>
+<div class='title_box'>
+  <%= image_tag(@page.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
+  <%=link_to("<b>"+h(@page.user.username) + "</b> (#{@page.user.fullname})",@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
+  <%- if @page.categories.any? %>
+    <br/><b><%= t(:categories) -%></b>: <%= @page.categories.map{|c| link_to(c.name, category_pages_path(c))}.join(", ") -%>
+  <%- end -%>
+  <%- if @page.tags.any? -%>
+    <%= "<br/>" if @page.categories.empty? %>
+    <b><%= t(:tags) -%></b>: 
+        <%= @page.tags.map { |tag| 
+              link_to tag.name, tag_path(tag.name) 
+            }.join(", ")
+        -%>
+  <%- end -%>
+  <%- if current_user && (@page.user == current_user || current_user.is_admin?) -%>
+    <br/>
+    <%= link_to "Edit", edit_page_path(@page) %> |
+    <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>
+  <%- end -%>
+  <br clear=left />
+</div>
+<!-- COMMENTS -->
+<% if (current_user && @page.allow_comments) || @page.comments.any? %>
+  <div id='comments'>
+        <h3 id='comments_count'><%= t(:count_comments,:count => @page.comments.length ) if current_user -%></h3>
+        <%= render @page.comments  unless @page.comments.empty? %>
+  </div>
+<% end %>
+<% if current_user && @page.allow_comments %>
+  <% form_remote_for [@commentable, Comment.new], :url => page_comments_path(@page), :html => { :id => 'comment_form' } do |f| %>
+  <h3><%= t(:add_a_comment)%></h3>
+  <p>
+      <strong><%= f.label :comment -%></strong><br/>
+      <%= f.text_area :comment, :rows => 5 %>
+  </p>
+  <p> <%= f.submit t(:submit) -%></p>
+  <% end %>
+<% end %>
+
+
+<p>
+  <%= link_to GO_BACK+NBSP+t(:view_all), pages_path %>
+</p>

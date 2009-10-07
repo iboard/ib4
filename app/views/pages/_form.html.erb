@@ -1,0 +1,47 @@
+<% form_for @page do |f| %>
+
+  <%- box_float_right("200px;") do -%>
+  <p>
+      <%= f.label :tagstring, t(:tags) %><br />
+      <%= f.text_field :tagstring, :size => 25 %><br/>
+      <small>
+         <%= t(:comma_or_blank_delimited_plural) -%>
+      </small>
+  </p>  
+  
+  <%- if Category.count > 0 -%>
+    <p>
+        <%= f.label :category_ids, t(:categories) -%><br/>
+        <%- Category.ascend_by_name.each do |cat| -%>
+          <div style='margin-left: 5px;'>
+              <%= check_box_tag "page[category_ids][]", cat.id, @page.categories.include?(cat) -%>&nbsp;<%=h cat.name %>
+          </div>
+        <%- end -%>
+    </p>
+    <%- end -%>
+  <%- end -%>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 3, :cols => 60 %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body, :rows => 15, :cols => 60 %>
+  </p>
+  <p>
+    <%= f.label :allow_comments %><br />
+    <%= f.check_box :allow_comments %>
+  </p>
+  <% if current_user && current_user.is_admin? %>
+    <p>
+      <%= f.label :user_id %><br />
+      <%= f.collection_select :user_id, User.ascend_by_fullname.all, :id, :display_name_and_user -%>
+    </p>
+  <% end %>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

@@ -8,6 +8,7 @@
   <%= textilize(@posting.body.gsub(/[&><]/) { |special| {  '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) -%>
 </div>
 
+<!-- COMMENTS -->
 <% if current_user || @posting.comments.any? %>
   <div id='comments'>
         <h3 id='comments_count'><%= t(:count_comments,:count => @posting.comments.length ) if current_user -%></h3>
@@ -25,6 +26,7 @@
   <p> <%= f.submit t(:submit) -%></p>
   <% end %>
 <% end %>
+<!-- END COMMENTS -->
 
 <p><%= link_to GO_BACK+NBSP+t(:view_all), postings_path -%></p>
 

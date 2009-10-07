@@ -1,0 +1,21 @@
+<%- if params[:category_id] -%>
+  <%- title( t(:pages_in_category, :category => @category.name ) ) -%>
+<%- else -%>
+  <%- title t(:pages) -%>
+<%- end -%>
+
+<%= render :partial => '/pages/searchbox' -%>
+
+<%= will_paginate @pages -%>
+
+<% for page in @pages %>
+  <%= render :partial => 'page_short', :locals => { :page => page } %>
+  <p>
+    <%= link_to CAN_OPEN+NBSP+t(:read_more), page_path(page) -%>
+    <%= link_to( COMMENT_HAND+"<small>"+NBSP+t(:count_comments, :count => page.comments.size ), page_path(page)+"#comments" )+"</small>" if page.comments.any? -%>
+  </p>
+<% end %>
+
+<%= will_paginate @pages -%>
+
+<div style='clear:both;'></div>

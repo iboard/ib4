@@ -17,6 +17,7 @@
       </span><br/>
       <strong><%= t(:fullname           ) -%></strong>: <%=h user.fullname            -%><br/>
       <strong><%= t(:email              ) -%></strong>: <%=h user.email               -%><br/>
+      
       <%- toggle_display_link( t(:details) ) do -%>
          <strong><%= t(:id                 ) -%></strong>: <%=h user.id                  -%><br/>
          <strong><%= t(:username           ) -%></strong>: <%=h user.username            -%><br/>
@@ -34,9 +35,13 @@
          <strong><%= t(:created_at         ) -%></strong>: <%=h user.created_at          -%><br/>
          <strong><%= t(:updated_at         ) -%></strong>: <%=h user.updated_at          -%><br/>
       <%- end -%>
+      
       <%- if user.postings.any? -%>
         <%= link_to CAN_OPEN + "&nbsp;" + t(:postings), user_postings_path(user) -%> (<%= user.postings.length %>)
       <%- end -%>
+      <%- if user.pages.any? -%>
+          <%= link_to CAN_OPEN + "&nbsp;" + t(:pages), user_pages_path(user) -%> (<%= user.pages.length %>)
+        <%- end -%>
       </div>
     </td>
   </tr>

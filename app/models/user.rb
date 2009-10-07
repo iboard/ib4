@@ -15,9 +15,13 @@ class User < ActiveRecord::Base
                     :whiny_thumbnails => true
   
   has_many :postings
+  has_many :pages
   
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
  
+  def display_name_and_user
+    "#{fullname} (#{username})"
+  end
   
   def is_admin?
     is_admin

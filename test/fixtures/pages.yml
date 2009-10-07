@@ -1,0 +1,13 @@
+one:
+  title: MyString
+  description: MyText
+  body: MyText
+  allow_comments: false
+  user_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  body: MyText
+  allow_comments: false
+  user_id: 1

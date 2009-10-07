@@ -36,10 +36,11 @@
           <div id='usermenu'>
               <%= render :partial => '/layouts/publicmenu' -%>
               <%- if current_user && current_user.is_admin? -%>
-               | <%= render :partial => '/users/adminmenu' if current_user -%>
+               &nbsp;&nbsp;&nbsp;&nbsp;
+               <%= render :partial => '/users/adminmenu' if current_user -%>
               <%- end -%>
           </div>
-          
+          <br/><br/>
       </div>
       
       <div id='container'>

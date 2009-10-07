@@ -113,3 +113,7 @@ en:
   register_new_user: 'Register new user'
   your_session: 'Your session'
   online_status: 'Online-status'
+  pages: 'Pages'
+  new_page: 'New page'
+  all_pages: 'All pages'
+  pages_in_category: 'Category {{category}}'
