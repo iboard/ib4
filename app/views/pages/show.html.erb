@@ -2,7 +2,7 @@
 
 <%= render :partial => 'page_short', :locals => {:page => @page } %>
 
-<%=textilize(h(@page.body)) %>
+<%=textilize((@page.body).gsub(/[&><]/) { |special| { '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) %>
 
 
 <br/><br/>
