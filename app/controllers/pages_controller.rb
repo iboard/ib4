@@ -69,4 +69,13 @@ class PagesController < ApplicationController
     flash[:notice] = "Successfully destroyed page."
     redirect_to pages_url
   end
+  
+  private
+  def require_owner_or_admin
+    @page ||= Page.find(params[:id])
+    if @page.user != current_user && !current_user.is_admin?
+      flash[:error] = t(:access_denied_edit)
+      render :show
+    end
+  end
 end
