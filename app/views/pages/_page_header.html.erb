@@ -13,23 +13,11 @@
       </blockquote>
     <%- end -%>
 <% end %>
+
+
 <div class='page_edit_buttons'>
-
-  <%- if page.categories.any? %>
-    <br/><b><%= t(:categories) -%></b>: <%= page.categories.map{|c| link_to(c.name, category_pages_path(c))}.join(", ") -%>
-  <%- end -%>
-
-  <%- if page.tags.any? -%>
-    <%= "<br/>" if page.categories.empty? %>
-    <b><%= t(:tags) -%></b>: 
-        <%= page.tags.map { |tag| 
-              link_to tag.name, tag_path(tag.name) 
-            }.join(", ")
-        -%>
-  <%- end -%>
-
   <%- if current_user && (page.user == current_user || current_user.is_admin?) -%>
-    <%= link_to "Edit", edit_page_path(page) %> |
+    <%= CAN_OPEN+NBSP+link_to( "Edit", edit_page_path(page)) %> |
     <%= link_to "Destroy", page, :confirm => 'Are you sure?', :method => :delete %>
   <%- end -%>
   <br clear=left />
