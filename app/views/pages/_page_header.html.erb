@@ -1,4 +1,11 @@
-<h1 class='title_text'><%=link_to h(page.title), page -%></h1>
+<h1 class='title_text'>
+  <%- if page.categories.any? %>
+      <span class='header_categories'>
+        <%= page.categories.map{|c| link_to(c.name, category_path(c))}.join(", ") -%><br/>
+      </span>
+  <%- end -%>
+  <%=link_to h(page.title), page -%>
+</h1>
 <% unless page.permalinks.empty? %>
     <%- toggle_display_link(t(:permalinks)) do -%>
       <blockquote>
