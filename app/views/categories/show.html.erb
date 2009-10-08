@@ -22,8 +22,8 @@
 
 
 <%= will_paginate @items %>
-<% @items.map {|itm| itm.categorizable }.reject {|r| !r.read_allowed?(current_user) }.each do |item| %>
-  <%= render :partial => "/#{item.class.to_s.pluralize.downcase}/#{item.class.to_s.downcase}_short", 
-    :locals => { item.class.to_s.downcase.to_sym => item } %>
+<% @items.each do |item| %>
+  <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
+    :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } %>
 <% end %>
 <%= will_paginate @items %>
