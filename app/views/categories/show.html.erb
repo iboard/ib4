@@ -28,7 +28,7 @@
                :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } 
     %>
   <% else %>
-    <%= debug item %>
+    <%= t(:item_deleted, :item => item.inspect ) %>
   <% end %>
 <% end %>
 <%= will_paginate @items %>

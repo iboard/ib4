@@ -121,3 +121,4 @@ en:
   delete_a_permalink: 'to delete this permalink?'
   delete: 'delete'
   new_permalink: 'New permalink'
+  item_deleted: "The item couldn't be found {{item}}"  
