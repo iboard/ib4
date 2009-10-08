@@ -1,4 +1,11 @@
 <h1 class='title_text'><%=link_to h(page.title), page -%></h1>
+<% unless page.permalinks.empty? %>
+    <%- toggle_display_link(t(:permalinks)) do -%>
+      <blockquote>
+      <%= render :partial => page.permalinks %>
+      </blockquote>
+    <%- end -%>
+<% end %>
 <div class='page_edit_buttons'>
 
   <%- if page.categories.any? %>

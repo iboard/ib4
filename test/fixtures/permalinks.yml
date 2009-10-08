@@ -1,0 +1,9 @@
+one:
+  linkable_id: 1
+  linkable_type: MyString
+  url: MyString
+
+two:
+  linkable_id: 1
+  linkable_type: MyString
+  url: MyString

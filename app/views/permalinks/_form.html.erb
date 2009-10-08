@@ -1,0 +1,16 @@
+<% form_for @permalink do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :linkable_id %><br />
+    <%= f.text_field :linkable_id, :size => 5 %>
+  </p>
+  <p>
+    <%= f.label :linkable_type %><br />
+    <%= f.text_field :linkable_type, :size => 15 %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

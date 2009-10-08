@@ -1,0 +1,7 @@
+<p>
+  <%= hidden_field_tag "#{permalink.linkable.class.to_s.downcase}[permalink_ids][]", permalink.id -%>
+  <%= link_to permalink.url, "/"+permalink.url -%>
+  <% if current_user && (current_user == permalink.linkable.user || current.user.is_admin?) %>
+    <%= link_to BACKSPACE_CHAR, permalink_path(permalink), :method => 'delete', :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) -%>
+  <% end %>
+</p>

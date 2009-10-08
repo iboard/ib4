@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :permalinks
   map.resources :pages, :has_many => :comments
   map.resources :tags
   map.resources :comments
@@ -10,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions
   map.resources :users, :has_many => [:postings,:pages]
   map.root :controller => "postings"
+  map.connect ':id', :controller => :permalinks, :action => :show
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

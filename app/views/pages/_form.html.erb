@@ -1,17 +1,17 @@
 <% form_for @page do |f| %>
 
   <%- box_float_right("200px;") do -%>
-  <p>
-      <%= f.label :tagstring, t(:tags) %><br />
-      <%= f.text_field :tagstring, :size => 25 %><br/>
-      <small>
-         <%= t(:comma_or_blank_delimited_plural) -%>
-      </small>
-  </p>  
-  
-  <%- if Category.count > 0 -%>
     <p>
-        <%= f.label :category_ids, t(:categories) -%><br/>
+        <%= f.label :tagstring, t(:tags) %><br />
+        <%= f.text_field :tagstring, :size => 25 %><br/>
+        <small>
+           <%= t(:comma_or_blank_delimited_plural) -%>
+        </small>
+    </p>  
+    
+    <%- if Category.count > 0 -%>
+    <p>
+        <b><%= f.label :category_ids, t(:categories) -%><br/></b>
         <%- Category.ascend_by_name.each do |cat| -%>
           <div style='margin-left: 5px;'>
               <%= check_box_tag "page[category_ids][]", cat.id, @page.categories.include?(cat) -%>&nbsp;<%=h cat.name %>
@@ -19,7 +19,20 @@
         <%- end -%>
     </p>
     <%- end -%>
+    
+    <div id='edit_permalinks'>
+      <p>
+          <%= render :partial => '/permalinks/edit_links', :locals => { :linkable => @page } -%>
+      </p>
+      <p>
+          <%= label_tag t(:new_permalink) -%>:<br/>
+          <%= text_field_tag   'page[new_permalink]', '', :size => 25 -%>
+      </p>
+    </div>
+    
   <%- end -%>
+  
+  
   <%= f.error_messages %>
   <p>
     <%= f.label :title %><br />

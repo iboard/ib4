@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091007151712) do
+ActiveRecord::Schema.define(:version => 20091008080431) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(:version => 20091007151712) do
     t.text     "body"
     t.boolean  "allow_comments"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permalinks", :force => true do |t|
+    t.integer  "linkable_id"
+    t.string   "linkable_type"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

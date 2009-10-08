@@ -117,3 +117,7 @@ en:
   new_page: 'New page'
   all_pages: 'All pages'
   pages_in_category: 'Category {{category}}'
+  permalinks: 'Permalinks'
+  delete_a_permalink: 'to delete this permalink?'
+  delete: 'delete'
+  new_permalink: 'New permalink'

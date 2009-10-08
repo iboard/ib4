@@ -1,0 +1,20 @@
+<% title "Permalink" %>
+
+<p>
+  <strong>Linkable:</strong>
+  <%=h @permalink.linkable_id %>
+</p>
+<p>
+  <strong>Linkable Type:</strong>
+  <%=h @permalink.linkable_type %>
+</p>
+<p>
+  <strong>Url:</strong>
+  <%=h @permalink.url %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_permalink_path(@permalink) %> |
+  <%= link_to "Destroy", @permalink, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", permalinks_path %>
+</p>

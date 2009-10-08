@@ -38,6 +38,7 @@ class PagesController < ApplicationController
   
   def create
      params[:page]['category_ids'] ||= []
+     params[:page]['permalink_ids'] ||= []
       @page = Page.new(params[:page])
       @page.user ||= current_user
       if @page.save
@@ -54,13 +55,14 @@ class PagesController < ApplicationController
   
   def update
      params[:page]['category_ids'] ||= []    
-      @page ||= Page.find(params[:id])
-      if @page.update_attributes(params[:page])
-        flash[:notice] = "Successfully updated posting."
-        redirect_to @page
-      else
-        render :action => 'edit'
-      end
+     params[:page]['permalink_ids'] ||= []
+     @page ||= Page.find(params[:id])
+     if @page.update_attributes(params[:page])
+       flash[:notice] = "Successfully updated posting."
+       redirect_to @page
+     else
+       render :action => 'edit'
+     end
   end
   
   def destroy
