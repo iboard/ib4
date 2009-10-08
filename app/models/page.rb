@@ -14,6 +14,7 @@ class Page < ActiveRecord::Base
   
   after_create :assign_tags, :add_new_permalinks
   before_save  :add_new_permalinks
+  after_save   :update_timestamps
 
   validates_presence_of :title, :body
   
@@ -75,6 +76,12 @@ class Page < ActiveRecord::Base
     if @permalink_exists_error
       self.errors.add( :new_permalink, t(:permalink_exists))
     end
+  end
+  
+  
+  def update_timestamps
+    m = self.tags + self.categorizables 
+    m.each  { |t| t.updated_at = self.updated_at; t.save }
   end
 end
 
