@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     
     # Fetch Postings
-    @items = @category.categorizables.ascend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    @items = @category.categorizables.ascend_by_updated_at.reject{|r| r.nil?}.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
 
     # Append other 'categorizable' models to @items here...
   end
