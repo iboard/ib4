@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     
     # Fetch Postings
-    @items = @category.categorizables.categorizable_type_is('Posting').paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    @items = @category.categorizables.categorizable_type_is('Posting').sort{|a,b| a.categorizable.updated_at <=> b.categorizeable.updated_at}.apaginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
 
     # Append other 'categorizable' models to @items here...
   end
