@@ -22,8 +22,13 @@
 
 
 <%= will_paginate @items %>
-<% @items.reject{|r| r.nil?}.each do |item| %>
-  <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
-    :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } %>
+<% @items.each do |item| %>
+  <% if item.categorizable %>
+    <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
+               :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } 
+    %>
+  <% else %>
+    <%= debug item %>
+  <% end %>
 <% end %>
 <%= will_paginate @items %>
