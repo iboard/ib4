@@ -7,7 +7,9 @@ class Posting < ActiveRecord::Base
   
   belongs_to  :user                                                 # the user a posting was written by
   
-  has_many    :categorizables, :as => :categorizable                # Jointable for categories
+  has_many    :categorizables, :as => :categorizable,               # Jointable for categories
+              :dependent => :destroy 
+              
   has_many    :categories, :through => :categorizables              # Categories this posting belongs to
   
   has_many    :tags,     :as => :tagable, :dependent => :destroy    # Tags assigned to this posting
