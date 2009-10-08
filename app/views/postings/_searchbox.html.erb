@@ -19,7 +19,7 @@
   <ul>
     <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_postings), postings_path -%> (<%= Posting.all.length -%>)</li>
     <%- Category.ascend_by_name.each do |category| -%>
-      <li style='padding-left: 0px;margin-left:-15px;'><%= link_to category.name,category_postings_path(category) -%> 
+      <li style='padding-left: 0px;margin-left:-15px;'><%= link_to category.name,category_path(category) -%> 
           (<%= category.categorizables.categorizable_type_is('Posting').length -%>)</li>
     <%- end -%>
   </ul>
