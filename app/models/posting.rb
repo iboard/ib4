@@ -21,6 +21,8 @@ class Posting < ActiveRecord::Base
   
   validates_presence_of :subject, :body
   
+  after_save   :update_timestamps
+  
   def tagstring
     tags.map(&:name).join(",")
   end
@@ -56,5 +58,10 @@ class Posting < ActiveRecord::Base
     if @save_tags
       self.tagstring=(@save_tags)
     end
+  end
+  
+  def update_timestamps
+    m = self.tags + self.categorizables 
+    m.each  { |t| t.updated_at = self.updated_at; t.save }
   end
 end
