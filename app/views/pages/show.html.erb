@@ -1,11 +1,6 @@
 <% title h(@page.list_title(60)) -%>
 
-<%= render :partial => 'page_short', :locals => {:page => @page } %>
-
-<%=textilize((@page.body).gsub(/[&><]/) { |special| { '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) %>
-
-<br/><br/>
-<div class='title_box'>
+<div class='title_box' style='width: 400px; float: right;'>
   
   <%= image_tag(@page.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
   <%=link_to("<b>"+h(@page.user.username) + "</b> (#{@page.user.fullname})",@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
@@ -30,6 +25,12 @@
   
   <br clear=left />
 </div>
+
+<%= render :partial => 'page_short', :locals => {:page => @page } %>
+
+<%=textilize((@page.body).gsub(/[&><]/) { |special| { '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) %>
+
+<br/><br/>
 
 <!-- COMMENTS -->
 <% if (current_user && @page.allow_comments) || @page.comments.any? %>
