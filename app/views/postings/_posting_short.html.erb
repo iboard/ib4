@@ -16,7 +16,7 @@
     <% if current_user || posting.comments.any? %> 
       <small>
         <% label_txt = posting.comments.any? ? t(:count_comments, :count => posting.comments.size) : t(:add_a_comment) %>
-        <%= CAN_OPEN -%> <%= link_to label_txt, posting_path(posting) + "#comments" -%>
+        <%= COMMENT_HAND -%> <%= link_to label_txt, posting_path(posting) + "#comments" -%>
       </small>
     <% end %>
     
