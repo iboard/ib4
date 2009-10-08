@@ -9,4 +9,6 @@
 class Categorizable < ActiveRecord::Base
   belongs_to  :category
   belongs_to  :categorizable, :polymorphic => true
+  
+  delegate    :updated_at, :to => :categorizeable
 end
