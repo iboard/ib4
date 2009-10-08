@@ -1,4 +1,6 @@
 <%- if current_user.is_admin? -%>
-  <%= CAN_OPEN + NBSP + link_to( t(:user_listing), users_path) %> 
-  <%= CAN_OPEN + NBSP + link_to( t(:categories),   categories_path) %>
+  <%= link_to( t(:user_listing), users_path) %> 
+  &nbsp;
+  <%= link_to( t(:categories),   categories_path) %>
+  &nbsp;
 <%- end -%>
