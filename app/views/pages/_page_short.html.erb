@@ -1,6 +1,6 @@
 <%= render :partial => '/pages/page_header', :locals => {:page => page} %>
 
 <div class='page_description'>
-  <%=textilize((page.description).gsub(/[&><]/) { |special| { '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) %>
+  <%= page.description.to_txt %>
 </div>
 

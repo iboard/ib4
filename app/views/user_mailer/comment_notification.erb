@@ -7,7 +7,7 @@
      
      <h3>Comment by <%= @comment.user.fullname -%>, at <%= @comment.updated_at.to_s(:short) %></h3>
      
-     <%= textilize(h(@comment.comment)) -%>
+     <%= @comment.comment.to_txt -%>
      
      <p>
        <%= CAN_OPEN %> <%= link_to t(@comment.commentable_type)+" #{@comment.commentable.list_title}", @commentable_url -%>

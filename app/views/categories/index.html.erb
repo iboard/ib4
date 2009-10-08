@@ -10,7 +10,7 @@
   
   <dt><b><%=link_to COMMENT_HAND+NBSP+h(category.name), category %></b> (<%= t(:count_entries, :count => category.categorizables.length)-%>)</dt>
   <dd>
-    <%=textilize(h(category.description)) %>
+    <%=category.description.to_txt %>
     <%- if current_user && current_user.is_admin? %> |
       <%= t(:is_public) -%> <%=h category.public %><br/>
       <%= link_to "Edit", edit_category_path(category) %> |

@@ -5,5 +5,5 @@
   <br/>
   [<%= link_to t(:destroy), comment_path(comment), :method => :delete, :confirm => t(:are_you_sure, :what => t(:delete_this_comment)) -%>]
 <%- end -%>
-<%= textilize( comment.comment ) -%>
+<%= comment.comment.to_txt-%>
 <%= divider -%>

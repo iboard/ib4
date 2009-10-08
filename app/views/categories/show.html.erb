@@ -18,7 +18,7 @@
   </p>
 <%- end -%>
 <p><%= t(:count_entries, :count => @items.length ) -%></p>
-<%=textilize(h(@category.description)) %>
+<%=@category.description.to_txt %>
 
 
 <%= will_paginate @items %>

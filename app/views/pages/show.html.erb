@@ -28,7 +28,7 @@
 
 <%= render :partial => 'page_short', :locals => {:page => @page } %>
 
-<%=textilize((@page.body).gsub(/[&><]/) { |special| { '>' => '&gt;', '<' => '&lt;', '"' => '&quot;' }[special] }) %>
+<%= @page.body.to_txt %>
 
 <br/><br/>
 
@@ -42,9 +42,8 @@
 
 <% if current_user && @page.allow_comments %>
   <% form_remote_for [@commentable, Comment.new], :url => page_comments_path(@page), :html => { :id => 'comment_form' } do |f| %>
-  <h3><%= t(:add_a_comment)%></h3>
+  <h3><%= COMMENT_HAND+NBSP+t(:add_a_comment)%></h3>
   <p>
-      <strong><%= f.label :comment -%></strong><br/>
       <%= f.text_area :comment, :rows => 5 %>
   </p>
   <p> <%= f.submit t(:submit) -%></p>
