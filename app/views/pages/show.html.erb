@@ -1,6 +1,6 @@
 <% title h(@page.list_title(60)) -%>
 
-<div class='title_box' style='width: 400px; float: right;'>
+<div class='title_box' style='width: 350px; float: right;'>
   
   <%= image_tag(@page.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
   <%=link_to("<b>"+h(@page.user.username) + "</b> (#{@page.user.fullname})",@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
