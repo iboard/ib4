@@ -12,17 +12,17 @@ xml.rss :version => "2.0" do
           image_tag(
             posting.user.avatar.url(:icon), 
             :align=>:left,:hspace => 5,:vspace => 5,
-            :title => posting.user.fullname+NBSP+"(#{posting.user.username})"
+            :title => posting.user.fullname+NBSP+"(#{h(posting.user.username)})"
           ) + 
           "<p><strong><em>" +
-              t(:comment_days_ago, :fullname => posting.user.fullname,
-                           :username=>posting.user.username, 
+              t(:comment_days_ago, :fullname => h(posting.user.fullname),
+                           :username=>h(posting.user.username), 
                            :count => ((Time.now-posting.updated_at)/1.day).round.to_i 
               ) +
           "</em></strong></p>" +
-          truncate(h(posting.body),DEFAULT_TRUNCATED_BODY_LENGTH))+
+          truncate(posting.body.to_txt,DEFAULT_TRUNCATED_BODY_LENGTH)+
             BR+COMMENT_HAND+NBSP+
-            t(:count_comments, :count => posting.comments.size).to_txt+
+            t(:count_comments, :count => posting.comments.size)+
             BR
         )
         xml.pubDate posting.updated_at.to_s(:rfc822)

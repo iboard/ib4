@@ -1,9 +1,7 @@
 <% box_float_right("200px") do %>
   <h3><%= t(:pages) -%> «» <%= link_to t(:postings), postings_path -%></h3>
   <p>
-    <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), formatted_postings_url(:rss) -%>
-    <% rss_link(:rss, formatted_postings_url(:rss)) %>
-    
+    <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), formatted_postings_url(:rss) -%>    
   </p>
   
   <%- form_tag pages_path, :method => :get do  -%>

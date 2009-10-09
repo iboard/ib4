@@ -96,8 +96,9 @@ When emails have to be send it whith this Mailer Class.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000014">new_account_instructions</a>&nbsp;&nbsp;
-      <a href="#M000013">password_reset_instructions</a>&nbsp;&nbsp;
+      <a href="#M000024">comment_notification</a>&nbsp;&nbsp;
+      <a href="#M000023">new_account_instructions</a>&nbsp;&nbsp;
+      <a href="#M000022">password_reset_instructions</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -119,55 +120,85 @@ When emails have to be send it whith this Mailer Class.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
 
         <div class="method-heading">
-          <a href="#M000014" class="method-signature">
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">comment_notification</span><span class="method-args">(comment,t_subject,commentable_url)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user_mailer.rb, line 29</span>
+29:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">comment_notification</span>(<span class="ruby-identifier">comment</span>,<span class="ruby-identifier">t_subject</span>,<span class="ruby-identifier">commentable_url</span>)
+30:     <span class="ruby-identifier">subject</span>     <span class="ruby-identifier">t_subject</span>
+31:     <span class="ruby-identifier">from</span>        <span class="ruby-identifier">comment</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>
+32:     <span class="ruby-identifier">recipients</span>  <span class="ruby-identifier">comment</span>.<span class="ruby-identifier">commentable</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>
+33:     <span class="ruby-identifier">sent_on</span>     <span class="ruby-constant">Time</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>
+34:     <span class="ruby-identifier">body</span>        <span class="ruby-identifier">:comment</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">comment</span>, <span class="ruby-identifier">:commentable_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">commentable_url</span>
+35:     <span class="ruby-identifier">content_type</span>  <span class="ruby-value str">&quot;text/html&quot;</span>
+36:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
+
+        <div class="method-heading">
+          <a href="#M000023" class="method-signature">
           <span class="method-name">new_account_instructions</span><span class="method-args">(user,subject)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000014-source">
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user_mailer.rb, line 19</span>
-19:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_account_instructions</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">subject</span>)
-20:     <span class="ruby-identifier">subject</span>     <span class="ruby-identifier">subject</span>
-21:     <span class="ruby-identifier">from</span>        <span class="ruby-node">&quot;noreply@#{LOCALHOST_NAME}&quot;</span>
-22:     <span class="ruby-identifier">recipients</span>  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>
-23:     <span class="ruby-identifier">sent_on</span>     <span class="ruby-constant">Time</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>
-24:     <span class="ruby-identifier">body</span>        <span class="ruby-identifier">:edit_password_reset_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edit_reset_password_url</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">perishable_token</span>)
-25:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/user_mailer.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_account_instructions</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">subject</span>)
+21:     <span class="ruby-identifier">subject</span>     <span class="ruby-identifier">subject</span>
+22:     <span class="ruby-identifier">from</span>        <span class="ruby-node">&quot;noreply@#{default_url_options[:host]}&quot;</span>
+23:     <span class="ruby-identifier">recipients</span>  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>
+24:     <span class="ruby-identifier">sent_on</span>     <span class="ruby-constant">Time</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>
+25:     <span class="ruby-identifier">body</span>        <span class="ruby-identifier">:edit_password_reset_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edit_reset_password_url</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">perishable_token</span>)
+26:     <span class="ruby-identifier">content_type</span>  <span class="ruby-value str">&quot;text/html&quot;</span>
+27:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
 
         <div class="method-heading">
-          <a href="#M000013" class="method-signature">
+          <a href="#M000022" class="method-signature">
           <span class="method-name">password_reset_instructions</span><span class="method-args">(user,subject)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000013-source">
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
 <pre>
     <span class="ruby-comment cmt"># File app/models/user_mailer.rb, line 11</span>
 11:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">password_reset_instructions</span>(<span class="ruby-identifier">user</span>,<span class="ruby-identifier">subject</span>)
 12:     <span class="ruby-identifier">subject</span>     <span class="ruby-identifier">subject</span>
-13:     <span class="ruby-identifier">from</span>        <span class="ruby-node">&quot;noreply@#{LOCALHOST_NAME}&quot;</span>
+13:     <span class="ruby-identifier">from</span>        <span class="ruby-node">&quot;noreply@#{default_url_options[:host]}&quot;</span>
 14:     <span class="ruby-identifier">recipients</span>  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>
 15:     <span class="ruby-identifier">sent_on</span>     <span class="ruby-constant">Time</span><span class="ruby-operator">::</span><span class="ruby-identifier">now</span>
 16:     <span class="ruby-identifier">body</span>        <span class="ruby-identifier">:edit_password_reset_url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">edit_reset_password_url</span>(<span class="ruby-identifier">user</span>.<span class="ruby-identifier">perishable_token</span>)
-17:   <span class="ruby-keyword kw">end</span>
+17:     <span class="ruby-identifier">content_type</span>  <span class="ruby-value str">&quot;text/html&quot;</span>
+18:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
