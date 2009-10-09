@@ -83,7 +83,7 @@ class PostingsController < ApplicationController
   private
   def require_owner_or_admin
     @posting ||= Posting.find(params[:id])
-    if @posting.user != current_user && !current_user.is_admin?
+    unless is_owner_or_admin?(@posting)
       flash[:error] = t(:access_denied_edit)
       render :show
     end

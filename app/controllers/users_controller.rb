@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     params[:user][:password] = Randomizer::randstr(10)
     params[:user][:password_confirmation] = params[:user][:password]
     @user = User.new(params[:user])
-    @user.is_admin = params[:user][:is_admin] if current_user && current_user.is_admin?
+    @user.is_admin = params[:user][:is_admin] if is_admin?
     if @user.save
       flash[:notice] = t(:registration_successfull)
       UserSession.find.destroy
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    if current_user.is_admin? && !params[:id].blank? && params[:id] != 'current'
+    if is_admin? && !params[:id].blank? && params[:id] != 'current'
       @user = User.find(params[:id])
     else
       @user = current_user
@@ -52,12 +52,12 @@ class UsersController < ApplicationController
   end
   
   def update
-     if current_user.is_admin? && !params[:id].blank?
+     if is_admin? && !params[:id].blank?
        @user = User.find(params[:id])
      else
        @user = current_user
      end    
-     @user.is_admin = params[:user][:is_admin] if current_user && current_user.is_admin?
+     @user.is_admin = params[:user][:is_admin] if is_admin?
      if @user.update_attributes(params[:user])
       flash[:notice] = t(:profile_successfully_updated)
       redirect_to root_url
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   end
   
   def remove_avatar
-    if current_user.is_admin? && !params[:id].blank?
+    if is_admin? && !params[:id].blank?
       @user = User.find(params[:id])
     else
       @user = current_user
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    if current_user.is_admin? && !params[:id].blank?
+    if is_admin? && !params[:id].blank?
       @user = User.find(params[:id])
     else
       @user = current_user

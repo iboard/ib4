@@ -1,7 +1,7 @@
 <% fullname = comment.user ? comment.user.fullname : t(:anonymous) %>
 <% username = comment.user ? comment.user.username : t(:guest) %>
 <%= t(:user_says, :fullname => fullname, :username => username, :time => comment.updated_at.to_s(:short)) -%>
-<%- if comment.user && comment.user == current_user || current_user && current_user.is_admin? %>
+<%- if comment.user && is_owner_or_admin?(comment) -%>
   <br/>
   [<%= link_to t(:destroy), comment_path(comment), :method => :delete, :confirm => t(:are_you_sure, :what => t(:delete_this_comment)) -%>]
 <%- end -%>

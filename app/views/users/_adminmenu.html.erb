@@ -1,4 +1,4 @@
-<%- if current_user.is_admin? -%>
+<%- if is_admin? -%>
   <%= link_to( t(:user_listing), users_path) %> 
   &nbsp;
   <%= link_to( t(:categories),   categories_path) %>

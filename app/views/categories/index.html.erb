@@ -2,17 +2,22 @@
 
 <%= render :partial => "/postings/searchbox" -%>
 
-<%- if current_user && current_user.is_admin? %>
+<%- if is_admin? %>
     <p><%= link_to CAN_OPEN+NBSP+t(:new_category), new_category_path %></p>
 <%- end -%>
 
 <% for category in @categories %>
   
-  <dt><b><%=link_to COMMENT_HAND+NBSP+h(category.name), category %></b> (<%= t(:count_entries, :count => category.categorizables.length)-%>)</dt>
+  <dt>
+      <b><%=link_to COMMENT_HAND+NBSP+h(category.name), category %></b> 
+      (<%= t(:count_entries, :count => category.categorizables.length)-%><%= 
+         (", " + t(:is_public) +": "+ ((category.public == true) ? t(:say_yes) : t(:say_no))  ) if is_admin? 
+       -%>
+      )</dt>
   <dd>
     <%=category.description.to_txt %>
-    <%- if current_user && current_user.is_admin? %> |
-      <%= t(:is_public) -%> <%=h category.public %><br/>
+    <%- if is_admin? %>
+    <br/>
       <%= link_to "Edit", edit_category_path(category) %> |
       <%= link_to "Destroy", category, :confirm => 'Are you sure?', :method => :delete %>
     <%- end -%>
