@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  helper_method :current_user
+  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?
   
   # Redirect to login_path if no current user    
   def require_user
-    if !current_user
+    unless current_user
       redirect_to login_path
     end
   end
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   
   # Redirect to login path if current_user is not admin
   def require_admin_and_root
-    if !current_user || !current_user.is_admin? || current_user.username != 'root'
+    unless is_admin? && current_user.username.eql?('root')
       flash[:error] = t(:admin_root)
       redirect_to login_path
     end
@@ -39,11 +39,29 @@ class ApplicationController < ActionController::Base
 
   # Redirect to login path if current_user is not admin
   def require_admin
-    if !current_user || !current_user.is_admin?
+    unless is_admin?
       flash[:error] = t(:admin_required)
       redirect_to login_path
     end
   end
+  
+  
+  def is_admin?
+    current_user && current_user.is_admin?
+  end
+  
+  def is_user?
+    current_user != nil
+  end
+ 
+  def is_owner?(item)
+    is_user? && item.user == current_user 
+  end
+  
+  def is_owner_or_admin?(item)
+    (is_admin? || ( is_user? && item.user == current_user))
+  end 
+  
   
   private
   

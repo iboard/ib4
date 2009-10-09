@@ -16,7 +16,7 @@
 
 
 <div class='page_edit_buttons'>
-  <%- if current_user && (page.user == current_user || current_user.is_admin?) -%>
+  <%- if is_owner_or_admin?(page) -%>
     <%= CAN_OPEN+NBSP+link_to( "Edit", edit_page_path(page)) %> |
     <%= link_to "Destroy", page, :confirm => 'Are you sure?', :method => :delete %>
   <%- end -%>

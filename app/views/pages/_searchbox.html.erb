@@ -9,7 +9,7 @@
     <%= submit_tag t(:search) -%>
   <%- end -%>
   
-  <%- if current_user && current_user.is_admin? %>
+  <%- if is_admin? %>
     <h3><%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %></h3>
   <%- end -%>
     

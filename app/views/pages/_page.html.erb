@@ -1,0 +1,30 @@
+<!-- just a placeholder file <%=__FILE__-%> -->
+<div class='title_box' style='width: 350px; float: right;'>
+  
+  <%= image_tag(@page.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
+  <%=link_to("<b>"+h(@page.user.username) + "</b> (#{@page.user.fullname})",@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
+  <%- if @page.categories.any? %>
+    <br/><b><%= t(:categories) -%></b>: <%= @page.categories.map{|c| link_to(c.name, category_pages_path(c))}.join(", ") -%>
+  <%- end -%>
+  
+  <%- if @page.tags.any? -%>
+    <%= "<br/>" unless @page.categories.empty? %>
+    <b><%= t(:tags) -%></b>: 
+        <%= @page.tags.map { |tag| 
+              link_to tag.name, tag_path(tag.name) 
+            }.join(", ")
+        -%>
+  <%- end -%>
+  
+  <%- if current_user && is_owner_or_admin?(@page.user) -%>
+    <br/>
+    <%= link_to "Edit", edit_page_path(@page) %> |
+    <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>
+  <%- end -%>
+  
+  <br clear=left />
+</div>
+
+<%= render :partial => 'page_short', :locals => {:page => @page } %>
+
+<%= @page.body.to_txt %>

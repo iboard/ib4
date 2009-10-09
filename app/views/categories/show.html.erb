@@ -10,7 +10,7 @@
 <% end %>
 
 <h1><%= h(@category.name) -%></h1>
-<%- if current_user && current_user.is_admin? %>
+<%- if is_admin? %>
   <p>
     <%= link_to "Edit", edit_category_path(@category) %> |
     <%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %> |
@@ -18,10 +18,12 @@
   </p>
 <%- end -%>
 <p><%= t(:count_entries, :count => @items.length ) -%></p>
+
 <%=@category.description.to_txt %>
 
 
 <%= will_paginate @items %>
+
 <% @items.each do |item| %>
   <% if item.categorizable %>
     <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
@@ -31,4 +33,5 @@
     <%= t(:item_deleted, :item => debug(item)) %>
   <% end %>
 <% end %>
+
 <%= will_paginate @items %>

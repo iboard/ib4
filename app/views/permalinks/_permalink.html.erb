@@ -7,7 +7,7 @@
         "/"+permalink.url 
       )
    -%>
-  <% if current_user && (current_user == permalink.linkable.user || current_user.is_admin?) %>
+  <% if is_owner_or_admin?(permalink.linkable) %>
     <%= link_to BACKSPACE_CHAR, permalink_path(permalink), :method => 'delete', :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) -%>
   <% end %>
 </p>

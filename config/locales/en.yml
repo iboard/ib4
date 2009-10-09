@@ -77,7 +77,7 @@ en:
   details: 'Details'
   postings: 'Postings'
   access_denied_edit: "You can't edit this record - access denied"
-  is_public: 'Public'
+  is_public: 'public'
   edit_category: 'Edit category'
   category_show: 'Category {{category}}'
   count_entries:
@@ -122,3 +122,5 @@ en:
   delete: 'delete'
   new_permalink: 'New permalink'
   item_deleted: "The item couldn't be found {{item}}"  
+  say_yes: "yes"
+  say_no: "no"

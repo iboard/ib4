@@ -55,7 +55,7 @@ class PermalinksController < ApplicationController
   private
   def require_owner_or_admin
     @permalink = Permalink.find(params[:id])
-    if !current_user || (@permalink.linkable.user != current_user && !current_user.is_admin?)
+    unless is_owner_or_admin?(@permalink.linkable)
       flash[:error] = t(:access_denied_edit)
       redirect_to :controller => linkable.class.to_s.downcase.pluralize, :action => :edit, :id => linkable
     end
