@@ -11,8 +11,10 @@
   <body><div id='page'>
       <div id='banner'>
            
-          <%- if RAILS_ENV != 'production' -%>
+          <%- if RAILS_ENV == 'production' -%>
              <p style='color: #930F05'>ENVIRONMENT: <%= RAILS_ENV -%></p>
+          <%- else -%>
+             <p><%= Time.now.to_s(:short) %> - <%= request.remote_addr -%>
           <%- end -%>
           
             <div id='user_nav'>
