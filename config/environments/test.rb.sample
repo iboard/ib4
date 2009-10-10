@@ -34,3 +34,14 @@ config.action_mailer.delivery_method = :test
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
 
+<<<<<<< HEAD:config/environments/test.rb.sample
+=======
+LOCALHOST_NAME='ib4.local'
+
+USER_MENU_ITEMS= [
+    {:label => :about, :url => '/welcome'},
+    {:label => :development, :url => '/tags/development'},
+    {:label => :all_pages, :url => '/pages'},
+    {:label => :app_postings, :url => '/postings'}
+]
+>>>>>>> 9fc3542114ccda1b258e336ef178353808df739a:config/environments/test.rb.sample

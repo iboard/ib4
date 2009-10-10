@@ -26,3 +26,10 @@ config.action_mailer.smtp_settings = {
 }
 
 LOCALHOST_NAME='ib4.local'
+
+USER_MENU_ITEMS= [
+    {:label => :about, :url => '/welcome'},
+    {:label => :development, :url => '/tags/development'},
+    {:label => :all_pages, :url => '/pages'},
+    {:label => :app_postings, :url => '/postings'}
+]
