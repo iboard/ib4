@@ -1,10 +1,6 @@
 <div class='user_menu'>
 <%= USER_MENU_ITEMS.map { |item|
-     l=t(item[:label].to_s.downcase)
-     if Permalink.is_destination?(item[:url],request.request_uri)
-       l = "<span class='user_menu_selected_url'>#{l}</span>"
-     end
-     link_to(l, item[:url])
-   }.join(NBSP+"|"+NBSP)
+      mark_active_link(item,request.request_uri)
+  }.join("")
 -%>
 </div>

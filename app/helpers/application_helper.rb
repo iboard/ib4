@@ -6,15 +6,14 @@
 module ApplicationHelper
 
    # return true if url is part of the actual requested url
-   
-   def is_active_url?(url)
-     if @page && @page.permalinks.any?
-       @page.permalinks.detect{|u| u.permalinkable.url == url }
+   def mark_active_link(item,url)
+     if Permalink.is_destination?(url,item[:url]) 
+       l=  "<sapn class='user_menu_selected_url'>#{t(item[:label].to_s.downcase)}</span>"
      else
-       request.request_uri.eql?(url)
+       l=  "<sapn class='user_menu_unselected_url'>#{t(item[:label].to_s.downcase)}</span>"
      end
+     link_to(l, item[:url])
    end
-   
    
 end
 

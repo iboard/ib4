@@ -25,10 +25,15 @@ Rails::Initializer.run do |config|
 end
 
 # SOME IMPORTANT DEFINITIONS (override them in your environments/environment.rb)
-USER_MENU_ITEMS= [
+USER_MENU_ITEMS = [
     {:label => :home, :url => '/'},
     {:label => :please_override_USER_MENU_ITEMS_in_your_environment_rb, :url => nil}
 ] unless defined? USER_MENU_ITEMS
+
+ADMIN_MENU_ITEMS = [
+  {:label => :user_listing, :url => "/users"},
+  {:label => :categories, :url => "/categories"}
+] unless defined? ADMIN_MENU_ITEMS
 
 # Constants for layout
 POSTINGS_PER_PAGE=4               unless defined? POSTINGS_PER_PAGE

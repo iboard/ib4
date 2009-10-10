@@ -29,7 +29,12 @@ class PagesController < ApplicationController
   end
   
   def show
-    @page = Page.find(params[:id])
+    if params[:id].class == String
+      pl = Permalink.find_by_url(params[:id])
+      @page = pl ? pl.linkable : Page.first
+    else
+      @page = Page.find(params[:id])
+    end
   end
   
   def new

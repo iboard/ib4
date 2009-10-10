@@ -160,13 +160,6 @@ LI {
   border-top: none;
 }
 
-#user_nav {
-  float: right;
-  text-align: right;
-  padding-top: 20px;
-  font-size: 12px;
-  line-height: 110%;
-}
 
 #copyright {
 	text-align: center;
@@ -185,16 +178,35 @@ LI {
 #banner {
   color: white;
   width: 75%;
+  height: 112px;
   margin-top: 2px;
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding: 1px 40px;
-  line-height: 80%;
+  padding: 1px 40px 25px 40px;
   background: #aaa;
 }
 
+#page_title {
+	width: 400px;
+	line-height: 100%;
+	color: white;
+	margin: 0px;
+	padding: 0px;
+}
+
+#user_nav {
+  float: right;
+  text-align: right;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 12px;
+  line-height: 160%;
+  margin-top: 7px;
+}
+
 #usermenu {
+
   color: white;
   width: 75%;
   margin-bottom: 5px;
@@ -255,12 +267,26 @@ LI {
 }
 
 .user_menu {
-	padding: 3px;
+	padding: 5px;
 	display: inline;
 }
 .user_menu_selected_url {
-	font-weight: bold;
-	background: #444;
-	color: #ddd;
-	padding: 3px;
+	background: white;
+	font-weight: normal;
+	color: black;
+	padding: 4px;
+    border-top: 2px solid #555;
+    border-left: 2px solid #555;
+    border-right: 2px solid #444;
+    border-bottom: 2px solid #fff;
+}
+
+.user_menu_unselected_url {
+	font-weight: normal;
+	color: black;
+	padding: 5px;
+    border-right: 1px solid #888;
+    border-left: 1px solid #888;
+    border-top: 1px solid #888;
+    border-bottom: 1px solid #888;
 }
