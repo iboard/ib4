@@ -10,6 +10,8 @@
 
 <% for posting in @postings %>
   <%= render :partial => 'posting_short', :locals => { :posting => posting } %>
+  <%= CAN_OPEN+NBSP+link_to(t(:read_txt), posting) -%>
+  
 <% end %>
 
 <%= will_paginate @postings -%>
