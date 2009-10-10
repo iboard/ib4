@@ -4,6 +4,7 @@
 <%= will_paginate @tags %>
 <% @tagables.each do |tagable| %>
   <%= render :partial => "/#{tagable.class.to_s.pluralize.downcase}/#{tagable.class.to_s.downcase}_short", :locals => { tagable.class.to_s.downcase.to_sym => tagable } %>
+  <p><%= CAN_OPEN+NBSP+link_to(t(:read), tagable) -%></p>
 <% end %>
 <%= will_paginate @tags %>
 
