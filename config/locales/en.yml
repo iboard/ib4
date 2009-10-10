@@ -79,7 +79,7 @@ en:
   access_denied_edit: "You can't edit this record - access denied"
   is_public: 'public'
   edit_category: 'Edit category'
-  category_show: 'Category {{category}}'
+  category_show: '/:{{category}}'
   count_entries:
     zero: 'No entry'
     one: 'One entry'
