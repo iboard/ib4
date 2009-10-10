@@ -1,5 +1,6 @@
 <% box_float_right("200px") do %>
-   <h3><%= t(:postings) -%> «» <%= link_to t(:pages), pages_path -%></h3>
+   
+   <h3><%= t(:postings) -%> «» <%= link_to t(:pages), pages_path, :style=>'font-size: smaller;' -%></h3>
   
   <p>
     <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), formatted_postings_url(:rss) -%>

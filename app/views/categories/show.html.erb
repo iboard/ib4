@@ -1,13 +1,6 @@
 <% title t(:category_show, :category => h(@category.name)) %>
 
-<% box_float_right(200) do %>
-  <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>
-  <ul>
-    <% Category.ascend_by_name.each do |cat| %>
-      <li><%= link_to cat.name, cat %> (<%= cat.categorizables.length %>)</li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render :partial => "/postings/searchbox" -%>
 
 <h1><%= h(@category.name) -%></h1>
 <%- if is_admin? %>
