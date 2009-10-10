@@ -6,7 +6,7 @@
   
   <!-- INTERPRETED, TRUNCATED BODY -->
   <div class='body_text'>
-    <%= posting.body.first_paragraph(" ... #{link_to CAN_OPEN+NBSP+t(:read_more), posting}").to_txt -%>
+    <%= posting.body.first_paragraph.to_txt -%>
     
     <% if current_user || posting.comments.any? %> 
       <small>
