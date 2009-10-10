@@ -1,6 +1,4 @@
-<%- if is_admin? -%>
-  <%= link_to( t(:user_listing), users_path) %> 
-  &nbsp;
-  <%= link_to( t(:categories),   categories_path) %>
-  &nbsp;
-<%- end -%>
+<%= ADMIN_MENU_ITEMS.map { |item|
+      mark_active_link(item,request.request_uri)
+  }.join("")
+-%>

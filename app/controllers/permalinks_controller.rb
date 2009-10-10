@@ -9,7 +9,9 @@ class PermalinksController < ApplicationController
   def show
     @permalink = Permalink.find_by_url(params[:id])
     if @permalink
-      redirect_to @permalink.linkable
+      redirect_to :controller => @permalink.linkable.class.to_s.downcase.pluralize,
+                  :action => 'show',
+                  :id => @permalink.url
     else
       redirect_to root_path
     end

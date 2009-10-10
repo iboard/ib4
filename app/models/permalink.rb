@@ -5,15 +5,11 @@ class Permalink < ActiveRecord::Base
   
   
   def self.is_destination?(check_url,requested_url)
-     return true if check_url.eql?(requested_url)
-     parts = requested_url.split("/").reject(&:empty?)
-     return find(:first,
-       :conditions => ['url= ? and linkable_id = ? and linkable_type=?',
-         check_url.gsub(/\/(.*)$/,'\1'),
-         parts[1].to_i,
-         parts[0].nil? ? "" : parts[0].camelize.singularize
-       ]
-     )
+     return true if check_url == requested_url
+     permalink = requested_url.split("/").last
+     rc = find_by_url(permalink)
+     logger.info("\n\nSEARCHING #{permalink} FOUND #{(rc ? rc.url : 'nil')} CHECK_URL #{check_url}\n\n")
+     return rc && check_url[1..-1].split("/").last == permalink 
   end
   
 end
