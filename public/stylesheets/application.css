@@ -244,3 +244,14 @@ a:hover {
 .header_categories {
 	font-size: 10px;
 }
+
+.user_menu {
+	padding: 3px;
+	display: inline;
+}
+.user_menu_selected_url {
+	font-weight: bold;
+	background: #444;
+	color: #ddd;
+	padding: 3px;
+}

@@ -46,6 +46,12 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+# SOME IMPORTANT DEFINITIONS (override them in your environments/environment.rb)
+
+USER_MENU_ITEMS= [
+    {:label => :home, :url => '/'},
+    {:label => :please_override_USER_MENU_ITEMS_in_your_environment_rb, :url => nil}
+] unless defined? USER_MENU_ITEMS
 
 # Constants for layout
 POSTINGS_PER_PAGE=4
