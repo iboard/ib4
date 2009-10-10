@@ -11,7 +11,7 @@ class Permalink < ActiveRecord::Base
        :conditions => ['url= ? and linkable_id = ? and linkable_type=?',
          check_url.gsub(/\/(.*)$/,'\1'),
          parts[1].to_i,
-         parts[0].camelize.singularize
+         parts[0].nil? ? "" : parts[0].camelize.singularize
        ]
      )
   end
