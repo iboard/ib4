@@ -6,12 +6,7 @@
   
   <!-- INTERPRETED, TRUNCATED BODY -->
   <div class='body_text'>
-    <%= truncate(
-          posting.body.to_txt, 
-          :length => DEFAULT_TRUNCATED_BODY_LENGTH, 
-          :omission => " ... #{link_to CAN_OPEN+NBSP+t(:read_more), posting}"
-        )
-    -%>
+    <%= posting.body.first_paragraph(" ... #{link_to CAN_OPEN+NBSP+t(:read_more), posting}").to_txt -%>
     
     <% if current_user || posting.comments.any? %> 
       <small>

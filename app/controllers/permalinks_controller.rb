@@ -1,6 +1,6 @@
 class PermalinksController < ApplicationController
   
-  before_filter   :require_owner_or_admin, :except => :show
+  before_filter   :require_owner_or_admin, :except => [:show, :index]
   
   def index
     @permalinks = Permalink.all

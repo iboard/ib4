@@ -1,13 +1,17 @@
-<p>
-  <%= hidden_field_tag "#{permalink.linkable.class.to_s.downcase}[permalink_ids][]", permalink.id -%>
-  <%= link_to(
-        ((request.env['SERVER_PORT'] == "80") ? "http://" : "https://")+
-        request.env['SERVER_NAME'] + 
-        "/" +  permalink.url, 
-        "/"+permalink.url 
-      )
-   -%>
-  <% if is_owner_or_admin?(permalink.linkable) %>
-    <%= link_to BACKSPACE_CHAR, permalink_path(permalink), :method => 'delete', :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) -%>
-  <% end %>
-</p>
+<%= hidden_field_tag "#{permalink.linkable.class.to_s.downcase}[permalink_ids][]", permalink.id -%>
+<h3><%= link_to( permalink.linkable.list_title(60), permalink.linkable )%><br/>
+    <span style='font-size: 10px;'>
+      <%= link_to(
+            (request.ssl? ? "https://" : "http://")+
+            request.server_name + 
+            "/" +  permalink.url, 
+            "/"+permalink.url 
+          )
+       -%>
+       <% if is_owner_or_admin?(permalink.linkable) %>
+           <%= link_to BACKSPACE_CHAR, permalink_path(permalink), 
+             :method => 'delete', 
+             :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) -%>
+       <% end %>
+    </span>
+</h3>
