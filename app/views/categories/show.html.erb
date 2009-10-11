@@ -19,11 +19,12 @@
 
 <% @items.each do |item| %>
   <% if item.categorizable %>
+  <div id='posting'>
     <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
                :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } 
     %>
     <%= CAN_OPEN+NBSP+link_to(t(:read_txt), item.categorizable) -%>
-    
+  </div>
   <% else %>
     <%= t(:item_deleted, :item => debug(item)) %>
   <% end %>
