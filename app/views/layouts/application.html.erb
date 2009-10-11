@@ -12,48 +12,56 @@
       <div id='banner'>
            
           <%- if RAILS_ENV != 'production' -%>
-             <p style='color: #930F05'>ENVIRONMENT: <%= RAILS_ENV -%></p>
+             <div id='environment'>RAILS_ENV:<%= RAILS_ENV -%></div>
           <%- else -%>
-             <p><%= Time.now.to_s(:short) %> - <%= request.remote_addr -%>
+             <div id='timedisplay'><%= Time.now.to_s(:short) %> - <%= request.remote_addr -%></div>
           <%- end -%>
           
-            <div id='user_nav'>
+            <div id='user_display'><!-- floats right -->
               <%- if current_user -%>
-                <b><%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%></b>:
-                <%= image_tag( current_user.avatar.url(:icon), :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? %>
-                <%= "<br clear=right />"  unless current_user.avatar.original_filename.blank? -%>
-                <%=
-                  [
-                      {:label => :dashboard,    :url => user_path(:current)},
-                      {:label => :edit_profile, :url => edit_user_path(:current)},
-                      {:label => :logout,       :url => logout_path }
-                  ].map { |item|
-                      mark_active_link(item,request.request_uri)
-                  }.join("")
-                %>
-              <%- else -%>
-                <%= 
-                    mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
-                    mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
-                -%>
+                <%= image_tag( current_user.avatar.url(:icon), 
+                    :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? 
+                %><br/>
+                <%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%>
+                
               <%- end -%>
             </div>
             
             <div id='page_title'>
               <h3><%= link_to 'iBoard 4 Development', root_path, :style=>'text-decoration:none; color:#ccc;' -%></h3>
               <%- if show_title? -%>
-                <h1><%=h yield(:title) -%></h1>
+                <h1><%=truncate(yield(:title),40) -%></h1>
               <%- end -%>
             </div>          
             
-            <div id='usermenu'>
-                <%= render :partial => '/layouts/publicmenu' -%>
-                <%- if is_admin? -%>
-                 &nbsp;&nbsp;&nbsp;&nbsp;
-                 <%= render :partial => '/users/adminmenu' if current_user -%>
+            <div id='top_menus'>              
+              <div id='usermenu'>
+                  <%= render :partial => '/layouts/publicmenu' -%>
+                  <%- if is_admin? -%>
+                    <div id='vert_filler'>&nbsp;</div>
+                    <%= render :partial => '/users/adminmenu' if current_user -%>
+                  <%- end -%>
+              </div>
+
+              <div id='logged_in_menu'>
+                <%- if current_user -%>  
+                  <%=
+                    [
+                      {:label => :dashboard,    :url => user_path(:current)},
+                      {:label => :edit_profile, :url => edit_user_path(:current)},
+                      {:label => :logout,       :url => logout_path }
+                    ].map { |item|
+                        mark_active_link(item,request.request_uri)
+                    }.join("")
+                  %>
+                <%- else -%>
+                  <%= 
+                      mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
+                      mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
+                  -%>
                 <%- end -%>
+              </div>            
             </div>
-         
             
             
       </div>
