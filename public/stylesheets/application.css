@@ -4,10 +4,9 @@
 
 body {
   font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
-  color: #434343;
   background: #282828 url('/images/background.png') fixed repeat;
   min-width: 980px;
+  font-size: 14px; color: #444;
 }
  
 a img {
@@ -22,6 +21,16 @@ a {
 a:hover {
 	text-decoration: underline;
 }
+
+
+H1 { font-size: 20px; }
+H2 { font-size: 16px; }
+H3 { font-size: 14px; }
+H4 { font-size: 12px; }
+H5 { font-size: 11px; }
+H6 { font-size: 10px; }
+
+P { font-size: 14px; color: #444; line-height: 180%;}
 
 UL {
 
@@ -40,6 +49,7 @@ LI {
 #container {
   width: 75%;
   margin-top: 0px;
+  line-height: 175%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0px;
@@ -183,9 +193,17 @@ LI {
   margin-left: auto;
   margin-right: auto;
   padding: 5px 40px 0px 40px;
-  border:1px solid #333;
+  border:3px solid #888;
   border-bottom: none;
   background: #aaa;
+  height:100px;
+}
+
+#top_menus {
+  padding: 0px;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #environment {
@@ -199,6 +217,7 @@ LI {
 	margin: 0px;
 	padding: 0px;
 	padding-left: 5px;
+	font-size: 28px;
 	height: 74px;
 }
 
@@ -212,17 +231,13 @@ input#page_title {
 	color: black;
 }
 
-
-#page_title H3, H1 {
+#page_title H1 {
 	margin: 0px;
+	font-size: 28px;
 }
 
 #page_description {
 	margin-bottom: 10px;
-}
-
-#top_menus {
-	padding: 5px;
 }
 
 #user_nav {
@@ -294,7 +309,8 @@ input#page_title {
 	border: 1px solid #ccc;
 	background: #E9F0FF;
 	padding: 10px;
-	padding-left: 0px;
+	line-height: normal;
+	padding-left: 5px;
 	margin: 5px;
 	margin-top: 0px;
 	margin-left: 0px;

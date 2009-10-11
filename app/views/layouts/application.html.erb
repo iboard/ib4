@@ -34,33 +34,33 @@
                 <h1><%=truncate(yield(:title),40) -%></h1>
               <%- end -%>
             </div>          
+                        
+        </div>
             
-            <div id='top_menus'>              
-              <div id='usermenu'>
-                  <%= render :partial => '/layouts/publicmenu' -%>
-              </div>
+        <div id='top_menus'>              
+          <div id='usermenu'>
+              <%= render :partial => '/layouts/publicmenu' -%>
+          </div>
 
-              <div id='logged_in_menu'>
-                <%- if current_user -%>  
-                  <%=
-                    [
-                      {:label => :dashboard,    :url => user_path(:current)},
-                      {:label => :edit_profile, :url => edit_user_path(:current)},
-                      {:label => :logout,       :url => logout_path }
-                    ].map { |item|
-                        mark_active_link(item,request.request_uri)
-                    }.join("")
-                  %>
-                <%- else -%>
-                  <%= 
-                      mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
-                      mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
-                  -%>
-                <%- end -%>
-              </div>            
-            </div>
-            
-            
+          <div id='logged_in_menu'>
+            <%- if current_user -%>  
+              <%=
+                [
+                  {:label => :dashboard,    :url => user_path(:current)},
+                  {:label => :edit_profile, :url => edit_user_path(:current)},
+                  {:label => :logout,       :url => logout_path }
+                ].map { |item|
+                    mark_active_link(item,request.request_uri)
+                }.join("")
+              %>
+            <%- else -%>
+              <%= 
+                  mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
+                  mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
+              -%>
+            <%- end -%>
+          </div>
+              
       </div>
       
       <div id='container'>
