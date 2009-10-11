@@ -205,6 +205,10 @@ LI {
 	margin: 0px;
 }
 
+#page_description {
+	margin-bottom: 10px;
+}
+
 #top_menus {
 	padding: 5px;
 }
@@ -258,7 +262,7 @@ LI {
 }
 
 .posting {
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 	
 }
 
@@ -329,3 +333,6 @@ LI {
     border-bottom: 1px solid #888;
 }
 
+.horiz_break {
+	margin-bottom: 10px;
+}

@@ -10,10 +10,10 @@
 
 <% for page in @pages %>
   <%= render :partial => 'page_short', :locals => { :page => page } %>
-  <p>
+  <div class='posting'>
     <%= link_to CAN_OPEN+NBSP+t(:read_more), page_path(page) -%>
     <%= link_to( COMMENT_HAND+"<small>"+NBSP+t(:count_comments, :count => page.comments.size ), page_path(page)+"#comments" )+"</small>" if page.comments.any? -%>
-  </p>
+  </div>
 <% end %>
 
 <%= will_paginate @pages -%>
