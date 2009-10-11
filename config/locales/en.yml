@@ -2,6 +2,8 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  locale_en: 'english'
+  locale_de: 'deutsch'
   iboard: 'iBoard'
   register: "Register"
   successfully_logged_in: "Successfully logged in as <b>{{username}}</b>"
@@ -125,10 +127,11 @@ en:
   item_deleted: "The item couldn't be found {{item}}"  
   say_yes: "yes"
   say_no: "no"
-  about_iboard: "About..."
+  about_iboard: "Intro..."
   development: "Development"
   all_postings: "All postings..."
   all_pages: "All pages..."
   please_override_USER_MENU_ITEMS_in_your_environment_rb: "Please override USER_MENU_ITEMS array in your environments/<em>environment</em>.rb"
   about: "About..."
   read_txt: "read..."
+  language_changed_message: 'Interface language set to {{locale}}. Please note that this will have no effect on contents.'

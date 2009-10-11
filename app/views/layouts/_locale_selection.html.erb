@@ -1,0 +1,11 @@
+<%= LOCALES.map { |locale| 
+  if locale == current_locale
+      "<b>#{t("locale_"+locale.to_s)}</b>"
+  else
+    link_to_remote(
+      t("locale_"+locale.to_s),
+      :url => set_locale_path(locale)
+    )
+  end
+  }.join(NBSP+"|"+NBSP)
+-%>

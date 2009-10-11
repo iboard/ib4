@@ -25,6 +25,10 @@ Rails::Initializer.run do |config|
 end
 
 # SOME IMPORTANT DEFINITIONS (override them in your environments/environment.rb)
+
+LOCALES=[:en,:de]
+DEFAULT_LOCALE=:en
+
 USER_MENU_ITEMS = [
     {:label => :home, :url => '/'},
     {:label => :please_override_USER_MENU_ITEMS_in_your_environment_rb, :url => nil}

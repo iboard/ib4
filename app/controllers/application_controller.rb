@@ -9,6 +9,8 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   
+  before_filter :set_language
+  
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
@@ -77,6 +79,10 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record
   end
     
+  private
+  def set_language
+    I18n.locale = session['locale'] || DEFAULT_LOCALE
+  end
 end
 
 # End of File:    application_controller.rb

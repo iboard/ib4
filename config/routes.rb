@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.resources :user_sessions
   map.resources :users, :has_many => [:postings,:pages]
+  map.set_locale '/set_locale/:locale', :controller => 'user_sessions', :action => 'set_locale'
   map.root :controller => "postings"
   map.connect ':id', :controller => :permalinks, :action => :show
   map.connect ':controller/:action/:id'
