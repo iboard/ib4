@@ -11,11 +11,7 @@
   <body><div id='page'>
       <div id='banner'>
            
-          <%- if RAILS_ENV != 'production' -%>
-             <div id='environment'>RAILS_ENV:<%= RAILS_ENV -%></div>
-          <%- else -%>
-             <div id='timedisplay'><%= Time.now.to_s(:short) %> - <%= request.remote_addr -%></div>
-          <%- end -%>
+          
           
             <div id='user_display'><!-- floats right -->
               <%- if current_user -%>
@@ -27,6 +23,11 @@
             </div>
             
             <div id='page_title'>
+                <%- if RAILS_ENV != 'production' -%>
+                     <div id='environment'>RAILS_ENV:<%= RAILS_ENV -%></div>
+                  <%- else -%>
+                     <div id='timedisplay'><%= Time.now.to_s(:short) %> - <%= request.remote_addr -%></div>
+                  <%- end -%>
               <h3><%= link_to 'iBoard 4 Development', root_path, :style=>'text-decoration:none; color:#ccc;' -%></h3>
               <%- if show_title? -%>
                 <h1><%=truncate(yield(:title),40) -%></h1>
