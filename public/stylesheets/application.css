@@ -346,6 +346,17 @@ input#page_title {
     border-bottom: 1px solid #888;
 }
 
+a:hover   {
+	background: #003A54;
+	color: white;
+}
+
+a:hover .user_menu_unselected_url  {
+	background: #003A54;
+	color: white;
+	text-decoration: none;
+}
+
 .horiz_break {
 	margin-bottom: 10px;
 }
