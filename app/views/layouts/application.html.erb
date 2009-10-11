@@ -19,11 +19,10 @@
           
             <div id='user_display'><!-- floats right -->
               <%- if current_user -%>
+                <%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%>
                 <%= image_tag( current_user.avatar.url(:icon), 
                     :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? 
-                %><br/>
-                <%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%>
-                
+                %>
               <%- end -%>
             </div>
             
@@ -37,10 +36,6 @@
             <div id='top_menus'>              
               <div id='usermenu'>
                   <%= render :partial => '/layouts/publicmenu' -%>
-                  <%- if is_admin? -%>
-                    <div id='vert_filler'>&nbsp;</div>
-                    <%= render :partial => '/users/adminmenu' if current_user -%>
-                  <%- end -%>
               </div>
 
               <div id='logged_in_menu'>
@@ -67,6 +62,12 @@
       </div>
       
       <div id='container'>
+       <%- if is_admin? -%>
+          <div id='rootmenu'>Admin:
+             <%= render :partial => '/users/adminmenu' if current_user -%>
+          </div>
+          <div style='clear:right;'>
+       <%- end -%>
        <div id='flash'>
           <%- flash.each do |name,msg| -%>
             <%= content_tag :div, msg, :id => "flash_#{name}" %>
@@ -74,10 +75,10 @@
         </div>
         <%= yield -%>
       </div>
-      <div id='height_filler'>&nbsp;</div>
-      <div id='copyright'>
-        <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%>
-      </div>
-
-  </div></body>
+    </div>
+    <div id='height_filler'></div>
+    <div id='copyright'>
+      <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
+    </div>
+  </body>
 </html>

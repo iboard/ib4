@@ -7,7 +7,7 @@ body {
   font-size: 14px;
   color: #434343;
   background-color: #003A54;
-  min-width: 480px;
+  min-width: 870px;
 }
  
 a img {
@@ -153,15 +153,12 @@ LI {
   margin-right: auto;
   margin-bottom: 5px;
   background-color: #FFF;
-  padding: 20px 40px;
-  border-left: solid 1px black;
-  border-right: solid 1px black;
-  border-bottom: solid 1px black;
-  border-top: none;
+  padding: 80px 40px 0px 40px;
 }
 
 
 #copyright {
+	clear: both;
 	text-align: center;
 	width: 100%;
     font-size: 10px;
@@ -233,6 +230,18 @@ LI {
 #logged_in_menu {
 	float: right;
     display: inline;
+}
+
+
+#rootmenu {
+	padding: 10px;
+	padding-right: 0px;
+	padding-top: 0px;
+	margin: 0px;
+	margin-right: 5px;
+	padding-left: 0px;
+	text-align: right;
+	float:right;
 }
 
 #vert_filler {
@@ -314,3 +323,4 @@ LI {
     border-top: 1px solid #888;
     border-bottom: 1px solid #888;
 }
+
