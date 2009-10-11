@@ -1,5 +1,5 @@
 module UserSessionsHelper
   def current_locale
-     session['locale'].to_sym
+     session['locale']
    end
 end

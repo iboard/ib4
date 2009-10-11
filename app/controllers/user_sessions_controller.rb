@@ -37,7 +37,7 @@ class UserSessionsController < ApplicationController
   end
   
   def set_locale
-    session['locale'] = params[:locale].to_sym
+    session['locale'] = params[:locale]
     changed = session['locale'] != current_locale
     I18n.locale = session['locale']
     respond_to do |format|
@@ -47,7 +47,7 @@ class UserSessionsController < ApplicationController
   end
 
   def current_locale
-    session['locale'].to_sym
+    session['locale']
   end
     
 end
