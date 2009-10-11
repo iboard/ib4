@@ -3,8 +3,10 @@
 
 <%= will_paginate @tags %>
 <% @tagables.each do |tagable| %>
-  <%= render :partial => "/#{tagable.class.to_s.pluralize.downcase}/#{tagable.class.to_s.downcase}_short", :locals => { tagable.class.to_s.downcase.to_sym => tagable } %>
-  <%= CAN_OPEN+NBSP+link_to(t(:read_txt), tagable) -%>
+  <div id='posting'>
+    <%= render :partial => "/#{tagable.class.to_s.pluralize.downcase}/#{tagable.class.to_s.downcase}_short", :locals => { tagable.class.to_s.downcase.to_sym => tagable } %>
+    <%= CAN_OPEN+NBSP+link_to(t(:read_txt), tagable) -%>
+  </div>
 <% end %>
 <%= will_paginate @tags %>
 
