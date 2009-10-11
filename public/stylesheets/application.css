@@ -202,6 +202,16 @@ LI {
 	height: 74px;
 }
 
+input#page_title {
+	display: inline;
+	height: 20px;
+	padding:5px;
+	margin: 0px;
+	font-size: larger;
+	font-weight: bold;
+	color: black;
+}
+
 
 #page_title H3, H1 {
 	margin: 0px;
