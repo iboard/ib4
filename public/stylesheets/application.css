@@ -6,7 +6,7 @@ body {
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
   color: #434343;
-  background-color: #003A54;
+  background: #282828 url('/images/background.png') fixed repeat;
   min-width: 870px;
 }
  
@@ -183,6 +183,8 @@ LI {
   margin-left: auto;
   margin-right: auto;
   padding: 5px 40px 0px 40px;
+  border:1px solid #333;
+  border-bottom: none;
   background: #aaa;
 }
 
