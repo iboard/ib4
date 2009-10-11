@@ -328,8 +328,8 @@ input#page_title {
 	font-weight: normal;
 	color: black;
 	padding: 4px;
-    border-top: 2px solid #555;
-    border-left: 2px solid #555;
+    border-top: 2px solid #888;
+    border-left: 2px solid #999;
     border-right: 2px solid #444;
     border-bottom: 2px solid #fff;
 }
