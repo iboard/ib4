@@ -4,12 +4,13 @@ class Permalink < ActiveRecord::Base
   validates_presence_of   :url
   
   
-  def self.is_destination?(check_url,requested_url)
-     return true if check_url == requested_url
-     permalink = requested_url.split("/").last
+  def self.is_destination?(check_url,requested_url,rootpath="postings")
+     check = check_url.gsub(/\?(.*)$/,"").gsub(/^\//,"")
+     rqurl = requested_url.gsub(/\?(.*)$/,"").gsub(/^\//,"")
+     return true if check == rqurl || rqurl == rootpath
+     permalink = rqurl.split("/").last
      rc = find_by_url(permalink)
-     logger.info("\n\nSEARCHING #{permalink} FOUND #{(rc ? rc.url : 'nil')} CHECK_URL #{check_url}\n\n")
-     return rc && check_url[1..-1].split("/").last == permalink 
+     return rc && (check.split("/").last == permalink) || (rqurl == '' && check == rootpath)
   end
   
 end
