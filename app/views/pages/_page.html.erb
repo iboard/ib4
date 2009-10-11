@@ -22,7 +22,7 @@
     <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>
   <%- end -%>
   
-  <br clear=left />
+  <div style="clear:'left';"></div>
 </div>
 
 <%= render :partial => 'page_short', :locals => {:page => @page } %>

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%= current_locale -%>" lang="<%= current_locale -%>">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>iBoard 4 - <%=h yield :title %></title>
@@ -8,6 +8,7 @@
     <%- javascript :defaults -%>
     <%- rss_link(:rss, postings_url(:rss)) -%>
     <%= yield :html_head %>
+  </head>
   <body><div id='page'>
       <div id='banner'>
 
@@ -68,12 +69,12 @@
           <div id='rootmenu'>Admin:
              <%= render :partial => '/users/adminmenu' if current_user -%>
           </div>
-          <div style='clear:right;'>
+          <div style='clear:right;'></div>
        <%- end -%>
        <div id='flash'>
-          <%- flash.each do |name,msg| -%>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
-          <%- end -%>
+         <%- flash.each do |name,msg| -%>
+           <%= content_tag :div, msg, :id => "flash_#{name}" %>
+         <%- end -%>
         </div>
         <%= yield -%>
       </div>

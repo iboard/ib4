@@ -7,12 +7,12 @@ module ApplicationHelper
 
    # return true if url is part of the actual requested url
    def mark_active_link(item,url)
+     l = link_to(t(item[:label].to_s.downcase), item[:url])
      if Permalink.is_destination?(url,item[:url]) 
-       l=  "<div class='user_menu_selected_url'>#{t(item[:label].to_s.downcase)}</div>"
+       "<div class='user_menu_selected_url'>"+l+ "</div>"
      else
-       l=  "<div class='user_menu_unselected_url'>#{t(item[:label].to_s.downcase)}</div>"
+       "<div class='user_menu_unselected_url'>"+l+ "</div>"
      end
-     link_to(l, item[:url])
    end
    
 end
