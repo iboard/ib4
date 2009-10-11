@@ -8,6 +8,7 @@
 # create means login where destroy means log out.
 class UserSessionsController < ApplicationController
 
+  
   def new
     @user_session = UserSession.new
   end
@@ -34,4 +35,19 @@ class UserSessionsController < ApplicationController
     flash[:notice] = t(:successfully_logged_out)
     redirect_to root_url
   end
+  
+  def set_locale
+    session['locale'] = params[:locale].to_sym
+    changed = session['locale'] != current_locale
+    I18n.locale = session['locale']
+    respond_to do |format|
+      format.html { redirect_to request.env['HTTP_REFERER'] }
+      format.js
+    end
+  end
+
+  def current_locale
+    session['locale'].to_sym
+  end
+    
 end

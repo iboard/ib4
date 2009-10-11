@@ -1,0 +1,137 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  locale_en: 'english'
+  locale_de: 'deutsch'
+  iboard: 'iBoard'
+  register: "Registrieren"
+  successfully_logged_in: "Erfolgreich als <b>{{username}}</b> angemeldet."
+  last_login_at_notice: "Letzte Anmeldung: {{last_login_at}} von {{last_login_ip}}"
+  successfully_logged_out: "Erfolgreich abgemeldet"
+  failed_login_count_notice: 
+    zero: ""
+    one:  "<span style='color:red';>Nach einem misslungenen Login-Versuch</span>" 
+    other: "<span style='color:red';>Nach {{count}} misslungenen login-Versuchen</span>" 
+  login: 'Anmelden'
+  logout: 'Abmelden'
+  login_button: 'Anmelden…'
+  edit_profile: 'Profil bearbeiten'
+  profile_successfully_updated: 'Profil wurde gespeichert.'
+  forgot_password: 'Passwort vergessen? Hier zurücksetzen.'
+  password_reset_instructions: 'Anleitungen zum Zurücksetzen des Passworts wurden gesandt.<br/>Bitte überprüfen sie ihren Posteingang.'
+  user_not_found_for_password_reset: "Kein Account mit dieser Adresse gefunden."
+  reset_password_button: 'Passwort zurücksetzen'
+  reset_your_password: 'Passwort zurücksetzen'
+  please_enter_your_email: 'Geben sie bitte ihre e-mail Adresse ein'
+  registration_successfull: 'Registrierung erfolgreich.<br/>Anleitungen zum Aktivieren wurden versandt.<br/>Bitte überprüfen sie ihren Posteingang.'
+  reset_password_instructions_subject: 'Anleitung zum Passwort-Reset'
+  password_successfully_updated: 'Passwort erfolgreich geändert'
+  change_your_password: 'Passwort ändern'
+  update_password_and_login: 'Passwort ändern und anmelden'
+  new_account_instructions_subject: 'Anleitungen zum Aktivieren ihres Zugangs'
+  new_user: 'Neuer Benutzer'
+  please_enter_your_new_password: 'Bitte geben sie ein Passwort ein'
+  admin_required: 'Für diese Funktion benötigen sie Administratorrechte'
+  require_root: 'Diese Funktion darf nur der Benutzer <em>root</em> ausführen!'
+  user_listing: 'Benutzerliste'
+  created_at: 'Erstellt am'
+  last_request_at: 'Letzter Zugriff'
+  crypted_password: 'Verschlüsseltes Passwort'
+  updated_at: 'Geändert am'
+  perishable_token: 'Anfragezeichen'
+  username: 'Benutzername'
+  current_login_ip: 'Aktuelle IP'
+  failed_login_count: 'Zähler fehlgeschlagene Login-Versuche'
+  id: 'ID'
+  current_login_at: 'Letzte Anmeldung'
+  password_salt: 'Passwort Salz'
+  login_count: 'Anz. Anmeldungen'
+  persistence_token: 'Dauerzeichen'
+  last_login_ip: 'Letzte IP'
+  last_login_at: 'Letzte Anmeldung'
+  email: 'Email'
+  edit: 'bearbeiten'
+  destroy: 'löschen'
+  are_you_sure: 'Sind sie sicher, dass sie {{what}} wollen?'
+  delete_user: 'den Benutzer {{username}} löschen'
+  search: 'suchen…'
+  show_all: 'alle zeigen'
+  sort_by: 'Sortierung'
+  dashboard: 'Armaturenbrett'
+  dashboard_for_user: 'Armaturenbrett: {{username}}'
+  edit_profile_for_user: 'Profil {{username}} bearbeiten'
+  read_more: '<span style="font-size: smaller; font-style: italic;">read&nbsp;mehr</span>'
+  posting: 'Beitrag'
+  Posting: 'Beitrag'
+  view_all: 'alle zeigen'
+  postings_by: "{{username}}'s Beiträge"
+  user_last_logged_in: '{{username}} war zuletzt angegemeldet am {{date}}'
+  user_is_logged_in: '{{username}} ist seit {{since}} angemeldet'
+  is_admin: 'Amdinistrator'
+  categories: 'Kategorien'
+  new_category: 'Neue Kategorie'
+  postings_in_category: 'Kategorie {{category}}'
+  all_postings: 'Alle Beiträge'
+  tags: 'Tags'
+  new_posting: 'Neuer Beitrag'
+  textilize_help_link: 'Textilize enabled'
+  fullname: 'Ganzer Name'
+  details: 'Details'
+  postings: 'Beiträge'
+  access_denied_edit: "Zugriff auf Bearbeitung nicht erlaubt."
+  is_public: 'öffentlich'
+  edit_category: 'Kategorie bearbeiten'
+  category_show: '/:{{category}}'
+  count_entries:
+    zero: 'Kein Eintrag'
+    one: 'Ein Eintrag'
+    other: '{{count}} Einträge'
+  home: Start
+  explain_registration_flow: "<b>Registrierung:</b><br/>Wählen sie, auf der linken Seite einen Benutzernamen und geben sie ihre E-mail-Adresse ein. Sie erhalten ein E-Mail mit einem Link zur Bestätigung. Dort können sie ihr Passwort wählen.<br/><b>Avatar:</b><br/>Oben können sie ihr Avatar-Bild hochladen. Es wird automatisch skaliert und beschnitten."
+  comma_or_blank_delimited_plural: "In den Tags bitte die Einzahl benutzen.<br/>Beistrichgetrennte Tags eingeben<br/>zB. 'Musik,Benzin,Ankündigung'<br/>Aber nicht: <s>Ankündigung<b>en</b><em>;</em>Auto<b>s</b></s><br/>Und benutzen sie bitte NIE den Tag 'neu'! » Ihr Beitrag würde ja dann immer und ewig als 'neu' markiert bleiben. ;-)"
+  add_a_comment: 'Kommentar hinzufügen'
+  submit: 'Absenden'
+  count_comments: 
+    zero: 'Keine Kommentare. Sind sie der/die Erste ...'
+    one: 'Ein Kommentar'
+    other: '{{count}} Kommentare'
+  comment_successfully_created: 'Kommentar erfolgreich gespeichert.'
+  user_says: '<b>{{fullname}}</b> ({{username}}) schrieb <small>(am {{time}})</small>'
+  anonymous: 'Anonym'
+  guest: 'Gast'
+  successfully_created_comment: 'Kommentar erfolgreich gespeichert.'
+  delete_this_comment: 'Lösche diesen Kommentar'
+  commentable_commented: '{{username}} hat ihren Beitrag <em<{{title}}</em> kommentiert.'
+  remove_avatar: 'Avatar entfernen'
+  error_removing_avatar: 'Fehler beim Entfernen des Avatars'
+  avatar_successfully_removed: 'Avatar successfully removed'
+  postings_at_host: 'Beiträge am Server {{host}}'
+  postings_feed_description: 'Das ist der RSS-feed unseres Servers. Versions XML 1.0, RSS 2.0'
+  comment_days_ago:
+    zero: '{{fullname}} ({{username}}) schrieb heute …'
+    one: 'Gestern schrieb {{fullname}} ({{username}})  …'
+    other: '{{count}} days ago, {{fullname}} ({{username}}) wrote …'
+  subscribe_rss_feed: 'RSS Abonnieren'
+  register_new_user: 'Neuen Benutzer registrieren'
+  your_session: 'Ihre Verbindung'
+  online_status: 'Verbindungsstatus'
+  pages: 'Seiten'
+  new_page: 'Neue Seite'
+  all_pages: 'Alle Seiten'
+  pages_in_category: 'Kategorie {{category}}'
+  permalinks: 'Permalinks'
+  delete_a_permalink: 'diesen Permalink löschen'
+  delete: 'löschen'
+  new_permalink: 'Neuer Permalink'
+  item_deleted: "Objekt {{item}} nicht gefunden."  
+  say_yes: "ja"
+  say_no: "nein"
+  about_iboard: "Einleitung..."
+  development: "Entwicklung"
+  all_postings: "Alle Beiträge..."
+  all_pages: "Alle Seiten..."
+  please_override_USER_MENU_ITEMS_in_your_environment_rb: "Please override USER_MENU_ITEMS array in your environments/<em>environment</em>.rb"
+  about: "Intro..."
+  read_txt: "lesen..."
+  language_changed_message: 'Interface-Sprache auf {{locale}} geändert. Beachten sie bitte, dass dies keinen Einfluss auf den Inhalt hat.'
