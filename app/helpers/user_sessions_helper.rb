@@ -1,5 +1,5 @@
 module UserSessionsHelper
   def current_locale
-     session['locale']
-   end
+    session['locale'] || DEFAULT_LOCALE
+  end
 end

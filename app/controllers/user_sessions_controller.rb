@@ -47,7 +47,7 @@ class UserSessionsController < ApplicationController
   end
 
   def current_locale
-    session['locale']
+    session['locale'] || DEFAULT_LOCALE
   end
     
 end
