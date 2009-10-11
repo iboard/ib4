@@ -1,5 +1,5 @@
 <%= LOCALES.map { |locale| 
-  if locale && current_locale && (locale == current_locale)
+  if current_locale && (locale == current_locale)
       "<b>#{t("locale_"+locale.to_s)}</b>"
   else
     link_to_remote(
