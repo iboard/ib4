@@ -43,7 +43,7 @@ LI {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0px;
-  background-color: #FFF;
+  background: #FFF;
   padding: 20px 40px;
   border-left: solid 1px black;
   border-right: solid 1px black;
@@ -153,7 +153,10 @@ LI {
   margin-right: auto;
   margin-bottom: 5px;
   background-color: #FFF;
-  padding: 80px 40px 0px 40px;
+  background: #FFF url('/images/sitelogo.png') no-repeat bottom right;
+  background-position: fixed;
+  height: 85px;
+  padding: 40px 40px 0px 40px;
 }
 
 
