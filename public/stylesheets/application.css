@@ -312,6 +312,7 @@ LI {
 }
 
 .user_menu_selected_url {
+	display: inline;
 	background: white;
 	font-weight: normal;
 	color: black;
@@ -323,6 +324,7 @@ LI {
 }
 
 .user_menu_unselected_url {
+	display: inline;
 	font-weight: normal;
 	color: black;
 	background: #CACDC1;
