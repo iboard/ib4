@@ -9,10 +9,13 @@
 <%= will_paginate @postings -%>
 
 <% for posting in @postings %>
-  <%= render :partial => 'posting_short', :locals => { :posting => posting } %>
-  <%= CAN_OPEN+NBSP+link_to(t(:read_txt), posting) -%>
-  
+  <div class='posting'>
+    <%= render :partial => 'posting_short', :locals => { :posting => posting } %>
+    <%= CAN_OPEN+NBSP+link_to(t(:read_txt), posting) -%>
+  </div>
 <% end %>
+
+<div class='horiz_break'></dev>
 
 <%= will_paginate @postings -%>
 
