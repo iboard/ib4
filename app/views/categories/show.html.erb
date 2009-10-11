@@ -2,7 +2,7 @@
 
 <%= render :partial => "/postings/searchbox" -%>
 
-<h1><%= h(@category.name) -%></h1>
+<h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @items.length ) -%>)</small></h1>
 <%- if is_admin? %>
   <p>
     <%= link_to "Edit", edit_category_path(@category) %> |
@@ -10,7 +10,6 @@
     <%= link_to "View All", categories_path %>
   </p>
 <%- end -%>
-<p><%= t(:count_entries, :count => @items.length ) -%></p>
 
 <%=@category.description.to_txt %>
 
