@@ -7,7 +7,7 @@ body {
   font-size: 14px;
   color: #434343;
   background-color: #003A54;
-  min-width: 480px;
+  min-width: 870px;
 }
  
 a img {
@@ -153,15 +153,12 @@ LI {
   margin-right: auto;
   margin-bottom: 5px;
   background-color: #FFF;
-  padding: 20px 40px;
-  border-left: solid 1px black;
-  border-right: solid 1px black;
-  border-bottom: solid 1px black;
-  border-top: none;
+  padding: 80px 40px 0px 40px;
 }
 
 
 #copyright {
+	clear: both;
 	text-align: center;
 	width: 100%;
     font-size: 10px;
@@ -178,42 +175,77 @@ LI {
 #banner {
   color: white;
   width: 75%;
-  height: 112px;
   margin-top: 2px;
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding: 1px 40px 25px 40px;
+  padding: 1px 40px 0px 40px;
   background: #aaa;
 }
 
+#environment {
+	font-size: 10px;
+	margin: 0px;
+}
+
 #page_title {
-	line-height: 100%;
 	color: white;
 	margin: 0px;
 	padding: 0px;
+	height: 74px;
+}
+
+
+#page_title H3, H1 {
+	margin: 0px;
+}
+
+#top_menus {
+	padding: 5px;
 }
 
 #user_nav {
-  float: right;
   text-align: right;
   padding-top: 0px;
   padding-bottom: 0px;
   font-size: 12px;
-  line-height: 160%;
-  margin-top: 7px;
+  margin-top: 0px;
+}
+
+#user_display {
+	width: 250px;
+	float: right;
+	text-align: right;
 }
 
 #usermenu {
-
-  color: white;
-  width: 75%;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+  display: inline;
 }
 
-#usermenu a {
-	color: white;
-	text-decoration: none;
+#menufiller {
+	display: inline;
+}
+
+#logged_in_menu {
+	float: right;
+    display: inline;
+}
+
+
+#rootmenu {
+	padding: 10px;
+	padding-right: 0px;
+	padding-top: 0px;
+	margin: 0px;
+	margin-right: 5px;
+	padding-left: 0px;
+	text-align: right;
+	float:right;
+}
+
+#vert_filler {
+	display: inline;
 }
 
 .posting_short {
@@ -268,8 +300,8 @@ LI {
 
 .user_menu {
 	padding: 5px;
-	display: inline;
 }
+
 .user_menu_selected_url {
 	background: white;
 	font-weight: normal;
@@ -284,9 +316,11 @@ LI {
 .user_menu_unselected_url {
 	font-weight: normal;
 	color: black;
+	background: #CACDC1;
 	padding: 5px;
     border-right: 1px solid #888;
     border-left: 1px solid #888;
     border-top: 1px solid #888;
     border-bottom: 1px solid #888;
 }
+
