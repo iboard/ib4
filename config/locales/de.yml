@@ -135,3 +135,5 @@ de:
   about: "Intro..."
   read_txt: "lesen..."
   language_changed_message: 'Interface-Sprache auf {{locale}} geändert. Beachten sie bitte, dass dies keinen Einfluss auf den Inhalt hat.'
+  previous_label: "« zurück"
+  next_label: "weiter »"
