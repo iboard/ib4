@@ -1,4 +1,3 @@
-<%= hidden_field_tag "#{permalink.linkable.class.to_s.downcase}[permalink_ids][]", permalink.id -%>
 <h3><%= link_to( permalink.linkable.list_title(60), permalink.linkable )%><br/>
     <span style='font-size: 10px;'>
       <%= link_to(
@@ -9,6 +8,7 @@
           )
        -%>
        <% if @controller.request[:action] == 'edit' && is_owner_or_admin?(permalink.linkable)  %>
+           <%= hidden_field_tag "#{permalink.linkable.class.to_s.downcase}[permalink_ids][]", permalink.id -%>
            <%= link_to BACKSPACE_CHAR, permalink_path(permalink), 
              :method => 'delete', 
              :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) 
