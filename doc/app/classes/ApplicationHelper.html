@@ -91,10 +91,8 @@ application.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000086">box_float_right</a>&nbsp;&nbsp;
-      <a href="#M000085">divider</a>&nbsp;&nbsp;
-      <a href="#M000084">highlight_search</a>&nbsp;&nbsp;
-      <a href="#M000087">toggle_display_link</a>&nbsp;&nbsp;
+      <a href="#M000096">mark_active_link</a>&nbsp;&nbsp;
+      <a href="#M000097">will_paginate_with_i18n</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -102,6 +100,13 @@ application.
 
 
     <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">WillPaginate::ViewHelpers</span>
+      </div>
+    </div>
 
     <div id="section">
 
@@ -116,126 +121,59 @@ application.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000086" class="method-detail">
-        <a name="M000086"></a>
+      <div id="method-M000096" class="method-detail">
+        <a name="M000096"></a>
 
         <div class="method-heading">
-          <a href="#M000086" class="method-signature">
-          <span class="method-name">box_float_right</span><span class="method-args">(width=RIGHT_BOX_DEFAULT_WIDTH,css_class='box_float_right') {|| ...}</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000086-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 21</span>
-21:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">box_float_right</span>(<span class="ruby-identifier">width</span>=<span class="ruby-constant">RIGHT_BOX_DEFAULT_WIDTH</span>,<span class="ruby-identifier">css_class</span>=<span class="ruby-value str">'box_float_right'</span>)
-22:     <span class="ruby-identifier">concat</span>(<span class="ruby-node">&quot;&lt;div class='#{css_class}' style='width: #{width}'&gt;&quot;</span>)
-23:     <span class="ruby-keyword kw">yield</span>
-24:     <span class="ruby-identifier">concat</span>(<span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>)
-25:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000085" class="method-detail">
-        <a name="M000085"></a>
-
-        <div class="method-heading">
-          <a href="#M000085" class="method-signature">
-          <span class="method-name">divider</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000085-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000085-source">
-<pre>
-    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 17</span>
-17:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">divider</span>
-18:     <span class="ruby-value str">&quot;&lt;div class='divider'&gt;&lt;/div&gt;&quot;</span>
-19:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000084" class="method-detail">
-        <a name="M000084"></a>
-
-        <div class="method-heading">
-          <a href="#M000084" class="method-signature">
-          <span class="method-name">highlight_search</span><span class="method-args">(search,txt)</span>
+          <a href="#M000096" class="method-signature">
+          <span class="method-name">mark_active_link</span><span class="method-args">(item,url)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-search will be splitted by whitespace or colons and then text found for
-each part in txt will be highlighted by span color green&#8230;
+return true if url is part of the actual requested url
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000084-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000084-source">
+            onclick="toggleCode('M000096-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000096-source">
 <pre>
     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 9</span>
- 9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">highlight_search</span>(<span class="ruby-identifier">search</span>,<span class="ruby-identifier">txt</span>)
-10:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">txt</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">search</span>.<span class="ruby-identifier">blank?</span>
-11:     <span class="ruby-identifier">search</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/[\s|,]+/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
-12:        <span class="ruby-identifier">txt</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">&quot;#{s}&quot;</span>,<span class="ruby-node">&quot;&lt;span style=\&quot;color: #080; font-weight: bold;\&quot;&gt;#{s}&lt;/span&gt;&quot;</span>)      
-13:     <span class="ruby-keyword kw">end</span>
-14:     <span class="ruby-identifier">txt</span>
-15:   <span class="ruby-keyword kw">end</span>
+ 9:    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mark_active_link</span>(<span class="ruby-identifier">item</span>,<span class="ruby-identifier">url</span>)
+10:      <span class="ruby-identifier">l</span> = <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">t</span>(<span class="ruby-identifier">item</span>[<span class="ruby-identifier">:label</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>), <span class="ruby-identifier">item</span>[<span class="ruby-identifier">:url</span>])
+11:      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">is_destination?</span>(<span class="ruby-identifier">url</span>,<span class="ruby-identifier">item</span>[<span class="ruby-identifier">:url</span>]) 
+12:        <span class="ruby-value str">&quot;&lt;div class='user_menu_selected_url'&gt;&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">l</span><span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>
+13:      <span class="ruby-keyword kw">else</span>
+14:        <span class="ruby-value str">&quot;&lt;div class='user_menu_unselected_url'&gt;&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">l</span><span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>
+15:      <span class="ruby-keyword kw">end</span>
+16:    <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000087" class="method-detail">
-        <a name="M000087"></a>
+      <div id="method-M000097" class="method-detail">
+        <a name="M000097"></a>
 
         <div class="method-heading">
-          <a href="#M000087" class="method-signature">
-          <span class="method-name">toggle_display_link</span><span class="method-args">(label='show more') {|| ...}</span>
+          <a href="#M000097" class="method-signature">
+          <span class="method-name">will_paginate_with_i18n</span><span class="method-args">(collection, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+WillPaginate::ViewHelpers.pagination_options[:prev_label] =
+&#8216;XXXX&#8216;
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000087-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000087-source">
+            onclick="toggleCode('M000097-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000097-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 27</span>
-27:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">toggle_display_link</span>(<span class="ruby-identifier">label</span>=<span class="ruby-value str">'show more'</span>)
-28:   
-29:      <span class="ruby-identifier">ids</span> = <span class="ruby-node">&quot;details_#{rand(999999).round.to_s}&quot;</span>
-30:      
-31:      <span class="ruby-identifier">concat</span>( 
-32:        <span class="ruby-node">&quot;&lt;div id='can_open_#{ids}'&gt;
-33:           &lt;a href='##{ids}' 
-34:           onclick=\&quot;Element.blindDown(\'#{ids}\');Element.hide(\'can_open_#{ids}\'); Element.show(\'can_close_#{ids}\');return false;\&quot;&gt;#{CAN_OPEN}&amp;nbsp;#{label}&lt;/a&gt;&quot;</span> <span class="ruby-operator">+</span>
-35:         <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span> <span class="ruby-operator">+</span>
-36:         <span class="ruby-node">&quot;&lt;div id='can_close_#{ids}'  style='display: none;' &gt;
-37:           &lt;a href='##{ids}' 
-38:           onclick=\&quot;Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');return false;\&quot;&gt;#{IS_OPEN}&amp;nbsp;#{label}&lt;/a&gt;&quot;</span> <span class="ruby-operator">+</span>
-39:         <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span><span class="ruby-operator">+</span>
-40:         <span class="ruby-node">&quot;&lt;div id='#{ids}' style='display:none;'&gt;&quot;</span>
-41:      )
-42:      
-43:      <span class="ruby-keyword kw">yield</span>
-44:      
-45:      <span class="ruby-identifier">concat</span>( 
-46:        <span class="ruby-node">&quot;&lt;div id='close_up#{ids}'&gt;
-47:          &lt;a href='##{ids}' 
-48:          onclick=\&quot;Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');return false;\&quot;&gt;#{CLOSE_UP}&amp;nbsp;#{label}&lt;/a&gt;&quot;</span> <span class="ruby-operator">+</span>
-49:        <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span><span class="ruby-operator">+</span>
-50:        <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span>
-51:      )
-52:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 23</span>
+23:    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">will_paginate_with_i18n</span>(<span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span> = {})
+24:      <span class="ruby-identifier">will_paginate_without_i18n</span>(<span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:prev_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-identifier">:previous_label</span>), <span class="ruby-identifier">:next_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-identifier">:next_label</span>)))
+25:    <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
