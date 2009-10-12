@@ -8,10 +8,12 @@
             "/"+permalink.url 
           )
        -%>
-       <% if is_owner_or_admin?(permalink.linkable) %>
+       <% if @controller.request[:action] == 'edit' && is_owner_or_admin?(permalink.linkable)  %>
            <%= link_to BACKSPACE_CHAR, permalink_path(permalink), 
              :method => 'delete', 
-             :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) -%>
+             :confirm => t(:are_you_sure, :what => t(:delete_a_permalink)), :title => t(:delete) 
+           -%>
        <% end %>
     </span>
 </h3>
+
