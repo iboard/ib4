@@ -18,7 +18,7 @@
 
 <% @items.each do |item| %>
   <% if item.categorizable %>
-  <div class='posting' id='posting'>
+  <div class='posting' id='posting_<%= item.id.to_s -%>' class='posting'>
     <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
                :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } 
     %>
