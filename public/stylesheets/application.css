@@ -151,8 +151,6 @@ LI {
 }
  
 
-
-
 /*
   ADDED BY ANDREAS ALTENDORFER
 */
@@ -169,7 +167,7 @@ LI {
   padding: 40px 40px 0px 40px;
 }
 
-
+p#copyright,
 #copyright {
 	clear: both;
 	text-align: center;
