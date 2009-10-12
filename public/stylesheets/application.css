@@ -376,3 +376,7 @@ a:hover .user_menu_unselected_url  {
 .horiz_break {
 	margin-bottom: 10px;
 }
+
+.form_left_500 {
+	width: 450px;
+}
