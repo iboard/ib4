@@ -76,6 +76,13 @@
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000086">current_locale</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -92,6 +99,36 @@
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
+
+        <div class="method-heading">
+          <a href="#M000086" class="method-signature">
+          <span class="method-name">current_locale</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000086-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/helpers/user_sessions_helper.rb, line 2</span>
+2:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_locale</span>
+3:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value str">'locale'</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>[<span class="ruby-value str">'locale'</span>].<span class="ruby-identifier">blank?</span>
+4:     <span class="ruby-identifier">browservalue</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_ACCEPT_LANGUAGE'</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_ACCEPT_LANGUAGE'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\-.*$/</span>,<span class="ruby-value str">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">DEFAULT_LOCALE</span>
+5:     <span class="ruby-identifier">session</span>[<span class="ruby-value str">'locale'</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">browservalue</span>
+6:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>
