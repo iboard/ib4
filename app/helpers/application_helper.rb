@@ -15,6 +15,17 @@ module ApplicationHelper
      end
    end
    
+   
+   # I18n support for willpaginate
+   include WillPaginate::ViewHelpers
+#   WillPaginate::ViewHelpers.pagination_options[:prev_label] = 'XXXX'
+   
+   def will_paginate_with_i18n(collection, options = {})
+     will_paginate_without_i18n(collection, options.merge(:prev_label => I18n.t(:previous_label), :next_label => I18n.t(:next_label)))
+   end
+   alias_method_chain :will_paginate, :i18n
+
+   
 end
 
    

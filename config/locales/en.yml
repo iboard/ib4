@@ -135,3 +135,5 @@ en:
   about: "About..."
   read_txt: "read..."
   language_changed_message: 'Interface language set to {{locale}}. Please note that this will have no effect on contents.'
+  previous_label: "« Previous"
+  next_label: "Next »"
