@@ -26,42 +26,42 @@
     
   <% end %>
 
-
-  <h1><%= t(:register_new_user)-%></h1>    
-  <!-- DATA FIELDS (left) -->
-  <%= f.error_messages %>
-  
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :fullname %><br />
-    <%= f.text_field :fullname %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <%- unless @user.new_record? -%>
+  <div class='form_left_500'>
+    <h1><%= t(:register_new_user)-%></h1>    
+    <!-- DATA FIELDS (left) -->
+    <%= f.error_messages %>
+    
     <p>
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
+      <%= f.label :username %><br />
+      <%= f.text_field :username %>
     </p>
     <p>
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
+      <%= f.label :fullname %><br />
+      <%= f.text_field :fullname %>
     </p>
-  <%- end -%>
-  
-  <%- if is_admin? -%>
     <p>
-      <%= f.label :is_admin %><br />
-      <%= f.check_box :is_admin %>
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
     </p>
-  <%- end -%>
-  
-  <p><%= f.submit "Submit" %></p>
-
+    <%- unless @user.new_record? -%>
+      <p>
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </p>
+      <p>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %>
+      </p>
+    <%- end -%>
+    
+    <%- if is_admin? -%>
+      <p>
+        <%= f.label :is_admin %><br />
+        <%= f.check_box :is_admin %>
+      </p>
+    <%- end -%>
+    
+    <p><%= f.submit "Submit" %></p>
+  </div>
 <%- end -%>
 <br clear=all />

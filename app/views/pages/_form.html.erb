@@ -32,29 +32,33 @@
     
   <%- end -%>
   
-  
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :size => 38 %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 3, :cols => 60 %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :rows => 15, :cols => 60 %>
-  </p>
-  <p>
-    <%= f.label :allow_comments %><br />
-    <%= f.check_box :allow_comments %>
-  </p>
-  <% if is_admin? %>
+  <div class='form_left_500'>
+    
+    <%= f.error_messages %>
     <p>
-      <%= f.label :user_id %><br />
-      <%= f.collection_select :user_id, User.ascend_by_fullname.all, :id, :display_name_and_user -%>
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :size => 38 %>
     </p>
-  <% end %>
-  <p><%= f.submit "Submit" %></p>
+    <p>
+      <%= f.label :description %><br />
+      <%= f.textile_editor :description, :rows => 3, :cols => 60 %>
+    </p>
+    <p>
+      <%= f.label :body %><br />
+      <%= f.textile_editor :body, :rows => 15, :cols => 60 %>
+    </p>
+    <p>
+      <%= f.label :allow_comments %><br />
+      <%= f.check_box :allow_comments %>
+    </p>
+    <% if is_admin? %>
+      <p>
+        <%= f.label :user_id %><br />
+        <%= f.collection_select :user_id, User.ascend_by_fullname.all, :id, :display_name_and_user -%>
+      </p>
+    <% end %>
+    <p><%= f.submit "Submit" %></p>
+  </div>
 <% end %>
+
+<%= textile_editor_initialize -%> 

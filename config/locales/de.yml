@@ -93,7 +93,7 @@ de:
   add_a_comment: 'Kommentar hinzufügen'
   submit: 'Absenden'
   count_comments: 
-    zero: 'Keine Kommentare. Sind sie der/die Erste ...'
+    zero: 'Keine Kommentare. Sind sie die/der Erste ...'
     one: 'Ein Kommentar'
     other: '{{count}} Kommentare'
   comment_successfully_created: 'Kommentar erfolgreich gespeichert.'

@@ -16,7 +16,7 @@
   <% form_remote_for [@commentable, Comment.new], :url => page_comments_path(@page), :html => { :id => 'comment_form' } do |f| %>
   <h3><%= COMMENT_HAND+NBSP+t(:add_a_comment)%></h3>
   <p>
-      <%= f.text_area :comment, :rows => 5 %>
+      <%= f.textile_editor :comment, :rows => 5 %>
   </p>
   <p> <%= f.submit t(:submit) -%></p>
   <% end %>
