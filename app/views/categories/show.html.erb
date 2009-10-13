@@ -2,7 +2,7 @@
 
 <%= render :partial => "/postings/searchbox" -%>
 
-<h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @items.length ) -%>)</small></h1>
+<h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small></h1>
 <% unless @category.permalinks.empty? %>
     <%- toggle_display_link(t(:permalinks)) do -%>
       <blockquote>
