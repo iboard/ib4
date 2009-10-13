@@ -17,11 +17,14 @@ class CategoriesController < ApplicationController
   # Show this category and all records of categorizable models
   # TODO: You have to append new categorizable models like Posting which is the only model yet.
   def show
-    @category = Category.find(params[:id])
-    
+    if params[:id].to_i < 1
+      pl = Permalink.find_by_url(params[:id])
+      @category = pl ? pl.linkable : Category.first
+    else
+      @category = Category.find(params[:id])
+    end
     # Fetch Postings
     @items = @category.categorizables.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
-
     # Append other 'categorizable' models to @items here...
   end
   
@@ -30,6 +33,7 @@ class CategoriesController < ApplicationController
   end
   
   def create
+    params[:category]['permalink_ids'] ||= []
     @category = Category.new(params[:category])
     if @category.save
       flash[:notice] = "Successfully created category."
@@ -44,8 +48,9 @@ class CategoriesController < ApplicationController
   end
   
   def update
+    params[:category]['permalink_ids'] ||= []
     @category = Category.find(params[:id])
-    if @category.update_attributes(params[:category])
+    if @category.update_attributes(params[:category])      
       flash[:notice] = "Successfully updated category."
       redirect_to @category
     else
