@@ -4,7 +4,7 @@ log/*.log
 config/environments/development.rb
 config/environments/production.rb
 config/environments/test.rb
-config/database.yml
+#config/database.yml
 db/*.sqlite3
 public/dispatch*
 public/image_attachments/*
