@@ -1,5 +1,17 @@
-<div class='form_left_500'>
-  <% form_for @category do |f| %>
+<% form_for @category do |f| %>
+
+  <% box_float_right('300px') do %>
+    <div id='edit_permalinks'>
+      <p>
+          <%= render :partial => '/permalinks/edit_links', :locals => { :linkable => @category } -%>
+      </p>
+      <p>
+          <%= label_tag t(:new_permalink) -%>:<br/>
+          <%= text_field_tag   'category[new_permalink]', '', :size => 25 -%>
+      </p>
+    </div>
+  <% end %>
+  <div class='form_left_500'>  
     <%= f.error_messages %>
     <p>
       <%= f.label :name %><br />
@@ -14,6 +26,7 @@
       <%= f.check_box :public %>
     </p>
     <p><%= f.submit "Submit" %></p>
-  <% end %>
-</div>
+  </div>
+<% end %>
+  
 <%= textile_editor_initialize -%> 

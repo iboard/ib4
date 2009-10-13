@@ -3,6 +3,13 @@
 <%= render :partial => "/postings/searchbox" -%>
 
 <h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @items.length ) -%>)</small></h1>
+<% unless @category.permalinks.empty? %>
+    <%- toggle_display_link(t(:permalinks)) do -%>
+      <blockquote>
+        <%= render :partial => @category.permalinks %>
+      </blockquote>
+    <%- end -%>
+<% end %>
 <%- if is_admin? %>
   <p>
     <%= link_to "Edit", edit_category_path(@category) %> |
