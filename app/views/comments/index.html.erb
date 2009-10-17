@@ -1,28 +1,3 @@
-<<<<<<< HEAD:app/views/comments/index.html.erb
-<% title "Comments" %>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Commentable</th>
-    <th>Commentable Type</th>
-    <th>Comment</th>
-  </tr>
-  <% for comment in @comments %>
-    <tr>
-      <td><%=h comment.user_id %></td>
-      <td><%=h comment.commentable_id %></td>
-      <td><%=h comment.commentable_type %></td>
-      <td><%=h comment.comment %></td>
-      <td><%= link_to "Show", comment %></td>
-      <td><%= link_to "Edit", edit_comment_path(comment) %></td>
-      <td><%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Comment", new_comment_path %></p>
-=======
 <% title t(:comments) %>
 
   <p>
@@ -56,4 +31,3 @@
   <p>
       <%= will_paginate @comments %>
   </p>
->>>>>>> b2118420e09efc2639306b51226a92a2aa4e8ad1:app/views/comments/index.html.erb
