@@ -8,6 +8,7 @@
     <%- javascript :defaults -%>
     <%- rss_link(:rss, postings_url(:rss)) -%>
     <%= yield :html_head %>
+    <%= textile_editor_initialize -%> 
   </head>
   <body>
     <div id='page'>
