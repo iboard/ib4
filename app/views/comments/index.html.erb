@@ -1,33 +1,33 @@
 <% title t(:comments) %>
 
-  <p>
-    <%= will_paginate @comments %>
-  </p>
-  
-  <% for comment in @comments %>
-    <h2>
-        <%= CAN_OPEN+link_to(h(comment.commentable.list_title), comment.commentable) -%>
-        (<%= t(comment.commentable_type)-%>)
-    </h2>
-    <% if is_owner_or_admin?(comment) %>
-        <%= link_to "Show", comment %></td>
-        <%= link_to "Edit", edit_comment_path(comment) %></td>
-        <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %></td>
-      <% end %>
-    <small>
-      <%= t(:comment_days_ago, 
-            :count => ((Time.now-comment.updated_at)/1.day).round,
-            :fullname => comment.user.fullname, 
-            :username => comment.user.username ) 
-      -%>
-    </small>
+<p>
+  <%= will_paginate @comments %>
+</p>
 
-    <blockquote>
-      <%= comment.comment.to_txt %>
-    </blockquote>
-  
-  <% end %>
-  
-  <p>
-      <%= will_paginate @comments %>
-  </p>
+<% for comment in @comments %>
+  <h2>
+      <%= CAN_OPEN+link_to(h(comment.commentable.list_title), comment.commentable) -%>
+      (<%= t(comment.commentable_type)-%>)
+  </h2>
+  <% if is_owner_or_admin?(comment) %>
+      <%= link_to "Show", comment %></td>
+      <%= link_to "Edit", edit_comment_path(comment) %></td>
+      <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  <small>
+    <%= t(:comment_days_ago, 
+          :count => ((Time.now-comment.updated_at)/1.day).round,
+          :fullname => comment.user.fullname, 
+          :username => comment.user.username ) 
+    -%>
+  </small>
+
+  <blockquote>
+    <%= comment.comment.to_txt %>
+  </blockquote>
+
+<% end %>
+
+<p>
+    <%= will_paginate @comments %>
+</p>
