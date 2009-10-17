@@ -111,7 +111,7 @@ de:
   comment_days_ago:
     zero: '{{fullname}} ({{username}}) schrieb heute …'
     one: 'Gestern schrieb {{fullname}} ({{username}})  …'
-    other: '{{count}} days ago, {{fullname}} ({{username}}) wrote …'
+    other: 'Vor {{count}} Tagen, schrieb {{fullname}} ({{username}}) …'
   subscribe_rss_feed: 'RSS Abonnieren'
   register_new_user: 'Neuen Benutzer registrieren'
   your_session: 'Ihre Verbindung'
@@ -137,7 +137,6 @@ de:
   language_changed_message: 'Interface-Sprache auf {{locale}} geändert. Beachten sie bitte, dass dies keinen Einfluss auf den Inhalt hat.'
   previous_label: "« zurück"
   next_label: "weiter »"
-  comments: 'kommentierte'
-  Comments: 'Kommentare'
+  comments: 'Kommentare'
   Page: 'Seite'
   Posting: 'Beitrag'
