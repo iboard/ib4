@@ -137,3 +137,7 @@ en:
   language_changed_message: 'Interface language set to {{locale}}. Please note that this will have no effect on contents.'
   previous_label: "« Previous"
   next_label: "Next »"
+  comments: 'comments'
+  Comments: 'Comments'
+  Posting: 'Posting'
+  Page: 'Page'

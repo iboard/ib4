@@ -137,3 +137,7 @@ de:
   language_changed_message: 'Interface-Sprache auf {{locale}} geändert. Beachten sie bitte, dass dies keinen Einfluss auf den Inhalt hat.'
   previous_label: "« zurück"
   next_label: "weiter »"
+  comments: 'kommentierte'
+  Comments: 'Kommentare'
+  Page: 'Seite'
+  Posting: 'Beitrag'
