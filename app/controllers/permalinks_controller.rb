@@ -7,6 +7,10 @@ class PermalinksController < ApplicationController
   end
   
   def show
+    if params[:path]
+      params[:id] = params[:path].first
+      flash[:error] = '404 * ' + t(:requesterd_url_not_found, :url => params[:path])
+    end
     @permalink = Permalink.find_by_url(params[:id])
     if @permalink
       redirect_to :controller => @permalink.linkable.class.to_s.downcase.pluralize,

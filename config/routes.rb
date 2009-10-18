@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :has_many => [:postings,:pages]
   map.set_locale '/set_locale/:locale', :controller => 'user_sessions', :action => 'set_locale'
   map.root :controller => "postings"
+  map.connect '*path', :controller => 'permalinks', :action => 'show'
   map.connect ':id', :controller => :permalinks, :action => :show
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
