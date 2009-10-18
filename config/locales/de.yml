@@ -58,7 +58,7 @@ de:
   search: 'suchen…'
   show_all: 'alle zeigen'
   sort_by: 'Sortierung'
-  dashboard: 'Armaturenbrett'
+  dashboard: 'Profil'
   dashboard_for_user: 'Armaturenbrett: {{username}}'
   edit_profile_for_user: 'Profil {{username}} bearbeiten'
   read_more: '<span style="font-size: smaller; font-style: italic;">read&nbsp;mehr</span>'
@@ -140,3 +140,4 @@ de:
   comments: 'Kommentare'
   Page: 'Seite'
   Posting: 'Beitrag'
+  requesterd_url_not_found: "Die gesuchte Adresse <em>{{URL}}</em> ist nicht vorhanden. Sie wurden auf die Startseite umgeleitet."
