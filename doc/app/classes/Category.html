@@ -93,6 +93,18 @@ href="Categorizable.html">Categorizable</a>&quot;
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000084">add_new_permalinks</a>&nbsp;&nbsp;
+      <a href="#M000087">list_title</a>&nbsp;&nbsp;
+      <a href="#M000086">new_permalink=</a>&nbsp;&nbsp;
+      <a href="#M000089">read_allowed?</a>&nbsp;&nbsp;
+      <a href="#M000088">title</a>&nbsp;&nbsp;
+      <a href="#M000085">user</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -109,6 +121,158 @@ href="Categorizable.html">Categorizable</a>&quot;
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000084" class="method-detail">
+        <a name="M000084"></a>
+
+        <div class="method-heading">
+          <a href="#M000084" class="method-signature">
+          <span class="method-name">add_new_permalinks</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000084-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000084-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/category.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_new_permalinks</span>
+19:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@new_permalink</span>.<span class="ruby-identifier">blank?</span>
+20:       <span class="ruby-identifier">pl</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">permalinks</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@new_permalink</span>)
+21:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">permalink_ids</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pl</span>
+22:     <span class="ruby-keyword kw">end</span>
+23:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000087" class="method-detail">
+        <a name="M000087"></a>
+
+        <div class="method-heading">
+          <a href="#M000087" class="method-signature">
+          <span class="method-name">list_title</span><span class="method-args">(n=40)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+short <a href="Category.html#M000088">title</a> for lists and callback for
+&#8230;ables
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000087-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000087-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/category.rb, line 39</span>
+39:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list_title</span>(<span class="ruby-identifier">n</span>=<span class="ruby-value">40</span>)
+40:     <span class="ruby-identifier">st</span> = <span class="ruby-identifier">name</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">n</span>].<span class="ruby-identifier">to_s</span>
+41:     <span class="ruby-identifier">st</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;...&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">n</span>
+42:     <span class="ruby-identifier">st</span>
+43:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
+
+        <div class="method-heading">
+          <a href="#M000086" class="method-signature">
+          <span class="method-name">new_permalink=</span><span class="method-args">(newlink)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000086-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/category.rb, line 30</span>
+30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_permalink=</span>(<span class="ruby-identifier">newlink</span>)
+31:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find_by_url</span>(<span class="ruby-identifier">newlink</span>)
+32:       <span class="ruby-ivar">@permalink_exists_error</span> = <span class="ruby-keyword kw">true</span>
+33:     <span class="ruby-keyword kw">else</span>
+34:       <span class="ruby-ivar">@new_permalink</span> = <span class="ruby-identifier">newlink</span>
+35:     <span class="ruby-keyword kw">end</span>
+36:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000089" class="method-detail">
+        <a name="M000089"></a>
+
+        <div class="method-heading">
+          <a href="#M000089" class="method-signature">
+          <span class="method-name">read_allowed?</span><span class="method-args">(user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+TODO: Check if <a href="Category.html#M000085">user</a> allowed to read
+this posting This callback is used by tagables and therefor it is defined
+as this simple placeholder yet
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000089-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000089-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/category.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_allowed?</span>(<span class="ruby-identifier">user</span>)
+49:     <span class="ruby-keyword kw">true</span>
+50:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000088" class="method-detail">
+        <a name="M000088"></a>
+
+        <div class="method-heading">
+          <span class="method-name">title</span><span class="method-args">(n=40)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Category.html#M000087">list_title</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
+
+        <div class="method-heading">
+          <a href="#M000085" class="method-signature">
+          <span class="method-name">user</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000085-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000085-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/category.rb, line 25</span>
+25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">user</span>
+26:     <span class="ruby-ivar">@user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_is_admin</span>(<span class="ruby-keyword kw">true</span>)
+27:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>

@@ -141,16 +141,17 @@ Categories can be attached to &#8216;Categorizables&#8217; (eg. Postings,
             onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000019-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 32</span>
-32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
-33:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category</span>])
-34:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">save</span>
-35:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully created category.&quot;</span>
-36:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@category</span>
-37:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
-38:     <span class="ruby-keyword kw">end</span>
-39:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>
-40:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+36:     <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category</span>][<span class="ruby-value str">'permalink_ids'</span>] <span class="ruby-operator">||=</span> []
+37:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category</span>])
+38:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">save</span>
+39:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully created category.&quot;</span>
+40:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@category</span>
+41:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+42:     <span class="ruby-keyword kw">end</span>
+43:     <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>
+44:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -170,13 +171,13 @@ Categories can be attached to &#8216;Categorizables&#8217; (eg. Postings,
             onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000022-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 56</span>
-56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-57:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-58:     <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">destroy</span>
-59:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully destroyed category.&quot;</span>
-60:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">categories_url</span>
-61:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 61</span>
+61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+62:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+63:     <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">destroy</span>
+64:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully destroyed category.&quot;</span>
+65:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">categories_url</span>
+66:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -196,10 +197,10 @@ Categories can be attached to &#8216;Categorizables&#8217; (eg. Postings,
             onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000020-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 42</span>
-42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-43:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-44:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 46</span>
+46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+47:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+48:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -242,10 +243,10 @@ Categories can be attached to &#8216;Categorizables&#8217; (eg. Postings,
             onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000018-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 28</span>
-28:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-29:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">new</span>
-30:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+32:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">new</span>
+33:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -272,13 +273,16 @@ models like <a href="Posting.html">Posting</a> which is the only model yet.
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 19</span>
 19:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-20:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-21:     
-22:     <span class="ruby-comment cmt"># Fetch Postings</span>
-23:     <span class="ruby-ivar">@items</span> = <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">categorizables</span>.<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">POSTINGS_PER_PAGE</span>)
-24: 
-25:     <span class="ruby-comment cmt"># Append other 'categorizable' models to @items here...</span>
-26:   <span class="ruby-keyword kw">end</span>
+20:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+21:       <span class="ruby-identifier">pl</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find_by_url</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+22:       <span class="ruby-ivar">@category</span> = <span class="ruby-identifier">pl</span> <span class="ruby-value">? </span><span class="ruby-identifier">pl</span>.<span class="ruby-identifier">linkable</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Category</span>.<span class="ruby-identifier">first</span>
+23:     <span class="ruby-keyword kw">else</span>
+24:       <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+25:     <span class="ruby-keyword kw">end</span>
+26:     <span class="ruby-comment cmt"># Fetch Postings</span>
+27:     <span class="ruby-ivar">@items</span> = <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">categorizables</span>.<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">POSTINGS_PER_PAGE</span>)
+28:     <span class="ruby-comment cmt"># Append other 'categorizable' models to @items here...</span>
+29:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -298,16 +302,17 @@ models like <a href="Posting.html">Posting</a> which is the only model yet.
             onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000021-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 46</span>
-46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-47:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-48:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category</span>])
-49:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully updated category.&quot;</span>
-50:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@category</span>
-51:     <span class="ruby-keyword kw">else</span>
-52:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'edit'</span>
-53:     <span class="ruby-keyword kw">end</span>
-54:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/categories_controller.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+51:     <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category</span>][<span class="ruby-value str">'permalink_ids'</span>] <span class="ruby-operator">||=</span> []
+52:     <span class="ruby-ivar">@category</span> = <span class="ruby-constant">Category</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+53:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@category</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:category</span>])      
+54:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully updated category.&quot;</span>
+55:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@category</span>
+56:     <span class="ruby-keyword kw">else</span>
+57:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'edit'</span>
+58:     <span class="ruby-keyword kw">end</span>
+59:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

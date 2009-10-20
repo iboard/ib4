@@ -130,16 +130,16 @@
             onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000073-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 24</span>
-24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
-25:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:permalink</span>])
-26:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">save</span>
-27:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully created permalink.&quot;</span>
-28:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@permalink</span>
-29:     <span class="ruby-keyword kw">else</span>
-30:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>
-31:     <span class="ruby-keyword kw">end</span>
-32:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 28</span>
+28:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
+29:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:permalink</span>])
+30:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">save</span>
+31:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully created permalink.&quot;</span>
+32:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@permalink</span>
+33:     <span class="ruby-keyword kw">else</span>
+34:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'new'</span>
+35:     <span class="ruby-keyword kw">end</span>
+36:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -159,15 +159,15 @@
             onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000076-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 48</span>
-48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-49:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-50:     <span class="ruby-identifier">linkable</span> = <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">linkable</span>
-51: 
-52:     <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">destroy</span>
-53:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully destroyed permalink.&quot;</span>
-54:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">linkable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">pluralize</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:edit</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">linkable</span>
-55:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 52</span>
+52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+53:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+54:     <span class="ruby-identifier">linkable</span> = <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">linkable</span>
+55: 
+56:     <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">destroy</span>
+57:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully destroyed permalink.&quot;</span>
+58:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">linkable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">pluralize</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:edit</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">linkable</span>
+59:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -187,10 +187,10 @@
             onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000074-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 34</span>
-34:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-35:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-36:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+39:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+40:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -233,10 +233,10 @@
             onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000072-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 20</span>
-20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
-21:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">new</span>
-22:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
+25:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">new</span>
+26:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -258,15 +258,19 @@
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 9</span>
  9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
-10:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find_by_url</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-11:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@permalink</span>
-12:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">linkable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">pluralize</span>,
-13:                   <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>,
-14:                   <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">url</span>
-15:     <span class="ruby-keyword kw">else</span>
-16:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
-17:     <span class="ruby-keyword kw">end</span>
-18:   <span class="ruby-keyword kw">end</span>
+10:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:path</span>]
+11:       <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>] = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:path</span>].<span class="ruby-identifier">first</span>
+12:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-value str">'404 * '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:requesterd_url_not_found</span>, <span class="ruby-identifier">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:path</span>])
+13:     <span class="ruby-keyword kw">end</span>
+14:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find_by_url</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+15:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@permalink</span>
+16:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">linkable</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">pluralize</span>,
+17:                   <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'show'</span>,
+18:                   <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">url</span>
+19:     <span class="ruby-keyword kw">else</span>
+20:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+21:     <span class="ruby-keyword kw">end</span>
+22:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -286,16 +290,16 @@
             onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000075-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 38</span>
-38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-39:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-40:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:permalink</span>])
-41:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully updated permalink.&quot;</span>
-42:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@permalink</span>
-43:     <span class="ruby-keyword kw">else</span>
-44:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'edit'</span>
-45:     <span class="ruby-keyword kw">end</span>
-46:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/permalinks_controller.rb, line 42</span>
+42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+43:     <span class="ruby-ivar">@permalink</span> = <span class="ruby-constant">Permalink</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+44:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@permalink</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:permalink</span>])
+45:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully updated permalink.&quot;</span>
+46:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@permalink</span>
+47:     <span class="ruby-keyword kw">else</span>
+48:       <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'edit'</span>
+49:     <span class="ruby-keyword kw">end</span>
+50:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

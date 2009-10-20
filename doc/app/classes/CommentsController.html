@@ -223,7 +223,7 @@
 <pre>
    <span class="ruby-comment cmt"># File app/controllers/comments_controller.rb, line 5</span>
 5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
-6:     <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">all</span>
+6:     <span class="ruby-ivar">@comments</span> = <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">descend_by_updated_at</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:page</span>], <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">POSTINGS_PER_PAGE</span>)
 7:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
