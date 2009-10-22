@@ -26,7 +26,7 @@ module ApplicationHelper
 
    # Progress bar
    def show_spinner
-     content_tag( "div", "<div id='ajax_msg'>" + t(:working) + "</div>" + BR*2 + image_tag("spinner.gif", :align=>:baseline),
+     content_tag( "div", "<div id='ajax_msg'>" + t(:working) + "</div>" + BR*2 + image_tag("spinner.gif", :align=>:middle),
       :id => "ajax_busy", :style => "display:none;" )
    end
    
