@@ -10,7 +10,7 @@
     <%= yield :html_head %>
     <%= textile_editor_initialize -%> 
   </head>
-  <body>
+  <body><%= show_spinner -%><div id='fader'>
     <div id='page'>
       <div id='banner'>
         <div id='user_display'><!-- floats right -->
@@ -71,6 +71,9 @@
              <%= content_tag :div, msg, :id => "flash_#{name}" %>
            <%- end -%>
           </div>
+          <%= link_to_remote "Test Progress indicator", 
+                :url => {:action => 'sleep_a_while', :controller => 'user_sessions'}
+          -%>
           <%= yield -%>
           <div style='clear:both'></div>
         </div>
@@ -84,5 +87,5 @@
               alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
        </p>
     </div>
-  </body>
+  </div></body>
 </html>

@@ -142,3 +142,5 @@ en:
   Posting: 'Posting'
   Page: 'Page'
   requesterd_url_not_found: "The requested URL <em>{{url}}</em> was not found. You've been redirected to the root path"
+  working: 'Working...'
+  done: 'Done'

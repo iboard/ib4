@@ -36,6 +36,16 @@ class UserSessionsController < ApplicationController
     redirect_to root_url
   end
   
+  
+  def sleep_a_while
+    n = rand(5).round+1
+    sleep n
+    render :update do |page|
+      msg = t(:done)
+      page.replace_html :flash, content_tag(:div, msg, :id => 'flash_notice')
+    end
+  end
+  
   def set_locale
     session['locale'] = params[:locale]
     changed = session['locale'] != current_locale

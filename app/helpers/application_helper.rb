@@ -23,7 +23,21 @@ module ApplicationHelper
    end
    alias_method_chain :will_paginate, :i18n
 
+
+   # Progress bar
+   def show_spinner
+     content_tag( "div", "<div id='ajax_msg'>" + t(:working) + "</div>" + BR*2 + image_tag("spinner.gif", :align=>:baseline),
+      :id => "ajax_busy", :style => "display:none;" )
+   end
    
+   def start_update
+      periodically_call_remote(:url => {:controller => 'user_sessions', :action => 'get_ajax_msg'}, :frequency => '1', 
+          :update => 'ajax_msg');
+   end
+      
 end
 
    
+# periodically_call_remote(:url => {:controller => 'user_sessions', :action => 'get_ajax_msg'}, :frequency => '1', 
+#      :update => 'ajax_msg'),
+#            )
