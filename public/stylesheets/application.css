@@ -161,12 +161,15 @@ LI {
   margin-right: auto;
   margin-bottom: 5px;
   background-color: #FFF;
-  background: #FFF url('/images/sitelogo.png') no-repeat bottom right;
+  background: #FFF;
   background-position: fixed;
   height: 85px;
   padding: 40px 40px 0px 40px;
 }
 
+.copyright {
+	background: #000 url('/images/sitelogo.png') no-repeat right 10px;
+}
 .copyright,
 .copyright p,
 p#copyright,
