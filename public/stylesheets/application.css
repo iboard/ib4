@@ -4,7 +4,7 @@
 
 body {
   font-family: Verdana, Helvetica, Arial;
-  background: #282828 url('/images/background.png') fixed repeat;
+  background: #000A0D url('/images/background.png') fixed repeat-x;
   min-width: 980px;
   font-size: 14px; color: #444;
 }
@@ -188,22 +188,25 @@ p#copyright,
 #banner {
   color: white;
   width: 75%;
-  margin-top: 2px;
+  margin-top: 0px;
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
   padding: 5px 40px 0px 40px;
-  border:3px solid #888;
-  border-bottom: none;
   background: #aaa;
-  height:100px;
+  height:120px;
 }
 
 #top_menus {
-  padding: 0px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 5px;
   width: 75%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  background: #AAA;
 }
 
 #environment {
@@ -244,6 +247,7 @@ input#page_title {
   text-align: right;
   padding-top: 0px;
   padding-bottom: 0px;
+  background: white;
   font-size: 12px;
   margin-top: 0px;
 }
