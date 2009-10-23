@@ -349,7 +349,7 @@ input#page_title {
 	color: black;
 	padding: 4px;
     border-top: 2px solid #888;
-    border-left: 2px solid #999;
+    border-left: 2px solid #bbb;
     border-right: 2px solid #444;
     border-bottom: 2px solid #fff;
 }
@@ -361,7 +361,7 @@ input#page_title {
 	background: #CACDC1;
 	padding: 5px;
     border-right: 1px solid #888;
-    border-left: 1px solid #888;
+    border-left: 1px solid #666;
     border-top: 1px solid #888;
     border-bottom: 1px solid #888;
 }
@@ -371,9 +371,14 @@ a:hover   {
 	color: white;
 }
 
-a:hover .user_menu_unselected_url  {
+.user_menu_selected_url a:hover,
+.user_menu_unselected_url a:hover  {
 	background: #003A54;
 	color: white;
+	margin: -4px;
+    padding: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	text-decoration: none;
 }
 
