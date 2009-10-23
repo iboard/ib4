@@ -168,7 +168,7 @@ LI {
 }
 
 .copyright {
-	background: #000 url('/images/sitelogo.png') no-repeat right 10px;
+	background: url('/images/sitelogo.png') no-repeat right 10px;
 }
 .copyright,
 .copyright p,
