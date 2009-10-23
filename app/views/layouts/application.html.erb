@@ -6,7 +6,7 @@
     <title>iBoard 4 - <%=h yield :title %></title>
     <%- stylesheet 'application' -%>
     <%- javascript :defaults -%>
-    <%- rss_link(:rss, postings_url(:rss)) -%>
+    <%- rss_link(:rss, rss_path) -%>
     <%= yield :html_head %>
     <%= textile_editor_initialize -%> 
   </head>
