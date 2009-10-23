@@ -143,3 +143,4 @@ de:
   requesterd_url_not_found: "Die gesuchte Adresse <em>{{url}}</em> ist nicht vorhanden. Sie wurden auf die Startseite umgeleitet."
   working: 'bitte warten...'
   done: 'fertig'
+  site_feed_title: 'iBoard RSS Feed'

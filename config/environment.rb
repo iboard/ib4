@@ -39,6 +39,8 @@ ADMIN_MENU_ITEMS = [
   {:label => :categories, :url => "/categories"}
 ] unless defined? ADMIN_MENU_ITEMS
 
+MAX_FEED_ITEMS=256 unless defined? MAX_FEED_ITEMS
+
 # Constants for layout
 POSTINGS_PER_PAGE=4               unless defined? POSTINGS_PER_PAGE
 USERS_PER_PAGE=4                  unless defined? USERS_PER_PAGE

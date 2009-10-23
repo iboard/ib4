@@ -52,6 +52,10 @@ class Posting < ActiveRecord::Base
     true
   end
   
+  def rss_body
+    body.to_s
+  end
+  
   private
   
   def assign_tags

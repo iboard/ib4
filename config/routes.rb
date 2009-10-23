@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :feed
   map.resources :permalinks
   map.resources :pages, :has_many => :comments
   map.resources :tags

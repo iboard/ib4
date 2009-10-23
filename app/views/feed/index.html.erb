@@ -1,0 +1,7 @@
+<% for item in @items do %>
+  <% if item.respond_to? 'list_title' %>
+    <h1><%= item.list_title 250 %></h1>
+    <p><%= link_to CAN_OPEN+t(:read_more), item %></p>
+  <% end %>
+
+<% end %>
