@@ -1,28 +1,4 @@
 <% title "Invitation" %>
+    
+<%= render :partial => @invitation %>    
 
-<p>
-  <strong>Sender:</strong>
-  <%=h @invitation.sender_id %>
-</p>
-<p>
-  <strong>Recipient:</strong>
-  <%=h @invitation.recipient_id %>
-</p>
-<p>
-  <strong>Token:</strong>
-  <%=h @invitation.token %>
-</p>
-<p>
-  <strong>Message:</strong>
-  <%=h @invitation.message %>
-</p>
-<p>
-  <strong>State:</strong>
-  <%=h @invitation.state %>
-</p>
-
-<p>
-  <%= link_to "Edit", edit_invitation_path(@invitation) %> |
-  <%= link_to "Destroy", @invitation, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", invitations_path %>
-</p>

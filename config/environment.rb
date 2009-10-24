@@ -36,7 +36,8 @@ USER_MENU_ITEMS = [
 
 ADMIN_MENU_ITEMS = [
   {:label => :user_listing, :url => "/users"},
-  {:label => :categories, :url => "/categories"}
+  {:label => :categories, :url => "/categories"},
+  {:label => :invitations, :url => "/invitations"}
 ] unless defined? ADMIN_MENU_ITEMS
 
 MAX_FEED_ITEMS=1024 unless defined? MAX_FEED_ITEMS

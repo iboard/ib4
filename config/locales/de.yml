@@ -152,3 +152,6 @@ de:
   your_invited_by_name: "Sie wurden von {{name}} eingeladen."
   sender_wrote: "{{name}} schrieb"
   no_invitation_token_found: 'Sie müssen von einem Benutzer eingeladen werden um sich hier registrieren zu können. Beantragen sie eine Einladung unter der Adresse office@iboard.cc'
+  accepted: 'angenommen'
+  new_user: 'Neuer Benuzter'
+  invitations: 'Einladungen'

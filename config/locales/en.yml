@@ -153,3 +153,6 @@ en:
   your_invited_by_name: "You're invited by {{name}}"
   sender_wrote: "{{name}} wrote"
   no_invitation_token_found: 'You need to be invited by an active user to register a new user at this service. Do not hesitate to request an invitation at office@iboard.cc'
+  accepted: 'accepted'
+  new_user: 'new user'
+  invitations: 'Invitations'
