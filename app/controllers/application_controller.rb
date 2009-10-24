@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?
+  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?
   
   # Redirect to login_path if no current user    
   def require_user
@@ -63,6 +63,10 @@ class ApplicationController < ActionController::Base
   def is_owner_or_admin?(item)
     (is_admin? || ( is_user? && item.user == current_user))
   end 
+  
+  def is_current_user?(user)
+    current_user && current_user == user
+  end
   
   
   private

@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   has_many :postings
   has_many :pages
   
+  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id', :dependent => :delete_all
+  has_many :received_invitations, :class_name => 'Invitation', :foreign_key => 'recipient_id',  :dependent => :delete_all
+  
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
  
   def display_name_and_user

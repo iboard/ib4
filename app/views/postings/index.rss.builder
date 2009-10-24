@@ -20,10 +20,8 @@ xml.rss :version => "2.0" do
                            :count => ((Time.now-posting.updated_at)/1.day).round.to_i 
               ) +
           "</em></strong></p>" +
-          truncate(posting.body.to_txt,DEFAULT_TRUNCATED_BODY_LENGTH)+
-            BR+COMMENT_HAND+NBSP+
-            t(:count_comments, :count => posting.comments.size)+
-            BR
+          posting.body.to_txt + BR + COMMENT_HAND + NBSP +
+          t(:count_comments, :count => posting.comments.size) + BR
         )
         xml.pubDate posting.updated_at.to_s(:rfc822)
         xml.link posting_url(posting)

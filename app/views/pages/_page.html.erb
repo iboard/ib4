@@ -16,7 +16,7 @@
         -%>
   <%- end -%>
   
-  <%- if current_user && is_owner_or_admin?(@page.user) -%>
+  <%- if current_user && is_owner_or_admin?(@page) -%>
     <br/>
     <%= link_to "Edit", edit_page_path(@page) %> |
     <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>

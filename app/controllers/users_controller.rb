@@ -25,7 +25,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @invitation = Invitation.find_by_token(params[:token])
+    if @invitation
+      @user = User.new(:email => @invitation.recipient_email)
+    else
+      flash[:error] = t(:no_invitation_token_found)
+    end
   end
   
   def create
@@ -33,10 +38,18 @@ class UsersController < ApplicationController
     params[:user][:password_confirmation] = params[:user][:password]
     @user = User.new(params[:user])
     @user.is_admin = params[:user][:is_admin] if is_admin?
+    @user.invitations_left = params[:user][:invitations_left] if is_admin?
     if @user.save
       flash[:notice] = t(:registration_successfull)
       UserSession.find.destroy
       @user.send_later(:deliver_new_account_instructions, t(:new_account_instructions_subject))
+      if params[:token]
+        @invitation = Invitation.find_by_token(params[:token])
+        if @invitation
+          @invitation.recipient_id = @user.id
+          @invitation.save
+        end
+      end
       redirect_to root_url
     else
       render :action => 'new'
@@ -58,6 +71,7 @@ class UsersController < ApplicationController
        @user = current_user
      end    
      @user.is_admin = params[:user][:is_admin] if is_admin?
+     @user.invitations_left = params[:user][:invitations_left] if is_admin?
      if @user.update_attributes(params[:user])
       flash[:notice] = t(:profile_successfully_updated)
       redirect_to root_url

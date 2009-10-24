@@ -3,23 +3,36 @@
 <%= image_tag( @user.avatar.url(:medium), :align => :right, :hspace => 10, :vspace => 10) unless @user.avatar.original_filename.blank? %>
 
 <h1><%= @user.fullname -%></h1>
-<%- if current_user && current_user == @user -%>
+
+<%- if is_current_user?(@user) -%>
+
+  <!-- USER SESSION -->
   <% toggle_display_link t(:your_session) do %>
     <h3>Your Session</h3>
     <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
   <% end %>
-<%- else -%>
-  <% toggle_display_link t(:online_status) do %>
-    <%- if @user.current_login_at %>
-      <%= t(:user_is_logged_in, :username => @user.username, :since => @user.current_login_at.to_s(:short)) -%>
-    <%- else -%>
-      <%= t(:user_last_logged_in, :username => @user.username, :date => @user.last_login_at.to_s(:short)) -%>
-    <%- end -%>
+  
+  <!-- INVITE OTHER USERS -->
+  <% if @user.invitations_left > 0 %>
+    <% toggle_display_link t(:invite_users) do %>
+    <% remote_form_for [@user,@user.sent_invitations.build], :html => {:id => 'invitation_form'} do |f| %>
+      <p><b><%= f.label :recipient_email, t(:recipient_email) %></b><br/>
+         <%= f.text_field :recipient_email, :size => 52 %>
+      </p>
+      <p><b><%= f.label :message %></b><br/>
+         <%= f.text_area :message, :rows => 5, :cols => 50 -%>
+      </p>
+      <p><%= f.submit t(:submit) %></p>
+    <% end %>
+    <% end %>
   <% end %>
+  
 <%- end -%>
-
+  
 <br/>
 
+<h1><%= t(:postings) -%></h1>
+<!-- postings of <%= @user.username %> -->
 <%- if @mypostings.any? %>
   <%= will_paginate @mypostings -%>
   <%- @mypostings.each do |posting| -%>
@@ -27,3 +40,4 @@
   <%- end -%>
   <%= will_paginate @mypostings -%>
 <%- end %>
+<!-- end/postings -->

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091008080431) do
+ActiveRecord::Schema.define(:version => 20091024082810) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(:version => 20091008080431) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "token"
+    t.string   "recipient_email"
+    t.text     "message"
+    t.integer  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -107,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20091008080431) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "invitations_left",    :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

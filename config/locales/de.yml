@@ -144,3 +144,11 @@ de:
   working: 'bitte warten...'
   done: 'fertig'
   site_feed_title: 'iBoard RSS Feed'
+  invite_users: 'Laden sie einen Freund ein, Mitglied zu werden'
+  recipient_email: "Empfänger EMail"
+  invitation_sent: 'Einladung versandt'
+  sending_invitation_failed: 'Einladung konnte nicht versandt werden.<br/>{{error}}'
+  email_format_not_valid: 'Format der EMail-Adresse nicht gültig'
+  your_invited_by_name: "Sie wurden von {{name}} eingeladen."
+  sender_wrote: "{{name}} schrieb"
+  no_invitation_token_found: 'Sie müssen von einem Benutzer eingeladen werden um sich hier registrieren zu können.'

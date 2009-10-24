@@ -1,0 +1,11 @@
+page.replace_html :flash, ""
+unless flash[:notice].blank?
+  page.insert_html :bottom, :flash, "<div id='flash_notice'>#{flash[:notice]}</div>"
+end
+unless flash[:error].blank?
+  page.insert_html :bottom,  :flash, "<div id='flash_error'>#{flash[:error]}</div>"
+end
+
+page[:invitation_form].reset unless @invitation.errors.any?
+
+flash.discard

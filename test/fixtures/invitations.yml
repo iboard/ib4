@@ -1,0 +1,13 @@
+one:
+  sender_id: 
+  recipient_id: 1
+  token: MyString
+  message: MyText
+  state: 1
+
+two:
+  sender_id: 
+  recipient_id: 1
+  token: MyString
+  message: MyText
+  state: 1

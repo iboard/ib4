@@ -145,3 +145,11 @@ en:
   working: 'Working...'
   done: 'Done'
   site_feed_title: 'iBoard RSS Feed'
+  invite_users: 'invite a friend to register as an user'
+  recipient_email: "Recipient's email"
+  invitation_sent: 'Invitation sent'
+  sending_invitation_failed: 'Failed to send invitation.<br/>{{error}}'
+  email_format_not_valid: 'The format of the recipient email address is not correct.'
+  your_invited_by_name: "You're invited by {{name}}"
+  sender_wrote: "{{name}} wrote"
+  no_invitation_token_found: 'You need to be invited by an active user to register a new user at this service.'

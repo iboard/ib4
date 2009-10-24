@@ -35,4 +35,13 @@ class UserMailer < ActionMailer::Base
     content_type  "text/html"
   end
   
+  def account_invitation(sender,t_recipient_email,t_subject,message,hostname,register_url,client_ip)
+    subject     t_subject
+    from        sender.email
+    recipients  [t_recipient_email, sender.email]
+    sent_on     Time::now
+    body        :message => message, :sender => sender, :hostname => hostname, :register_url => register_url, :client_ip => client_ip
+    content_type "text/html"
+  end
+  
 end

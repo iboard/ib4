@@ -1,0 +1,46 @@
+<div style='width: 600px; padding: 10px; margin-left: auto; margin-right:auto;'>
+<% unless @sender.avatar.original_filename.blank? %>
+  <%= image_tag "http://#{@hostname}" + 
+      @sender.avatar.url(:avatar), :align => :right, :hspace => 10, :vspace => 10, :title => @sender.fullname -%>
+<% end %>
+<h1>You're invited.../Sie wurden eingeladen...</h1>
+
+<% unless @message.blank? %>
+ <p><%= t(:sender_wrote,:name => @sender.fullname ) -%></p>
+ <div style='border: 1px solid black; padding: 20px; width: 400px;'><%= @message.to_txt %></div>
+<% end %>
+
+<address>English. German version below</address>
+<p>
+    You're invited by <b><%= @sender.fullname %></b> to join the community at <em><%= @hostname %></em>.
+</p>
+
+<p>
+  If you decline this invitation just ignore this e-mail. To accept this invitation please visit
+  <blockquote>
+  <%= @register_url %>
+  </blockquote>
+  and register your new user.
+</p>
+
+<hr>
+<address>Deutsch</address>
+
+<p>
+    Sie wurden von <b><%= @sender.fullname %></b> eingeladen dem Service <em><%= @hostname -%></em> beizutreten.
+</p>
+
+<p>
+    Wenn sie die Einladung nicht annehmen wollen ignorieren sie diese Nachricht einfach.
+    Zum Annehmen der Einladung besuchen sie bitte:
+    <blockquote>
+    <%= @register_url %>
+    </blockquote>
+    und registrieren sie ihren neuen Benutzer.
+</p>
+
+<hr><small>
+    This message was delivered by <%= @hostname %> for client 
+    <%= @sender.username %> (at:<%= @client_ip -%>, <%= Time::now().to_s -%>)
+</small>
+</div>

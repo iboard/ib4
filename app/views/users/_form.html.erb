@@ -31,6 +31,8 @@
     <!-- DATA FIELDS (left) -->
     <%= f.error_messages %>
     
+    <%= hidden_field_tag :token, params[:token] -%>
+    
     <p>
       <%= f.label :username %><br />
       <%= f.text_field :username %>
@@ -58,6 +60,11 @@
       <p>
         <%= f.label :is_admin %><br />
         <%= f.check_box :is_admin %>
+      </p>
+      
+      <p>
+          <%= f.label :invitations_left %><br/>
+          <%= f.text_field :invitations_left, :size => 5 %>
       </p>
     <%- end -%>
     
