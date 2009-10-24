@@ -151,4 +151,4 @@ de:
   email_format_not_valid: 'Format der EMail-Adresse nicht gültig'
   your_invited_by_name: "Sie wurden von {{name}} eingeladen."
   sender_wrote: "{{name}} schrieb"
-  no_invitation_token_found: 'Sie müssen von einem Benutzer eingeladen werden um sich hier registrieren zu können.'
+  no_invitation_token_found: 'Sie müssen von einem Benutzer eingeladen werden um sich hier registrieren zu können. Beantragen sie eine Einladung unter der Adresse office@iboard.cc'
