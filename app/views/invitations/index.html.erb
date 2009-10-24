@@ -15,3 +15,7 @@
   </h3>
 <% end %>
 <%= will_paginate @invitations %>
+
+<p>
+    <%= link_to t(:send_new_invitations_from_your_profile ), current_user %>
+</p>
