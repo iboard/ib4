@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
   has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id', :dependent => :delete_all
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => 'recipient_id',  :dependent => :delete_all
   
+  has_many :friendships, :dependent => :delete_all
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :delete_all
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
  
   def display_name_and_user

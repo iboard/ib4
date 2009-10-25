@@ -6,9 +6,8 @@
 # UserController makes use of AuthLogic-Gem
 class UsersController < ApplicationController
  
-  before_filter :require_user,    :only => [:edit, :update, :destroy, :remove_avatar]
+  before_filter :require_user,    :except => [:new,:create]
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_admin,   :only => [:index]
   
   def index
     @search = User.search(params[:search])
@@ -110,4 +109,6 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to :action => :index
   end
+  
+  
 end

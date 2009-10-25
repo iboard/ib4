@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :friendships
+
   map.resources :invitations
   map.resources :feed
   map.rss       '/rss', :controller => 'feed', :action => 'index', :format => :rss
