@@ -14,8 +14,13 @@ a img {
 }
  
 a {
-  color: black;
+  color: #0073A9;
   text-decoration: none;
+}
+
+a:visited {
+  color: #004B79;
+  text-decoration: none;	
 }
 
 a:hover {
