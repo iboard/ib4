@@ -1,7 +1,7 @@
 <% box_float_right("200px") do %>
   <h3><%= t(:pages) -%> «» <%= link_to t(:postings), postings_path, :style => 'font-size: smaller;' -%></h3>
   <p>
-    <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), formatted_postings_url(:rss) -%>    
+    <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), rss_path -%>    
   </p>
   
   <%- form_tag pages_path, :method => :get do  -%>
@@ -17,8 +17,12 @@
   <ul>
     <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_pages), pages_path -%> (<%= Page.all.length -%>)</li>
     <%- Category.ascend_by_name.each do |category| -%>
-      <li style='padding-left: 0px;margin-left:-15px;'><%= link_to category.name,category_pages_path(category) -%> 
-          (<%= category.categorizables.categorizable_type_is('Page').length -%>)</li>
+      <li style='padding-left: 0px;margin-left:-15px;'><%= link_to category.name,category_path(category) -%> 
+          (
+          <%= category.categorizables.categorizable_type_is('Posting').length -%>/
+          <%= category.categorizables.categorizable_type_is('Page').length -%>
+          )
+      </li>
     <%- end -%>
   </ul>
   
