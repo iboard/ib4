@@ -324,9 +324,11 @@ input#page_title {
 	line-height: normal;
 	padding-left: 5px;
 	margin: 5px;
-	margin-top: 0px;
+	margin-top: 20px;
 	margin-left: 0px;
 	overflow: auto;
+	width: 300px;
+	float: right;
 }
 .body_text {
 	padding-left: 10px;
@@ -392,6 +394,9 @@ a:hover   {
 
 .horiz_break {
 	margin-bottom: 10px;
+	border-top: 1px solid #ddd;
+	padding: 10px;
+	overflow: hidden;
 }
 
 .form_left_500 {

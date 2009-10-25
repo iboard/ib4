@@ -1,12 +1,3 @@
-<h1 class='title_text'>
-    <%- if posting.categories.any? %>
-        <span class='header_categories'>
-          <%= posting.categories.map{|c| link_to(c.name, category_path(c))}.join(", ") -%><br/>
-        </span>
-    <%- end -%>
-    
-  <%=link_to h(posting.subject), posting -%>
-</h1>
 <div class='title_box'>
   <%= image_tag(posting.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
   <%=link_to("<b>"+h(posting.user.username) + "</b> (#{posting.user.fullname})",posting.user) -%>, <%= posting.updated_at.to_s(:short) %>
@@ -25,3 +16,13 @@
   <%- end -%>
   <div style="clear:'left';"></div>
 </div>
+
+<h1 class='title_text'>
+    <%- if posting.categories.any? %>
+        <span class='header_categories'>
+          <%= posting.categories.map{|c| link_to(c.name, category_path(c))}.join(", ") -%><br/>
+        </span>
+    <%- end -%>
+    
+  <%=link_to h(posting.subject), posting -%>
+</h1>

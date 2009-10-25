@@ -13,9 +13,9 @@
     <%= render :partial => 'posting_short', :locals => { :posting => posting } %>
     <%= CAN_OPEN+NBSP+link_to(t(:read_txt), posting) -%>
   </div>
+  <div class='horiz_break'></div>
 <% end %>
 
-<div class='horiz_break'></div>
 
 <%= will_paginate @postings -%>
 
