@@ -5,41 +5,9 @@
 <h1><%= @user.fullname -%></h1>
 
 <%- if is_current_user?(@user) -%>
-
-  <!-- USER SESSION -->
-  <% toggle_display_link t(:your_session) do %>
-    <h3>Your Session</h3>
-    <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
-  <% end %>
   
-  <!-- FRIENDS -->
-  <% if @user.friendships.any? %>
-  <b><%= t(:friends) -%></b><br/>
-    <ul>
-      <% for friendship in @user.friendships %>
-          <li>
-            <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
-            <small>
-              [<%= link_to t(:remove), friendship, 
-               :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
-              -%>]
-            </small>
-          </li>
-      <% end %>
-    </ul>
-  <% end %>
-  <% if @user.inverse_friendships.any? %>
-    <b><%= t(:friended_by_users) -%></b><br/>
-    <ul>
-      <% for friendship in @user.inverse_friendships %>
-        <li>
-            <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-  
-  
+  <%= render :partial => 'friends' %>
+    
   <!-- USERLIST -->
   <p>
     <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
@@ -60,6 +28,12 @@
     <% end %>
     <% end %>
   <% end %>
+  
+  <!-- USER SESSION -->
+   <% toggle_display_link t(:your_session) do %>
+     <h3>Your Session</h3>
+     <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
+   <% end %>
   
 <%- end -%>
   

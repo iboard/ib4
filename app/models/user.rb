@@ -27,6 +27,33 @@ class User < ActiveRecord::Base
   
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
  
+  # list all friends of your friendships-list when they found in inverse_friendships too
+  def commited_friendships
+    return @commited_friendships if @commited_friendships
+    @commited_friendships = friendships.all.reject { |r|
+      inverse_friendships.find_by_user_id(r.friend_id).nil?
+    }
+    @commited_friendships
+  end
+  
+  # list all friendships which are not found in inverse_friendships
+  def not_commited_friendships
+    return @not_commited_friendships if @not_commited_friendships
+    @not_commited_friendships = friendships.all.reject { |r|
+      ! inverse_friendships.find_by_user_id(r.friend_id).nil?
+    }
+    @not_commited_friendships
+  end
+  
+  # list friendships which you have not accepted yet
+  def not_confirmed_friendships
+    return @not_confirmed_friendships if @not_confirmed_friendships
+    @not_confirmed_friendships = inverse_friendships.all.reject { |r|
+      ! friendships.find_by_friend_id(r.user_id).nil?
+    }
+    @not_confirmed_friendships
+  end
+ 
   def display_name_and_user
     "#{fullname} (#{username})"
   end

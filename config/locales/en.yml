@@ -164,5 +164,7 @@ en:
   sure_remove_friendship: 'remove this friendship'
   remove: 'remove'
   friends: 'Friends'
-  friended_by_users: 'Friended by ...'
+  friended_by_users: "You're a friend of..."
   search_and_add_friends_here: 'Search and add friends here...'
+  not_commited_friends: 'Not yet accepted friendships'
+  friendship_requests: 'Friendship requests'

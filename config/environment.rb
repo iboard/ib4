@@ -59,3 +59,5 @@ GO_BACK        = "&#9664;" unless defined? GO_BACK
 BACKSPACE_CHAR = "&#9003;" unless defined? BACKSPACE_CHAR
 DELETE_CHAR    = "&#9003;" unless defined? DELETE_CHAR
 COMMENT_HAND   = "&#9997;" unless defined? COMMENT_HAND
+CHECK_OK       = "&#10004;" unless defined? CHECK_OK
+CHECK_NOT_OK   = "&#10008" unless defined? CHECK_NOT_OK

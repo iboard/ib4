@@ -165,3 +165,5 @@ de:
   friends: 'Freunde'
   friended_by_users: 'Freund von ...'
   search_and_add_friends_here: 'Suchen sie Benutzer und fügen sie Freundschaften hinzu ...'
+  not_commited_friends: 'Nicht bestätigte Freundschaften'
+  friendship_requests: 'Freundschaftsanfragen'
