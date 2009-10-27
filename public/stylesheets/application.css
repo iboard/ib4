@@ -438,3 +438,8 @@ a:hover   {
     padding-left: 20px;
 }
 
+.inline_friend_display {
+	display: inline;
+	width: 250px;
+	padding: 5px;
+}
