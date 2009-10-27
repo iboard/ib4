@@ -5,8 +5,10 @@
     <div class='inline_friend_display'>
        <%= image_tag friendship.friend.avatar.url(:icon),:hspace => 5, :vspace => 0 %>
        <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
-        <%= link_to DELETE_CHAR, friendship, 
-         :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
+        <%= link_to( DELETE_CHAR, friendship, 
+                     :method => :delete, 
+                     :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship))
+            ) if is_current_user?(@user) || is_admin?
         -%>
     </div>
   <% end %>
