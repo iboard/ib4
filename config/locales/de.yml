@@ -168,3 +168,5 @@ de:
   not_commited_friends: 'Nicht bestätigte Freundschaften'
   friendship_requests: 'Freundschaftsanfragen'
   users_profile: "{{username}}'s Profil"
+  your_contents: "Ihr Ihnalt..."
+  users_contents: "{{username}}'s Inhalte"

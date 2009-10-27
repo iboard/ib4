@@ -169,3 +169,5 @@ en:
   not_commited_friends: 'Not yet accepted friendships'
   friendship_requests: 'Friendship requests'
   users_profile: "{{username}}'s profile"
+  your_contents: "Your contents"
+  users_contents: "{{username}}'s contents"

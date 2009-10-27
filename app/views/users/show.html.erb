@@ -1,9 +1,17 @@
 <% title t(:users_profile,:username=>@user.username) %>
-<%= image_tag( @user.avatar.url(:medium), :align => :right, :hspace => 0, :vspace => 10) unless @user.avatar.original_filename.blank? %>
+<div class='user_profile_right' >
+  <%= image_tag( @user.avatar.url(:medium), :hspace => 0, :vspace => 10) unless @user.avatar.original_filename.blank? %>
+  <div style='clear: both;'></div>
+  <h2>
+    <%= t(:your_contents) if is_current_user?(@user)  -%>
+    <%= t(:users_contents,:username => @user.username) unless is_current_user?(@user)  -%>
+  </h2>
+  <%= render :partial => 'public_user_view' -%>  
+</div>
 <h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
 
-<%- if is_current_user?(@user) -%>
 
+<%- if is_current_user?(@user) -%>
   <div class='user_profile_right' >
      <br/>
      <!-- USERLIST -->
@@ -38,7 +46,5 @@
     
   <%= render :partial => 'friends' %>
   
-  
 <%- end -%>
-<%= render :partial => 'public_user_view' -%>  
 
