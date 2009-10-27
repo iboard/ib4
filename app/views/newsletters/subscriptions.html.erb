@@ -1,0 +1,29 @@
+<% title t(:newsletter_subscriptions_for_title, :title => decode64(params[:mail]) ) -%>
+<p>
+  <em><%= t(:subscriptions_count, :count => @newsletter_subscriptions.length ) -%></em>
+</p>
+
+<% form_tag subscriptions_path(params[:mail]) do %>
+  <p>
+      <strong><%= t(:block_mail_completely) -%></strong><br/>
+      <%= text_field_tag( :mail, decode64(params[:mail]), :size => 32, :readonly => true) %>
+      <%= submit_tag t(:check_to_block_your_mail_from_all_newsletters), :name => 'commit' %>
+  </p>
+  
+  <% if @newsletter_subscriptions.any? %>
+    <h2><%= t(:unsubscribe_newsletters) -%></h2>
+    <p><%= t(:uncheck_newsletters_to_unsubscribe) -%></p>
+    <p>
+      <% @newsletter_subscriptions.each do |subscription| %>
+        <%= check_box_tag "subscription[newsletters][]", subscription.newsletter_id -%>&nbsp;<%= subscription.newsletter.title -%><br/>
+      <% end %>
+    </p>
+    <p>
+       <%= submit_tag t(:unsubscribe_text), :name => 'commit' -%>
+    </p>
+  <% else %>
+    <%= t(:no_subscriptions_found_for, :mail => decode64(params[:mail]))%>
+  <% end %>
+  
+<% end %>
+

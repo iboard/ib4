@@ -1,0 +1,19 @@
+<% form_for [@newsletter,@newsletter_subscription] do |f| %>
+  
+  <%= f.error_messages %>
+  
+  <p>
+    <%= f.label :mail %><br />
+    <%= f.text_field :mail %>
+  </p>
+  
+  
+  <%= radio_button_tag :mode, "add",  params[:mode] == 'add' -%>&nbsp;<%= t(:add_address) -%>
+  <%= radio_button_tag :mode, "remove", params[:mode] == 'remove'  -%>&nbsp;<%= t(:remove_address) -%>
+  
+  <p><%= f.submit "Submit" %></p>
+
+   <%= link_to t(:back), newsletter_newsletter_subscriptions_path(@newsletter) -%>
+<% end %>
+
+<%= debug params%>

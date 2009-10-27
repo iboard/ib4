@@ -83,6 +83,11 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record
   end
     
+  def server_root_path
+    return @server_root_path if @server_root_path
+    @server_root_path = request.request_uri.gsub(/\/\/(.*)\/(.*)/, '//$1/')
+  end
+    
   private
   def set_language
     I18n.locale = session['locale'] || DEFAULT_LOCALE

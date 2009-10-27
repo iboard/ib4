@@ -1,0 +1,14 @@
+<div style='width: 580px;'>
+<% form_for [@newsletter,@newsletter_issue] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject, :size => 80 %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.textile_editor :body, :rows => 15, :cols => 80 %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+</div>

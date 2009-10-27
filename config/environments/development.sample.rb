@@ -26,6 +26,9 @@ config.action_mailer.smtp_settings = {
 }
 
 LOCALHOST_NAME='ib4.local'
+ROOT_URL='http://ib4.local'
+
+
 
 USER_MENU_ITEMS= [
     {:label => :about, :url => '/welcome'},

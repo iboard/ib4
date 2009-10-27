@@ -171,3 +171,30 @@ en:
   users_profile: "{{username}}'s profile"
   your_contents: "Your contents"
   users_contents: "{{username}}'s contents"
+  new_newsletter: "define new newsletter"
+  back: '« back'
+  subscriptions_count:
+    zero: 'no subscriptions'
+    one: 'one subscription'
+    other: '{{count}} subscriptions'
+  issues_count:
+    zero: 'no issues'
+    one: 'one issue'
+    other: '{{count}} issues'
+  newsletter_issues: 'issues'
+  newsletter_subscriptions: 'subscriptions'
+  newsletter_subscriptions_for_title: 'Subscriptions to {{title}}'
+  subscriptions_of: 'Subscriptions to'
+  subscriptions: 'Subscriptions'
+  enter_addresses_comma_separated: 'Enter comma seperated list of email addresses to subscribe or unsubscribe from this newsletter'
+  save_button: 'Commit'
+  add_address: "Add"
+  remove_address: "Remove"
+  add_issue: "Add issue"
+  start_delivering: 'Start delivering'
+  send_test_mail: 'Send test mail to administrator'
+  folder_open_icon: 'open'
+  newsletter_issues_for_title: 'Issues - {{title}}'
+  test_sent: 'Testmail sent'
+  newsletters: 'Newsletters'
+  delivered_to: 'Delivered to...'

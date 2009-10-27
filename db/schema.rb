@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091025064626) do
+ActiveRecord::Schema.define(:version => 20091027170848) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,53 @@ ActiveRecord::Schema.define(:version => 20091025064626) do
     t.integer  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "newsletter_blacklists", :force => true do |t|
+    t.string   "mail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsletter_deliveries", :force => true do |t|
+    t.integer  "newsletter_subscription_id"
+    t.integer  "newsletter_issue_id"
+    t.datetime "delivered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "failure_messages"
+  end
+
+  create_table "newsletter_issues", :force => true do |t|
+    t.integer  "newsletter_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "queued_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "html_body"
+  end
+
+  create_table "newsletter_subscriptions", :force => true do |t|
+    t.integer  "newsletter_id"
+    t.string   "mail"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsletters", :force => true do |t|
+    t.string   "title"
+    t.string   "reply_to"
+    t.integer  "image_attachment_id"
+    t.text     "header"
+    t.text     "footer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
   end
 
   create_table "pages", :force => true do |t|

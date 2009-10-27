@@ -1,0 +1,30 @@
+<% title t(:subscriptions_of, :title => @newsletter.title) %>
+<h1>
+    <%= t(:subscriptions_of, :title => link_to( @newsletter.title, @newsletter ) ) -%>
+    <%= link_to t(:edit), edit_newsletter_path(@newsletter) -%>
+</h1>
+<p>
+    <%= link_to t(:back), newsletters_path -%>
+</p>
+
+<h2><%= t(:subscriptions) -%></h2>
+
+<p></p>
+
+<% form_for [@newsletter, NewsletterSubscription.new] do |f| %>
+  <b><%= f.label :mail %>:</b> 
+  <em><%= t(:enter_addresses_comma_separated) -%></em><br/>
+  <%= f.text_area :mail, :rows => 10, :cols => 90 -%><br/>
+  <%= radio_button_tag :mode, "add", true -%>&nbsp;<%= t(:add_address) -%>
+  <%= radio_button_tag :mode, "remove" -%>&nbsp;<%= t(:remove_address) -%>
+  <%= f.submit t(:save_button) -%>
+<% end %>
+
+<h2><%= t(:subscriptions_count, 
+           :count => (@newsletter.newsletter_subscriptions.any? ? @newsletter.newsletter_subscriptions.count : 0 ) 
+         ) 
+    -%></h2>
+    
+<blockquote>
+  <%= @newsletter.newsletter_subscriptions.map(&:mail).sort.join(", ") -%>
+</blockquote>

@@ -1,0 +1,19 @@
+<% title "Newsletters" %>
+
+<p><%= link_to CAN_OPEN+NBSP+t(:new_newsletter), new_newsletter_path %></p>
+
+
+<% for newsletter in @newsletters %>
+  
+  <h1><%=h newsletter.title %></h1>
+  <blockquote>
+      <%= image_tag( newsletter.banner.url(:default) ) if newsletter.banner -%><br/>
+      <%= link_to( t(:newsletter_issues), newsletter_newsletter_issues_path(newsletter) ) -%> |
+      <%= link_to( t(:newsletter_subscriptions), newsletter_newsletter_subscriptions_path(newsletter) ) -%> |
+      <%= link_to t(:edit), edit_newsletter_path(newsletter) %> |
+      <%= link_to t(:destroy), newsletter, :confirm => 'Are you sure?', :method => :delete %>
+
+  </blockquote>
+  
+<% end %>
+

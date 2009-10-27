@@ -1,0 +1,8 @@
+<% title "Edit Newsletter Issue" %>
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to "Show", newsletter_newsletter_issue_path(@newsletter,@newsletter_issue) %> |
+  <%= link_to "View All", newsletter_newsletter_issues_path(@newsletter) %>
+</p>

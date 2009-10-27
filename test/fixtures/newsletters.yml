@@ -1,0 +1,13 @@
+one:
+  title: MyString
+  reply_to: MyString
+  banner_id: 1
+  header: MyText
+  footer: MyText
+
+two:
+  title: MyString
+  reply_to: MyString
+  banner_id: 1
+  header: MyText
+  footer: MyText

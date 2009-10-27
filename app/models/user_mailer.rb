@@ -43,5 +43,14 @@ class UserMailer < ActionMailer::Base
     body        :message => message, :sender => sender, :hostname => hostname, :register_url => register_url, :client_ip => client_ip
     content_type "text/html"
   end
-  
+   
+  # Deliver Newsletter
+  def newsletter(sender,to,title,subject_txt,header_image_tag,header,footer,body_html,url)
+    recipients              to
+    from                    sender
+    subject                 subject_txt
+    body                    :header_image_tag => header_image_tag, :header => header, :message => body_html, :footer => footer, :url => url
+    content_type            "text/html"
+  end
+ 
 end

@@ -1,0 +1,9 @@
+one:
+  newsletter_id: 1
+  subject: MyString
+  body: MyText
+
+two:
+  newsletter_id: 1
+  subject: MyString
+  body: MyText

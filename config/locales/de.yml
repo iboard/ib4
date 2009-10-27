@@ -170,3 +170,30 @@ de:
   users_profile: "{{username}}'s Profil"
   your_contents: "Ihr Ihnalt..."
   users_contents: "{{username}}'s Inhalte"
+  new_newsletter: 'Neuen Newsletter anlegen'
+  back: '« zurück'
+  subscriptions_count:
+    zero: 'keine Abos'
+    one: 'ein Abo'
+    other: '{{count}} Abos'
+  issues_count:
+    zero: 'keine Ausgaben'
+    one: 'Eine Ausgabe'
+    other: '{{count}} Ausgaben'
+  newsletter_issues: 'Ausgaben'
+  newsletter_subscriptions: 'Abos'
+  newsletter_subscriptions_for_title: 'Abos für {{title}}'
+  subscriptions_of: 'Abos für'
+  subscriptions: 'Abos'
+  enter_addresses_comma_separated: 'Geben sie eine Beistrich-getrennte Liste von EMail-Adressen ein, die sie hinzufügen oder entfernen wollen.'
+  save_button: 'Ausführen'
+  add_address: "Hinzufügen"
+  remove_address: "entfernen"
+  add_issue: "Neue Ausgabe"
+  start_delivering: 'Auslieferung starten'
+  send_test_mail: 'Testmail an Administrator senden'
+  folder_open_icon: 'öffnen'
+  newsletter_issues_for_title: 'Ausgaben - {{title}}'
+  test_sent: 'Test gesandt'
+  newsletters: 'Newsletters'
+  delivered_to: 'Ausgeliefert an...'

@@ -1,0 +1,33 @@
+<% form_for @newsletter, :html => { :multipart => true } do |f| %>
+  
+  <%= f.error_messages %>
+  
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  
+  <p>
+    <%= f.label :reply_to %><br />
+    <%= f.text_field :reply_to %>
+  </p>
+  
+  <p>
+    <%= f.label :banner, t(:upload_banner_for_newsletter) %><br />
+    <%= image_tag( @newsletter.banner.url(:preview) ) if @newsletter.banner -%><br/>  
+    <%= f.file_field :banner  %>
+  </p>
+  
+  <p>
+    <%= f.label :header %><br />
+    <%= f.text_area :header, :rows => 5, :colls => 50 %>
+  </p>
+  
+  <p>
+    <%= f.label :footer %><br />
+    <%= f.text_area :footer, :rows => 5, :colls => 50 %>
+  </p>
+  
+  <p><%= f.submit "Submit" %></p>
+
+<% end %>

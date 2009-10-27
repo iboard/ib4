@@ -1,0 +1,5 @@
+<% title t(:new_issue_for, :title => @newsletter.title ) -%>
+
+<%= render :partial => 'form' %>
+
+<p><%= link_to "Back to List", newsletter_newsletter_issues_path(@newsletter) %></p>

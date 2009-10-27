@@ -1,0 +1,12 @@
+<%= @newsletter_issue.print_state_column -%><br/>
+<%= link_to_remote( 
+         t(:start_delivering), 
+         :url => deliver_newsletter_issue_path(
+                     @newsletter_issue, 
+                     :header_image_tag => 
+                     ::ROOT_URL+image_tag( @newsletter.banner.url(:default))
+                 ),
+         :method => :get,
+         :update => "delivery_#{@newsletter_issue.id.to_s}"
+    )  
+-%>

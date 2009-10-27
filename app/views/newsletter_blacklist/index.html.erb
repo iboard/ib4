@@ -1,0 +1,7 @@
+<h1>Blacklisted Addresses</h1>
+
+
+
+<% @newsletter_blacklists.each do |b| %>
+  <p><strong><%= decode64(b.mail) -%></strong> <%= link_to t(:destroy), b, :method => :delete, :confirm => t(:are_you_sure) %></p>
+<% end %>

@@ -1,0 +1,48 @@
+<%- title "#{@newsletter.title}" -%>
+    <p>
+      <%= link_to t(:back), newsletters_path %>    
+      <%= link_to t(:edit), edit_newsletter_path(@newsletter) %>
+      <%= link_to t(:destroy), @newsletter, :confirm => 'Are you sure?', :method => :delete %>
+    </p>
+
+<%= image_tag( @newsletter.banner.url(:preview) ) if @newsletter.banner -%><br/>  
+    
+<blockquote>
+    <p>
+      <strong>Reply To:</strong>  <%=h @newsletter.reply_to %>
+    </p>
+    
+    <p>
+      <strong>Subscriptions:</strong>
+      <%= link_to(
+            t(:subscriptions_count, :count => @newsletter.newsletter_subscriptions.any? ? @newsletter.newsletter_subscriptions.count : 0 ),
+            newsletter_newsletter_subscriptions_path(@newsletter)
+           ) 
+      -%>
+    </p>
+    
+    <% toggle_display_link t(:details) do %>
+      <p>
+        <strong>Issues:</strong>
+        <%= link_to(
+              t(:issues_count, :count => @newsletter.newsletter_issues.any? ? @newsletter.newsletter_issues.count : 0 ),
+              newsletter_newsletter_issues_path(@newsletter)
+             ) 
+        -%>
+      </p>
+      <p>
+        <strong>Banner:</strong>
+        <%= @newsletter.banner.url(:preview) if @newsletter.banner %><br/>
+      </p>
+      <p>
+        <strong>Header:</strong>
+        <%=h @newsletter.header %>
+      </p>
+      <p>
+        <strong>Footer:</strong>
+        <%=h @newsletter.footer %>
+      </p>
+    <% end %>
+    
+</blockquote>
+

@@ -19,15 +19,16 @@ Rails::Initializer.run do |config|
   config.gem "RedCloth"# , :lib => "redcloth", :source => "http://code.whytheluckystiff.net" 
   config.gem "paperclip"  # see http://rdoc.info/projects/thoughtbot/paperclip
   config.time_zone = 'UTC'
+  config.time_zone = 'Vienna'
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  # config.i18n.default_locale = :de
+  config.i18n.default_locale = :en
 end
 
 # SOME IMPORTANT DEFINITIONS (override them in your environments/environment.rb)
-
 LOCALES=[:en,:de]
 DEFAULT_LOCALE=:en
+
 
 USER_MENU_ITEMS = [
     {:label => :home, :url => '/'},
@@ -37,6 +38,7 @@ USER_MENU_ITEMS = [
 ADMIN_MENU_ITEMS = [
   {:label => :user_listing, :url => "/users"},
   {:label => :categories, :url => "/categories"},
+  {:label => :newsletters, :url => "/newsletters"},
   {:label => :invitations, :url => "/invitations"}
 ] unless defined? ADMIN_MENU_ITEMS
 
@@ -61,3 +63,7 @@ DELETE_CHAR    = "&#9003;" unless defined? DELETE_CHAR
 COMMENT_HAND   = "&#9997;" unless defined? COMMENT_HAND
 CHECK_OK       = "&#10004;" unless defined? CHECK_OK
 CHECK_NOT_OK   = "&#10008" unless defined? CHECK_NOT_OK
+
+def current_locale
+  I18n::locale
+end

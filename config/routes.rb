@@ -15,6 +15,14 @@ ActionController::Routing::Routes.draw do |map|
   map.register "/register/:token", :controller => 'users', :action => 'new'
   map.resources :user_sessions
   map.resources :users, :has_many => [:postings,:pages,:invitations,:comments]
+  map.resources :newsletters, 
+                 :has_many => [:newsletter_subscriptions, :newsletter_issues],
+                 :member => {
+                   :deliver_issue => :get
+                 }
+  map.resources :newsletter_blacklist
+  map.resources :newsletter_issues, :member =>  { :deliver => :get, :deliver_test  => :get  }
+  map.subscriptions '/subscriptions/:mail/:token', :controller => "newsletters", :action => 'subscriptions'
   map.set_locale '/set_locale/:locale', :controller => 'user_sessions', :action => 'set_locale'
   map.root :controller => "postings"
   map.connect ':id', :controller => :permalinks, :action => :show
