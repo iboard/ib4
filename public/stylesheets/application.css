@@ -4,7 +4,7 @@
 
 body {
   font-family: Verdana, Helvetica, Arial;
-  background: #000A0D url('/images/background.png') fixed repeat-x;
+  background: #FEF4F0 url('/images/background.png') fixed repeat-x;
   min-width: 980px;
   font-size: 14px; color: #444;
 }
@@ -62,7 +62,7 @@ LI {
   padding: 20px 40px;
   border-left: solid 1px black;
   border-right: solid 1px black;
-  border-top: solid 1px black;
+  border-top: solid 1px #999;
   border-bottom: none;
 }
  
@@ -170,6 +170,8 @@ LI {
   background-position: fixed;
   height: 85px;
   padding: 40px 40px 0px 40px;
+  border: 1px solid black;
+  border-top: none;
 }
 
 .copyright {
@@ -183,14 +185,14 @@ p#copyright,
 	text-align: center;
 	width: 100%;
     font-size: 10px;
-	color: white;
+	color: #999;
 	text-align: center;
 	padding-top: 5px;	
 }
 
 #copyright a {
     text-decoration: none;
-	color: white;
+	color: #999;
 }
 
 #banner {
@@ -203,6 +205,8 @@ p#copyright,
   padding: 5px 40px 0px 40px;
   background: #aaa;
   height:120px;
+  border: 1px solid black;
+  border-bottom: none;
 }
 
 #top_menus {
@@ -215,6 +219,8 @@ p#copyright,
   margin-bottom: 0px;
   margin-top: 0px;
   background: #AAA;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 #environment {
