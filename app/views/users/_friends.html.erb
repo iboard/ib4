@@ -3,7 +3,7 @@
   <h3><%= t(:friends) -%></h3>
   <% for friendship in @user.commited_friendships %>
     <div class='inline_friend_display'>
-       <%= image_tag friendship.friend.avatar.url(:thumb),:hspace => 5, :vspace => 0 %>
+       <%= image_tag friendship.friend.avatar.url(:icon),:hspace => 5, :vspace => 0 %>
        <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
         <%= link_to DELETE_CHAR, friendship, 
          :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
@@ -19,7 +19,7 @@
   <h3><%= t(:not_commited_friends) -%></h3>
       <% for friendship in @user.not_commited_friendships %>
           <div class='inline_friend_display'>
-            <%= image_tag friendship.friend.avatar.url(:thumb), :hspace => 5, :vspace => 0 %>
+            <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
             <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
             <%= link_to DELETE_CHAR, friendship, 
              :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
@@ -33,7 +33,7 @@
     <h3><%= t(:friendship_requests) -%></h3>
       <% for friendship in (@user.not_confirmed_friendships) %>
         <div class='inline_friend_display'>
-          <%= image_tag friendship.friend.avatar.url(:thumb), :hspace => 5, :vspace => 0 %>
+          <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
     
             <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)
             <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post %>
