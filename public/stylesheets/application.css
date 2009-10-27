@@ -433,6 +433,7 @@ a:hover   {
 .user_profile_right {
     float: right; 
     width: 400px; 
+    clear: right;
     margin-left: 10px;
     padding-left: 20px;
 }
