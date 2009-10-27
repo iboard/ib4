@@ -36,19 +36,10 @@
        </blockquote>
      <% end %>
   </div>
-  
-  <p>
-      <%= CAN_OPEN+NBSP+link_to(t(:postings),user_postings_path(@user)) -%><br/>
-      <%= CAN_OPEN+NBSP+link_to(t(:comments),user_comments_path(@user)) -%><br/>
-      <%= CAN_OPEN+NBSP+link_to(t(:pages),user_pages_path(@user)) -%>
-  </p>
-  
-  
+    
   <%= render :partial => 'friends' %>
   
   
-<%- else -%>
-  <!-- PUBLIC VIEW FOR OTHER USERS -->
-  <%= render :partial => 'public_user_view' -%>  
 <%- end -%>
-<br/>
+<%= render :partial => 'public_user_view' -%>  
+

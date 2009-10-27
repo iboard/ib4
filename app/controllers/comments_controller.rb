@@ -3,7 +3,12 @@ class CommentsController < ApplicationController
   before_filter :require_user, :except => [:index,:show]
   
   def index
-    @comments = Comment.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    unless params[:user_id]
+      @comments = Comment.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    else
+      @user = User.find(params[:user_id])
+      @comments = @user.comments.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    end
   end
   
   def show
