@@ -47,6 +47,8 @@
   <%= render :partial => 'friends' %>
   
   
+<%- else -%>
+  <!-- PUBLIC VIEW FOR OTHER USERS -->
+  <%= render :partial => 'public_user_view' -%>  
 <%- end -%>
-  
 <br/>
