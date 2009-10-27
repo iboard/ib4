@@ -168,3 +168,4 @@ en:
   search_and_add_friends_here: 'Search and add friends here...'
   not_commited_friends: 'Not yet accepted friendships'
   friendship_requests: 'Friendship requests'
+  users_profile: "{{username}}'s profile"

@@ -47,13 +47,16 @@
       <%- end -%>
       <%- if user.pages.any? -%>
           <%= link_to CAN_OPEN + "&nbsp;" + t(:pages), user_pages_path(user) -%> (<%= user.pages.length %>)
-        <%- end -%>
+      <%- end -%>
+      <%- if user.comments.any? -%>
+            <%= link_to CAN_OPEN + "&nbsp;" + t(:comments), user_comments_path(user) -%> (<%= user.comments.length %>)
+      <%- end -%>
     </td>
     <td valign="top" align="left" width="250"><br/>
         <% unless current_user.friendships.find_by_friend_id(user.id) %>
-          <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => user), :method => :post %>
+          <%= link_to CHECK_OK+NBSP+t(:add_friend), friendships_path(:friend_id => user), :method => :post %>
         <% else %>
-          <%= link_to CAN_OPEN+NBSP+t(:remove), current_user.friendships.find_by_friend_id(user.id), 
+          <%= link_to CHECK_NOT_OK+NBSP+t(:remove), current_user.friendships.find_by_friend_id(user.id), 
             :method => :delete,:confirm => t(:are_you_sure, :what => t(:sure_remove_friendship)) %>
         <% end %>
     </td>

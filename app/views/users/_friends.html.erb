@@ -1,4 +1,3 @@
-<h1>FRIENDSHIPS</h1>
 <!-- COMMITED FRIENDS -->
 <% if @user.commited_friendships && @user.commited_friendships.any? %>
   <b><%= t(:friends) -%></b><br/>
@@ -37,11 +36,9 @@
       <li>
           <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)
           <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post %>
-
       </li>
     <% end %>
   </ul>
 <% end %>
-
 
 <%#=  (9000..10100).map {|i| "#{i}=&##{i};"}.join(', ') %>

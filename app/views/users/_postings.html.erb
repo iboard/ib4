@@ -1,0 +1,10 @@
+<h1><%= t(:postings) -%></h1>
+<!-- postings of <%= @user.username %> -->
+<%- if @mypostings.any? %>
+  <%= will_paginate @mypostings -%>
+  <%- @mypostings.each do |posting| -%>
+    <%= render :partial => '/postings/posting_short', :locals => { :posting => posting } -%>
+  <%- end -%>
+  <%= will_paginate @mypostings -%>
+<%- end %>
+<!-- end/postings -->

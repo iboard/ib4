@@ -429,3 +429,11 @@ a:hover   {
 	margin:0;
 	z-index: 1;
 }
+
+.user_profile_right {
+    float: right; 
+    width: 400px; 
+    margin-left: 10px;
+    padding-left: 20px;
+}
+

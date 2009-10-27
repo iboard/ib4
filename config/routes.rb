@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :friendships
-
   map.resources :invitations
   map.resources :feed
   map.rss       '/rss', :controller => 'feed', :action => 'index', :format => :rss
@@ -15,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.register "/register/:token", :controller => 'users', :action => 'new'
   map.resources :user_sessions
-  map.resources :users, :has_many => [:postings,:pages,:invitations]
+  map.resources :users, :has_many => [:postings,:pages,:invitations,:comments]
   map.set_locale '/set_locale/:locale', :controller => 'user_sessions', :action => 'set_locale'
   map.root :controller => "postings"
   map.connect ':id', :controller => :permalinks, :action => :show

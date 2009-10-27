@@ -167,3 +167,4 @@ de:
   search_and_add_friends_here: 'Suchen sie Benutzer und fügen sie Freundschaften hinzu ...'
   not_commited_friends: 'Nicht bestätigte Freundschaften'
   friendship_requests: 'Freundschaftsanfragen'
+  users_profile: "{{username}}'s Profil"

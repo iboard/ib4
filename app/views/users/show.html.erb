@@ -1,51 +1,52 @@
-<% title t(:postings_by,:username=>@user.username) %>
+<% title t(:users_profile,:username=>@user.username) %>
 
-<%= image_tag( @user.avatar.url(:medium), :align => :right, :hspace => 10, :vspace => 10) unless @user.avatar.original_filename.blank? %>
-
-<h1><%= @user.fullname -%></h1>
+<h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
 
 <%- if is_current_user?(@user) -%>
+
+  <div class='user_profile_right'>
+     <%= image_tag( @user.avatar.url(:medium), :hspace => 0, :vspace => 10) unless @user.avatar.original_filename.blank? %>
+     <br/>
+     <!-- USERLIST -->
+     <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
+     
+     
+     <!-- INVITE OTHER USERS -->
+     <% if @user.invitations_left > 0 %>
+       <% toggle_display_link t(:invite_users) do %>
+         <% remote_form_for [@user,@user.sent_invitations.build], :html => {:id => 'invitation_form'} do |f| %>
+           <p><b><%= f.label :recipient_email, t(:recipient_email) %></b><br/>
+              <%= f.text_field :recipient_email, :size => 52 %>
+           </p>
+           <p><b><%= f.label :message %></b><br/>
+              <%= f.text_area :message, :rows => 5, :cols => 50 -%>
+           </p>
+           <p><%= f.submit t(:submit) %></p>
+         <% end %>
+       <% end %>
+     <% end %>
+
+     <!-- USER SESSION -->
+     <% toggle_display_link t(:your_session) do %>
+       <blockquote>
+             <strong><%= t(:login_count        ) -%></strong>: <%=h @user.login_count         -%><br/>
+             <strong><%= t(:email              ) -%></strong>: <%=h @user.email               -%><br/>
+             <strong><%= t(:current_login_ip   ) -%></strong>: <%=h @user.current_login_ip    -%><br/>
+             <strong><%= t(:current_login_at   ) -%></strong>: <%=h @user.current_login_at    -%><br/>
+       </blockquote>
+     <% end %>
+  </div>
+  
+  <p>
+      <%= CAN_OPEN+NBSP+link_to(t(:postings),user_postings_path(@user)) -%><br/>
+      <%= CAN_OPEN+NBSP+link_to(t(:comments),user_comments_path(@user)) -%><br/>
+      <%= CAN_OPEN+NBSP+link_to(t(:pages),user_pages_path(@user)) -%>
+  </p>
+  
   
   <%= render :partial => 'friends' %>
-    
-  <!-- USERLIST -->
-  <p>
-    <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
-  </p>
-
   
-  <!-- INVITE OTHER USERS -->
-  <% if @user.invitations_left > 0 %>
-    <% toggle_display_link t(:invite_users) do %>
-    <% remote_form_for [@user,@user.sent_invitations.build], :html => {:id => 'invitation_form'} do |f| %>
-      <p><b><%= f.label :recipient_email, t(:recipient_email) %></b><br/>
-         <%= f.text_field :recipient_email, :size => 52 %>
-      </p>
-      <p><b><%= f.label :message %></b><br/>
-         <%= f.text_area :message, :rows => 5, :cols => 50 -%>
-      </p>
-      <p><%= f.submit t(:submit) %></p>
-    <% end %>
-    <% end %>
-  <% end %>
-  
-  <!-- USER SESSION -->
-   <% toggle_display_link t(:your_session) do %>
-     <h3>Your Session</h3>
-     <%= render :partial => '/users/dashboard', :locals => { :user => @user } %>
-   <% end %>
   
 <%- end -%>
   
 <br/>
-
-<h1><%= t(:postings) -%></h1>
-<!-- postings of <%= @user.username %> -->
-<%- if @mypostings.any? %>
-  <%= will_paginate @mypostings -%>
-  <%- @mypostings.each do |posting| -%>
-    <%= render :partial => '/postings/posting_short', :locals => { :posting => posting } -%>
-  <%- end -%>
-  <%= will_paginate @mypostings -%>
-<%- end %>
-<!-- end/postings -->
