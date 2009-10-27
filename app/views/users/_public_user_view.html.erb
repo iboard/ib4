@@ -1,4 +1,3 @@
-<%= image_tag @user.avatar.url(:medium), :align=>:right, :hspace => 10, :vspace => 10 %>
 <p>
   <%= CAN_OPEN+NBSP+link_to( t(:postings), user_postings_path(@user)) %> (<%= @user.postings.count -%>)
 </p>

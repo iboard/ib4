@@ -1,11 +1,10 @@
 <% title t(:users_profile,:username=>@user.username) %>
-
+<%= image_tag( @user.avatar.url(:medium), :hspace => 0, :vspace => 10) unless @user.avatar.original_filename.blank? %>
 <h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
 
 <%- if is_current_user?(@user) -%>
 
   <div class='user_profile_right'>
-     <%= image_tag( @user.avatar.url(:medium), :hspace => 0, :vspace => 10) unless @user.avatar.original_filename.blank? %>
      <br/>
      <!-- USERLIST -->
      <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
