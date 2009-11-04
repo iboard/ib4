@@ -14,12 +14,12 @@ a img {
 }
  
 a {
-  color: #0073A9;
+  color: #424242;
   text-decoration: none;
 }
 
 a:visited {
-  color: #004B79;
+  color: #737373;
   text-decoration: none;	
 }
 
@@ -203,10 +203,14 @@ p#copyright,
   margin-left: auto;
   margin-right: auto;
   padding: 5px 40px 0px 40px;
-  background: #aaa;
+  background: #303030;
   height:120px;
   border: 1px solid black;
   border-bottom: none;
+}
+
+#banner a {
+  color: white;	
 }
 
 #top_menus {
@@ -218,7 +222,7 @@ p#copyright,
   margin-right: auto;
   margin-bottom: 0px;
   margin-top: 0px;
-  background: #AAA;
+  background:  #303030;
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
@@ -383,8 +387,7 @@ input#page_title {
 }
 
 a:hover   {
-	background: #003A54;
-	color: white;
+  text-decoration: underline;
 }
 
 .user_menu_selected_url a:hover,
