@@ -197,3 +197,6 @@ de:
   test_sent: 'Test gesandt'
   newsletters: 'Newsletters'
   delivered_to: 'Ausgeliefert an...'
+  check_to_block_your_mail_from_all_newsletters: 'Keine Newsletters an diese Adresse senden'
+  block_mail_completely: 'E-Mail-Adresse sperren'
+  no_subscriptions_found_for: 'Keine Abos für diese Adresse gefunden'

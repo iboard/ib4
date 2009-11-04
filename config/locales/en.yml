@@ -198,3 +198,6 @@ en:
   test_sent: 'Testmail sent'
   newsletters: 'Newsletters'
   delivered_to: 'Delivered to...'
+  check_to_block_your_mail_from_all_newsletters: 'Do not deliver any newsletter to this address.'
+  block_mail_completely: 'Block e-mail-address'
+  no_subscriptions_found_for: 'No subscriptions found for this address'
