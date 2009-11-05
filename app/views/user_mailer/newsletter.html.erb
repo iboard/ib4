@@ -4,12 +4,16 @@
   <head>
     <base href="<%= ROOT_URL -%>" />
   </head>
-  <body>
-    <div style='width: 800px;'>
-      <img src='<%= @header_image_tag -%>' width=800 border=0><br/>
-      <%= @header.to_txt -%>
-      <%= @message.to_txt -%>
-      <%= @footer.gsub(/NEWSLETTER_URL/,@url).to_txt -%>
+  <body style="background: #FEF4F0 url('<%= ROOT_URL -%>/images/background.png') fixed repeat-x;">
+    <div style='width: 700px; margin-left: auto; margin-right: auto; margin-top: 10px; background: white; border: 1px solid black;'>
+      <img src='<%= @header_image_tag -%>' width=700 border=0><br/>
+      <div style='padding: 30px;'>
+        <%= @header.to_txt -%>
+        <%= @message.to_txt -%>
+      </div>
+      <div style='border-top: 1px solid #444; margin-top: 20px; padding: 30px; font-size: 10px; color: #666; background: #FEF4F0;'>
+        <%= @footer.gsub(/NEWSLETTER_URL/,@url).to_txt -%>
+      </div>
     </div>
   </body>
 </html>
