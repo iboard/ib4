@@ -7,9 +7,9 @@
   <body>
     <div style='width: 800px;'>
       <img src='<%= @header_image_tag -%>' width=800 border=0><br/>
-      <%= @header -%>
-      <%= @message -%>
-      <%= @footer.gsub(/NEWSLETTER_URL/,@url) -%>
+      <%= @header.to_txt -%>
+      <%= @message.to_txt -%>
+      <%= @footer.gsub(/NEWSLETTER_URL/,@url).to_txt -%>
     </div>
   </body>
 </html>
