@@ -19,6 +19,7 @@ class NewslettersController < ApplicationController
   
   def new
     @newsletter = Newsletter.new
+    @newsletter.footer = "--\n#{t(:unsubscribe_url_label)}: SUBSCRIPTION_URL"
   end
   
   def create

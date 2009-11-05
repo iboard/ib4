@@ -1,6 +1,11 @@
-<h1>Blacklisted Addresses</h1>
+<h1><%= t(:blacklisted_addresses) -%></h1>
+
+<p>
+  <%= link_to GO_BACK+NBSP+t(:newsletters), newsletters_path %>
+</p>
 
 
+<%= "<p>#{t(:no_entries_found)}</p>" unless @newsletter_blacklists.any?  -%>
 
 <% @newsletter_blacklists.each do |b| %>
   <p><strong><%= decode64(b.mail) -%></strong> <%= link_to t(:destroy), b, :method => :delete, :confirm => t(:are_you_sure) %></p>

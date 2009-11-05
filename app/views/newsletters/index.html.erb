@@ -1,8 +1,11 @@
 <% title "Newsletters" %>
 
-<p><%= link_to CAN_OPEN+NBSP+t(:new_newsletter), new_newsletter_path %></p>
+<p>
+  <%= link_to CAN_OPEN+NBSP+t(:new_newsletter), new_newsletter_path %><br/>
+  <%= link_to CAN_OPEN+NBSP+t(:blacklist), :controller => :newsletter_blacklist %>
+</p>
 
-
+<%= "<p>#{t(:no_entries_found)}</p>" unless @newsletters.any?  -%>
 <% for newsletter in @newsletters %>
   
   <h1><%=h newsletter.title %></h1>
