@@ -61,7 +61,7 @@
                      ),
              :method => :get,
              :update => "delivery_#{@newsletter_issue.id.to_s}",
-             :confirm => t(:are_you_sure,:what => 'delete this issue')
+             :confirm => t(:are_you_sure,:what => "start delivering to #{@newsletter_issue.newsletter.newsletter_subscriptions.length} recipients")
         )  
     -%><br/>
     </div>
@@ -73,7 +73,7 @@
                        ),
                :method => :get,
                :update => "delivery_#{@newsletter_issue.id.to_s}",
-               :confirm => t(:are_you_sure,:what => 'delete this issue')
+               :confirm => t(:are_you_sure,:what => "send testmail to #{@newsletter_issue.newsletter.reply_to}")
           )  
     -%>
 </div>
