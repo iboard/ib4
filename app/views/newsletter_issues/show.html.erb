@@ -23,9 +23,9 @@
 <div id="message" style='border: 1px solid #888; padding: 10px; width: 700px;'>
 <%= image_tag(@newsletter.banner.url(:default)) if @newsletter.banner -%>
 <br/>
-<%= @newsletter.render_header("NEWSLETTER_MAIL","NEWLETTER_MAIL",subscriptions_url("NEWSLETTER_MAIL","TOKEN")) %>
+<%= @newsletter.render_header("NEWSLETTER_MAIL","NEWLETTER_MAIL",subscriptions_url("NEWSLETTER_MAIL","TOKEN")).to_txt %>
 <%= @newsletter_issue.body.to_txt %>
-<%= @newsletter.render_footer("NEWSLETTER_MAIL","NEWLETTER_MAIL",subscriptions_url("NEWSLETTER_MAIL","TOKEN")) %>
+<%= @newsletter.render_footer("NEWSLETTER_MAIL","NEWLETTER_MAIL",subscriptions_url("NEWSLETTER_MAIL","TOKEN")).to_txt %>
 </div>
 
 
