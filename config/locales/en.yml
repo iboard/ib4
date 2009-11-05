@@ -211,3 +211,4 @@ en:
   quit_newsletter: 'unsubscribe newsletter <b>{{name}}</b>.'
   address_blacklisted: 'Address blacklisted.'
   upload_banner_for_newsletter: 'Upload banner for newsletter'
+  remove_from_blacklist: 'to remove this address from the blacklist'

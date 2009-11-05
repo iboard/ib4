@@ -13,12 +13,12 @@ class Newsletter < ActiveRecord::Base
   has_many :newsletter_deliveries, :through => :newsletter_issues
   
   
-  def render_header(SUBSCRIPTION_URL,newletter_mail,block_mail_url)
-    header.gsub(/SUBSCRIPTION_URL/, SUBSCRIPTION_URL).gsub(/NEWSLETTER_MAIL/,newletter_mail).gsub(/BLOCK_MAIL_URL/,block_mail_url)
+  def render_header(subscription_url,newletter_mail,block_mail_url)
+    header.gsub(/SUBSCRIPTION_URL/, subscription_url).gsub(/NEWSLETTER_MAIL/,newletter_mail).gsub(/BLOCK_MAIL_URL/,block_mail_url)
   end
   
-  def render_footer(SUBSCRIPTION_URL,newletter_mail,block_mail_url)
-    footer.gsub(/SUBSCRIPTION_URL/, SUBSCRIPTION_URL).gsub(/NEWSLETTER_MAIL/,newletter_mail).gsub(/BLOCK_MAIL_URL/,block_mail_url)
+  def render_footer(subscription_url,newletter_mail,block_mail_url)
+    footer.gsub(/SUBSCRIPTION_URL/, subscription_url).gsub(/NEWSLETTER_MAIL/,newletter_mail).gsub(/BLOCK_MAIL_URL/,block_mail_url)
   end
     
 end
