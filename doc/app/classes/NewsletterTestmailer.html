@@ -131,14 +131,14 @@
  7:       <span class="ruby-identifier">title</span>, 
  8:       <span class="ruby-identifier">subject</span>, 
  9:       <span class="ruby-identifier">header_image_tag</span>, 
-10:       <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTON_URL/</span>, 
+10:       <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTION_URL/</span>, 
 11:                <span class="ruby-node">&quot;&lt;a href='#{ROOT_URL}/subscriptions/#{encode64(@issue.newsletter.reply_to)}/TOKEN'&gt;Your Subscriptions&lt;/a&gt;&quot;</span>
 12:              ).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/NEWLETTER_MAIL/</span>, <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">newsletter</span>.<span class="ruby-identifier">reply_to</span>
 13:              ).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/BLOCK_MAIL_URL/</span>, 
 14:                <span class="ruby-node">&quot;&lt;a href='#{ROOT_URL}/subscriptions/#{encode64(@issue.newsletter.reply_to)}/TOKEN'&gt;Your Subscriptions&lt;/a&gt;&quot;</span>
 15:              ), 
 16:               
-17:       <span class="ruby-identifier">footer</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTON_URL/</span>, 
+17:       <span class="ruby-identifier">footer</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTION_URL/</span>, 
 18:                <span class="ruby-node">&quot;&lt;a href='#{ROOT_URL}/subscriptions/#{encode64(@issue.newsletter.reply_to)}/TOKEN'&gt;Your Subscriptions&lt;/a&gt;&quot;</span>
 19:              ).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/NEWLETTER_MAIL/</span>, <span class="ruby-ivar">@issue</span>.<span class="ruby-identifier">newsletter</span>.<span class="ruby-identifier">reply_to</span>
 20:              ).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/BLOCK_MAIL_URL/</span>, 

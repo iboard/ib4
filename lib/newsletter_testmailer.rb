@@ -7,14 +7,14 @@ class NewsletterTestmailer < Struct.new(:newsletter_issue_id, :title, :subject, 
       title, 
       subject, 
       header_image_tag, 
-      header.gsub(/SUBSCRIPTON_URL/, 
+      header.gsub(/SUBSCRIPTION_URL/, 
                "<a href='#{ROOT_URL}/subscriptions/#{encode64(@issue.newsletter.reply_to)}/TOKEN'>Your Subscriptions</a>"
              ).gsub(/NEWLETTER_MAIL/, @issue.newsletter.reply_to
              ).gsub(/BLOCK_MAIL_URL/, 
                "<a href='#{ROOT_URL}/subscriptions/#{encode64(@issue.newsletter.reply_to)}/TOKEN'>Your Subscriptions</a>"
              ), 
               
-      footer.gsub(/SUBSCRIPTON_URL/, 
+      footer.gsub(/SUBSCRIPTION_URL/, 
                "<a href='#{ROOT_URL}/subscriptions/#{encode64(@issue.newsletter.reply_to)}/TOKEN'>Your Subscriptions</a>"
              ).gsub(/NEWLETTER_MAIL/, @issue.newsletter.reply_to
              ).gsub(/BLOCK_MAIL_URL/, 

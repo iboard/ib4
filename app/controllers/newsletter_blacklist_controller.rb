@@ -1,6 +1,6 @@
 class NewsletterBlacklistController < ApplicationController
   
-  before_filter :authenticate
+  before_filter :require_admin
   
   def index
     @newsletter_blacklists = NewsletterBlacklist.find(:all,:order => "mail asc")

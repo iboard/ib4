@@ -15,7 +15,8 @@
     <p><%= t(:uncheck_newsletters_to_unsubscribe) -%></p>
     <p>
       <% @newsletter_subscriptions.each do |subscription| %>
-        <%= check_box_tag "subscription[newsletters][]", subscription.newsletter_id -%>&nbsp;<%= subscription.newsletter.title -%><br/>
+        <%= check_box_tag "subscription[newsletters][]", subscription.newsletter_id -%>&nbsp;
+        <%= t(:quit_newsletter, :name => subscription.newsletter.title) -%><br/>
       <% end %>
     </p>
     <p>
