@@ -91,8 +91,10 @@ application.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000102">mark_active_link</a>&nbsp;&nbsp;
-      <a href="#M000103">will_paginate_with_i18n</a>&nbsp;&nbsp;
+      <a href="#M000155">mark_active_link</a>&nbsp;&nbsp;
+      <a href="#M000157">show_spinner</a>&nbsp;&nbsp;
+      <a href="#M000158">start_update</a>&nbsp;&nbsp;
+      <a href="#M000156">will_paginate_with_i18n</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -121,11 +123,11 @@ application.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000102" class="method-detail">
-        <a name="M000102"></a>
+      <div id="method-M000155" class="method-detail">
+        <a name="M000155"></a>
 
         <div class="method-heading">
-          <a href="#M000102" class="method-signature">
+          <a href="#M000155" class="method-signature">
           <span class="method-name">mark_active_link</span><span class="method-args">(item,url)</span>
           </a>
         </div>
@@ -135,8 +137,8 @@ application.
 return true if url is part of the actual requested url
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000102-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000102-source">
+            onclick="toggleCode('M000155-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000155-source">
 <pre>
     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 9</span>
  9:    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mark_active_link</span>(<span class="ruby-identifier">item</span>,<span class="ruby-identifier">url</span>)
@@ -152,19 +154,70 @@ return true if url is part of the actual requested url
         </div>
       </div>
 
-      <div id="method-M000103" class="method-detail">
-        <a name="M000103"></a>
+      <div id="method-M000157" class="method-detail">
+        <a name="M000157"></a>
 
         <div class="method-heading">
-          <a href="#M000103" class="method-signature">
+          <a href="#M000157" class="method-signature">
+          <span class="method-name">show_spinner</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Progress bar
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000157-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000157-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 28</span>
+28:    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_spinner</span>
+29:      <span class="ruby-identifier">content_tag</span>( <span class="ruby-value str">&quot;div&quot;</span>, <span class="ruby-value str">&quot;&lt;div id='ajax_msg'&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:working</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/div&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">BR</span><span class="ruby-operator">*</span><span class="ruby-value">2</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;spinner.gif&quot;</span>, <span class="ruby-identifier">:align=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">:middle</span>),
+30:       <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;ajax_busy&quot;</span>, <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;display:none;&quot;</span> )
+31:    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000158" class="method-detail">
+        <a name="M000158"></a>
+
+        <div class="method-heading">
+          <a href="#M000158" class="method-signature">
+          <span class="method-name">start_update</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000158-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000158-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 33</span>
+33:    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start_update</span>
+34:       <span class="ruby-identifier">periodically_call_remote</span>(<span class="ruby-identifier">:url</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-identifier">:controller</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'user_sessions'</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'get_ajax_msg'</span>}, <span class="ruby-identifier">:frequency</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'1'</span>, 
+35:           <span class="ruby-identifier">:update</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'ajax_msg'</span>);
+36:    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000156" class="method-detail">
+        <a name="M000156"></a>
+
+        <div class="method-heading">
+          <a href="#M000156" class="method-signature">
           <span class="method-name">will_paginate_with_i18n</span><span class="method-args">(collection, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000103-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000103-source">
+            onclick="toggleCode('M000156-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000156-source">
 <pre>
     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 21</span>
 21:    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">will_paginate_with_i18n</span>(<span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span> = {})

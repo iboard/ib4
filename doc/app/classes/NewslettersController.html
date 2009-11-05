@@ -88,15 +88,15 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000227">create</a>&nbsp;&nbsp;
-      <a href="#M000225">deliver_issue</a>&nbsp;&nbsp;
-      <a href="#M000230">destroy</a>&nbsp;&nbsp;
-      <a href="#M000228">edit</a>&nbsp;&nbsp;
-      <a href="#M000223">index</a>&nbsp;&nbsp;
-      <a href="#M000226">new</a>&nbsp;&nbsp;
-      <a href="#M000224">show</a>&nbsp;&nbsp;
-      <a href="#M000231">subscriptions</a>&nbsp;&nbsp;
-      <a href="#M000229">update</a>&nbsp;&nbsp;
+      <a href="#M000067">create</a>&nbsp;&nbsp;
+      <a href="#M000065">deliver_issue</a>&nbsp;&nbsp;
+      <a href="#M000070">destroy</a>&nbsp;&nbsp;
+      <a href="#M000068">edit</a>&nbsp;&nbsp;
+      <a href="#M000063">index</a>&nbsp;&nbsp;
+      <a href="#M000066">new</a>&nbsp;&nbsp;
+      <a href="#M000064">show</a>&nbsp;&nbsp;
+      <a href="#M000071">subscriptions</a>&nbsp;&nbsp;
+      <a href="#M000069">update</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -118,56 +118,52 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000227" class="method-detail">
-        <a name="M000227"></a>
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
 
         <div class="method-heading">
-          <a href="#M000227" class="method-signature">
+          <a href="#M000067" class="method-signature">
           <span class="method-name">create</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000227-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000227-source">
+            onclick="toggleCode('M000067-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000067-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 24</span>
 24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
 25:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter</span>])
-26:     
-27:     <span class="ruby-ivar">@image_attachment</span> = <span class="ruby-constant">ImageAttachment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:uploaded_data</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:image_attachment_file</span>])
-28:     <span class="ruby-ivar">@image_service</span>    = <span class="ruby-constant">ImageableService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@newsletter</span>, <span class="ruby-ivar">@image_attachment</span>)
-29:     
-30:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-31:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@image_service</span>.<span class="ruby-identifier">save</span>
-32:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:newsletter_created</span>)
-33:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@newsletter</span>) }
-34:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:created</span>, <span class="ruby-identifier">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span> }
-35:       <span class="ruby-keyword kw">else</span>
-36:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;new&quot;</span> }
-37:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:unprocessable_entity</span> }
-38:       <span class="ruby-keyword kw">end</span>
-39:     <span class="ruby-keyword kw">end</span>
-40:   <span class="ruby-keyword kw">end</span>
+26:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+27:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">save</span>
+28:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:newsletter_created</span>)
+29:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span>(<span class="ruby-ivar">@newsletter</span>) }
+30:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:created</span>, <span class="ruby-identifier">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span> }
+31:       <span class="ruby-keyword kw">else</span>
+32:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;new&quot;</span> }
+33:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:unprocessable_entity</span> }
+34:       <span class="ruby-keyword kw">end</span>
+35:     <span class="ruby-keyword kw">end</span>
+36:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000225" class="method-detail">
-        <a name="M000225"></a>
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
 
         <div class="method-heading">
-          <a href="#M000225" class="method-signature">
+          <a href="#M000065" class="method-signature">
           <span class="method-name">deliver_issue</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000225-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000225-source">
+            onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000065-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 13</span>
 13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_issue</span>
@@ -181,68 +177,68 @@
         </div>
       </div>
 
-      <div id="method-M000230" class="method-detail">
-        <a name="M000230"></a>
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
 
         <div class="method-heading">
-          <a href="#M000230" class="method-signature">
+          <a href="#M000070" class="method-signature">
           <span class="method-name">destroy</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000230-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000230-source">
+            onclick="toggleCode('M000070-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000070-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 65</span>
-65:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
-66:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-67:     <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">destroy</span>
-68:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully destroyed newsletter.&quot;</span>
-69:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">newsletters_url</span>
-70:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 58</span>
+58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+59:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+60:     <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">destroy</span>
+61:     <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully destroyed newsletter.&quot;</span>
+62:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">newsletters_url</span>
+63:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000228" class="method-detail">
-        <a name="M000228"></a>
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
 
         <div class="method-heading">
-          <a href="#M000228" class="method-signature">
+          <a href="#M000068" class="method-signature">
           <span class="method-name">edit</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000228-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000228-source">
+            onclick="toggleCode('M000068-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000068-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 42</span>
-42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
-43:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-44:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
+39:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+40:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000223" class="method-detail">
-        <a name="M000223"></a>
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
 
         <div class="method-heading">
-          <a href="#M000223" class="method-signature">
+          <a href="#M000063" class="method-signature">
           <span class="method-name">index</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000223-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000223-source">
+            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000063-source">
 <pre>
    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 5</span>
 5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
@@ -253,19 +249,19 @@
         </div>
       </div>
 
-      <div id="method-M000226" class="method-detail">
-        <a name="M000226"></a>
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
 
         <div class="method-heading">
-          <a href="#M000226" class="method-signature">
+          <a href="#M000066" class="method-signature">
           <span class="method-name">new</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000226-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000226-source">
+            onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000066-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 20</span>
 20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
@@ -276,19 +272,19 @@
         </div>
       </div>
 
-      <div id="method-M000224" class="method-detail">
-        <a name="M000224"></a>
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
 
         <div class="method-heading">
-          <a href="#M000224" class="method-signature">
+          <a href="#M000064" class="method-signature">
           <span class="method-name">show</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000224-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000224-source">
+            onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000064-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 9</span>
  9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
@@ -299,91 +295,88 @@
         </div>
       </div>
 
-      <div id="method-M000231" class="method-detail">
-        <a name="M000231"></a>
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
 
         <div class="method-heading">
-          <a href="#M000231" class="method-signature">
+          <a href="#M000071" class="method-signature">
           <span class="method-name">subscriptions</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000231-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000231-source">
+            onclick="toggleCode('M000071-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000071-source">
 <pre>
-     <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 72</span>
- 72:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subscriptions</span>
- 73:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:commit</span>]
- 74:     <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:check_to_block_your_mail_from_all_newsletters</span>)
- 75:       <span class="ruby-identifier">block</span> = <span class="ruby-constant">NewsletterBlacklist</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:mail</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>])
- 76:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">save</span>
- 77:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:address_blacklisted</span>, <span class="ruby-identifier">:mail</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>]))
- 78:         <span class="ruby-constant">NewsletterSubscription</span>.<span class="ruby-identifier">find_all_by_mail</span>(<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>])).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
- 79:           <span class="ruby-identifier">s</span>.<span class="ruby-identifier">destroy</span>
- 80:         <span class="ruby-keyword kw">end</span>
- 81:       <span class="ruby-keyword kw">else</span>
- 82:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">block</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">1</span>]}.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;&lt;br/&gt;&quot;</span>)
- 83:       <span class="ruby-keyword kw">end</span>
- 84:     <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:unsubscribe_text</span>)
- 85:       <span class="ruby-identifier">msg</span> = <span class="ruby-value str">&quot;&quot;</span>
- 86:       <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:subscription</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:subscription</span>][<span class="ruby-identifier">:newsletters</span>]
- 87:         <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:subscription</span>][<span class="ruby-identifier">:newsletters</span>].<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">newsletter</span>,<span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
- 88:           <span class="ruby-identifier">subscription</span> = <span class="ruby-constant">NewsletterSubscription</span>.<span class="ruby-identifier">find_by_newsletter_id_and_mail</span>(<span class="ruby-identifier">newsletter</span>,<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>]))
- 89:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">subscription</span> 
- 90:             <span class="ruby-identifier">msg</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Remove newsletter subscription #{subscription.newsletter.title} (#{subscription.mail})&lt;br/&gt;&quot;</span>
- 91:             <span class="ruby-identifier">subscription</span>.<span class="ruby-identifier">destroy</span>
- 92:           <span class="ruby-keyword kw">end</span>
- 93:         <span class="ruby-keyword kw">end</span>
- 94:       <span class="ruby-keyword kw">else</span>
- 95:         <span class="ruby-identifier">msg</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:no_newsletters_selected</span>)
- 96:       <span class="ruby-keyword kw">end</span>
- 97:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">msg</span>
- 98:     <span class="ruby-keyword kw">end</span>
- 99:     
-100:     <span class="ruby-ivar">@newsletter_subscriptions</span> = <span class="ruby-constant">NewsletterSubscription</span>.<span class="ruby-identifier">find_all_by_mail_and_token</span>(
-101:         <span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>]), <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>])
-102:         
-103:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 65</span>
+65:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subscriptions</span>
+66:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:commit</span>]
+67:     <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:check_to_block_your_mail_from_all_newsletters</span>)
+68:       <span class="ruby-identifier">block</span> = <span class="ruby-constant">NewsletterBlacklist</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:mail</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>])
+69:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">save</span>
+70:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:address_blacklisted</span>, <span class="ruby-identifier">:mail</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>]))
+71:         <span class="ruby-constant">NewsletterSubscription</span>.<span class="ruby-identifier">find_all_by_mail</span>(<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>])).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+72:           <span class="ruby-identifier">s</span>.<span class="ruby-identifier">destroy</span>
+73:         <span class="ruby-keyword kw">end</span>
+74:       <span class="ruby-keyword kw">else</span>
+75:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">block</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">1</span>]}.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;&lt;br/&gt;&quot;</span>)
+76:       <span class="ruby-keyword kw">end</span>
+77:     <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:unsubscribe_text</span>)
+78:       <span class="ruby-identifier">msg</span> = <span class="ruby-value str">&quot;&quot;</span>
+79:       <span class="ruby-keyword kw">if</span>  <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:subscription</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:subscription</span>][<span class="ruby-identifier">:newsletters</span>]
+80:         <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:subscription</span>][<span class="ruby-identifier">:newsletters</span>].<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">newsletter</span>,<span class="ruby-identifier">idx</span><span class="ruby-operator">|</span>
+81:           <span class="ruby-identifier">subscription</span> = <span class="ruby-constant">NewsletterSubscription</span>.<span class="ruby-identifier">find_by_newsletter_id_and_mail</span>(<span class="ruby-identifier">newsletter</span>,<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>]))
+82:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">subscription</span> 
+83:             <span class="ruby-identifier">msg</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Remove newsletter subscription #{subscription.newsletter.title} (#{subscription.mail})&lt;br/&gt;&quot;</span>
+84:             <span class="ruby-identifier">subscription</span>.<span class="ruby-identifier">destroy</span>
+85:           <span class="ruby-keyword kw">end</span>
+86:         <span class="ruby-keyword kw">end</span>
+87:       <span class="ruby-keyword kw">else</span>
+88:         <span class="ruby-identifier">msg</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:no_newsletters_selected</span>)
+89:       <span class="ruby-keyword kw">end</span>
+90:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">msg</span>
+91:     <span class="ruby-keyword kw">end</span>
+92:     
+93:     <span class="ruby-ivar">@newsletter_subscriptions</span> = <span class="ruby-constant">NewsletterSubscription</span>.<span class="ruby-identifier">find_all_by_mail_and_token</span>(
+94:         <span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:mail</span>]), <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>])
+95:         
+96:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000229" class="method-detail">
-        <a name="M000229"></a>
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
 
         <div class="method-heading">
-          <a href="#M000229" class="method-signature">
+          <a href="#M000069" class="method-signature">
           <span class="method-name">update</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000229-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000229-source">
+            onclick="toggleCode('M000069-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000069-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 46</span>
-46:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
-47:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-48:     <span class="ruby-ivar">@image_attachment</span> = <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">image_attachment</span>
-49:     <span class="ruby-ivar">@image_service</span> = <span class="ruby-constant">ImageableService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@newsletter</span>,<span class="ruby-ivar">@image_attachment</span>)
-50:     <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-51:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@image_service</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter</span>], <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:image_attachment_file</span>])
-52:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:newsletter_successfully_updated</span>)
-53:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {           
-54:           <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">newsletter_path</span>(<span class="ruby-ivar">@newsletter</span>)) 
-55:           }
-56:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-identifier">:ok</span> }
-57:       <span class="ruby-keyword kw">else</span>
-58:         <span class="ruby-ivar">@image_attachment</span> = <span class="ruby-ivar">@image_service</span>.<span class="ruby-identifier">image_attachment</span>
-59:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;edit&quot;</span> }
-60:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:unprocessable_entity</span> }
-61:       <span class="ruby-keyword kw">end</span>
-62:     <span class="ruby-keyword kw">end</span>
-63:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/newsletters_controller.rb, line 42</span>
+42:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
+43:     <span class="ruby-ivar">@newsletter</span> = <span class="ruby-constant">Newsletter</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
+44:    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+45:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter</span>])
+46:         <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:newsletter_successfully_updated</span>)
+47:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {           
+48:           <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">newsletter_path</span>(<span class="ruby-ivar">@newsletter</span>)) 
+49:           }
+50:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">head</span> <span class="ruby-identifier">:ok</span> }
+51:       <span class="ruby-keyword kw">else</span>
+52:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;edit&quot;</span> }
+53:         <span class="ruby-identifier">format</span>.<span class="ruby-identifier">xml</span>  { <span class="ruby-identifier">render</span> <span class="ruby-identifier">:xml</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:unprocessable_entity</span> }
+54:       <span class="ruby-keyword kw">end</span>
+55:     <span class="ruby-keyword kw">end</span>
+56:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

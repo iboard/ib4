@@ -86,7 +86,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000001">deliver_comment_notification</a>&nbsp;&nbsp;
+      <a href="#M000010">deliver_comment_notification</a>&nbsp;&nbsp;
+      <a href="#M000011">rss_body</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -108,26 +109,49 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
 
         <div class="method-heading">
-          <a href="#M000001" class="method-signature">
+          <a href="#M000010" class="method-signature">
           <span class="method-name">deliver_comment_notification</span><span class="method-args">(t_subject,commentable_url)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000001-source">
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/comment.rb, line 6</span>
- 6:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_comment_notification</span>(<span class="ruby-identifier">t_subject</span>,<span class="ruby-identifier">commentable_url</span>)
- 7:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">commentable</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>
- 8:       <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_comment_notification</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">t_subject</span>,<span class="ruby-identifier">commentable_url</span>)
- 9:     <span class="ruby-keyword kw">end</span>
-10:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/comment.rb, line 9</span>
+ 9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_comment_notification</span>(<span class="ruby-identifier">t_subject</span>,<span class="ruby-identifier">commentable_url</span>)
+10:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">commentable</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">nil?</span>
+11:       <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_comment_notification</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">t_subject</span>,<span class="ruby-identifier">commentable_url</span>)
+12:     <span class="ruby-keyword kw">end</span>
+13:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">rss_body</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/comment.rb, line 15</span>
+15:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rss_body</span>
+16:     <span class="ruby-identifier">comment</span>.<span class="ruby-identifier">to_s</span>
+17:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
