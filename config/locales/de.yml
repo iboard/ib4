@@ -210,3 +210,4 @@ de:
   quit_newsletter: 'Newsletter <b>{{name}}</b> kündigen.'
   address_blacklisted: 'Adresse wurde gesperrt.'
   upload_banner_for_newsletter: 'Banner für Newsletter übertragen'
+  remove_from_blacklist: 'die Adresse von der Sperrliste entfernen'
