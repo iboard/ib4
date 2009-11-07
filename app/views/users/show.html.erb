@@ -20,7 +20,9 @@
      
      <!-- INVITE OTHER USERS -->
      <% if @user.invitations_left > 0 %>
-       <% toggle_display_link t(:invite_users) do %>
+       <% toggle_display_link t(:invite_users), 
+            :id => 'invite_user_box',
+            :sticky => session[:stickies][:invite_user_box] do %>
          <% remote_form_for [@user,@user.sent_invitations.build], :html => {:id => 'invitation_form'} do |f| %>
            <p><b><%= f.label :recipient_email, t(:recipient_email) %></b><br/>
               <%= f.text_field :recipient_email, :size => 52 %>

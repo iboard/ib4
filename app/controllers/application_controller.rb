@@ -10,6 +10,7 @@
 class ApplicationController < ActionController::Base
   
   before_filter :set_language
+  before_filter :initialize_settings
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -91,6 +92,10 @@ class ApplicationController < ActionController::Base
   private
   def set_language
     I18n.locale = session['locale'] || DEFAULT_LOCALE
+  end
+  
+  def initialize_settings
+    session[:stickies] ||= {}
   end
 end
 

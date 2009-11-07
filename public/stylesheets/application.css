@@ -293,13 +293,10 @@ input#page_title {
 
 #rootmenu {
 	padding: 10px;
-	padding-right: 0px;
-	padding-top: 0px;
-	margin: 0px;
-	margin-right: 5px;
-	padding-left: 0px;
 	text-align: right;
 	float:right;
+	border: 1px solid #444;
+	background: #FFEB83;
 }
 
 #vert_filler {

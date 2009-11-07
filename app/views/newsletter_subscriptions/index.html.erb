@@ -1,6 +1,6 @@
-<% title t(:subscriptions_of, :title => @newsletter.title) %>
+<% title t(:newsletter_subscriptions_for_title, :title => @newsletter.title) %>
 <h1>
-    <%= t(:subscriptions_of, :title => link_to( @newsletter.title, @newsletter ) ) -%>
+    <%= t(:newsletter_subscriptions_for_title, :title => link_to( @newsletter.title, @newsletter ) ) -%>
     <%= link_to t(:edit), edit_newsletter_path(@newsletter) -%>
 </h1>
 <p>

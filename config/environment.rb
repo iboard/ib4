@@ -18,6 +18,8 @@ Rails::Initializer.run do |config|
   config.gem "will_paginate"
   config.gem "RedCloth"# , :lib => "redcloth", :source => "http://code.whytheluckystiff.net" 
   config.gem "paperclip"  # see http://rdoc.info/projects/thoughtbot/paperclip
+  config.gem 'justinfrench-formtastic', :lib => 'formtastic', :source => 'http://gems.github.com'  
+  
   config.time_zone = 'UTC'
   config.time_zone = 'Vienna'
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

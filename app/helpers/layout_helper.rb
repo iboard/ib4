@@ -54,30 +54,53 @@ module LayoutHelper
   end
   
   # Display the lable as a link which toggles display of the given block
-  def toggle_display_link(label='show more')
+  def toggle_display_link(label='show more', options = {})
   
-     ids = "details_#{rand(999999).round.to_s}"
+     ids                = options[:id] ? options[:id] : "details_#{rand(999999).round.to_s}"
+     sticky             = options[:sticky] ? "" : "style='display: none;'"
+     inverse_sticky     = options[:sticky] ? "style='display: none;'" : ""
      
+     set_sticky         = options[:id] ? remote_function(:update => 'debug',
+                                          :url => { :controller => 'user_sessions', 
+                                          :action => :set_sticky, :id => ids }
+                                         ) : ""
+                                 
+     set_unsticky       = options[:id] ? remote_function(:update => 'debug',
+                                            :url => { :controller => 'user_sessions', 
+                                            :action => :set_unsticky, :id => ids }
+                                         ) : ""
      concat( 
-       "<div id='can_open_#{ids}'>
+       "<div id='can_open_#{ids}' #{inverse_sticky}>
           <a href='##{ids}' 
-          onclick=\"Element.blindDown(\'#{ids}\');Element.hide(\'can_open_#{ids}\'); Element.show(\'can_close_#{ids}\');return false;\">#{CAN_OPEN}&nbsp;#{label}</a>" +
+          onclick=\"Element.blindDown(\'#{ids}\');Element.hide(\'can_open_#{ids}\');"+
+          "Element.show(\'can_close_#{ids}\');"+
+          set_sticky +
+          ";return false;\">#{CAN_OPEN}&nbsp;#{label}</a>" +
         "</div>" +
-        "<div id='can_close_#{ids}'  style='display: none;' >
+        "<div id='can_close_#{ids}'  #{sticky} >
           <a href='##{ids}' 
-          onclick=\"Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');return false;\">#{IS_OPEN}&nbsp;#{label}</a>" +
+          onclick=\"Element.blindUp(\'#{ids}\');  "+"
+            Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');"+
+            set_unsticky +
+            ";return false;\">#{IS_OPEN}&nbsp;#{label}</a>" +
         "</div>"+
-        "<div id='#{ids}' style='display:none;'>"
+        "<div id='#{ids}' #{sticky}>"
      )
      
      yield
      
-     concat( 
-       "<div id='close_up#{ids}'>
+     concat( "<div id='close_up#{ids}'>" )
+     
+     unless options[:no_bottom_link] == true
+       concat("
          <a href='##{ids}' 
-         onclick=\"Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');return false;\">#{CLOSE_UP}&nbsp;#{label}</a>" +
-       "</div>"+
-       "</div>"
+         onclick=\"Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');"+
+         set_unsticky+
+         ";return false;\">#{CLOSE_UP}&nbsp;#{label}</a>"
+       )
+     end
+     
+     concat("</div>\n</div>"
      )
   end  
   
