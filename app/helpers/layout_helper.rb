@@ -69,6 +69,11 @@ module LayoutHelper
                                             :url => { :controller => 'user_sessions', 
                                             :action => :set_unsticky, :id => ids }
                                          ) : ""
+                                         
+     concat("<div style='")
+     concat("width:#{options[:width]};") if options[:width]
+     concat("min-width:#{options[:minwidth]};") if options[:minwidth]
+     concat("'>")
      concat( 
        "<div id='can_open_#{ids}' #{inverse_sticky}>
           <a href='##{ids}' 
@@ -100,7 +105,7 @@ module LayoutHelper
        )
      end
      
-     concat("</div>\n</div>"
+     concat("</div>\n</div>\n</div>"
      )
   end  
   
