@@ -69,6 +69,7 @@
           <%- if is_admin? -%>
               <div id='rootmenu'>
                  <% toggle_display_link 'Administration', 
+                      :minwidth => "200px",
                       :no_bottom_link => true, 
                       :sticky => session[:stickies][:administration_menu],
                       :id => 'administration_menu' do %>
