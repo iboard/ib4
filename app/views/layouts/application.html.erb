@@ -4,14 +4,20 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>iBoard 4 - <%=h yield :title %></title>
-    <%- stylesheet 'application' -%>
+    <%= stylesheet_link_tag( 
+          'application', 
+          'formtastic', 
+          'formtastic-changes', 
+          'textile-editor',     
+          :cache => 'base' )
+    -%>      
     <%- javascript :defaults -%>
     <%- rss_link(:rss, rss_path) -%>
     <%= yield :html_head %>
     <%= textile_editor_initialize -%> 
   </head>
   <body><%= show_spinner -%><div id='fader'>
-    <div id='page'>
+    <div id='page'><div id='debug'></div>
       <div id='banner'>
         <div id='user_display'><!-- floats right -->
           <%- if current_user -%>
@@ -61,10 +67,15 @@
         </div>
         <div id='container'>
           <%- if is_admin? -%>
-            <div id='rootmenu'>Admin:
-               <%= render :partial => '/users/adminmenu' if current_user -%>
-            </div>
-            <div style='clear:right;'></div>
+              <div id='rootmenu'>
+                 <% toggle_display_link 'Administration', 
+                      :no_bottom_link => true, 
+                      :sticky => session[:stickies][:administration_menu],
+                      :id => 'administration_menu' do %>
+                 <%= render :partial => '/users/adminmenu' -%>
+                 <% end %>
+              </div>
+              <div style='clear:right;'></div>
           <%- end -%>
           <div id='flash'>
            <%- flash.each do |name,msg| -%>

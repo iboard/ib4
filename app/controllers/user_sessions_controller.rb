@@ -59,5 +59,15 @@ class UserSessionsController < ApplicationController
   def current_locale
     session['locale'] || DEFAULT_LOCALE
   end
-    
+  
+  def set_sticky
+    session[:stickies][params[:id].to_sym] = true
+    render :nothing => true
+  end
+  
+  def set_unsticky
+    session[:stickies][params[:id].to_sym] = false
+    render :nothing => true  
+  end
+ 
 end
