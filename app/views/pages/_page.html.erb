@@ -50,14 +50,15 @@
           <%= link_to version.number.to_s+':'+version.created_at.to_s, page_path(@page, :version => version.number) %>
           <%= "</b>" if params[:version] == version.number.to_s  || version.number == @page.versions.length %>
           <% if version.changes %>
-            <ul>
+            <blockquote>
               <% version.changes.each do |chg| -%>
-              <li><b><%= chg[0] -%></b><br/>
-                  <div style='display: inline; color: #aaa;'><%= chg[1][0].to_txt -%></div>
-                  <hr>
-                  <div style='display: inline; color: #000;'><%= chg[1][1].to_txt -%></div>
+              <div><% toggle_display_link chg[0] do %>
+                  <div style='color: #bbb; padding: 5px; background: #eee; border-bottom: 1px solid #888;'><%= chg[1][0].to_txt -%></div>
+                  <div style='color: #000; padding: 5px; background: #eeffee; font-size: smaller;'><%= chg[1][1].to_txt -%></div>
+                  <% end %>
+              </div>
               <% end %>
-            </ul>
+            </blockquote>
           <% end %>
         </blockquote>
         <%- end -%>
