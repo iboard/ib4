@@ -4,7 +4,7 @@
       <%= f.label :tagstring, t(:tags) %><br />
       <%= f.text_field :tagstring, :size => 25 %><br/>
       <% toggle_display_link t(:existing_tags), :id=>'existing_tags', :sticky => session[:stickies][:existing_tags] do %>
-         <%= Tag.ascend_by_name.map(&:name).uniq.join(", ") -%>
+      <%= render :partial => '/tags/tag_index' -%>
       <% end %>
       <small>
          <%= t(:comma_or_blank_delimited_plural) -%>
