@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   
   def show
     @comment = Comment.find(params[:id])
+    redirect_to @comment.commentable if @comment.commentable
   end
   
   def new
