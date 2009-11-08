@@ -22,16 +22,19 @@ class Page < ActiveRecord::Base
 
   
   def tagstring
-    tags.map(&:name).join(",")
+    tags.map(&:name).join(", ")
   end
   
   def tagstring=(newstring)
     if self.new_record?
       @save_tags = newstring
     else
-      tags.delete_all
+      logger.info("\n*** STORING TAGS")
+      self.tags.delete_all
+      logger.info("\n*** old tags deleted")
       newstring.split(",").sort.uniq.each do |t|
-        tags.create( :tagable_id => id, :tagable_type => self.class.to_s, :name => t )
+        logger.info("\n*** Add tag #{t} to #{id}")
+        self.tags.create( :tagable_id => id, :tagable_type => self.class.to_s, :name => t.chomp.camelize )
       end
     end
   end  
