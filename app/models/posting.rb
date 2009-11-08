@@ -24,7 +24,7 @@ class Posting < ActiveRecord::Base
   after_save   :update_timestamps
   
   def tagstring
-    tags.map(&:name).join(",")
+    tags.map(&:name).join(", ")
   end
   
   def tagstring=(newstring)

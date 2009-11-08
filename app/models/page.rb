@@ -22,12 +22,12 @@ class Page < ActiveRecord::Base
 
   
   def tagstring
-    tags.map(&:name).join(", ")
+    tags.map { |t| t.name.strip.camelize }.sort.join(", ")
   end
   
   def tagstring=(newstring)
     if self.new_record?
-      @save_tags = newstring
+      @save_tags = newstring.chomp
     else
       logger.info("\n*** STORING TAGS")
       self.tags.delete_all
@@ -40,6 +40,7 @@ class Page < ActiveRecord::Base
   end  
   
   def new_permalink=(newlink)
+    newlink.chomp!
     if Permalink.find_by_url(newlink)
       @permalink_exists_error = true
     else
