@@ -46,16 +46,22 @@
       <% toggle_display_link t(:changes), :id => 'show_changes', :sticky => session[:stickies][:show_changes] do %>
         <% @page.versions.each do |version| %>
         <blockquote>
-          <%= "<b>"+CAN_OPEN+NBSP if params[:version] == version.number.to_s || version.number == @page.versions.length %>
-          <%= link_to version.number.to_s+':'+version.created_at.to_s, page_path(@page, :version => version.number) %>
+          <%= "<b>"+CAN_OPEN+NBSP if params[:version] == version.number.to_s || (version.number == @page.versions.length && params[:version].nil?) %>
+          <%= link_to "Version "+version.number.to_s+': '+version.created_at.to_s, page_path(@page, :version => version.number) %>
           <%= "</b>" if params[:version] == version.number.to_s  || version.number == @page.versions.length %>
           <% if version.changes %>
             <blockquote>
               <% version.changes.each do |chg| -%>
               <div><% toggle_display_link chg[0] do %>
                   <div style='color: #bbb; padding: 5px; background: #eeeeee;'><%= chg[1][0].to_txt -%></div>
+                  <div style='color: #000; padding: 5px; background: #bbbbbb;'>
+                    <h1>-</h1>
+                    <%= chg[1][0].reject { |r| chg[1][1].include? r }.join("\n").to_txt
+                    -%>
+                  </div>
                   <div style='color: #000; padding: 5px; background: #eeffee;'><%= chg[1][1].to_txt -%></div>
                   <div style='color: #000; padding: 5px; background: #aabbaa;'>
+                    <h1>+</h1>
                     <%= chg[1][1].reject { |r| chg[1][0].include? r }.join("\n").to_txt
                     -%>
                   </div>
