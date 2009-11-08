@@ -218,3 +218,4 @@ en:
   latest_version: 'latest'
   next_version: 'next'
   changes: 'Changes'
+  existing_tags: 'existing tags'
