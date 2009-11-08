@@ -88,15 +88,15 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000514">create</a>&nbsp;&nbsp;
-      <a href="#M000511">deliver</a>&nbsp;&nbsp;
-      <a href="#M000512">deliver_test</a>&nbsp;&nbsp;
-      <a href="#M000517">destroy</a>&nbsp;&nbsp;
-      <a href="#M000515">edit</a>&nbsp;&nbsp;
-      <a href="#M000509">index</a>&nbsp;&nbsp;
-      <a href="#M000513">new</a>&nbsp;&nbsp;
-      <a href="#M000510">show</a>&nbsp;&nbsp;
-      <a href="#M000516">update</a>&nbsp;&nbsp;
+      <a href="#M000089">create</a>&nbsp;&nbsp;
+      <a href="#M000086">deliver</a>&nbsp;&nbsp;
+      <a href="#M000087">deliver_test</a>&nbsp;&nbsp;
+      <a href="#M000092">destroy</a>&nbsp;&nbsp;
+      <a href="#M000090">edit</a>&nbsp;&nbsp;
+      <a href="#M000084">index</a>&nbsp;&nbsp;
+      <a href="#M000088">new</a>&nbsp;&nbsp;
+      <a href="#M000085">show</a>&nbsp;&nbsp;
+      <a href="#M000091">update</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -125,24 +125,24 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000514" class="method-detail">
-        <a name="M000514"></a>
+      <div id="method-M000089" class="method-detail">
+        <a name="M000089"></a>
 
         <div class="method-heading">
-          <a href="#M000514" class="method-signature">
+          <a href="#M000089" class="method-signature">
           <span class="method-name">create</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000514-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000514-source">
+            onclick="toggleCode('M000089-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000089-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 58</span>
 58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>
 59:     <span class="ruby-ivar">@newsletter_issue</span> = <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">newsletter_issues</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>])
-60:     <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:html_body</span>] = <span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">textilize</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:body</span>]))
+60:     <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:html_body</span>] = (<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:body</span>]).<span class="ruby-identifier">to_txt</span>
 61:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">save</span>
 62:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully created newsletterissue.&quot;</span>
 63:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">newsletter_newsletter_issue_path</span>(<span class="ruby-ivar">@newsletter</span>,<span class="ruby-ivar">@newsletter_issue</span>)
@@ -155,19 +155,19 @@
         </div>
       </div>
 
-      <div id="method-M000511" class="method-detail">
-        <a name="M000511"></a>
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
 
         <div class="method-heading">
-          <a href="#M000511" class="method-signature">
+          <a href="#M000086" class="method-signature">
           <span class="method-name">deliver</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000511-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000511-source">
+            onclick="toggleCode('M000086-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000086-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 16</span>
 16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver</span>
@@ -180,7 +180,7 @@
 23:          <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">id</span>,
 24:          <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">title</span>,
 25:          <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">subject</span>,
-26:          <span class="ruby-operator">::</span><span class="ruby-constant">ROOT_URL</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">image_attachment</span>.<span class="ruby-identifier">public_filename</span>(<span class="ruby-identifier">:banner</span>),        
+26:          <span class="ruby-operator">::</span><span class="ruby-constant">ROOT_URL</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">banner</span>.<span class="ruby-identifier">url</span>(<span class="ruby-identifier">:default</span>),        
 27:          <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">header</span>,
 28:          <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">footer</span>,
 29:          <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">html_body</span>,
@@ -194,19 +194,19 @@
         </div>
       </div>
 
-      <div id="method-M000512" class="method-detail">
-        <a name="M000512"></a>
+      <div id="method-M000087" class="method-detail">
+        <a name="M000087"></a>
 
         <div class="method-heading">
-          <a href="#M000512" class="method-signature">
+          <a href="#M000087" class="method-signature">
           <span class="method-name">deliver_test</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000512-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000512-source">
+            onclick="toggleCode('M000087-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000087-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 36</span>
 36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_test</span>
@@ -217,7 +217,7 @@
 41:           <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">id</span>,
 42:           <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">title</span>,
 43:           <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">subject</span>,
-44:           <span class="ruby-operator">::</span><span class="ruby-constant">ROOT_URL</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">image_attachment</span>.<span class="ruby-identifier">public_filename</span>(<span class="ruby-identifier">:banner</span>),
+44:           <span class="ruby-operator">::</span><span class="ruby-constant">ROOT_URL</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">banner</span>.<span class="ruby-identifier">url</span>(<span class="ruby-identifier">:default</span>),
 45:           <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">header</span>,
 46:           <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">footer</span>,
 47:           <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">html_body</span>,
@@ -231,19 +231,19 @@
         </div>
       </div>
 
-      <div id="method-M000517" class="method-detail">
-        <a name="M000517"></a>
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
 
         <div class="method-heading">
-          <a href="#M000517" class="method-signature">
+          <a href="#M000092" class="method-signature">
           <span class="method-name">destroy</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000517-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000517-source">
+            onclick="toggleCode('M000092-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000092-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 84</span>
 84:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
@@ -257,19 +257,19 @@
         </div>
       </div>
 
-      <div id="method-M000515" class="method-detail">
-        <a name="M000515"></a>
+      <div id="method-M000090" class="method-detail">
+        <a name="M000090"></a>
 
         <div class="method-heading">
-          <a href="#M000515" class="method-signature">
+          <a href="#M000090" class="method-signature">
           <span class="method-name">edit</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000515-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000515-source">
+            onclick="toggleCode('M000090-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000090-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 69</span>
 69:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>
@@ -280,19 +280,19 @@
         </div>
       </div>
 
-      <div id="method-M000509" class="method-detail">
-        <a name="M000509"></a>
+      <div id="method-M000084" class="method-detail">
+        <a name="M000084"></a>
 
         <div class="method-heading">
-          <a href="#M000509" class="method-signature">
+          <a href="#M000084" class="method-signature">
           <span class="method-name">index</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000509-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000509-source">
+            onclick="toggleCode('M000084-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000084-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 8</span>
  8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
@@ -303,19 +303,19 @@
         </div>
       </div>
 
-      <div id="method-M000513" class="method-detail">
-        <a name="M000513"></a>
+      <div id="method-M000088" class="method-detail">
+        <a name="M000088"></a>
 
         <div class="method-heading">
-          <a href="#M000513" class="method-signature">
+          <a href="#M000088" class="method-signature">
           <span class="method-name">new</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000513-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000513-source">
+            onclick="toggleCode('M000088-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000088-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 54</span>
 54:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new</span>
@@ -326,19 +326,19 @@
         </div>
       </div>
 
-      <div id="method-M000510" class="method-detail">
-        <a name="M000510"></a>
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
 
         <div class="method-heading">
-          <a href="#M000510" class="method-signature">
+          <a href="#M000085" class="method-signature">
           <span class="method-name">show</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000510-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000510-source">
+            onclick="toggleCode('M000085-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000085-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 12</span>
 12:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>
@@ -349,24 +349,24 @@
         </div>
       </div>
 
-      <div id="method-M000516" class="method-detail">
-        <a name="M000516"></a>
+      <div id="method-M000091" class="method-detail">
+        <a name="M000091"></a>
 
         <div class="method-heading">
-          <a href="#M000516" class="method-signature">
+          <a href="#M000091" class="method-signature">
           <span class="method-name">update</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000516-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000516-source">
+            onclick="toggleCode('M000091-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000091-source">
 <pre>
     <span class="ruby-comment cmt"># File app/controllers/newsletter_issues_controller.rb, line 73</span>
 73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update</span>
 74:     <span class="ruby-ivar">@newsletter_issue</span> = <span class="ruby-ivar">@newsletter</span>.<span class="ruby-identifier">newsletter_issues</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:id</span>])
-75:     <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:html_body</span>] = <span class="ruby-identifier">interpret</span>(<span class="ruby-identifier">textilize</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:body</span>]))
+75:     <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:html_body</span>] = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>][<span class="ruby-identifier">:body</span>].<span class="ruby-identifier">to_txt</span>
 76:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@newsletter_issue</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-identifier">:newsletter_issue</span>])
 77:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-value str">&quot;Successfully updated newsletterissue.&quot;</span>
 78:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">newsletter_newsletter_issue_path</span>(<span class="ruby-ivar">@newsletter</span>,<span class="ruby-ivar">@newsletter_issue</span>)

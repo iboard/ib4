@@ -96,10 +96,13 @@ The <a href="User.html">User</a>-Class uses AuthLogic
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000007">deliver_new_account_instructions</a>&nbsp;&nbsp;
-      <a href="#M000006">deliver_password_reset_instructions</a>&nbsp;&nbsp;
-      <a href="#M000004">display_name_and_user</a>&nbsp;&nbsp;
-      <a href="#M000005">is_admin?</a>&nbsp;&nbsp;
+      <a href="#M000016">commited_friendships</a>&nbsp;&nbsp;
+      <a href="#M000022">deliver_new_account_instructions</a>&nbsp;&nbsp;
+      <a href="#M000021">deliver_password_reset_instructions</a>&nbsp;&nbsp;
+      <a href="#M000019">display_name_and_user</a>&nbsp;&nbsp;
+      <a href="#M000020">is_admin?</a>&nbsp;&nbsp;
+      <a href="#M000017">not_commited_friendships</a>&nbsp;&nbsp;
+      <a href="#M000018">not_confirmed_friendships</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -121,95 +124,186 @@ The <a href="User.html">User</a>-Class uses AuthLogic
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
 
         <div class="method-heading">
-          <a href="#M000007" class="method-signature">
-          <span class="method-name">deliver_new_account_instructions</span><span class="method-args">(subject)</span>
+          <a href="#M000016" class="method-signature">
+          <span class="method-name">commited_friendships</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+list all friends of your friendships-list when they found in
+inverse_friendships too
+</p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000007-source">
+            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000016-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 35</span>
-35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_new_account_instructions</span>(<span class="ruby-identifier">subject</span>)
-36:     <span class="ruby-identifier">reset_perishable_token!</span>  
-37:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_new_account_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 32</span>
+32:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">commited_friendships</span>
+33:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@commited_friendships</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@commited_friendships</span>
+34:     <span class="ruby-ivar">@commited_friendships</span> = <span class="ruby-identifier">friendships</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+35:       <span class="ruby-identifier">inverse_friendships</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">friend_id</span>).<span class="ruby-identifier">nil?</span>
+36:     }
+37:     <span class="ruby-ivar">@commited_friendships</span>
 38:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
 
         <div class="method-heading">
-          <a href="#M000006" class="method-signature">
+          <a href="#M000022" class="method-signature">
+          <span class="method-name">deliver_new_account_instructions</span><span class="method-args">(subject)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 71</span>
+71:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_new_account_instructions</span>(<span class="ruby-identifier">subject</span>)
+72:     <span class="ruby-identifier">reset_perishable_token!</span>  
+73:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_new_account_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
+74:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="#M000021" class="method-signature">
           <span class="method-name">deliver_password_reset_instructions</span><span class="method-args">(subject)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
+            onclick="toggleCode('M000021-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000021-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 30</span>
-30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_password_reset_instructions</span>(<span class="ruby-identifier">subject</span>)
-31:     <span class="ruby-identifier">reset_perishable_token!</span>  
-32:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_password_reset_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
-33:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deliver_password_reset_instructions</span>(<span class="ruby-identifier">subject</span>)
+67:     <span class="ruby-identifier">reset_perishable_token!</span>  
+68:     <span class="ruby-constant">UserMailer</span>.<span class="ruby-identifier">deliver_password_reset_instructions</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">subject</span>)  
+69:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
 
         <div class="method-heading">
-          <a href="#M000004" class="method-signature">
+          <a href="#M000019" class="method-signature">
           <span class="method-name">display_name_and_user</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000004-source">
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 22</span>
-22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display_name_and_user</span>
-23:     <span class="ruby-node">&quot;#{fullname} (#{username})&quot;</span>
-24:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 58</span>
+58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display_name_and_user</span>
+59:     <span class="ruby-node">&quot;#{fullname} (#{username})&quot;</span>
+60:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
 
         <div class="method-heading">
-          <a href="#M000005" class="method-signature">
+          <a href="#M000020" class="method-signature">
           <span class="method-name">is_admin?</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/models/user.rb, line 26</span>
-26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_admin?</span>
-27:     <span class="ruby-identifier">is_admin</span>
-28:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 62</span>
+62:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_admin?</span>
+63:     <span class="ruby-identifier">is_admin</span>
+64:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="#M000017" class="method-signature">
+          <span class="method-name">not_commited_friendships</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+list all friendships which are not found in inverse_friendships
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_commited_friendships</span>
+42:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@not_commited_friendships</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@not_commited_friendships</span>
+43:     <span class="ruby-ivar">@not_commited_friendships</span> = <span class="ruby-identifier">friendships</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+44:       <span class="ruby-operator">!</span> <span class="ruby-identifier">inverse_friendships</span>.<span class="ruby-identifier">find_by_user_id</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">friend_id</span>).<span class="ruby-identifier">nil?</span>
+45:     }
+46:     <span class="ruby-ivar">@not_commited_friendships</span>
+47:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="#M000018" class="method-signature">
+          <span class="method-name">not_confirmed_friendships</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+list friendships which you have not accepted yet
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/user.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_confirmed_friendships</span>
+51:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@not_confirmed_friendships</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@not_confirmed_friendships</span>
+52:     <span class="ruby-ivar">@not_confirmed_friendships</span> = <span class="ruby-identifier">inverse_friendships</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+53:       <span class="ruby-operator">!</span> <span class="ruby-identifier">friendships</span>.<span class="ruby-identifier">find_by_friend_id</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">nil?</span>
+54:     }
+55:     <span class="ruby-ivar">@not_confirmed_friendships</span>
+56:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

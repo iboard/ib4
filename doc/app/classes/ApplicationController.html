@@ -101,14 +101,15 @@ controllers.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000066">is_admin?</a>&nbsp;&nbsp;
-      <a href="#M000068">is_owner?</a>&nbsp;&nbsp;
-      <a href="#M000069">is_owner_or_admin?</a>&nbsp;&nbsp;
-      <a href="#M000067">is_user?</a>&nbsp;&nbsp;
-      <a href="#M000065">require_admin</a>&nbsp;&nbsp;
-      <a href="#M000064">require_admin_and_root</a>&nbsp;&nbsp;
-      <a href="#M000063">require_no_user</a>&nbsp;&nbsp;
-      <a href="#M000062">require_user</a>&nbsp;&nbsp;
+      <a href="#M000120">is_admin?</a>&nbsp;&nbsp;
+      <a href="#M000124">is_current_user?</a>&nbsp;&nbsp;
+      <a href="#M000122">is_owner?</a>&nbsp;&nbsp;
+      <a href="#M000123">is_owner_or_admin?</a>&nbsp;&nbsp;
+      <a href="#M000121">is_user?</a>&nbsp;&nbsp;
+      <a href="#M000119">require_admin</a>&nbsp;&nbsp;
+      <a href="#M000118">require_admin_and_root</a>&nbsp;&nbsp;
+      <a href="#M000117">require_no_user</a>&nbsp;&nbsp;
+      <a href="#M000116">require_user</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -130,103 +131,126 @@ controllers.
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000066" class="method-detail">
-        <a name="M000066"></a>
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
 
         <div class="method-heading">
-          <a href="#M000066" class="method-signature">
+          <a href="#M000120" class="method-signature">
           <span class="method-name">is_admin?</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000066-source">
+            onclick="toggleCode('M000120-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000120-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 51</span>
-51:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_admin?</span>
-52:     <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_admin?</span>
-53:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 52</span>
+52:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_admin?</span>
+53:     <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_admin?</span>
+54:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000068" class="method-detail">
-        <a name="M000068"></a>
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
 
         <div class="method-heading">
-          <a href="#M000068" class="method-signature">
+          <a href="#M000124" class="method-signature">
+          <span class="method-name">is_current_user?</span><span class="method-args">(user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000124-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000124-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 68</span>
+68:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_current_user?</span>(<span class="ruby-identifier">user</span>)
+69:     <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>
+70:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <a href="#M000122" class="method-signature">
           <span class="method-name">is_owner?</span><span class="method-args">(item)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000068-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000068-source">
+            onclick="toggleCode('M000122-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000122-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 59</span>
-59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_owner?</span>(<span class="ruby-identifier">item</span>)
-60:     <span class="ruby-identifier">is_user?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span> 
-61:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 60</span>
+60:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_owner?</span>(<span class="ruby-identifier">item</span>)
+61:     <span class="ruby-identifier">is_user?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span> 
+62:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000069" class="method-detail">
-        <a name="M000069"></a>
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
 
         <div class="method-heading">
-          <a href="#M000069" class="method-signature">
+          <a href="#M000123" class="method-signature">
           <span class="method-name">is_owner_or_admin?</span><span class="method-args">(item)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000069-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000069-source">
+            onclick="toggleCode('M000123-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000123-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 63</span>
-63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_owner_or_admin?</span>(<span class="ruby-identifier">item</span>)
-64:     (<span class="ruby-identifier">is_admin?</span> <span class="ruby-operator">||</span> ( <span class="ruby-identifier">is_user?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>))
-65:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 64</span>
+64:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_owner_or_admin?</span>(<span class="ruby-identifier">item</span>)
+65:     (<span class="ruby-identifier">is_admin?</span> <span class="ruby-operator">||</span> ( <span class="ruby-identifier">is_user?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>))
+66:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000067" class="method-detail">
-        <a name="M000067"></a>
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
 
         <div class="method-heading">
-          <a href="#M000067" class="method-signature">
+          <a href="#M000121" class="method-signature">
           <span class="method-name">is_user?</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000067-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000067-source">
+            onclick="toggleCode('M000121-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000121-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 55</span>
-55:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_user?</span>
-56:     <span class="ruby-identifier">current_user</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">nil</span>
-57:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 56</span>
+56:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_user?</span>
+57:     <span class="ruby-identifier">current_user</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">nil</span>
+58:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000065" class="method-detail">
-        <a name="M000065"></a>
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
 
         <div class="method-heading">
-          <a href="#M000065" class="method-signature">
+          <a href="#M000119" class="method-signature">
           <span class="method-name">require_admin</span><span class="method-args">()</span>
           </a>
         </div>
@@ -236,26 +260,26 @@ controllers.
 Redirect to login path if current_user is not admin
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000065-source">
+            onclick="toggleCode('M000119-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000119-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 43</span>
-43:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin</span>
-44:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">is_admin?</span>
-45:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_required</span>)
-46:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
-47:     <span class="ruby-keyword kw">end</span>
-48:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 44</span>
+44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin</span>
+45:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">is_admin?</span>
+46:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_required</span>)
+47:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
+48:     <span class="ruby-keyword kw">end</span>
+49:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000064" class="method-detail">
-        <a name="M000064"></a>
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
 
         <div class="method-heading">
-          <a href="#M000064" class="method-signature">
+          <a href="#M000118" class="method-signature">
           <span class="method-name">require_admin_and_root</span><span class="method-args">()</span>
           </a>
         </div>
@@ -265,26 +289,26 @@ Redirect to login path if current_user is not admin
 Redirect to login path if current_user is not admin
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000064-source">
+            onclick="toggleCode('M000118-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000118-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 35</span>
-35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin_and_root</span>
-36:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">is_admin?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">username</span>.<span class="ruby-identifier">eql?</span>(<span class="ruby-value str">'root'</span>)
-37:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_root</span>)
-38:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
-39:     <span class="ruby-keyword kw">end</span>
-40:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 36</span>
+36:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_admin_and_root</span>
+37:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">is_admin?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">username</span>.<span class="ruby-identifier">eql?</span>(<span class="ruby-value str">'root'</span>)
+38:       <span class="ruby-identifier">flash</span>[<span class="ruby-identifier">:error</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-identifier">:admin_root</span>)
+39:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
+40:     <span class="ruby-keyword kw">end</span>
+41:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000063" class="method-detail">
-        <a name="M000063"></a>
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
 
         <div class="method-heading">
-          <a href="#M000063" class="method-signature">
+          <a href="#M000117" class="method-signature">
           <span class="method-name">require_no_user</span><span class="method-args">()</span>
           </a>
         </div>
@@ -294,23 +318,23 @@ Redirect to login path if current_user is not admin
 Logout if logged_in
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000063-source">
+            onclick="toggleCode('M000117-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000117-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 30</span>
-30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_no_user</span>
-31:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">logout_path</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current_user</span>
-32:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_no_user</span>
+32:     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">logout_path</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">current_user</span>
+33:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000062" class="method-detail">
-        <a name="M000062"></a>
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
 
         <div class="method-heading">
-          <a href="#M000062" class="method-signature">
+          <a href="#M000116" class="method-signature">
           <span class="method-name">require_user</span><span class="method-args">()</span>
           </a>
         </div>
@@ -320,15 +344,15 @@ Logout if logged_in
 Redirect to login_path if no current user
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000062-source">
+            onclick="toggleCode('M000116-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000116-source">
 <pre>
-    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 23</span>
-23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_user</span>
-24:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user</span>
-25:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
-26:     <span class="ruby-keyword kw">end</span>
-27:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File app/controllers/application_controller.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">require_user</span>
+25:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">current_user</span>
+26:       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
+27:     <span class="ruby-keyword kw">end</span>
+28:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
