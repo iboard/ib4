@@ -213,3 +213,8 @@ en:
   upload_banner_for_newsletter: 'Upload banner for newsletter'
   remove_from_blacklist: 'to remove this address from the blacklist'
   newsletter_successfully_updated: 'Newsletter successfully updated'
+  initialized_version: 'Initial version'
+  previous_version: 'perevious'
+  latest_version: 'latest'
+  next_version: 'next'
+  changes: 'Changes'

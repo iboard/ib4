@@ -16,15 +16,52 @@
         -%>
   <%- end -%>
   
-  <%- if current_user && is_owner_or_admin?(@page) -%>
-    <br/>
-    <%= link_to "Edit", edit_page_path(@page) %> |
-    <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>
-  <%- end -%>
   
   <div style="clear:'left';"></div>
+  Version <%= @page.version || t(:initialized_version) -%>:
+  <% if @page.version > 1 %>  
+      <%= link_to t(:previous_version), :version => @page.version-1 %>  
+  <% end %>
+  <% if @page.version < @page.versions.length %>  
+      <%= "|" if @page.version > 1 -%>
+      <%= link_to t(:next_version), :version => @page.version+1 %>  
+  <% end %>
+  <% if params[:version] %>  
+    <%= "|" if @page.version > 1 || @page.version < @page.versions.length -%>
+    <%= link_to t(:latest_version), :version => nil %>  
+  <% end %>
+ 
+  <%- if current_user && is_owner_or_admin?(@page) -%>
+    <br/> <%= link_to "Edit", edit_page_path(@page) %> |
+    <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>
+  <%- end -%>
 </div>
 
 <%= render :partial => 'page_short', :locals => {:page => @page } %>
 
 <%= @page.body.to_txt %>
+
+  <% if @page.versions.length > 1 %>
+    <div>
+      <% toggle_display_link t(:changes), :id => 'show_changes', :sticky => session[:stickies][:show_changes] do %>
+        <% @page.versions.each do |version| %>
+        <blockquote>
+          <%= "<b>"+CAN_OPEN+NBSP if params[:version] == version.number.to_s || version.number == @page.versions.length %>
+          <%= link_to version.number.to_s+':'+version.created_at.to_s, page_path(@page, :version => version.number) %>
+          <%= "</b>" if params[:version] == version.number.to_s  || version.number == @page.versions.length %>
+          <% if version.changes %>
+            <ul>
+              <% version.changes.each do |chg| -%>
+              <li><b><%= chg[0] -%></b><br/>
+                  <div style='display: inline; color: #aaa;'><%= chg[1][0].to_txt -%></div>
+                  <hr>
+                  <div style='display: inline; color: #000;'><%= chg[1][1].to_txt -%></div>
+              <% end %>
+            </ul>
+          <% end %>
+        </blockquote>
+        <%- end -%>
+      <% end %>
+    </div>
+  <% end %>
+  

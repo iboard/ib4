@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091027170848) do
+ActiveRecord::Schema.define(:version => 20091108111719) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -177,5 +177,17 @@ ActiveRecord::Schema.define(:version => 20091027170848) do
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
+
+  create_table "versions", :force => true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.text     "changes"
+    t.integer  "number"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
+  add_index "versions", ["number"], :name => "index_versions_on_number"
+  add_index "versions", ["versioned_type", "versioned_id"], :name => "index_versions_on_versioned_type_and_versioned_id"
 
 end

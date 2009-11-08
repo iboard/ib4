@@ -212,3 +212,8 @@ de:
   upload_banner_for_newsletter: 'Banner für Newsletter übertragen'
   remove_from_blacklist: 'die Adresse von der Sperrliste entfernen'
   newsletter_successfully_updated: 'Newsletter-Änderungen gespeichert.'
+  initialized_version: 'Erste Version'
+  previous_version: 'vorherige'
+  latest_version: 'letzte'
+  next_version: 'nächste'
+  changes: 'Änderungen'

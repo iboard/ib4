@@ -13,13 +13,17 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  
+  # used gems
   config.gem "authlogic"
   config.gem "searchlogic"
   config.gem "will_paginate"
   config.gem "RedCloth"# , :lib => "redcloth", :source => "http://code.whytheluckystiff.net" 
   config.gem "paperclip"  # see http://rdoc.info/projects/thoughtbot/paperclip
   config.gem 'justinfrench-formtastic', :lib => 'formtastic', :source => 'http://gems.github.com'  
+  config.gem 'vestal_versions'
   
+  # Timezone and Locale
   config.time_zone = 'UTC'
   config.time_zone = 'Vienna'
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.

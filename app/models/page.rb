@@ -1,4 +1,7 @@
 class Page < ActiveRecord::Base
+  
+  versioned
+  
   belongs_to  :user                                                 # the user a posting was written by
   
   has_many    :categorizables, :as => :categorizable                # Jointable for categories

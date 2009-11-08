@@ -35,6 +35,7 @@ class PagesController < ApplicationController
     else
       @page = Page.find(params[:id])
     end
+    @page.revert_to(params[:version].to_i) if params[:version]  
   end
   
   def new
