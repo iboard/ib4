@@ -96,9 +96,15 @@ Model for Tags assigned polymorphic to any tagable model
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
+<<<<<<< HEAD:doc/app/classes/Tag.html
       <a href="#M000091">get_tag_style</a>&nbsp;&nbsp;
       <a href="#M000090">tagables</a>&nbsp;&nbsp;
       <a href="#M000092">title</a>&nbsp;&nbsp;
+=======
+      <a href="#M000053">get_tag_style</a>&nbsp;&nbsp;
+      <a href="#M000052">tagables</a>&nbsp;&nbsp;
+      <a href="#M000054">title</a>&nbsp;&nbsp;
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
       </div>
     </div>
 
@@ -120,19 +126,32 @@ Model for Tags assigned polymorphic to any tagable model
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
+<<<<<<< HEAD:doc/app/classes/Tag.html
       <div id="method-M000091" class="method-detail">
         <a name="M000091"></a>
 
         <div class="method-heading">
           <a href="#M000091" class="method-signature">
+=======
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
           <span class="method-name">get_tag_style</span><span class="method-args">(tagname)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
+<<<<<<< HEAD:doc/app/classes/Tag.html
             onclick="toggleCode('M000091-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000091-source">
+=======
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
 <pre>
     <span class="ruby-comment cmt"># File app/models/tag.rb, line 19</span>
 19:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_tag_style</span>(<span class="ruby-identifier">tagname</span>)
@@ -155,19 +174,32 @@ Model for Tags assigned polymorphic to any tagable model
         </div>
       </div>
 
+<<<<<<< HEAD:doc/app/classes/Tag.html
       <div id="method-M000092" class="method-detail">
         <a name="M000092"></a>
 
         <div class="method-heading">
           <a href="#M000092" class="method-signature">
+=======
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="#M000054" class="method-signature">
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
           <span class="method-name">title</span><span class="method-args">(t)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
+<<<<<<< HEAD:doc/app/classes/Tag.html
             onclick="toggleCode('M000092-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000092-source">
+=======
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
 <pre>
     <span class="ruby-comment cmt"># File app/models/tag.rb, line 35</span>
 35:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">title</span>(<span class="ruby-identifier">t</span>)
@@ -185,24 +217,37 @@ Model for Tags assigned polymorphic to any tagable model
 
       <h3 class="section-bar">Public Instance methods</h3>
 
+<<<<<<< HEAD:doc/app/classes/Tag.html
       <div id="method-M000090" class="method-detail">
         <a name="M000090"></a>
 
         <div class="method-heading">
           <a href="#M000090" class="method-signature">
+=======
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
           <span class="method-name">tagables</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
+<<<<<<< HEAD:doc/app/classes/Tag.html
             onclick="toggleCode('M000090-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000090-source">
+=======
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Tag.html
 <pre>
     <span class="ruby-comment cmt"># File app/models/tag.rb, line 12</span>
 12:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tagables</span>
 13:     <span class="ruby-ivar">@tagables</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">find_all_by_name</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'name'</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tag</span><span class="ruby-operator">|</span>
-14:                      <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{tag.tagable_type}.find(#{tag.tagable_id})&quot;</span>)
+14:        <span class="ruby-identifier">eval</span>( <span class="ruby-node">&quot;#{tag.tagable_type}.find(#{tag.tagable_id})&quot;</span>)
 15:     }
 16:     <span class="ruby-ivar">@tagables</span>.<span class="ruby-identifier">uniq</span>
 17:   <span class="ruby-keyword kw">end</span>

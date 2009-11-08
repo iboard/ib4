@@ -86,8 +86,13 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
+<<<<<<< HEAD:doc/app/classes/Newsletter.html
       <a href="#M000122">render_footer</a>&nbsp;&nbsp;
       <a href="#M000121">render_header</a>&nbsp;&nbsp;
+=======
+      <a href="#M000111">render_footer</a>&nbsp;&nbsp;
+      <a href="#M000110">render_header</a>&nbsp;&nbsp;
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Newsletter.html
       </div>
     </div>
 
@@ -109,46 +114,82 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
+<<<<<<< HEAD:doc/app/classes/Newsletter.html
       <div id="method-M000122" class="method-detail">
         <a name="M000122"></a>
 
         <div class="method-heading">
           <a href="#M000122" class="method-signature">
           <span class="method-name">render_footer</span><span class="method-args">(SUBSCRIPTION_URL,newletter_mail,block_mail_url)</span>
+=======
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <a href="#M000111" class="method-signature">
+          <span class="method-name">render_footer</span><span class="method-args">(subscription_url,newletter_mail,block_mail_url)</span>
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Newsletter.html
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
+<<<<<<< HEAD:doc/app/classes/Newsletter.html
             onclick="toggleCode('M000122-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000122-source">
 <pre>
     <span class="ruby-comment cmt"># File app/models/newsletter.rb, line 20</span>
 20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_footer</span>(<span class="ruby-constant">SUBSCRIPTION_URL</span>,<span class="ruby-identifier">newletter_mail</span>,<span class="ruby-identifier">block_mail_url</span>)
 21:     <span class="ruby-identifier">footer</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTION_URL/</span>, <span class="ruby-constant">SUBSCRIPTION_URL</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/NEWSLETTER_MAIL/</span>,<span class="ruby-identifier">newletter_mail</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/BLOCK_MAIL_URL/</span>,<span class="ruby-identifier">block_mail_url</span>)
+=======
+            onclick="toggleCode('M000111-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000111-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/newsletter.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_footer</span>(<span class="ruby-identifier">subscription_url</span>,<span class="ruby-identifier">newletter_mail</span>,<span class="ruby-identifier">block_mail_url</span>)
+21:     <span class="ruby-identifier">footer</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTION_URL/</span>, <span class="ruby-identifier">subscription_url</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/NEWSLETTER_MAIL/</span>,<span class="ruby-identifier">newletter_mail</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/BLOCK_MAIL_URL/</span>,<span class="ruby-identifier">block_mail_url</span>)
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Newsletter.html
 22:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
+<<<<<<< HEAD:doc/app/classes/Newsletter.html
       <div id="method-M000121" class="method-detail">
         <a name="M000121"></a>
 
         <div class="method-heading">
           <a href="#M000121" class="method-signature">
           <span class="method-name">render_header</span><span class="method-args">(SUBSCRIPTION_URL,newletter_mail,block_mail_url)</span>
+=======
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <a href="#M000110" class="method-signature">
+          <span class="method-name">render_header</span><span class="method-args">(subscription_url,newletter_mail,block_mail_url)</span>
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Newsletter.html
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
+<<<<<<< HEAD:doc/app/classes/Newsletter.html
             onclick="toggleCode('M000121-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000121-source">
 <pre>
     <span class="ruby-comment cmt"># File app/models/newsletter.rb, line 16</span>
 16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_header</span>(<span class="ruby-constant">SUBSCRIPTION_URL</span>,<span class="ruby-identifier">newletter_mail</span>,<span class="ruby-identifier">block_mail_url</span>)
 17:     <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTION_URL/</span>, <span class="ruby-constant">SUBSCRIPTION_URL</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/NEWSLETTER_MAIL/</span>,<span class="ruby-identifier">newletter_mail</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/BLOCK_MAIL_URL/</span>,<span class="ruby-identifier">block_mail_url</span>)
+=======
+            onclick="toggleCode('M000110-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000110-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/newsletter.rb, line 16</span>
+16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_header</span>(<span class="ruby-identifier">subscription_url</span>,<span class="ruby-identifier">newletter_mail</span>,<span class="ruby-identifier">block_mail_url</span>)
+17:     <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/SUBSCRIPTION_URL/</span>, <span class="ruby-identifier">subscription_url</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/NEWSLETTER_MAIL/</span>,<span class="ruby-identifier">newletter_mail</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/BLOCK_MAIL_URL/</span>,<span class="ruby-identifier">block_mail_url</span>)
+>>>>>>> e9dd08d41b9fcfb72fefdf9e29056be9fd907ebe:doc/app/classes/Newsletter.html
 18:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
