@@ -43,7 +43,7 @@ class Tag < ActiveRecord::Base
   
   private
   def camelize
-    self.name = self.name.chomp.camelize unless name.nil?
+    self.name = self.name.strip.camelize unless name.nil?
   end
   
 end
