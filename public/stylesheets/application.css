@@ -27,6 +27,18 @@ a:hover {
 	text-decoration: underline;
 }
 
+pre {
+	padding: 20px;
+	padding-top: 5px;
+	border: 1px solid #444;
+	background: #D2E0EF;
+	overflow: auto;
+	line-height: 120%;
+	font-family: Monaco, Courier new, monospace;
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
 H1 { font-size: 20px; }
 H2 { font-size: 16px; }
