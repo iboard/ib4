@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   
   before_filter   :require_user, :only => [:new, :edit, :create, :update, :destroy]
   before_filter   :require_owner_or_admin, :only => [:edit,:update,:destroy]
-  
+  after_filter    :clear_cache, :only => [:create,:update,:destroy]
+    
   def index
     if params[:category_id]
       # fetch postings of this category only...
@@ -85,5 +86,9 @@ class PagesController < ApplicationController
       flash[:error] = t(:access_denied_edit)
       render :show
     end
+  end
+  
+  def clear_cache
+    clear_tags_cache
   end
 end

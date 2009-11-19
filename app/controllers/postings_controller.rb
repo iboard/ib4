@@ -9,6 +9,7 @@ class PostingsController < ApplicationController
 
   before_filter   :require_user, :only => [:new, :edit, :create, :update, :destroy]
   before_filter   :require_owner_or_admin, :only => [:edit,:update,:destroy]
+  after_filter    :clear_cache, :only => [:create,:update,:destroy]
   
   # If a category_id is given postings are restricted to the given category.
   # If no category_id is given postings are searched with searchlogic
@@ -88,4 +89,9 @@ class PostingsController < ApplicationController
       render :show
     end
   end
+  
+  def clear_cache
+    clear_tags_cache
+  end
+  
 end

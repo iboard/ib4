@@ -4,7 +4,7 @@
 #
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-
+  
    # return true if url is part of the actual requested url
    def mark_active_link(item,url)
      l = link_to(t(item[:label].to_s.downcase), item[:url])
@@ -34,6 +34,7 @@ module ApplicationHelper
       periodically_call_remote(:url => {:controller => 'user_sessions', :action => 'get_ajax_msg'}, :frequency => '1', 
           :update => 'ajax_msg');
    end
+   
       
 end
 

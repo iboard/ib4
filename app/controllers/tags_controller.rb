@@ -5,6 +5,9 @@
 # Tag saving is handeld by Tabables itself. The TagsController shows a Tag-Cloud via index and all Tagables of a Tag through show(Tagname)
 class TagsController < ApplicationController
 
+  caches_action :index
+  
+
   # Unique tags sorted by name
   def index
     @tagnames = Tag.ascend_by_name.map { |t| t.name }.uniq

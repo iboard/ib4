@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?
+  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?,:clear_tags_cache
   
   # Redirect to login_path if no current user    
   def require_user
@@ -70,6 +70,13 @@ class ApplicationController < ActionController::Base
   end
   
   
+  def clear_tags_cache
+    expire_action :controller => :tags, :action => :index
+    expire_fragment :tags_index
+  end
+  
+  
+  
   private
   
   # Get/set the cached current session
@@ -89,7 +96,6 @@ class ApplicationController < ActionController::Base
     @server_root_path = request.request_uri.gsub(/\/\/(.*)\/(.*)/, '//$1/')
   end
     
-  private
   def set_language
     I18n.locale = session['locale'] || DEFAULT_LOCALE
   end

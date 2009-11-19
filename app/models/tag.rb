@@ -7,7 +7,6 @@ class Tag < ActiveRecord::Base
   
   belongs_to  :tagable, :polymorphic => true
   validates_uniqueness_of :name, :scope => [:tagable_id, :tagable_type]
-  before_save :camelize
   
   def tagables
     @tagables = Tag.find_all_by_name(self.name, :order => 'name').map { |tag|
@@ -45,5 +44,5 @@ class Tag < ActiveRecord::Base
   def camelize
     self.name = self.name.strip.camelize unless name.nil?
   end
-  
+    
 end
