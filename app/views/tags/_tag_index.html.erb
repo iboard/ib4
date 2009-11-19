@@ -1,10 +1,10 @@
 <!-- BEGINN partial tags/_tag_index.html.erb -->
 <% cache(:tags_index) do %>
-<%= Tag.all.map(&:name).uniq.sort.map { |tagname|
-      link_to( tagname, tag_path(tagname), 
-               :style => Tag.get_tag_style(tagname)
-              )
-    }.join(", \n")
--%>
+  <%= Tag.all.map(&:name).uniq.sort.map { |tagname|
+        link_to( tagname, tag_path(tagname), 
+                 :style => Tag.get_tag_style(tagname)
+                )
+      }.join(", \n")
+  -%>
 <% end %>
 <!-- END partial tags/_tag_index.html.erb -->
