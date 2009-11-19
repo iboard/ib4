@@ -17,13 +17,15 @@
   <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>
   <ul>
     <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_postings), postings_path -%> (<%= Posting.all.length -%>)</li>
-    <%- Category.ascend_by_name.each do |category| -%>
-      <li style='padding-left: 0px;margin-left:-15px;'>
-        <%= link_to category.name,category_path(category) -%> 
-        (<%= category.categorizables.categorizable_type_is('Posting').length -%>/
-        <%= category.categorizables.categorizable_type_is('Page').length -%>)
-      </li>
-    <%- end -%>
+    <% cache(:categories_index_postings) do %>
+      <%- Category.ascend_by_name.each do |category| -%>
+        <li style='padding-left: 0px;margin-left:-15px;'>
+          <%= link_to category.name,category_path(category) -%> 
+          (<%= category.categorizables.categorizable_type_is('Posting').length -%>/
+          <%= category.categorizables.categorizable_type_is('Page').length -%>)
+        </li>
+      <%- end -%>
+    <% end %>
   </ul>
   
   <h3><br/><%= link_to CAN_OPEN+NBSP+t(:tags), tags_path -%></h3>

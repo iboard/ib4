@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?,:clear_tags_cache
+  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?,:clear_tags_cache,:clear_category_cache
   
   # Redirect to login_path if no current user    
   def require_user
@@ -75,6 +75,10 @@ class ApplicationController < ActionController::Base
     expire_fragment :tags_index
   end
   
+  def clear_category_cache
+    expire_fragment :categories_index_postings
+    expire_fragment :categories_index_pages
+  end
   
   
   private

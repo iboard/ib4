@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
   
   # Categories accessable by admin-users only
   before_filter :require_admin, :except => [:show,:index]
+  caches_action :index
   
   def index
     @categories = Category.ascend_by_name.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)

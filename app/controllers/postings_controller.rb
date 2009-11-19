@@ -92,6 +92,7 @@ class PostingsController < ApplicationController
   
   def clear_cache
     clear_tags_cache
+    clear_category_cache
   end
   
 end
