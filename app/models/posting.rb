@@ -33,7 +33,7 @@ class Posting < ActiveRecord::Base
     else
       tags.delete_all
       newstring.split(",").sort.uniq.each do |t|
-        tags.create( :tagable_id => id, :tagable_type => self.class.to_s, :name => t )
+        tags.create( :tagable_id => id, :tagable_type => self.class.to_s, :name => t.strip.camelize )
       end
     end
   end  

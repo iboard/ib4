@@ -37,7 +37,7 @@ class Page < ActiveRecord::Base
       logger.info("\n*** old tags deleted")
       newstring.split(",").sort.uniq.each do |t|
         logger.info("\n*** Add tag #{t} to #{id}")
-        self.tags.create( :tagable_id => id, :tagable_type => self.class.to_s, :name => t.chomp.camelize )
+        self.tags.create( :tagable_id => id, :tagable_type => self.class.to_s, :name => t.strip.camelize )
       end
     end
   end  

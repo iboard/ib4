@@ -153,7 +153,7 @@ de:
   sender_wrote: "{{name}} schrieb"
   no_invitation_token_found: 'Sie müssen von einem Benutzer eingeladen werden um sich hier registrieren zu können. Beantragen sie eine Einladung unter der Adresse office@iboard.cc'
   accepted: 'angenommen'
-  new_user: 'Neuer Benuzter'
+  new_user: 'Neuer Benutzer'
   invitations: 'Einladungen'
   send_new_invitations_from_your_profile: 'Senden sie neue Einladungen von ihrem Profil aus'
   add_friend: 'Freund hinzufügen'
