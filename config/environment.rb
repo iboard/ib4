@@ -36,6 +36,10 @@ end
 LOCALES=[:en,:de]
 DEFAULT_LOCALE=:en
 
+ExceptionNotifier.exception_recipients = EXCEPTION_NOTIFICATION_RECIPIENTS
+ExceptionNotifier.sender_address       = EXCEPTION_NOTIFICATION_SENDER
+
+
 
 USER_MENU_ITEMS = [
     {:label => :home, :url => '/'},
