@@ -1,5 +1,7 @@
 <% title t(:search_result) %>
 
+<%= render :partial => '/layouts/sidebar' -%>
+
 <p><%= t(:search_result_for_txt_found, :txt => params[:search_txt], :count => @items.length ) %></p>
 
 <% @items.each do |item| %>
