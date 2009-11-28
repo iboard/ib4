@@ -227,3 +227,4 @@ en:
     other: 'Found {{count}} entries containing <em>{{txt}}</em>'
   please_enter_a_searchterm: 'Please enter a search term'
   nothing_found: 'nothing found'
+  Comment: 'Comment'

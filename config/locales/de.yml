@@ -226,3 +226,4 @@ de:
     other: '{{count}} Einträge mit <em>{{txt}}</em> gefunden.'
   please_enter_a_searchterm: 'Geben Sie bitte einen Suchbegriff ein'
   nothing_found: 'Nichts gefunden'
+  Comment: 'Kommentar'
