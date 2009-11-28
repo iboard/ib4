@@ -7,6 +7,7 @@ de:
   iboard: 'iBoard'
   register: "Registrieren"
   successfully_logged_in: "Erfolgreich als <b>{{username}}</b> angemeldet."
+  logged_in: "Erfolgreich eingeloggt"
   last_login_at_notice: "Letzte Anmeldung: {{last_login_at}} von {{last_login_ip}}"
   successfully_logged_out: "Erfolgreich abgemeldet"
   failed_login_count_notice: 
@@ -218,3 +219,4 @@ de:
   next_version: 'nächste'
   changes: 'Änderungen'
   existing_tags: 'Verwendete Tags'
+  access_denied: 'Sie haben leider keine Berechtigung für diese Seite'

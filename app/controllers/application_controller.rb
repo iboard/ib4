@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?,:clear_tags_cache,:clear_category_cache
+
+  before_filter { |c| 
+    Authorization.current_user = c.current_user 
+  }
   
   # Redirect to login_path if no current user    
   def require_user
@@ -80,20 +84,27 @@ class ApplicationController < ActionController::Base
     expire_fragment :categories_index_pages
   end
   
+  # Get/set the cached current user
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.record
+  end
+  
+  
+  protected
+  def permission_denied
+    flash[:error] = t(:access_denied)
+    redirect_to root_url
+  end
   
   private
-  
+
   # Get/set the cached current session
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
   end
   
-  # Get/set the cached current user
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.record
-  end
     
   def server_root_path
     return @server_root_path if @server_root_path

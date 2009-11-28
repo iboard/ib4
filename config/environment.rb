@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "paperclip"  # see http://rdoc.info/projects/thoughtbot/paperclip
   config.gem 'justinfrench-formtastic', :lib => 'formtastic', :source => 'http://gems.github.com'  
   config.gem 'vestal_versions'
+  config.gem "declarative_authorization", :source => "http://gemcutter.org" 
   
   # Timezone and Locale
   config.time_zone = 'UTC'

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                       :avatar => "100x100#", :icon => "48x48#" 
                     }, 
                     :whiny_thumbnails => true
-  
+   
   has_many :postings
   has_many :pages
   has_many :comments
@@ -27,6 +27,16 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
+  
+  
+  # Roles for declarative authorization
+  def role_symbols
+    if is_admin
+      [:admin,:member] 
+    else
+      [:member] 
+    end
+  end
  
   # list all friends of your friendships-list when they found in inverse_friendships too
   def commited_friendships

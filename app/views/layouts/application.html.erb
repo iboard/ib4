@@ -45,8 +45,8 @@
             <%- if current_user -%>  
               <%=
                 [
-                   {:label => :dashboard,    :url => user_path(:current)},
-                   {:label => :edit_profile, :url => edit_user_path(:current)},
+                   {:label => :dashboard,    :url => user_path(current_user)},
+                   {:label => :edit_profile, :url => edit_user_path(current_user)},
                    {:label => :logout,       :url => logout_path }
                 ].map { |item|
                    mark_active_link(item,request.request_uri)

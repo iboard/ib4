@@ -7,6 +7,7 @@ en:
   iboard: 'iBoard'
   register: "Register"
   successfully_logged_in: "Successfully logged in as <b>{{username}}</b>"
+  logged_in: "Successfully logged in"
   last_login_at_notice: "Last logged in at {{last_login_at}} from {{last_login_ip}}"
   successfully_logged_out: "Successfully logged out"
   failed_login_count_notice: 
@@ -219,3 +220,4 @@ en:
   next_version: 'next'
   changes: 'Changes'
   existing_tags: 'existing tags'
+  access_denied: 'Sorry, you are not allowed to access that page.'

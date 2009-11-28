@@ -6,6 +6,8 @@
 # UserController makes use of AuthLogic-Gem
 class UsersController < ApplicationController
  
+  filter_resource_access
+ 
   before_filter :require_user,    :except => [:new,:create]
   before_filter :require_no_user, :only => [:new, :create]
   
@@ -15,11 +17,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    if !params[:id].blank? && params[:id] != 'current'
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
     @mypostings = @user.postings.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
   end
 
@@ -29,6 +26,7 @@ class UsersController < ApplicationController
       @user = User.new(:email => @invitation.recipient_email)
     else
       flash[:error] = t(:no_invitation_token_found)
+      @user = nil
     end
   end
   
@@ -56,19 +54,9 @@ class UsersController < ApplicationController
   end
   
   def edit
-    if is_admin? && !params[:id].blank? && params[:id] != 'current'
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
   end
   
   def update
-     if is_admin? && !params[:id].blank?
-       @user = User.find(params[:id])
-     else
-       @user = current_user
-     end    
      @user.is_admin = params[:user][:is_admin] if is_admin?
      @user.invitations_left = params[:user][:invitations_left] if is_admin?
      if @user.update_attributes(params[:user])
@@ -80,14 +68,7 @@ class UsersController < ApplicationController
   end
   
   def remove_avatar
-    if is_admin? && !params[:id].blank?
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
-    
     @user.avatar = nil
-    
     if @user.save
       flash[:notice] = t(:avatar_successfully_removed)
       respond_to do |format|
@@ -101,11 +82,6 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    if is_admin? && !params[:id].blank?
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
     @user.destroy
     redirect_to :action => :index
   end
