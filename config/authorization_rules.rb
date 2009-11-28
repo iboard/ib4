@@ -1,8 +1,8 @@
 authorization do
   
+  
   role :admin do
-    has_permission_on [:users], 
-               :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
+    has_permission_on [:users], :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
     has_permission_on :pages, :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
   end
 

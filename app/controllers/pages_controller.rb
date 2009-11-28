@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   
 
-  #before_filter   :require_user, :only => [:new, :edit, :create, :update, :destroy]
-  #before_filter   :require_owner_or_admin, :only => [:edit,:update,:destroy]
+
+  before_filter   :find_permalink, :only => [:show]
   filter_resource_access
   after_filter    :clear_cache, :only => [:create,:update,:destroy]
     
@@ -32,12 +32,6 @@ class PagesController < ApplicationController
   end
   
   def show
-    if params[:id].to_i < 1
-      pl = Permalink.find_by_url(params[:id])
-      @page = pl ? pl.linkable : Page.first
-    else
-      @page = Page.find(params[:id])
-    end
     @page.revert_to(params[:version].to_i) if params[:version]  
   end
   
@@ -90,4 +84,13 @@ class PagesController < ApplicationController
     clear_tags_cache
     clear_category_cache
   end
+  
+  def find_permalink
+    if params[:id].to_i < 1
+      pl = Permalink.find_by_url(params[:id])
+      p = pl ? pl.linkable : Page.first
+      params[:id] = p.id
+    end
+  end
+  
 end
