@@ -1,8 +1,5 @@
 class PagesController < ApplicationController
   
-  caches_action :show
-
-
   before_filter   :find_permalink, :only => [:show]
   filter_resource_access
   after_filter    :clear_cache, :only => [:create,:update,:destroy]
@@ -83,9 +80,7 @@ class PagesController < ApplicationController
   
   def clear_cache
     clear_tags_cache
-    clear_category_cache
-    expire_action :controller => :pages, :action => :show, :id => params[:id]
-    
+    clear_category_cache    
   end
   
   def find_permalink
