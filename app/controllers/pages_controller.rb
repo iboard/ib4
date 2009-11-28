@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
   
-  before_filter   :require_user, :only => [:new, :edit, :create, :update, :destroy]
-  before_filter   :require_owner_or_admin, :only => [:edit,:update,:destroy]
+
+  #before_filter   :require_user, :only => [:new, :edit, :create, :update, :destroy]
+  #before_filter   :require_owner_or_admin, :only => [:edit,:update,:destroy]
+  filter_resource_access
   after_filter    :clear_cache, :only => [:create,:update,:destroy]
     
   def index
@@ -46,24 +48,22 @@ class PagesController < ApplicationController
   def create
      params[:page]['category_ids'] ||= []
      params[:page]['permalink_ids'] ||= []
-      @page = Page.new(params[:page])
-      @page.user ||= current_user
-      if @page.save
-        flash[:notice] = "Successfully created posting."
-        redirect_to @page
-      else
-        render :action => 'new'
-      end
+     @page = Page.new(params[:page])
+     @page.user ||= current_user
+     if @page.save
+       flash[:notice] = "Successfully created posting."
+       redirect_to @page
+     else
+       render :action => 'new'
+     end
   end
   
   def edit
-    @page = Page.find(params[:id])
   end
   
   def update
      params[:page]['category_ids'] ||= []    
      params[:page]['permalink_ids'] ||= []
-     @page ||= Page.find(params[:id])
      if @page.update_attributes(params[:page])
        flash[:notice] = "Successfully updated posting."
        redirect_to @page
@@ -73,7 +73,6 @@ class PagesController < ApplicationController
   end
   
   def destroy
-    @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "Successfully destroyed page."
     redirect_to pages_url
@@ -81,7 +80,6 @@ class PagesController < ApplicationController
   
   private
   def require_owner_or_admin
-    @page ||= Page.find(params[:id])
     unless is_owner_or_admin?(@page.user)
       flash[:error] = t(:access_denied_edit)
       render :show

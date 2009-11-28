@@ -53,17 +53,15 @@
             <blockquote>
               <% version.changes.each do |chg| -%>
               <div><% toggle_display_link chg[0] do %>
-                  <div style='color: #bbb; padding: 5px; background: #eeeeee;'><%= chg[1][0].to_txt -%></div>
+                  <div style='color: #bbb; padding: 5px; background: #eeeeee;'><%= chg[1][0].class == String ? chg[1][0].to_txt : chg[1][0].to_s -%></div>
                   <div style='color: #000; padding: 5px; background: #bbbbbb;'>
                     <h1>-</h1>
-                    <%= chg[1][0].reject { |r| chg[1][1].include? r }.join("\n").to_txt
-                    -%>
+                    <%= chg[1][0].class == String ? chg[1][0].reject { |r| chg[1][1].include? r }.join("\n").to_txt : chg[1][0].to_s -%>
                   </div>
-                  <div style='color: #000; padding: 5px; background: #eeffee;'><%= chg[1][1].to_txt -%></div>
+                  <div style='color: #000; padding: 5px; background: #eeffee;'><%= chg[1][0].class == String ? chg[1][1].to_txt : chg[1][0].to_s -%></div>
                   <div style='color: #000; padding: 5px; background: #aabbaa;'>
                     <h1>+</h1>
-                    <%= chg[1][1].reject { |r| chg[1][0].include? r }.join("\n").to_txt
-                    -%>
+                    <%= chg[1][1].class == String ? chg[1][1].reject { |r| chg[1][0].include? r }.join("\n").to_txt : chg[1][1].to_s -%>
                   </div>
                   <% end %>
               </div>
