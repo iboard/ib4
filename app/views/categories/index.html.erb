@@ -1,6 +1,6 @@
 <% title t(:categories) %>
 
-<%= render :partial => "/postings/searchbox" -%>
+<%= render :partial => "/layouts/sidebar" -%>
 
 <%- if is_admin? %>
     <p><%= link_to CAN_OPEN+NBSP+t(:new_category), new_category_path %></p>

@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login "login", :controller => 'user_sessions', :action => 'new'
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.register "/register/:token", :controller => 'users', :action => 'new'
+  map.connect   '/search', :controller => 'application', :action => 'search'
   map.resources :user_sessions
   map.resources :users, :has_many => [:postings,:pages,:invitations,:comments]
   map.resources :newsletters, 

@@ -1,5 +1,5 @@
 <%- title( "//#{@tagname}") -%>
-<%= render :partial => '/postings/searchbox' -%>
+<%= render :partial => '/layouts/sidebar' -%>
 
 <%= will_paginate @tags %>
 <% @tagables.each do |tagable| %>

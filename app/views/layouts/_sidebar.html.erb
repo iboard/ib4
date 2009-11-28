@@ -1,16 +1,15 @@
 <% box_float_right("200px") do %>
-  <h3><%= t(:pages) -%> «» <%= link_to t(:postings), postings_path, :style => 'font-size: smaller;' -%></h3>
   <p>
+    <%= link_to CAN_OPEN+NBSP+t(:pages), pages_path -%><br/>
+    <%= link_to CAN_OPEN+NBSP+t(:postings), postings_path -%><br/>
     <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), rss_path -%>    
   </p>
   
-  <%- form_tag pages_path, :method => :get do  -%>
-    <%= text_field_tag :search, params[:search], :size=> 15 -%>
-    <%= submit_tag t(:search) -%>
-  <%- end -%>
-  
   <%- if is_admin? %>
-    <h3><%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %></h3>
+    <p>
+      <%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %><br/>
+      <%= CAN_OPEN+NBSP+link_to( t(:new_posting), new_posting_path) %>      
+    </p>
   <%- end -%>
     
   <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>

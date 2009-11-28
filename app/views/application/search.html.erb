@@ -1,0 +1,11 @@
+<% title t(:search_result) %>
+
+<p><%= t(:search_result_for_txt_found, :txt => params[:search_txt], :count => @items.length ) %></p>
+
+<% @items.each do |item| %>
+  <p>
+    <%= CAN_OPEN+NBSP -%>
+    <%= link_to item.list_title(80), item -%>
+    (<%= t(item.class) -%>)
+  </p>
+<% end %>

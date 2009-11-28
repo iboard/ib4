@@ -21,6 +21,8 @@
                 :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? 
             %>
           <%- end -%>
+          <%= render :partial => '/application/global_search' -%>
+          
         </div>
         <div id='page_title'>
           <div id='environment'>

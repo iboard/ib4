@@ -221,3 +221,9 @@ en:
   changes: 'Changes'
   existing_tags: 'existing tags'
   access_denied: 'Sorry, you are not allowed to access that page.'
+  search_result_for_txt_found:
+    zero: 'Nothing found for <em>{{txt}}</em>'
+    one: 'Found one entry for <em>{{txt}}</em>'
+    other: 'Found {{count}} entries containing <em>{{txt}}</em>'
+  please_enter_a_searchterm: 'Please enter a search term'
+  nothing_found: 'nothing found'

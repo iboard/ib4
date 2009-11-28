@@ -91,6 +91,29 @@ class ApplicationController < ActionController::Base
   end
   
   
+  def search  
+    if params[:search_txt].empty?
+        flash[:error] = t(:please_enter_a_searchterm)
+        redirect_to root_path
+        return false
+    end
+    pages = Page.title_like_any_or_description_like_any_or_body_like_any(
+                  params[:search_txt].split(/[\s|,]+/)
+             ).descend_by_updated_at.all
+    postings = Posting.subject_like_any_or_body_like_any(
+               params[:search_txt].split(/[\s|,]+/)
+              ).descend_by_updated_at.all
+    comments =  Comment.comment_like_any(params[:search_txt].split(/[\s|,]+/)).all
+    
+    commentables =  comments.map { |c| c.commentable }
+    
+    @items = [pages,postings,comments].flatten.reject { |x| x.nil? }.sort { |b,a| a.updated_at <=> b.updated_at }
+    unless @items.any?
+      flash[:error] = t(:nothing_found)
+      redirect_to root_path
+    end
+  end
+  
   protected
   def permission_denied
     flash[:error] = t(:access_denied)

@@ -1,6 +1,6 @@
 <% title t(:category_show, :category => h(@category.name)) %>
 
-<%= render :partial => "/postings/searchbox" -%>
+<%= render :partial => "/layouts/sidebar" -%>
 
 <h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small></h1>
 <% unless @category.permalinks.empty? %>
