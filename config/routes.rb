@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :binaries, :member => { :download => :get }
   map.resources :friendships
   map.resources :invitations
   map.resources :feed
@@ -15,7 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register "/register/:token", :controller => 'users', :action => 'new'
   map.connect   '/search', :controller => 'application', :action => 'search'
   map.resources :user_sessions
-  map.resources :users, :has_many => [:postings,:pages,:invitations,:comments]
+  map.resources :users, :has_many => [:postings,:pages,:invitations,:comments,:binaries]
   map.resources :newsletters, 
                  :has_many => [:newsletter_subscriptions, :newsletter_issues],
                  :member => {

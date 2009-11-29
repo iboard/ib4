@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :postings
   has_many :pages
   has_many :comments
+  has_many :binaries
   
   has_many :sent_invitations,     :class_name => 'Invitation', :foreign_key => 'sender_id',     :dependent => :delete_all
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => 'recipient_id',  :dependent => :delete_all

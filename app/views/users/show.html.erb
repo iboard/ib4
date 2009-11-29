@@ -6,7 +6,8 @@
     <%= t(:your_contents) if is_current_user?(@user)  -%>
     <%= t(:users_contents,:username => @user.username) unless is_current_user?(@user)  -%>
   </h2>
-  <%= render :partial => 'public_user_view' -%>  
+  <%= render :partial => 'public_user_view' -%> 
+  <%= link_to CAN_OPEN+NBSP+t(:your_files)+" (#{@user.binaries .length})", user_binaries_path(@user) -%>
 </div>
 <h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
 

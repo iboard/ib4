@@ -228,3 +228,14 @@ de:
   nothing_found: 'Nichts gefunden'
   Comment: 'Kommentar'
   search_result: 'Suchergebnis'
+  your_files: 'Ihre Dateien'
+  new_file: 'Neue Datei'
+  to_delete_file: 'die Datei löschen wollen'
+  accessable_by: 'Wird angezeigt für'
+  path: "Verzeichnis"
+  open: "Öffnen"
+  description: 'Beschreibung'
+  yourself: 'Selbst'
+  edit_binary: 'Datei bearbeiten'
+  always_on: 'immer ein'
+  public: 'öffentlich'

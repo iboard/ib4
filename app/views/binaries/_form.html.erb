@@ -1,0 +1,26 @@
+<% form_for [@user,@binary], :html => { :multipart => true } do |f| %>
+
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :file -%><br/>
+    <%= f.file_field :uploaded_file %>
+  </p>
+  <p>
+    <%= f.label :access -%><br/>
+    <%= access_mask_buttons(@binary) %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :size => 62 %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.textile_editor :description, :rows => 5, :cols => 60 %>
+  </p>
+  <p>
+    <%= f.label :filename %>: <%= @binary.filename %><br/>
+    <%= f.label :mime_type %>: <%= @binary.mime_type %><br/>
+    <%= f.label :filesize %>: <%= @binary.filesize.to_s.humanize if @binary.filesize%>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

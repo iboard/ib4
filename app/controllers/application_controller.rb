@@ -118,8 +118,14 @@ class ApplicationController < ActionController::Base
   
   protected
   def permission_denied
-    flash[:error] = t(:access_denied)
-    redirect_to root_url
+    if params[:controller] == 'binaries'
+      send_file( RAILS_ROOT + "/public" + FILE_LOCKED_PATH, :type => 'image/png', 
+                 :disposition => (params[:download] ? 'attachment' : 'inline' ), 
+                 :filename => File::basename(FILE_LOCKED_PATH) )
+    else
+      flash[:error] = t(:access_denied)
+      redirect_to root_url
+    end
   end
   
   private
