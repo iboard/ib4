@@ -30,6 +30,10 @@ authorization do
     has_permission_on :binaries, :to => [:show] do 
       if_attribute :friends_access =>  contains {  Authorization.current_user }
     end
+    has_permission_on :binaries, :to => [:index,:new,:create,:update,:destroy,:edit] do 
+      if_attribute :user =>  is_in {  [nil,Authorization.current_user] }
+    end
+
   end
   
    
