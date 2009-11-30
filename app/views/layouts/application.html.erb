@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>iBoard 4 - <%=h yield :title %></title>
-    <%= stylesheet_link_tag( :all  ) -%>      <!-- , :cache => 'base' -->
+    <%= stylesheet_link_tag( :all, :cache => 'base' %>
     <%= javascript_include_tag  :defaults, :cache => 'base' %>
     <%- rss_link(:rss, rss_path) -%>
     <%= yield :html_head %>
@@ -18,7 +18,6 @@
            <div id='bannertop-left'></div>
            <div id='bannertop-right'></div>
         </div>
-      
         <div id='banner'>
           <div id='environment'>
              <%= render :partial => "/layouts/locale_selection" -%>
@@ -48,59 +47,54 @@
           </div>
           
         </div>
-        
-        
-        
-          <div id='top_menus'>
-            <div id='usermenu'>
-              <%= render :partial => '/layouts/publicmenu' -%>
-            </div>
-            <div id='logged_in_menu'>
-              <%- if current_user -%>  
-                <%=
-                  [
-                     {:label => :dashboard,    :url => user_path(current_user)},
-                     {:label => :edit_profile, :url => edit_user_path(current_user)},
-                     {:label => :logout,       :url => logout_path }
-                  ].map { |item|
-                     mark_active_link(item,request.request_uri)
-                  }.join("")
-                %>
-              <%- else -%>
-                <%= 
-                   mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
-                   mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
-                -%>
-              <%- end -%>
-            </div>
+        <div id='top_menus'>
+          <div id='usermenu'>
+            <%= render :partial => '/layouts/publicmenu' -%>
           </div>
-      
-          <div id='container'>
-            <%- if is_admin? -%>
-               <div id='rootmenu'>
-                 <% toggle_display_link 'Administration', 
-                      :minwidth => "200px",
-                      :no_bottom_link => true, 
-                      :sticky => session[:stickies][:administration_menu],
-                      :id => 'administration_menu' do 
-                 %>
-                   <%= render :partial => '/users/adminmenu' -%>
-                 <% end %>
-               </div>
-               <div style='clear:right;'></div>
+          <div id='logged_in_menu'>
+            <%- if current_user -%>  
+              <%=
+                [
+                   {:label => :dashboard,    :url => user_path(current_user)},
+                   {:label => :edit_profile, :url => edit_user_path(current_user)},
+                   {:label => :logout,       :url => logout_path }
+                ].map { |item|
+                   mark_active_link(item,request.request_uri)
+                }.join("")
+              %>
+            <%- else -%>
+              <%= 
+                 mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
+                 mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
+              -%>
             <%- end -%>
-      
-            <div id='flash'>
-              <%- flash.each do |name,msg| -%>
-                <%= content_tag :div, msg, :id => "flash_#{name}" %>
-              <%- end -%>
-            </div>
-            <%= yield -%>
-      
-            <div style='clear:both'></div>
           </div>
-      
-          <div id='height_filler'></div>
+        </div>
+        <div id='container'>
+          <%- if is_admin? -%>
+             <div id='rootmenu'>
+               <% toggle_display_link 'Administration', 
+                    :minwidth => "200px",
+                    :no_bottom_link => true, 
+                    :sticky => session[:stickies][:administration_menu],
+                    :id => 'administration_menu' do 
+               %>
+                 <%= render :partial => '/users/adminmenu' -%>
+               <% end %>
+             </div>
+             <div style='clear:right;'></div>
+          <%- end -%>
+        
+          <div id='flash'>
+            <%- flash.each do |name,msg| -%>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            <%- end -%>
+          </div>
+          <%= yield -%>
+        
+          <div style='clear:both'></div>
+        </div>
+        <div id='height_filler'></div>
       </div>
       
       <div id='copyright' class='copyright'>
