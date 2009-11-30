@@ -4,97 +4,119 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>iBoard 4 - <%=h yield :title %></title>
-    <%= stylesheet_link_tag( :all, :cache => 'base' ) -%>      
+    <%= stylesheet_link_tag( :all  ) -%>      <!-- , :cache => 'base' -->
     <%= javascript_include_tag  :defaults, :cache => 'base' %>
     <%- rss_link(:rss, rss_path) -%>
     <%= yield :html_head %>
     <%= textile_editor_initialize -%> 
   </head>
-  <body><%= show_spinner -%><div id='fader'>
-    <div id='page'><div id='debug'></div>
-      <div id='banner'>
-        <div id='user_display'><!-- floats right -->
-          <%- if current_user -%>
-            <%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%>
-            <%= image_tag( current_user.avatar.url(:icon), 
-                :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? 
-            %>
-          <%- end -%>
-          <%= render :partial => '/application/global_search' -%>
+  <body><%= show_spinner -%>
+    <div id='fader'>
+      <div id='page'>
+        <div id='debug'></div>
+        <div id='bannertop'>
+           <div id='bannertop-left'></div>
+           <div id='bannertop-right'></div>
+        </div>
+      
+        <div id='banner'>
+          <div id='environment'>
+             <%= render :partial => "/layouts/locale_selection" -%>
+             <%- if RAILS_ENV != 'production' -%>
+                | RAILS_ENV:<%= RAILS_ENV -%>
+             <%- else -%>
+                | <%= Time.now.to_s(:short) %> - <%= request.remote_addr -%>
+             <%- end -%>
+          </div>
+          
+          <div id='user_display'><!-- floats right -->
+            <%- if current_user -%>
+              <%= current_user.fullname + "#{NBSP}(#{current_user.username})" -%>
+              <%= image_tag( current_user.avatar.url(:icon), 
+                  :vspace=>5, :hspace=>5) unless current_user.avatar.original_filename.blank? 
+              %>
+            <%- end -%>
+            <%= render :partial => '/application/global_search' -%>
+            
+          </div>
+          
+          <div id='page_title'>
+            <h3><%= link_to 'iBoard 4 Development', root_path, :style=>'text-decoration:none; color:#ccc;' -%></h3>
+            <%- if show_title? -%>
+              <h1><%=truncate(yield(:title),:length => 40, :omission => '...') -%></h1>
+            <%- end -%>
+          </div>
           
         </div>
-        <div id='page_title'>
-          <div id='environment'>
-            <%= render :partial => "/layouts/locale_selection" -%>
-            <%- if RAILS_ENV != 'production' -%>
-               | RAILS_ENV:<%= RAILS_ENV -%>
-            <%- else -%>
-               | <%= Time.now.to_s(:short) %> - <%= request.remote_addr -%>
-            <%- end -%>
+        
+        
+        
+          <div id='top_menus'>
+            <div id='usermenu'>
+              <%= render :partial => '/layouts/publicmenu' -%>
+            </div>
+            <div id='logged_in_menu'>
+              <%- if current_user -%>  
+                <%=
+                  [
+                     {:label => :dashboard,    :url => user_path(current_user)},
+                     {:label => :edit_profile, :url => edit_user_path(current_user)},
+                     {:label => :logout,       :url => logout_path }
+                  ].map { |item|
+                     mark_active_link(item,request.request_uri)
+                  }.join("")
+                %>
+              <%- else -%>
+                <%= 
+                   mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
+                   mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
+                -%>
+              <%- end -%>
+            </div>
           </div>
-          <h3><%= link_to 'iBoard 4 Development', root_path, :style=>'text-decoration:none; color:#ccc;' -%></h3>
-          <%- if show_title? -%>
-            <h1><%=truncate(yield(:title),:length => 40, :omission => '...') -%></h1>
-          <%- end -%>
-        </div>          
-      </div>          
-        <div id='top_menus'>
-          <div id='usermenu'>
-            <%= render :partial => '/layouts/publicmenu' -%>
-          </div>
-          <div id='logged_in_menu'>
-            <%- if current_user -%>  
-              <%=
-                [
-                   {:label => :dashboard,    :url => user_path(current_user)},
-                   {:label => :edit_profile, :url => edit_user_path(current_user)},
-                   {:label => :logout,       :url => logout_path }
-                ].map { |item|
-                   mark_active_link(item,request.request_uri)
-                }.join("")
-              %>
-            <%- else -%>
-              <%= 
-                 mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
-                 mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
-              -%>
-            <%- end -%>
-          </div>
-        </div>
-        <div id='container'>
-          <%- if is_admin? -%>
-              <div id='rootmenu'>
+      
+          <div id='container'>
+            <%- if is_admin? -%>
+               <div id='rootmenu'>
                  <% toggle_display_link 'Administration', 
                       :minwidth => "200px",
                       :no_bottom_link => true, 
                       :sticky => session[:stickies][:administration_menu],
-                      :id => 'administration_menu' do %>
-                 <%= render :partial => '/users/adminmenu' -%>
+                      :id => 'administration_menu' do 
+                 %>
+                   <%= render :partial => '/users/adminmenu' -%>
                  <% end %>
-              </div>
-              <div style='clear:right;'></div>
-          <%- end -%>
-          <div id='flash'>
-           <%- flash.each do |name,msg| -%>
-             <%= content_tag :div, msg, :id => "flash_#{name}" %>
-           <%- end -%>
+               </div>
+               <div style='clear:right;'></div>
+            <%- end -%>
+      
+            <div id='flash'>
+              <%- flash.each do |name,msg| -%>
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+              <%- end -%>
+            </div>
+            <%= yield -%>
+      
+            <div style='clear:both'></div>
           </div>
-          <%= yield -%>
-          <div style='clear:both'></div>
-        </div>
+      
+          <div id='height_filler'></div>
       </div>
-    <div id='height_filler'></div>
-    <div id='copyright' class='copyright'>
-      <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
-      <p>
-          <a href="http://validator.w3.org/check?uri=referer"><img
-              src="http://www.w3.org/Icons/valid-xhtml10-blue"
-              alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
-       </p>
-       <p><%= link_to_remote "Test Progress indicator", 
-             :url => {:action => 'sleep_a_while', :controller => 'user_sessions'}
-       -%>
-       </p>
+      
+      <div id='copyright' class='copyright'>
+        <p>© 2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
+        <p>
+            <a href="http://validator.w3.org/check?uri=referer"><img
+                src="http://www.w3.org/Icons/valid-xhtml10-blue"
+                alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+         </p>
+         <p>
+           <%= link_to_remote "Test Progress indicator", 
+               :url => {:action => 'sleep_a_while', :controller => 'user_sessions'}
+           -%>
+         </p>
+      </div>
+      
     </div>
-  </div></body>
+  </body>
 </html>
