@@ -244,7 +244,7 @@ p#copyright,
   margin-left: auto;
   margin-right: auto;
   padding: 5px 40px 0px 40px;
-  background: #303030;
+  background: url('/images/banner_background.png');
   height: 140px;
   border-left: 1px solid black;
   border-right: 1px solid black;
