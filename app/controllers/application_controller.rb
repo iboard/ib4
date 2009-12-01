@@ -82,6 +82,7 @@ class ApplicationController < ActionController::Base
   end
   
   def clear_category_cache
+    expire_action :controller => :categories, :action => :index
     expire_fragment :categories_index_postings
     expire_fragment :categories_index_pages
   end

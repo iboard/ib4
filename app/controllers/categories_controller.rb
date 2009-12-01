@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # Categories accessable by admin-users only
   before_filter :require_admin, :except => [:show,:index]
   caches_action :index
+  after_filter  :clear_cache, :only => [:create,:update,:destroy]
   
   def index
     @categories = Category.ascend_by_name.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
@@ -64,5 +65,10 @@ class CategoriesController < ApplicationController
     @category.destroy
     flash[:notice] = "Successfully destroyed category."
     redirect_to categories_url
+  end
+  
+  private
+  def clear_cache
+    clear_category_cache
   end
 end
