@@ -24,9 +24,9 @@ module ApplicationHelper
    alias_method_chain :will_paginate, :i18n
 
 
-   # Progress bar
+   # Progress bar "<div id='ajax_msg'>" + t(:working) + "</div>" + BR*2 + 
    def show_spinner
-     content_tag( "div", "<div id='ajax_msg'>" + t(:working) + "</div>" + BR*2 + image_tag("spinner.gif", :align=>:middle),
+     content_tag( "div",image_tag("spinner.gif", :align=>:middle),
       :id => "ajax_busy", :style => "display:none;" )
    end
    
