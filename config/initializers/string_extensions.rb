@@ -5,7 +5,6 @@ class String
     #gsub(/[&><]/) { |special| { ‘>’ => ‘>’, ‘<’ => ‘<’, ‘"’ => ‘"’ }[special] }) } 
   }
 
-
   define_method(:first_paragraph) { |more_link|
     more_link ||= "..."
     fp = self.to_s.gsub(/(.*)\n.*/,'\1')
@@ -14,4 +13,5 @@ class String
     end
     fp
   }
+
 end

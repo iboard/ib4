@@ -39,8 +39,6 @@ DEFAULT_LOCALE=:en
 ExceptionNotifier.exception_recipients = EXCEPTION_NOTIFICATION_RECIPIENTS
 ExceptionNotifier.sender_address       = EXCEPTION_NOTIFICATION_SENDER
 
-
-
 USER_MENU_ITEMS = [
     {:label => :home, :url => '/'},
     {:label => :please_override_USER_MENU_ITEMS_in_your_environment_rb, :url => nil}

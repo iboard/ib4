@@ -7,13 +7,11 @@
 # There is one session at a time for one user.
 # create means login where destroy means log out.
 class UserSessionsController < ApplicationController
-
-  
+ 
   def new
     @user_session = UserSession.new
   end
-  
-  
+   
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
@@ -41,15 +39,14 @@ class UserSessionsController < ApplicationController
     redirect_to root_url
   end
   
-  
-  def sleep_a_while
-    n = rand(5).round+1
-    sleep n
-    render :update do |page|
-      msg = t(:done)
-      page.replace_html :flash, content_tag(:div, msg, :id => 'flash_notice')
-    end
-  end
+  #def sleep_a_while
+  #  n = rand(5).round+1
+  #  sleep n
+  #  render :update do |page|
+  #    msg = t(:done)
+  #    page.replace_html :flash, content_tag(:div, msg, :id => 'flash_notice')
+  #  end
+  #end
   
   def set_locale
     session['locale'] = params[:locale]

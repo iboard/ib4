@@ -6,14 +6,15 @@ Ajax.Responders.register(
     { 
       onCreate: function() {
         if($('ajax_busy') && Ajax.activeRequestCount > 0) { 
-          Effect.Appear('ajax_busy', {duration: 0.5, queue: 'end'});
-          $('fader').setStyle('opacity: 0.5');
+          Effect.Appear('ajax_busy', {duration: 0.2, queue: 'end'});
+          //$('fader').setStyle('opacity: 0.5');
         } 
       },
+      
       onComplete: function() { 
         if($('ajax_busy') && Ajax.activeRequestCount == 0) {
           Effect.Fade('ajax_busy', {duration: 0.5, queue: 'end'});
-          $('fader').setStyle('opacity: 1');
+          //$('fader').setStyle('opacity: 1');
         }
       }
     }

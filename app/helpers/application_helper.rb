@@ -37,8 +37,3 @@ module ApplicationHelper
    
       
 end
-
-   
-# periodically_call_remote(:url => {:controller => 'user_sessions', :action => 'get_ajax_msg'}, :frequency => '1', 
-#      :update => 'ajax_msg'),
-#            )

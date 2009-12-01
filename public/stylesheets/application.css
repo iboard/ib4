@@ -464,22 +464,17 @@ input#page_title {
 
 #ajax_busy {
   position: absolute;
-  z-index: 10;
-  opacity: 1;
-  width: 100%;
-  font-size: 22px;
-  height: 35px;
-  top: 0; left: 0;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
-  background: #2F2F2F;
-  color: #ECECEC;
-  padding: 20px;
-  padding-left: 0px;
-  padding-right: 0px;
+  top: 50px;
   text-align: center;
-  border-bottom: 10px solid #444;
+  margin-left: 45%;
+  z-index: 10;
+  background: url('/images/banner_background.png');
+  opacity: 0.7;
+  height: 80px;
+  width: 10%;
+  color: white;
+  padding: 10px;
+  font-size: 10px;
 }
 
 #ajax_msg {

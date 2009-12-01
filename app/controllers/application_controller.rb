@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,:is_current_user?,:clear_tags_cache,:clear_category_cache
+  helper_method :current_user,:is_admin?,:is_user?,:is_owner?,:is_owner_or_admin?,
+                :is_current_user?,:clear_tags_cache,:clear_category_cache
 
   before_filter { |c| 
     Authorization.current_user = c.current_user 
@@ -74,8 +75,7 @@ class ApplicationController < ActionController::Base
   def is_current_user?(user)
     current_user && current_user == user
   end
-  
-  
+   
   def clear_tags_cache
     expire_action :controller => :tags, :action => :index
     expire_fragment :tags_index
@@ -92,8 +92,7 @@ class ApplicationController < ActionController::Base
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
   end
-  
-  
+    
   def search  
     if params[:search_txt].empty?
         flash[:error] = t(:please_enter_a_searchterm)
@@ -130,14 +129,12 @@ class ApplicationController < ActionController::Base
   end
   
   private
-
   # Get/set the cached current session
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
   end
   
-    
   def server_root_path
     return @server_root_path if @server_root_path
     @server_root_path = request.request_uri.gsub(/\/\/(.*)\/(.*)/, '//$1/')
@@ -150,6 +147,7 @@ class ApplicationController < ActionController::Base
   def initialize_settings
     session[:stickies] ||= {}
   end
+
 end
 
 # End of File:    application_controller.rb

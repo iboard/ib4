@@ -18,7 +18,7 @@ authorization do
   
   role :member do
     includes :guest
-    has_permission_on :users, :to => [:index,:show,:new,:create,:edit,:update ] do
+    has_permission_on :users, :to => [:index,:show,:new,:create,:edit,:update,:remove_avatar ] do
       if_attribute :id => is { Authorization.current_user.id }
     end
     
