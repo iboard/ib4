@@ -2,7 +2,6 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  consequently_unfussy_development:	'Consequently unfussy development'
   locale_en: 'english'
   locale_de: 'deutsch'
   iboard: 'iBoard'
@@ -11,6 +10,7 @@ en:
   logged_in: "Successfully logged in"
   last_login_at_notice: "Last logged in at {{last_login_at}} from {{last_login_ip}}"
   successfully_logged_out: "Successfully logged out"
+  consequently_unfussy_development: 'Consequently unfussy development'
   failed_login_count_notice: 
     zero: ""
     one:  "<span style='color:red';>After one failed login attampt</span>" 
