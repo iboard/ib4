@@ -275,7 +275,7 @@ p#copyright,
   margin-right: auto;
   margin-bottom: 0px;
   margin-top: 0px;
-  background: #303030;
+  background: url('/images/banner_background.png');
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
@@ -288,7 +288,8 @@ p#copyright,
   font-size: 28px;
   height: 74px;
 }
-  input#page_title {
+
+input#page_title {
   display: inline;
   height: 20px;
   padding:5px;
@@ -465,11 +466,13 @@ p#copyright,
   position: absolute;
   z-index: 10;
   opacity: 1;
-  width: 75%;
+  width: 100%;
   font-size: 22px;
   height: 35px;
   top: 0; left: 0;
   margin: 0;
+  margin-left: auto;
+  margin-right: auto;
   background: #2F2F2F;
   color: #ECECEC;
   padding: 20px;
