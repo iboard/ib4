@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   
   # Categories accessable by admin-users only
   before_filter :require_admin, :except => [:show,:index]
-  caches_action :index
+  #caches_action :index
   after_filter  :clear_cache, :only => [:create,:update,:destroy]
   
   def index
