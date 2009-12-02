@@ -1,9 +1,9 @@
 module Randomizer
   
-  RANDOM_CHARACTERS="abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789.,:;"
+  RANDOM_CHARACTERS="abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789"
   
   def self.version
-    "RANDOMIZER MODULE 1.0"
+    "RANDOMIZER MODULE 1.1"
   end
   
   def self.randstr(length=8)
