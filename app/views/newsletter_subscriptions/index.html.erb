@@ -16,7 +16,9 @@
   <em><%= t(:enter_addresses_comma_separated) -%></em><br/>
   <%= f.text_area :mail, :rows => 10, :cols => 90 -%><br/>
   <%= radio_button_tag :mode, "add", true -%>&nbsp;<%= t(:add_address) -%>
-  <%= radio_button_tag :mode, "remove" -%>&nbsp;<%= t(:remove_address) -%>
+  <%= radio_button_tag :mode, "remove" -%>&nbsp;<%= t(:remove_address) -%><br/>
+  <%= radio_button_tag :mode, "add_local_accounts" -%>&nbsp;<%= t(:add_local_accounts) -%>
+  
   <%= f.submit t(:save_button) -%>
 <% end %>
 

@@ -10,6 +10,7 @@
   
   <%= radio_button_tag :mode, "add",  params[:mode] == 'add' -%>&nbsp;<%= t(:add_address) -%>
   <%= radio_button_tag :mode, "remove", params[:mode] == 'remove'  -%>&nbsp;<%= t(:remove_address) -%>
+  <%= radio_button_tag :mode, "add_local_accounts", params[:mode] == 'add_local_accounts'  -%>&nbsp;<%= t(:add_local_accounts) -%>
   
   <p><%= f.submit "Submit" %></p>
 

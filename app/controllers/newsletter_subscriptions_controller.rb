@@ -67,6 +67,22 @@ class NewsletterSubscriptionsController < ApplicationController
       else
         flash[:error] = t(:subscription_not_found)
       end
+    when 'add_local_accounts_BULK'
+      cnt = 0
+      User.find(:all).map(&:email).each do |email|
+        logger.info("\n** CHECKING #{email}\n")
+        unless @newsletter.newsletter_subscriptions.find_by_mail(email)
+          logger.info("\n** ADDING #{email}\n")
+          @newsletter_subscription = @newsletter.newsletter_subscriptions.create(:mail => email)
+          @newsletter_subscription.save!
+          cnt += 1
+        end
+      end
+      
+      flash[:notice] = "Added #{cnt} new addresses."
+      redirect_to newsletter_newsletter_subscriptions_path(@newsletter)
+      return false
+      
     else
       flash[:notice] = "Unknown Mode in #{__FILE__}, #{__LINE__}, #{params[:mode]}"
     end
