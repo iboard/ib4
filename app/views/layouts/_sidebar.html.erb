@@ -7,8 +7,8 @@
 
   <%- if current_user %>
     <p>
-      <%= CAN_OPEN+NBSP+link_to( t(:new_posting), new_posting_path) %></br>
-      <%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %><br/>
+      <%= CAN_OPEN+NBSP+link_to( t(:new_posting), new_posting_path) %><br/>
+      <%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %>
     </p>
   <%- end -%>
   <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>
