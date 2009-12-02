@@ -8,7 +8,7 @@ class String
   define_method(:first_paragraph) { |more_link|
     more_link ||= "..."
     fp = self.to_s.gsub(/(.*)\n.*/,'\1')
-    if to_s.length > fp.length
+    if to_s.strip != fp.strip
       fp += more_link
     end
     fp
