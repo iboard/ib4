@@ -11,6 +11,7 @@ en:
   last_login_at_notice: "Last logged in at {{last_login_at}} from {{last_login_ip}}"
   successfully_logged_out: "Successfully logged out"
   consequently_unfussy_development: 'Consequently unfussy development'
+  and_count_more: 'and {{count}} more...'
   failed_login_count_notice: 
     zero: ""
     one:  "<span style='color:red';>After one failed login attampt</span>" 

@@ -9,6 +9,7 @@ de:
   register: "Registrieren"
   successfully_logged_in: "Erfolgreich als <b>{{username}}</b> angemeldet."
   logged_in: "Erfolgreich eingeloggt"
+  and_count_more: 'und {{count}} weitere...'
   last_login_at_notice: "Letzte Anmeldung: {{last_login_at}} von {{last_login_ip}}"
   successfully_logged_out: "Erfolgreich abgemeldet"
   failed_login_count_notice: 
