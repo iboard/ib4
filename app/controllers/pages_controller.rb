@@ -8,22 +8,22 @@ class PagesController < ApplicationController
     if params[:category_id]
       # fetch postings of this category only...
       @category = Category.find(params[:category_id])
-      @pages = @category.categorizables.find_all_by_categorizable_type('Page').map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+      @pages = @category.categorizables.find_all_by_categorizable_type('Page', :conditions => ['draft = ? OR user_id = ?', false, current_user]).map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
       # fetch postings of all categories
       if params[:user_id]
         # fetch postings of the given user only
         @user = User.find(params[:user_id])
-        @pages = @user.pages.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+        @pages = @user.pages.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
       else
         # fetch all postings in all categories of each user matching the searchlogic
         unless params[:search].blank?
           @pages = Page.title_like_any_or_description_like_any_or_body_like_any(
                         params[:search].split(/[\s|,]+/)
-                      ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+                      ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
         else
           # fetch ALL postings
-          @pages = Page.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+          @pages = Page.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
         end
       end
     end  

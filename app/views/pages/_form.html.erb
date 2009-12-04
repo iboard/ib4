@@ -60,7 +60,7 @@
         <%= f.collection_select :user_id, User.ascend_by_fullname.all, :id, :display_name_and_user -%>
       </p>
     <% end %>
-    <p><%= f.submit "Submit" %></p>
+    <p><%= f.submit "Submit" %> <%= f.label :draft %> <%= f.check_box :draft %></p>
   </div>
 <% end %>
 

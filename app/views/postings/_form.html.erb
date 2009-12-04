@@ -36,7 +36,7 @@
       <%= link_to t(:textilize_help_link), TEXTILIZE_HELP_LINK, :target => :blank, :class => 'small_link'  -%>
     </p>
     
-    <p><%= f.submit "Submit" %></p>
+    <p><%= f.submit "Submit" %>  <%= f.label :draft %> <%= f.check_box :draft %></p>
     
   </div>
 <% end %>

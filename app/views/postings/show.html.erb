@@ -1,4 +1,6 @@
-
+<% if @posting.draft %>
+  <h1><em><%= t(:draft) -%></em></h1>
+<% end %>
 <% title @posting.list_title %>
 
 <div class='posting'>
