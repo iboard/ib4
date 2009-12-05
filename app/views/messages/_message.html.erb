@@ -10,6 +10,9 @@
             :error => "alert('ERROR MARKING MESSAGE AS READ');"
            )
       -%> |
+      <% if message.user != current_user %>
+         <%= link_to t(:reply), new_message_path(:recipient => message.user.id.to_s), :back => request.env['QUERY_STRING'] -%> |
+      <% end %>
       <% if message.user == current_user %>
         <%= link_to_remote( t(:delete), 
               :url => {
@@ -30,9 +33,6 @@
                :error => "alert('ERROR DELETING MESSAGE');"
              )  if notification
          -%>
-       <% end %>
-       <% if message.user != current_user %>
-          <%= link_to t(:reply), new_message_path(:recipient => message.user.id.to_s), :back => request.env['QUERY_STRING'] -%>
        <% end %>
     <% end %>
     <% if notification %>
