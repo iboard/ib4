@@ -8,11 +8,13 @@
   </h2>
   <%- if is_current_user?(@user) -%>
      <div class='user_profile_right'>
+         
          <!-- MESSAGES -->
          <%= link_to CAN_OPEN+NBSP+t(:messages), user_messages_path(@user) -%>
-        <b><%= @user.new_messages.size %></b> / <%= @user.message_notifications.size %>
+           (<b><%= @user.new_messages.size %></b> / <%= @user.message_notifications.size -%> / <%= @user.messages.size -%>)
          <%= render :partial => 'public_user_view' -%>   
          <br/>
+         
          <!-- USERLIST -->
          <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
          <!-- INVITE OTHER USERS -->

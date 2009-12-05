@@ -258,3 +258,5 @@ en:
   sent_messages: 'sent messages'
   received_messages: 'received messages'
   new_messages: 'new messages'
+  reply: 'reply'
+  recipients: 'recipients'

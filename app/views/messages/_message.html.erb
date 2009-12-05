@@ -31,9 +31,14 @@
              )  if notification
          -%>
        <% end %>
+       <% if message.user != current_user %>
+          <%= link_to t(:reply), new_message_path(:recipient => message.user.id.to_s), :back => request.env['QUERY_STRING'] -%>
+       <% end %>
     <% end %>
     <% if notification %>
       <%= t(:user_wrote_at_to, :time => message.updated_at.to_s(:short), :user => message.user.fullname, :to => notification.user.fullname) %><br/>
+    <% else %>
+      <b><%= t(:recipients) %></b>: <%= message.recipients.map {|r| r.fullname }.join(", ") -%> (<%= message.updated_at.to_s(:short) -%>)
     <% end %>
     <% content_tag :div, :class => 'message_display_text'  do %>
       <%= message.message.to_txt %>

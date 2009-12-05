@@ -254,3 +254,5 @@ de:
   sent_messages: 'Gesendete Nachrichten'
   received_messages: 'Empfangene Nachrichten'
   new_messages: 'Neu Nachrichten'
+  reply: 'antworten'
+  recipients: 'Empfänger'

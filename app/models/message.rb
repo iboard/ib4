@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   belongs_to :user
-  has_many   :message_notifications
+  has_many   :message_notifications, :dependent => :delete_all
   has_many   :receivers, :through => :message_notifications, :foreign_key => :user_id
   
   validates_presence_of :message
@@ -20,8 +20,6 @@ class Message < ActiveRecord::Base
   def send_notifications
     @recipients.uniq.each do |r|
       m = User.find(r).message_notifications.create(:message => self)
-#      m.save
-#      logger.info("\n** NOTIFICATION CREATED #{m.inspect}\n")
     end
   end
 end

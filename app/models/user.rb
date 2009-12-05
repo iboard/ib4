@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
                     :whiny_thumbnails => true
    
   has_many :postings,:dependent => :delete_all
-  has_many :pages,:dependent => :delete_all
-  has_many :comments,:dependent => :delete_all
-  has_many :binaries,:dependent => :delete_all
+  has_many :pages, :dependent => :delete_all
+  has_many :comments, :dependent => :delete_all
+  has_many :binaries, :dependent => :delete_all
   has_many :messages, :dependent => :delete_all
   has_many :message_notifications, :dependent => :delete_all
   
