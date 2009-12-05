@@ -1,4 +1,5 @@
 <% content_tag :div, :id => 'message'+message.id.to_s, :class => 'message_display' do %>
+  <% if message.message_notifications.any? %>
     <% notification = message.message_notifications.find_by_user_id(current_user.id) %>
     <% content_tag :div, :class => 'message_state' do %>
       <%= link_to_remote( (notification && notification.read_at.nil? ? t(:mark_read) : t(:mark_new) ),
@@ -43,4 +44,5 @@
     <% content_tag :div, :class => 'message_display_text'  do %>
       <%= message.message.to_txt %>
     <% end %>
+  <% end %>
 <% end %>
