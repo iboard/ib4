@@ -481,7 +481,6 @@ input#page_title {
   display: inline;
 }
 
-
 #fader {
   margin:0;
   z-index: 1;
@@ -490,12 +489,50 @@ input#page_title {
 .user_profile_right {
   float: right; 
   width: 400px; 
-  clear: right;
   margin-left: 10px;
   padding-left: 20px;
 }
 
+.user_profile_left {
+  width: 450px;
+}
+
+.current_user_display {
+}
+
+.comitted_friends {
+}
+
 .inline_friend_display {
+  width: 450px;
   padding: 5px;
 }
 
+.inline_friend_icon {
+  padding-right: 15px;
+}
+
+.inline_friend_text {
+	padding-left: 60px;
+}
+
+.message_display {
+	background: #FFF9B0;
+	padding: 5px;
+	font-size: smaller;
+	margin-bottom: 5px;
+	border: 1px solid black;
+}
+
+.message_display_text {
+	padding-left: 20px;
+}
+
+.close_icon {
+	float: right;
+	width: 100px;
+}
+
+.message_state {
+	float: right;
+}

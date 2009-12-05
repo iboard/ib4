@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091204095251) do
+ActiveRecord::Schema.define(:version => 20091205102326) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -75,6 +75,21 @@ ActiveRecord::Schema.define(:version => 20091204095251) do
     t.string   "recipient_email"
     t.text     "message"
     t.integer  "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "message_notifications", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.datetime "read_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

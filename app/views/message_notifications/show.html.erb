@@ -1,0 +1,20 @@
+<% title "Message Notification" %>
+
+<p>
+  <strong>Message:</strong>
+  <%=h @message_notification.message_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @message_notification.user_id %>
+</p>
+<p>
+  <strong>Read At:</strong>
+  <%=h @message_notification.read_at %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_message_notification_path(@message_notification) %> |
+  <%= link_to "Destroy", @message_notification, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", message_notifications_path %>
+</p>

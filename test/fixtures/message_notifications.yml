@@ -1,0 +1,9 @@
+one:
+  message_id: 1
+  user_id: 1
+  read_at: 2009-12-05 11:23:26
+
+two:
+  message_id: 1
+  user_id: 1
+  read_at: 2009-12-05 11:23:26

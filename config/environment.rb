@@ -76,7 +76,8 @@ BACKSPACE_CHAR = "&#9003;" unless defined? BACKSPACE_CHAR
 DELETE_CHAR    = "&#9003;" unless defined? DELETE_CHAR
 COMMENT_HAND   = "&#9997;" unless defined? COMMENT_HAND
 CHECK_OK       = "&#10004;" unless defined? CHECK_OK
-CHECK_NOT_OK   = "&#10008" unless defined? CHECK_NOT_OK
+CHECK_NOT_OK   = "&#10008;" unless defined? CHECK_NOT_OK
+EMAIL_ICON     = "&#9993;" unless defined? EMAIL_ICON
 
 def current_locale
   I18n::locale

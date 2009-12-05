@@ -4,8 +4,13 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>iBoard 4 - <%=h yield :title %></title>
-    <%= stylesheet_link_tag :all, :cache => 'base' %>
-    <%= javascript_include_tag  :defaults, :cache => 'base' %>
+    <%- if RAILS_ENV == 'production' -%>
+       <%= stylesheet_link_tag :all, :cache => 'base' %>
+       <%= javascript_include_tag  :defaults, :cache => 'base' %>
+     <%- else -%>
+       <%= stylesheet_link_tag :all %>
+       <%= javascript_include_tag  :defaults %>
+     <%- end -%>
     <%- rss_link(:rss, rss_path) -%>
     <%= yield :html_head %>
     <%= textile_editor_initialize -%> 
@@ -19,6 +24,7 @@
            <div id='bannertop-right'></div>
         </div>
         <div id='banner'>
+            
           <div id='environment'>
              <%= render :partial => "/layouts/locale_selection" -%>
              <%- if RAILS_ENV != 'production' -%>
@@ -90,6 +96,11 @@
               <%= content_tag :div, msg, :id => "flash_#{name}" %>
             <%- end -%>
           </div>
+          
+          <% if current_user && current_user.new_messages.any? %>
+            <%= render :partial => current_user.new_messages %>
+          <% end %>
+          
           <%= yield -%>
         
           <div style='clear:both'></div>

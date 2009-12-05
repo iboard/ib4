@@ -6,6 +6,7 @@ authorization do
     has_permission_on :pages, :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
     has_permission_on :binaries, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :postings, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
+    has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
 
   role :guest do
@@ -30,10 +31,21 @@ authorization do
       if_attribute :id => is { Authorization.current_user.id }
     end
     
+    #MESSAGES
+    has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy ] do
+      if_attribute :user => is { Authorization.current_user }
+    end
+    has_permission_on :messages, :to => [:new,:create]
+    has_permission_on :messages, :to => [:show ] do
+      if_attribute :sending_allowed_to => is { Authorization.current_user }
+    end
     
     # PAGE
     has_permission_on :pages, :to => [:new,:create]
     has_permission_on :pages, :to => [:edit,:update] do
+      if_attribute :user => is { Authorization.current_user }
+    end
+    has_permission_on :pages, :to => [:index, :show] do
       if_attribute :user => is { Authorization.current_user }
     end
     
@@ -44,6 +56,9 @@ authorization do
     end
     has_permission_on :pages, :to => [:show,:index] do
       if_attribute :draft => is { false }
+    end
+    has_permission_on :pages, :to => [:show,:index] do
+      if_attribute :user => is {  Authorization.current_user  }
     end
     
     # BINARY

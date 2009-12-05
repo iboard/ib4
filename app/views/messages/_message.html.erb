@@ -1,0 +1,41 @@
+<% content_tag :div, :id => 'message'+message.id.to_s, :class => 'message_display' do %>
+    <% notification = message.message_notifications.find_by_user_id(current_user.id) %>
+    <% content_tag :div, :class => 'message_state' do %>
+      <%= link_to_remote( (notification && notification.read_at.nil? ? t(:mark_read) : t(:mark_new) ),
+            :url => { :controller => 'message_notifications', 
+                      :action => 'mark_read', 
+                      :id => notification 
+                    },
+            :complete => "Element.fade('message#{message.id.to_s}');",
+            :error => "alert('ERROR MARKING MESSAGE AS READ');"
+           )
+      -%> |
+      <% if message.user == current_user %>
+        <%= link_to_remote( t(:delete), 
+              :url => {
+                  :controller => 'messages', :action => 'destroy', :id => message.id
+              },
+              :method => :delete,
+              :complete => "Element.fade('message#{message.id.to_s}');",
+              :error => "alert('ERROR DELETING MESSAGE');"
+            ) 
+        -%>
+       <% else %>
+         <%= link_to_remote( t(:delete), 
+               :url => {
+                   :controller => 'message_notifications', :action => 'destroy', :id => notification.id
+               },
+               :method => :delete,
+               :complete => "Element.fade('message#{message.id.to_s}');",
+               :error => "alert('ERROR DELETING MESSAGE');"
+             )  if notification
+         -%>
+       <% end %>
+    <% end %>
+    <% if notification %>
+      <%= t(:user_wrote_at_to, :time => message.updated_at.to_s(:short), :user => message.user.fullname, :to => notification.user.fullname) %><br/>
+    <% end %>
+    <% content_tag :div, :class => 'message_display_text'  do %>
+      <%= message.message.to_txt %>
+    <% end %>
+<% end %>

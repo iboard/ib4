@@ -1,0 +1,11 @@
+<% title "Messages" %>
+
+<h1><%= t(:received_messages) -%></h1>
+
+  <%= render :partial => @user.message_notifications.map { |m| m.message } -%>
+
+<hr>
+
+<h1><%= t(:sent_messages) -%></h1>
+
+  <%= render :partial => @user.messages -%>

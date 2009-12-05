@@ -1,0 +1,21 @@
+<% title "Message Notifications" %>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>User</th>
+    <th>Read At</th>
+  </tr>
+  <% for message_notification in @message_notifications %>
+    <tr>
+      <td><%=h message_notification.message_id %></td>
+      <td><%=h message_notification.user_id %></td>
+      <td><%=h message_notification.read_at %></td>
+      <td><%= link_to "Show", message_notification %></td>
+      <td><%= link_to "Edit", edit_message_notification_path(message_notification) %></td>
+      <td><%= link_to "Destroy", message_notification, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Message Notification", new_message_notification_path %></p>

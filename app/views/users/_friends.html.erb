@@ -1,47 +1,58 @@
 <!-- COMMITED FRIENDS -->
 <% if @user.commited_friendships && @user.commited_friendships.any? %>
   <h3><%= t(:friends) -%></h3>
-  <% for friendship in @user.commited_friendships %>
-    <div class='inline_friend_display'>
-       <%= image_tag friendship.friend.avatar.url(:icon),:hspace => 5, :vspace => 0 %>
-       <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
-        <%= link_to( DELETE_CHAR, friendship, 
-                     :method => :delete, 
-                     :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship))
-            ) if is_current_user?(@user) || is_admin?
-        -%>
-    </div>
+  <% content_tag :div, :id => 'comitted_friends' do %>
+    <% for friendship in @user.commited_friendships %>
+      <% content_tag :div, :class=>'inline_friend_display' do %>
+         
+         <% content_tag :div, :class => 'inline_friend_icon' do %>
+           <%= image_tag friendship.friend.avatar.url(:icon), :align => :left %>
+         <% end %>
+         
+         <% content_tag :div, :class => 'inline_friend_text' do %>
+           <b><%= friendship.friend.fullname -%></b> (<%= link_to friendship.friend.username, friendship.friend -%>)
+           <%= link_to( DELETE_CHAR, friendship, 
+                         :method => :delete, 
+                         :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship))
+                ) if is_current_user?(@user) || is_admin?
+            -%><br/>
+            <%= link_to EMAIL_ICON+NBSP+t(:send_message_to), new_user_message_path(friendship.user, 
+                 :recipient => (current_user == friendship.user) ? friendship.friend.id : friendship.user.id,
+                 :back_to => user_path(@user) ) -%>
+          <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 
 <%- if is_current_user?(@user) -%>
-  
-  <!-- NOT COMMITED FRIENDS -->
-  <% if @user.not_commited_friendships && @user.not_commited_friendships.any? %>
-  <h3><%= t(:not_commited_friends) -%></h3>
-      <% for friendship in @user.not_commited_friendships %>
+  <% content_tag :div, :class => 'current_user_display' do %>
+    <!-- NOT COMMITED FRIENDS -->
+    <% if @user.not_commited_friendships && @user.not_commited_friendships.any? %>
+    <h3><%= t(:not_commited_friends) -%></h3>
+        <% for friendship in @user.not_commited_friendships %>
+            <div class='inline_friend_display'>
+              <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
+              <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
+              <%= link_to DELETE_CHAR, friendship, 
+               :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
+              -%>
+            </div
+        <% end %>
+    <% end %>
+    
+    <!-- NOT CONFIRMED FRIENDSHIPS -->
+    <% if @user.not_confirmed_friendships && @user.not_confirmed_friendships.any? %>
+      <h3><%= t(:friendship_requests) -%></h3>
+        <% for friendship in (@user.not_confirmed_friendships) %>
           <div class='inline_friend_display'>
             <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
-            <%= friendship.friend.fullname -%> (<%= link_to friendship.friend.username, friendship.friend -%>)
-            <%= link_to DELETE_CHAR, friendship, 
-             :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
-            -%>
-          </div
-      <% end %>
+      
+              <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)
+              <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post %>
+          </div>
+        <% end %>
+    <% end %>
   <% end %>
-  
-  <!-- NOT CONFIRMED FRIENDSHIPS -->
-  <% if @user.not_confirmed_friendships && @user.not_confirmed_friendships.any? %>
-    <h3><%= t(:friendship_requests) -%></h3>
-      <% for friendship in (@user.not_confirmed_friendships) %>
-        <div class='inline_friend_display'>
-          <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
-    
-            <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)
-            <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post %>
-        </div>
-      <% end %>
-  <% end %>
-
 <% end %>
-<%#=  (9000..10100).map {|i| "#{i}=&##{i};"}.join(', ') %>
+

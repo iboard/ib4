@@ -15,10 +15,12 @@ class User < ActiveRecord::Base
                     }, 
                     :whiny_thumbnails => true
    
-  has_many :postings
-  has_many :pages
-  has_many :comments
-  has_many :binaries
+  has_many :postings,:dependent => :delete_all
+  has_many :pages,:dependent => :delete_all
+  has_many :comments,:dependent => :delete_all
+  has_many :binaries,:dependent => :delete_all
+  has_many :messages, :dependent => :delete_all
+  has_many :message_notifications, :dependent => :delete_all
   
   has_many :sent_invitations,     :class_name => 'Invitation', :foreign_key => 'sender_id',     :dependent => :delete_all
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => 'recipient_id',  :dependent => :delete_all
@@ -30,7 +32,6 @@ class User < ActiveRecord::Base
   
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
   
-  
   # Roles for declarative authorization
   def role_symbols
     if is_admin
@@ -40,6 +41,12 @@ class User < ActiveRecord::Base
     end
   end
  
+  def my_friends
+    commited_friendships.map { |fs|
+      [fs.friend, fs.user]
+    }.flatten.uniq
+  end
+  
   # list all friends of your friendships-list when they found in inverse_friendships too
   def commited_friendships
     @commited_friendships ||= friendships.all.reject { |r|
@@ -78,5 +85,9 @@ class User < ActiveRecord::Base
     reset_perishable_token!  
     UserMailer.deliver_new_account_instructions(self,subject)  
   end        
+  
+  def new_messages
+    message_notifications.new_notifications.map { |n| n.message }
+  end
   
 end
