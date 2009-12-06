@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091205102326) do
+ActiveRecord::Schema.define(:version => 20091206020100) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "binaries", ["user_id"], :name => "index_binaries_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -39,6 +41,9 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "updated_at"
   end
 
+  add_index "categorizables", ["categorizable_id", "categorizable_type"], :name => "index_categorizables_on_categorizable_id_and_categorizable_type"
+  add_index "categorizables", ["category_id"], :name => "index_categorizables_on_category_id"
+
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "commentable_id"
@@ -47,6 +52,9 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -68,6 +76,9 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "updated_at"
   end
 
+  add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
+  add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
+
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -79,6 +90,9 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "updated_at"
   end
 
+  add_index "invitations", ["recipient_id"], :name => "index_invitations_on_recipient_id"
+  add_index "invitations", ["sender_id"], :name => "index_invitations_on_sender_id"
+
   create_table "message_notifications", :force => true do |t|
     t.integer  "message_id"
     t.integer  "user_id"
@@ -87,12 +101,17 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "updated_at"
   end
 
+  add_index "message_notifications", ["message_id"], :name => "index_message_notifications_on_message_id"
+  add_index "message_notifications", ["user_id"], :name => "index_message_notifications_on_user_id"
+
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "newsletter_blacklists", :force => true do |t|
     t.string   "mail"
@@ -109,6 +128,9 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.text     "failure_messages"
   end
 
+  add_index "newsletter_deliveries", ["newsletter_issue_id"], :name => "index_newsletter_deliveries_on_newsletter_issue_id"
+  add_index "newsletter_deliveries", ["newsletter_subscription_id"], :name => "index_newsletter_deliveries_on_newsletter_subscription_id"
+
   create_table "newsletter_issues", :force => true do |t|
     t.integer  "newsletter_id"
     t.string   "subject"
@@ -119,6 +141,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.text     "html_body"
   end
 
+  add_index "newsletter_issues", ["newsletter_id"], :name => "index_newsletter_issues_on_newsletter_id"
+
   create_table "newsletter_subscriptions", :force => true do |t|
     t.integer  "newsletter_id"
     t.string   "mail"
@@ -126,6 +150,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "newsletter_subscriptions", ["newsletter_id"], :name => "index_newsletter_subscriptions_on_newsletter_id"
 
   create_table "newsletters", :force => true do |t|
     t.string   "title"
@@ -152,6 +178,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.boolean  "draft",          :default => false
   end
 
+  add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
+
   create_table "permalinks", :force => true do |t|
     t.integer  "linkable_id"
     t.string   "linkable_type"
@@ -159,6 +187,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "permalinks", ["linkable_id", "linkable_type"], :name => "index_permalinks_on_linkable_id_and_linkable_type"
 
   create_table "postings", :force => true do |t|
     t.integer  "user_id"
@@ -169,6 +199,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.boolean  "draft",      :default => false
   end
 
+  add_index "postings", ["user_id"], :name => "index_postings_on_user_id"
+
   create_table "tags", :force => true do |t|
     t.integer  "tagable_id"
     t.string   "tagable_type"
@@ -178,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20091205102326) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tags", ["tagable_id", "tagable_type"], :name => "index_tags_on_tagable_id_and_tagable_type"
 
   create_table "users", :force => true do |t|
     t.string   "username"
