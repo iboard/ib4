@@ -15,15 +15,16 @@
       (<%= t(:count_entries, :count => category.categorizables.length)-%><%= 
          (", " + t(:is_public) +": "+ ((category.public == true) ? t(:say_yes) : t(:say_no))  ) if is_admin? 
        -%>
-      )</dt>
+      )
+  </dt>
   <dd>
     <%=category.description.to_txt %>
     <%- if is_admin? %>
-    <br/>
       <%= link_to "Edit", edit_category_path(category) %> |
       <%= link_to "Destroy", category, :confirm => 'Are you sure?', :method => :delete %>
     <%- end -%>
   </dd>
+  
   <br/>
   
 <% end %>
