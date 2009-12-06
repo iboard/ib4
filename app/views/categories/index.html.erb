@@ -6,6 +6,8 @@
     <p><%= link_to CAN_OPEN+NBSP+t(:new_category), new_category_path %></p>
 <%- end -%>
 
+<p><%= will_paginate @categories %></p>
+
 <% for category in @categories %>
   
   <dt>
@@ -27,3 +29,4 @@
 <% end %>
 
 <br clear=all />
+<p><%= will_paginate @categories %></p>
