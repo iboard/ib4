@@ -4,7 +4,7 @@
   
 body {
   font-family: Verdana, Helvetica, Arial;
-  background: #FEF4F0 url('/images/background.png') fixed repeat-x;
+  background: #000A0D url('/images/background.png') fixed repeat-x;
   min-width: 980px;
   font-size: 14px; color: #444;
 }
