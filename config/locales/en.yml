@@ -260,3 +260,5 @@ en:
   new_messages: 'new messages'
   reply: 'reply'
   recipients: 'recipients'
+  send_mail_notifications: "Send mail notifications<br/><small>(Messages in iBoard will be forwarded to your email)</small>"
+  user_sent_a_message: '{{sender}} sent you an message on iBoard'

@@ -26,13 +26,7 @@ class MessageNotificationsController < ApplicationController
   end
   
   def update
-    @message_notification = MessageNotification.find(params[:id])
-    if @message_notification.update_attributes(params[:message_notification])
-      flash[:notice] = "Successfully updated messagenotification."
-      redirect_to @message_notification
-    else
-      render :action => 'edit'
-    end
+    raise "OBSOLETE FUNCTION CALL #{__FILE__}/#{__LINE__}"
   end
   
   def destroy

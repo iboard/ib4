@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091206020100) do
+ActiveRecord::Schema.define(:version => 20091207124201) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -219,9 +219,9 @@ ActiveRecord::Schema.define(:version => 20091206020100) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.string   "perishable_token",    :default => "",    :null => false
-    t.integer  "login_count",         :default => 0,     :null => false
-    t.integer  "failed_login_count",  :default => 0,     :null => false
+    t.string   "perishable_token",        :default => "",    :null => false
+    t.integer  "login_count",             :default => 0,     :null => false
+    t.integer  "failed_login_count",      :default => 0,     :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -229,13 +229,14 @@ ActiveRecord::Schema.define(:version => 20091206020100) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_admin",            :default => false, :null => false
+    t.boolean  "is_admin",                :default => false, :null => false
     t.string   "fullname"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "invitations_left",    :default => 0
+    t.integer  "invitations_left",        :default => 0
+    t.boolean  "send_mail_notifications", :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

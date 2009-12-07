@@ -43,7 +43,7 @@
     </p>
     <p>
       <%= f.label :email %><br />
-      <%= f.text_field :email %>
+      <%= f.text_field :email %><br/><%= f.check_box :send_mail_notifications %>&nbsp;<%= t(:send_mail_notifications) -%>
     </p>
     <%- unless @user.new_record? -%>
       <p>

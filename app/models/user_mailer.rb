@@ -53,4 +53,13 @@ class UserMailer < ActionMailer::Base
     content_type            "text/html"
   end
  
+  def message_notification(m_sender,m_recipient,m_subject,m_message,m_avatar)
+    recipients   m_recipient
+    from         m_sender
+    subject      m_subject
+    body         :message => m_message, :avatar_url => m_avatar
+    content_type "text/html"
+  end
+  
+  
 end
