@@ -4,7 +4,8 @@
   
 body {
   font-family: Verdana, Helvetica, Arial;
-  background: #000A0D url('/images/background.png') fixed repeat-x;
+  /* background: #000A0D url('/images/background.png') fixed repeat-x; */
+  background: #fff;
   min-width: 980px;
   font-size: 14px; color: #444;
 }
@@ -53,9 +54,19 @@ LI {
 }
 
 
-#page {
-  margin: 0px;
+#page_top {
+  margin-left: auto;
+  margin-right: auto;
   padding: 0px;
+  width: 1024px;
+  background: url('/images/page_shadow_top.png') repeat-y;	
+}
+#page {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  width: 1024px;
+  background: url('/images/page_shadow.png') repeat-y;
 }
 
 #container {
