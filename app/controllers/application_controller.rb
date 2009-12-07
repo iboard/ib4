@@ -124,7 +124,7 @@ class ApplicationController < ActionController::Base
                  :filename => File::basename(FILE_LOCKED_PATH) )
     else
       flash[:error] = t(:access_denied)
-      redirect_to root_url
+      redirect_to root_path
     end
   end
   
