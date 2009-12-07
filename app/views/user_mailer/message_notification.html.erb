@@ -10,6 +10,12 @@
       <%= Time::now.to_s %> ...
       <div style='padding: 30px;'>
         <%= @message.to_txt -%>
+        
+        <br/>
+        <hr>
+        <p>
+          <%= link_to 'Login ...', ROOT_URL+"login" -%>
+        </p>
       </div>
     </div>
   </body>
