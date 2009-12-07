@@ -57,7 +57,7 @@ class UserMailer < ActionMailer::Base
     recipients   m_recipient
     from         m_sender
     subject      m_subject
-    body         :message => m_message, :avatar_url => m_avatar
+    body         :message => m_message, :avatar => m_avatar
     content_type "text/html"
   end
   

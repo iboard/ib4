@@ -6,7 +6,8 @@
   </head>
   <body style="background: #FEF4F0 url('<%= ROOT_URL -%>/images/background.png') fixed repeat-x;">
     <div style='width: 700px; margin-left: auto; margin-right: auto; margin-top: 10px; background: white; border: 1px solid black;'>
-      <img src='<%= @avatar -%>'>&nbsp;&nbsp;<%= Time::now.to_s %> ...
+      <%= image_tag @avatar, :align => :right, :hspace => 10, :vspace => 10 -%>
+      <%= Time::now.to_s %> ...
       <div style='padding: 30px;'>
         <%= @message.to_txt -%>
       </div>

@@ -7,7 +7,7 @@ class MessagePostman < Struct.new(:message_notification_id,:subject_txt)
        notify.user.email,
        subject_txt,
        notify.message.message,
-       notify.message.user.avatar.url(:avatar)
+       "http://#{ROOT_URL}/#{notify.message.user.avatar.url(:avatar)}"
     ) 
   end
 end
