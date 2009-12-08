@@ -25,8 +25,10 @@ class UserSessionsController < ApplicationController
              :last_login_ip => cu.last_login_ip) unless cu.last_login_at.nil?
       else
         flash[:notice] = t(:logged_in)
+        redirect_to @user_session.user
+        return 
       end
-      redirect_to root_url
+      redirect_to root_path
     else
       render :action => 'new'
     end
