@@ -27,7 +27,7 @@
   <% end %>
 
   <div class='form_left_500'>
-    <h1><%= t(:register_new_user)-%></h1>    
+    <h1><%= @user.new_record? ? t(:register_new_user) : t(:edit_profile)-%></h1>    
     <!-- DATA FIELDS (left) -->
     <%= f.error_messages %>
     
