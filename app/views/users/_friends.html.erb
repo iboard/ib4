@@ -6,7 +6,7 @@
       <% content_tag :div, :class=>'inline_friend_display' do %>
          
          <% content_tag :div, :class => 'inline_friend_icon' do %>
-           <%= image_tag friendship.friend.avatar.url(:icon), :align => :left, :width => 100, :heigth => 100 %>
+           <%= image_tag friendship.friend.avatar.url(:icon), :align => :left, :width => 64, :heigth => 64 %>
          <% end %>
          
          <% content_tag :div, :class => 'inline_friend_text' do %>
@@ -21,6 +21,7 @@
                  :back_to => user_path(@user) ) -%>
           <% end %>
       <% end %>
+      <br clear='left'>
     <% end %>
   <% end %>
 <% end %>
