@@ -45,4 +45,13 @@
       <%= message.message.to_txt %>
     <% end %>
   <% end %>
+<% else %>
+  <p>
+  <%= message.updated_at.to_s(:short) %>
+  <blockquote>
+    <%= message.message.to_txt -%>
+    <br/>
+    [<%= link_to(t(:delete), message, :method => 'delete' ) %>] (<%= t(:all_notifications_removed) -%>)
+  </blockquote>
+  </p>
 <% end %>

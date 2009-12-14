@@ -258,3 +258,4 @@ de:
   recipients: 'Empfänger'
   send_mail_notifications: "Sende eMail-Verständigungen<br/><small>(Nachrichten in iBoard werden an Ihre eMail weitergeleitet.)</small>"
   user_sent_a_message: 'Sie haben eine Nachricht von {{sender}} in ihrem iBoard erhalten.'
+  all_notifications_removed: 'Alle Benachrichtungen wurden gelöscht'
