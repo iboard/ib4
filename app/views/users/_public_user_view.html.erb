@@ -1,9 +1,3 @@
-<p>
-  <%= CAN_OPEN+NBSP+link_to( t(:postings), user_postings_path(@user)) %> (<%= @user.postings.count -%>)
-</p>
-<p>
-  <%= CAN_OPEN+NBSP+link_to( t(:pages), user_pages_path(@user)) %> (<%= @user.pages.count -%>)         
-</p>
-<p>
-  <%= CAN_OPEN+NBSP+link_to( t(:comments), user_comments_path(@user)) %> (<%= @user.comments.count -%>)
-</p>
+<%= CAN_OPEN+NBSP+link_to( t(:postings), user_postings_path(@user)) %> (<%= @user.postings.count -%>)<br/>
+<%= CAN_OPEN+NBSP+link_to( t(:pages), user_pages_path(@user)) %> (<%= @user.pages.count -%>)         <br/>
+<%= CAN_OPEN+NBSP+link_to( t(:comments), user_comments_path(@user)) %> (<%= @user.comments.count -%>)<br/>

@@ -11,9 +11,8 @@
          
          <!-- MESSAGES -->
          <%= link_to CAN_OPEN+NBSP+t(:messages), user_messages_path(@user) -%>
-           (<b><%= @user.new_messages.size %></b> / <%= @user.message_notifications.size -%> / <%= @user.messages.size -%>)
+           (<b><%= @user.new_messages.size %></b> / <%= @user.message_notifications.size -%> / <%= @user.messages.size -%>)<br/>
          <%= render :partial => 'public_user_view' -%>   
-         <br/>
          
          <!-- USERLIST -->
          <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
