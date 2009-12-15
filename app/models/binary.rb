@@ -36,10 +36,12 @@ class Binary < ActiveRecord::Base
   
   def friends_access
     if accessable_by?( :friends ) 
-      [user.friends,user.inverse_friends].flatten
+      rc = user.commited_friendships.map{|m| [m.user, m.friend] }.flatten.uniq
     else
-      [user]
+      rc = [user]
     end
+    logger.info("\n**** SEARCH IN FRIENDS #{rc.inspect}")
+    rc
   end
   
   def access_mask_ids=(mask_ids)

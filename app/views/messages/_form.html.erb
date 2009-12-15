@@ -1,19 +1,26 @@
-<% form_for [current_user, @message] do |f| %>
-
-  <%= hidden_field_tag "back_to", params[:back_to] %>
-  <%= f.error_messages %>
+<% if @recipients.any? %>
+  <% form_for [current_user, @message] do |f| %>
+  
+    <%= hidden_field_tag "back_to", params[:back_to] %>
+    
+    <%= f.error_messages %>
+    <p>
+      <b><%= f.label :user_id, t(:from) %></b>: 
+      <%= @message.user.fullname %>
+    </p>
+    <p>
+      <b><%= f.label :recipients_ids, t(:recipients) %></b><br/>
+        <%= recipient_checkboxes(@message,@recipients) %>
+    </p>
+    <p>
+      <%= f.label :message %><br />
+      <%= f.textile_editor :message, :cols => '125' %>
+    </p>
+    <p><%= f.submit "Submit" %> <%= link_to( t(:back), params[:back_to] ) if params[:back_to] %></p>
+  <% end %>
+<% else %>
+  <h1><%= t(:invite_friends ) -%></h1>
   <p>
-    <b><%= f.label :user_id, t(:from) %></b>: 
-    <%= @message.user.fullname %>
+      <%= link_to( t(:no_friends_for_message), users_path) %>
   </p>
-  <p>
-    <b><%= f.label :recipients_ids, t(:recipients) %></b><br/>
-      <%= recipient_checkboxes(@message,@recipients) %>
-  </p>
-  <p>
-    <%= f.label :message %><br />
-    <%= f.textile_editor :message, :cols => '125' %>
-  </p>
-  <p><%= f.submit "Submit" %> <%= link_to t(:back), params[:back_to] %></p>
 <% end %>
-

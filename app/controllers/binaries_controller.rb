@@ -4,7 +4,9 @@ class BinariesController < ApplicationController
   filter_resource_access
   
   def index
-    @binaries = @user.binaries.paginate( :page => params[:page], :per_page => BINARIES_PER_PAGE)
+    @binaries = @user.binaries.reject {|b| 
+      !( b.user == current_user || b.access_roles.include?('public') || b.friends_access && b.friends_access.include?(current_user))
+    }.paginate( :page => params[:page], :per_page => BINARIES_PER_PAGE)
   end
   
   def show

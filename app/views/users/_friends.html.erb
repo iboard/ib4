@@ -27,6 +27,23 @@
 <% end %>
 
 <%- if is_current_user?(@user) -%>
+  <!-- NOT CONFIRMED FRIENDSHIPS -->
+  <% if @user.not_confirmed_friendships && @user.not_confirmed_friendships.any? %>
+    <h3><%= t(:friendship_requests) -%></h3>
+    <% for friendship in (@user.not_confirmed_friendships) %>
+      <div class='inline_friend_display'>
+        <%= image_tag friendship.user.avatar.url(:icon), :hspace => 5, :vspace => 0 %> <%= CAN_OPEN -%>
+        <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
+    
+          <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)<br/>
+          <%= NBSP*14 -%><%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post -%><br/>
+          <%= NBSP*14 -%><%= link_to DELETE_CHAR+NBSP+t(:reject_friendship), friendship, 
+                               :method => :delete, 
+                               :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
+                          -%>
+       </div>
+    <% end %>
+  <% end %>
   <% toggle_display_link t(:not_commited_friends) do %>
     <% content_tag :div, :class => 'current_user_display' do %>
       <!-- NOT COMMITED FRIENDS -->
@@ -40,19 +57,6 @@
                  :method => :delete, :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
                 -%>
               </div
-          <% end %>
-      <% end %>
-      
-      <!-- NOT CONFIRMED FRIENDSHIPS -->
-      <% if @user.not_confirmed_friendships && @user.not_confirmed_friendships.any? %>
-        <h3><%= t(:friendship_requests) -%></h3>
-          <% for friendship in (@user.not_confirmed_friendships) %>
-            <div class='inline_friend_display'>
-              <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
-        
-                <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)
-                <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post %>
-            </div>
           <% end %>
       <% end %>
     <% end %>

@@ -27,6 +27,7 @@ authorization do
     includes :guest
     
     # USER
+    has_permission_on :users, :to => [:index,:show ] 
     has_permission_on :users, :to => [:index,:show,:new,:create,:edit,:update,:remove_avatar ] do
       if_attribute :id => is { Authorization.current_user.id }
     end
@@ -35,7 +36,7 @@ authorization do
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy ] do
       if_attribute :user => is { Authorization.current_user }
     end
-    has_permission_on :messages, :to => [:new,:create]
+    has_permission_on :messages, :to => [:new,:create] 
     has_permission_on :messages, :to => [:show ] do
       if_attribute :sending_allowed_to => is { Authorization.current_user }
     end
@@ -63,8 +64,11 @@ authorization do
     
     # BINARY
     has_permission_on :binaries, :to => [:show] do 
+      if_attribute :access_roles => contains { 'public' }
       if_attribute :friends_access =>  contains {  Authorization.current_user }
     end
+      
+   
     has_permission_on :binaries, :to => [:index,:new,:create,:update,:destroy,:edit] do 
       if_attribute :user =>  is {  Authorization.current_user }
     end

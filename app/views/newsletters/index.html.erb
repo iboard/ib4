@@ -1,11 +1,13 @@
 <% title "Newsletters" %>
-
-<p>
-  <%= link_to CAN_OPEN+NBSP+t(:new_newsletter), new_newsletter_path %><br/>
-  <%= link_to CAN_OPEN+NBSP+t(:blacklist), :controller => :newsletter_blacklist %>
-</p>
+<% if is_admin? %>
+  <p>
+    <%= link_to CAN_OPEN+NBSP+t(:new_newsletter), new_newsletter_path %><br/>
+    <%= link_to CAN_OPEN+NBSP+t(:blacklist), :controller => :newsletter_blacklist %>
+  </p>
+<% end %>
 
 <%= "<p>#{t(:no_entries_found)}</p>" unless @newsletters.any?  -%>
+
 <% for newsletter in @newsletters %>
   
   <h1><%=h newsletter.title %></h1>
@@ -13,11 +15,13 @@
       <h1 style='font-size: 42px; color: #888;'>#<%= newsletter.newsletter_issues.length -%>
       <%= image_tag( newsletter.banner.url(:default), :align => :right, :hspace => 10 ) if newsletter.banner -%>
       </h1>
-      <%= link_to( t(:newsletter_issues), newsletter_newsletter_issues_path(newsletter) ) -%> |
-      <%= link_to( t(:newsletter_subscriptions), newsletter_newsletter_subscriptions_path(newsletter) ) -%> |
-      <%= link_to t(:edit), edit_newsletter_path(newsletter) %> |
-      <%= link_to t(:destroy), newsletter, :confirm => 'Are you sure?', :method => :delete %>
-
+      <%= link_to( t(:newsletter_issues), newsletter_newsletter_issues_path(newsletter) ) -%>
+      <% if is_admin? %> |
+        <%= link_to( t(:newsletter_subscriptions), newsletter_newsletter_subscriptions_path(newsletter) ) -%> |
+        <%= link_to t(:edit), edit_newsletter_path(newsletter) %> |
+        <%= link_to t(:destroy), newsletter, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+      <%= render :partial => 'newsletter_subscription_state', :locals => { :newsletter => newsletter, :user => current_user } %>
   </blockquote>
   
 <% end %>

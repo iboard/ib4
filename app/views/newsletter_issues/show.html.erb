@@ -12,8 +12,8 @@
 
 <p>
   <%= link_to t(:back), newsletter_newsletter_issues_path(@newsletter)%> 
-  <%= link_to t(:edit), edit_newsletter_newsletter_issue_path(@newsletter,@newsletter_issue) %> 
-  <%= link_to t(:destroy), [@newsletter,@newsletter_issue], :confirm => 'Are you sure?', :method => :delete %> 
+  <%= link_to( t(:edit), edit_newsletter_newsletter_issue_path(@newsletter,@newsletter_issue)) if is_admin? %> 
+  <%= link_to( t(:destroy), [@newsletter,@newsletter_issue], :confirm => 'Are you sure?', :method => :delete) if is_admin? %> 
 </p>
 
 <p>
@@ -28,63 +28,63 @@
 <%= @newsletter.render_footer("NEWSLETTER_MAIL","NEWLETTER_MAIL",subscriptions_url("NEWSLETTER_MAIL","TOKEN")).to_txt %>
 </div>
 
-
-<p>
-    <strong><%= t(:subscriptions)%>:</strong>
-</p>
-
-<p><%= @newsletter.newsletter_subscriptions.find(:all,:order => :mail, :limit => 10).map(&:mail).sort.join(", ") -%>
-    <% if @newsletter.newsletter_subscriptions.count > 10 %>
-      <%= t(:and_count_more, :count => @newsletter.newsletter_subscriptions.count-10 ) -%>
-    <% end %>
-</p>
-
-<div>
-    <%= periodically_call_remote( 
-          :url => deliver_issue_newsletter_path(@newsletter, :newsletter_issue_id => @newsletter_issue),
-          :method => :get,
-          :update => "delivery_#{@newsletter_issue.id.to_s}",
-          :frequency => '15' )
-    -%>
-    <strong><%= t(:delivered_to)%>:</strong><br/>
-    <div id="delivery_<%= @newsletter_issue.id.to_s -%>">
-    <%= @newsletter_issue.print_state_column -%><br/>
-     <%-
-         @newsletter_issue.html_body = @newsletter_issue.body.to_txt
-         @newsletter_issue.save!
+<%- if is_admin? -%>
+  <p>
+      <strong><%= t(:subscriptions)%>:</strong>
+  </p>
+  
+  <p><%= @newsletter.newsletter_subscriptions.find(:all,:order => :mail, :limit => 10).map(&:mail).sort.join(", ") -%>
+      <% if @newsletter.newsletter_subscriptions.count > 10 %>
+        <%= t(:and_count_more, :count => @newsletter.newsletter_subscriptions.count-10 ) -%>
+      <% end %>
+  </p>
+  
+  <div>
+      <%= periodically_call_remote( 
+            :url => deliver_issue_newsletter_path(@newsletter, :newsletter_issue_id => @newsletter_issue),
+            :method => :get,
+            :update => "delivery_#{@newsletter_issue.id.to_s}",
+            :frequency => '15' )
       -%>
-    <%= link_to_remote( 
-             t(:start_delivering), 
-             :url => deliver_newsletter_issue_path( 
-                         @newsletter_issue, 
-                         :body_html => @newsletter_issue.body.to_txt
-                     ),
-             :method => :get,
-             :update => "delivery_#{@newsletter_issue.id.to_s}",
-             :confirm => t(:are_you_sure,:what => "start delivering to #{@newsletter_issue.newsletter.newsletter_subscriptions.length} recipients")
-        )  
-    -%><br/>
-    </div>
-    <%= link_to_remote( 
-               t(:send_test_mail, :mail => @newsletter.reply_to), 
-               :url => deliver_test_newsletter_issue_path(
+      <strong><%= t(:delivered_to)%>:</strong><br/>
+      <div id="delivery_<%= @newsletter_issue.id.to_s -%>">
+      <%= @newsletter_issue.print_state_column -%><br/>
+       <%-
+           @newsletter_issue.html_body = @newsletter_issue.body.to_txt
+           @newsletter_issue.save!
+        -%>
+      <%= link_to_remote( 
+               t(:start_delivering), 
+               :url => deliver_newsletter_issue_path( 
                            @newsletter_issue, 
                            :body_html => @newsletter_issue.body.to_txt
                        ),
                :method => :get,
                :update => "delivery_#{@newsletter_issue.id.to_s}",
-               :confirm => t(:are_you_sure,:what => "send testmail to #{@newsletter_issue.newsletter.reply_to}")
+               :confirm => t(:are_you_sure,:what => "start delivering to #{@newsletter_issue.newsletter.newsletter_subscriptions.length} recipients")
           )  
+      -%><br/>
+      </div>
+      <%= link_to_remote( 
+                 t(:send_test_mail, :mail => @newsletter.reply_to), 
+                 :url => deliver_test_newsletter_issue_path(
+                             @newsletter_issue, 
+                             :body_html => @newsletter_issue.body.to_txt
+                         ),
+                 :method => :get,
+                 :update => "delivery_#{@newsletter_issue.id.to_s}",
+                 :confirm => t(:are_you_sure,:what => "send testmail to #{@newsletter_issue.newsletter.reply_to}")
+            )  
+      -%>
+  </div>
+  <p>
+    <%= @newsletter_issue.newsletter_deliveries.map { |d|  
+          if d.newsletter_subscription
+            d.newsletter_subscription.mail + " (#{d.delivered_at.to_s(:short)} " +
+               (d.failure_messages.nil? ? "OK" : "ERR: <span style='color: red;'>#{d.failure_messages}</span>") +
+               ")"
+          end
+        }.reject {|x| x==nil}.sort.join("<br/>\n")
     -%>
-</div>
-
-<p>
-  <%= @newsletter_issue.newsletter_deliveries.map { |d|  
-        if d.newsletter_subscription
-          d.newsletter_subscription.mail + " (#{d.delivered_at.to_s(:short)} " +
-             (d.failure_messages.nil? ? "OK" : "ERR: <span style='color: red;'>#{d.failure_messages}</span>") +
-             ")"
-        end
-      }.reject {|x| x==nil}.sort.join("<br/>\n")
-  -%>
-</p>
+  </p>
+<%- end -%>

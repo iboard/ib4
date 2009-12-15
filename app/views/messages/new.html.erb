@@ -1,5 +1,7 @@
-<% title "New Message" %>
+<% title t(:new_message) %>
 
 <%= render :partial => 'form' %>
 
-<p><%= link_to "Back to List", messages_path %></p>
+<% if current_user %>
+  <p><%= link_to t(:your_messages), messages_path %></p>
+<% end %>

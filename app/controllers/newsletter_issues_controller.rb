@@ -1,12 +1,12 @@
 class NewsletterIssuesController < ApplicationController
   
   before_filter :load_newsletter, :except => [:deliver, :deliver_test]
-  before_filter :require_admin
+  before_filter :require_admin, :except => [:index,:show]
   
   include ApplicationHelper
   
   def index
-    @newsletter_issues = @newsletter.newsletter_issues
+    @newsletter_issues = @newsletter.newsletter_issues.descend_by_updated_at
   end
   
   def show

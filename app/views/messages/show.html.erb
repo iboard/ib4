@@ -2,12 +2,12 @@
 
 <p>
   <strong>User:</strong>
-  <%=h @message.user_id %>
+  <%= @message.user.fullname if  @message.user %>, <%= @message.updated_at.to_s(:short) -%>
 </p>
 <p>
   <strong>Message:</strong>
-  <%=h @message.message %>
 </p>
+  <%= @message.message.to_txt %>
 
 <p>
   <%= link_to "Edit", edit_message_path(@message) %> |

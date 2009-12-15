@@ -1,52 +1,54 @@
 <% title t(:newsletter_issues_for_title, :title => @newsletter.title) -%>
 <%= link_to t(:back), newsletters_path -%> <br/>
 <%= CAN_OPEN+NBSP+
-    link_to( t(:add_issue), new_newsletter_newsletter_issue_path )%>
+    link_to( t(:add_issue), new_newsletter_newsletter_issue_path ) if is_admin? %>
 
 
 <table class='smalltable' width=100%>
   <tr>
     <th>Date</th>
     <th>Subject</th>
-    <th>State</th>
+    <%- if is_admin? -%><th>State</th><%- end -%>
     <th>Action</th>
   </tr>
   <% for newsletter_issue in @newsletter_issues %>
     <tr>
       <td valign="top"><%=h newsletter_issue.updated_at.to_s(:short) %></td>
       <td valign="top"><%=h newsletter_issue.subject %></td>
-      <td valign="top" align="center">
-        <%= periodically_call_remote( 
-              :url => deliver_issue_newsletter_path(@newsletter, :newsletter_issue_id => newsletter_issue),
-              :method => :get,
-              :update => "delivery_#{newsletter_issue.id.to_s}",
-              :frequency => '15' )
-        -%>
-        <div id="delivery_<%= newsletter_issue.id.to_s -%>">
-          <%= newsletter_issue.print_state_column -%><br/>
-          
-          <%= link_to_remote( 
-                 t(:start_delivering), 
-                 :url => deliver_newsletter_issue_path(newsletter_issue),
-                 :method => :get,
-                 :update => "delivery_#{newsletter_issue.id.to_s}",
-                 :confirm => t(:are_you_sure,:what => 'start delivering')
-            )  
+      <%- if is_admin? -%>
+        <td valign="top" align="center">
+          <%= periodically_call_remote( 
+                :url => deliver_issue_newsletter_path(@newsletter, :newsletter_issue_id => newsletter_issue),
+                :method => :get,
+                :update => "delivery_#{newsletter_issue.id.to_s}",
+                :frequency => '15' )
           -%>
-          <br/>
-        </div>
-        <%= link_to_remote( 
-                   t(:send_test_mail, :mail => @newsletter.reply_to), 
-                   :url => deliver_test_newsletter_issue_path(newsletter_issue),
+          <div id="delivery_<%= newsletter_issue.id.to_s -%>">
+            <%= newsletter_issue.print_state_column -%><br/>
+            
+            <%= link_to_remote( 
+                   t(:start_delivering), 
+                   :url => deliver_newsletter_issue_path(newsletter_issue),
                    :method => :get,
-                   :update => "delivery_#{newsletter_issue.id.to_s}"
+                   :update => "delivery_#{newsletter_issue.id.to_s}",
+                   :confirm => t(:are_you_sure,:what => 'start delivering')
               )  
             -%>
-      </td>
+            <br/>
+          </div>
+          <%= link_to_remote( 
+                     t(:send_test_mail, :mail => @newsletter.reply_to), 
+                     :url => deliver_test_newsletter_issue_path(newsletter_issue),
+                     :method => :get,
+                     :update => "delivery_#{newsletter_issue.id.to_s}"
+                )  
+              -%>
+        </td>
+      <%- end -%>
       <td>
-        <%= link_to t(:folder_open_icon,:title => 'Show Issue'), newsletter_newsletter_issue_path(@newsletter, newsletter_issue) %>
-        <%= link_to t(:edit), edit_newsletter_newsletter_issue_path(@newsletter, newsletter_issue) %>
-        <%= link_to t(:destroy), newsletter_newsletter_issue_path(@newsletter, newsletter_issue), :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to( CAN_OPEN+NBSP+t(:read,:title => 'Show Issue'), newsletter_newsletter_issue_path(@newsletter, newsletter_issue)) %>
+        <%= link_to( t(:edit), edit_newsletter_newsletter_issue_path(@newsletter, newsletter_issue) ) if is_admin? %>
+        <%= link_to( t(:destroy), newsletter_newsletter_issue_path(@newsletter, newsletter_issue), :confirm => 'Are you sure?', :method => :delete ) if is_admin? %>
       </td>
       <tr><td colspan=4><hr></td></tr>
     </tr>

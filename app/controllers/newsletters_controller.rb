@@ -1,9 +1,10 @@
 class NewslettersController < ApplicationController
   
-  before_filter  :require_admin, :except => [:subscriptions]
+  before_filter  :require_admin, :except => [:subscriptions,:index,:subscribe_user]
+  before_filter  :require_user
   
   def index
-    @newsletters = Newsletter.all
+    @newsletters = Newsletter.descend_by_updated_at
   end
   
   def show
@@ -41,7 +42,7 @@ class NewslettersController < ApplicationController
   end
   
   def update
-    @newsletter = Newsletter.find(params[:id])
+   @newsletter = Newsletter.find(params[:id])
    respond_to do |format|
       if @newsletter.update_attributes(params[:newsletter])
         flash[:notice] = t(:newsletter_successfully_updated)
@@ -59,7 +60,18 @@ class NewslettersController < ApplicationController
   def destroy
     @newsletter = Newsletter.find(params[:id])
     @newsletter.destroy
-    flash[:notice] = "Successfully destroyed newsletter."
+    flash[:notice] = "Successfully unsubscribed"
+    redirect_to newsletters_url
+  end
+  
+  def subscribe_user
+    @newsletter = Newsletter.find(params[:id])
+    @user = User.find(params[:user_id]) if is_admin?
+    @user = current_user unless is_admin?
+    if @user
+      @newsletter.newsletter_subscriptions.create( :mail => @user.email )
+      flash[:notice] = t(:subscription_saved)
+    end
     redirect_to newsletters_url
   end
   

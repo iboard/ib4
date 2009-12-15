@@ -22,8 +22,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :newsletters, 
                  :has_many => [:newsletter_subscriptions, :newsletter_issues],
                  :member => {
-                   :deliver_issue => :get
+                   :deliver_issue => :get,
+                   :subscribe_user => :get,
                  }
+  map.resources :newsletter_subscriptions
   map.resources :newsletter_blacklist
   map.resources :newsletter_issues, :member =>  { :deliver => :get, :deliver_test  => :get  }
   map.subscriptions '/subscriptions/:mail/:token', :controller => "newsletters", :action => 'subscriptions'

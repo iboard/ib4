@@ -50,8 +50,11 @@ class User < ActiveRecord::Base
   # list all friends of your friendships-list when they found in inverse_friendships too
   def commited_friendships
     @commited_friendships ||= friendships.all.reject { |r|
-      inverse_friendships.find_by_user_id(r.friend_id).nil?
-    }
+                                inverse_friendships.find_by_user_id(r.friend_id).nil?
+                              } + 
+                              inverse_friendships.all.reject { |r| 
+                                friendships.find_by_user_id(r.user_id).nil?
+                              }
   end
   
   # list all friendships which are not found in inverse_friendships

@@ -1,0 +1,15 @@
+<% if user %>
+  |
+  <% s = newsletter.newsletter_subscriptions.find_by_mail(user.email) %>
+  <% if s %>
+    <%= t(:you_are_subscribed)+NBSP+CAN_OPEN %>
+    <%= link_to t(:unsubscribe), newsletter_subscription_path(s,
+          :newsletter_id => newsletter.id), 
+          :method => :delete, 
+          :confirm => t(:are_you_sure, :what => t(:unsubscribe_from_newsletter)) 
+    -%>
+  <% else %>
+    <%= t(:not_subscribed)+NBSP+CAN_OPEN %>
+    <%= link_to t(:subscribe), subscribe_user_newsletter_path(:id => newsletter.id, :user_id => current_user.id) %>
+  <% end %>
+<% end %>

@@ -1,6 +1,8 @@
 class NewsletterSubscriptionsController < ApplicationController
   
   before_filter :load_newsletter
+  before_filter :require_admin, :except => [:create,:destroy]
+  before_filter :require_user
 
   def index
     @newsletter_subscriptions = @newsletter.newsletter_subscriptions
@@ -91,9 +93,13 @@ class NewsletterSubscriptionsController < ApplicationController
 
   def destroy
     @newsletter_subscription = @newsletter.newsletter_subscriptions.find(params[:id])
-    @newsletter_subscriptions.destroy
+    @newsletter_subscription.destroy
     flash[:notice] = t(:subscription_destroyed)
-    redirect_to @newsletter
+    if is_admin?
+      redirect_to newsletter_path(@newsletter)
+    else
+      redirect_to newsletters_path
+    end
   end
 
 
