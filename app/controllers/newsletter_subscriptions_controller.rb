@@ -2,7 +2,6 @@ class NewsletterSubscriptionsController < ApplicationController
   
   before_filter :load_newsletter
   before_filter :require_admin, :except => [:create,:destroy]
-  before_filter :require_user
 
   def index
     @newsletter_subscriptions = @newsletter.newsletter_subscriptions
