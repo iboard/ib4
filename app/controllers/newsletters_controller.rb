@@ -1,7 +1,7 @@
 class NewslettersController < ApplicationController
   
   before_filter  :require_admin, :except => [:subscriptions,:index,:subscribe_user]
-  before_filter  :require_user
+  before_filter  :require_user,:except => [:subscriptions]
   
   def index
     @newsletters = Newsletter.descend_by_updated_at
