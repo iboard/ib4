@@ -21,7 +21,7 @@
       <td><%=h note.message_type %></td>
       <td><%= link_to "Show", note %></td>
       <td><%= link_to "Edit", edit_note_path(note) %></td>
-      <td><%= link_to "Destroy", note, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Destroy", note, :user_id => note.user, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>

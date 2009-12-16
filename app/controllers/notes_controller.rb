@@ -54,11 +54,13 @@ class NotesController < ApplicationController
   
   private
   def require_owner_or_admin
-    unless is_admin? || user == current_user
-      flash[:error] = t(:access_denied)
-      redirect_to root_path
-    else
-      @user = User.find(params[:user_id])
+    params[:user_id] ||= current_user.id
+    @user = is_admin? ? User.find(params[:user_id]) : current_user
+    @note = @user.notes.find(params[:id]) if @user && params[:id]
+    if  !is_admin? && ((!@note) || (@note.user != current_user))
+        flash[:error] = t(:access_denied)
+        redirect_to root_path
+        return false
     end
   end
 end

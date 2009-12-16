@@ -279,3 +279,4 @@ en:
   subscription_saved: 'Successfully subscribed'
   subscription_destroyed: 'Newsletter canceled'
   session_history: 'Session history'
+  no_login_found: 'No login mark found'

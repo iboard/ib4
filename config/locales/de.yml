@@ -275,3 +275,4 @@ de:
   subscription_saved: 'Abo wurde gespeichert'
   subscription_destroyed: 'Abo wurde gekündigt'
   session_history: 'Verbindungsdetails'
+  no_login_found: 'Es wurde kein Login gefunden'
