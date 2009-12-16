@@ -1,7 +1,8 @@
 class NotesController < ApplicationController
   
+  before_filter  :load_user
   before_filter  :require_admin, :except => [:index]
-  before_filter  :require_owner_or_admin
+  before_filter  :require_owner_or_admin, :except => [:index]
   
   def index
     if params[:message_type] == 'end_action' && params[:noteable_type] == 'User'
@@ -53,9 +54,12 @@ class NotesController < ApplicationController
   end
   
   private
+  def load_user
+    @user = is_admin? ? User.find(params[:user_id]) : current_user
+  end
+  
   def require_owner_or_admin
     params[:user_id] ||= current_user.id
-    @user = is_admin? ? User.find(params[:user_id]) : current_user
     @note = @user.notes.find(params[:id]) if @user && params[:id]
     if  !is_admin? && ((!@note) || (@note.user != current_user))
         flash[:error] = t(:access_denied)
