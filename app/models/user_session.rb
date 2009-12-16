@@ -7,17 +7,16 @@ class UserSession < Authlogic::Session::Base
   private
   def create_login_note
     if last_login && last_login.children.empty?
-      last_login.children.create(:message_type => :end_action, 
+      logout_note = last_login.children.create(:message_type => :end_action, 
                                  :message => 'LOG OUT (autom. session reset at login)', 
                                  :message_value => Time.now.to_i.to_s, 
                                  :parent => last_login, 
                                  :noteable_type => 'User', :noteable_id => user.id)
-      last_login.save
-    else
-      user.notes.create(:message_type => :new_action, :message => 'LOG IN', :message_value => Time.now.to_i.to_s, 
-                      :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
-      @last_login = nil
+      logout_note.save!
     end
+
+    @last_login = user.notes.create(:message_type => :new_action, :message => 'LOG IN', :message_value => Time.now.to_i.to_s, 
+                    :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
   end
   
   def create_logout_note
@@ -25,6 +24,7 @@ class UserSession < Authlogic::Session::Base
       @last_login = user.notes.create(:message_type => :new_action, :message => 'LOG IN (autom. session login at logout)', 
                         :message_value => Time.now.to_i.to_s, 
                         :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
+      @last_login.save!
     end
     user.notes.create(:message_type => :end_action, :message => 'LOG OUT', :message_value => Time.now.to_i.to_s, 
                       :parent => last_login, :noteable_type => 'User', :noteable_id => user.id )
@@ -32,8 +32,8 @@ class UserSession < Authlogic::Session::Base
   
   def last_login
     @last_login ||= Note.find(:last, 
-                       :conditions => ['user_id = ? and message_type = ? and message = ? and noteable_type = ? and noteable_id = ?', 
-                       user.id, :new_action, 'LOG IN', 'User', user.id ])
+                       :conditions => ['user_id = ? and message_type = ? and message like ? and noteable_type = ? and noteable_id = ?', 
+                       user.id, :new_action, 'LOG IN%', 'User', user.id ])
   end
   
 end
