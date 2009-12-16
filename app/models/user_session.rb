@@ -12,6 +12,7 @@ class UserSession < Authlogic::Session::Base
                                  :message_value => Time.now.to_i.to_s, 
                                  :parent => last_login, 
                                  :noteable_type => 'User', :noteable_id => user.id)
+      last_login.save
     else
       user.notes.create(:message_type => :new_action, :message => 'LOG IN', :message_value => Time.now.to_i.to_s, 
                       :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
@@ -21,7 +22,7 @@ class UserSession < Authlogic::Session::Base
   
   def create_logout_note
     if !last_login
-      user.notes.create(:message_type => :new_action, :message => 'LOG IN (autom. session login at logout)', 
+      @last_login = user.notes.create(:message_type => :new_action, :message => 'LOG IN (autom. session login at logout)', 
                         :message_value => Time.now.to_i.to_s, 
                         :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
     end
