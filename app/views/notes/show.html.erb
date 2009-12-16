@@ -1,0 +1,36 @@
+<% title "Note" %>
+
+<p>
+  <strong>Parent:</strong>
+  <%=h @note.parent_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @note.user_id %>
+</p>
+<p>
+  <strong>Noteable Type:</strong>
+  <%=h @note.noteable_type %>
+</p>
+<p>
+  <strong>Noteable:</strong>
+  <%=h @note.noteable_id %>
+</p>
+<p>
+  <strong>Message:</strong>
+  <%=h @note.message %>
+</p>
+<p>
+  <strong>Message Value:</strong>
+  <%=h @note.message_value %>
+</p>
+<p>
+  <strong>Message Type:</strong>
+  <%=h @note.message_type %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_note_path(@note) %> |
+  <%= link_to "Destroy", @note, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", notes_path %>
+</p>

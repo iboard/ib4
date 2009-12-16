@@ -42,6 +42,7 @@
                  <strong><%= t(:current_login_at   ) -%></strong>: <%=h @user.current_login_at    -%><br/>
            </blockquote>
          <% end %>
+         <%= link_to CAN_OPEN+NBSP+t(:session_history), user_notes_path(@user, :message_type => :end_action, :noteable_type => 'User')%>
       </div>  
     <%- end -%>
     <%= link_to CAN_OPEN+NBSP+t(:your_files)+" (#{@user.binaries .length})", user_binaries_path(@user) -%>

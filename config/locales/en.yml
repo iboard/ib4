@@ -278,3 +278,4 @@ en:
   subscribe: 'subscribe'
   subscription_saved: 'Successfully subscribed'
   subscription_destroyed: 'Newsletter canceled'
+  session_history: 'Session history'

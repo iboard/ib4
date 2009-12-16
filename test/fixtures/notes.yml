@@ -1,0 +1,17 @@
+one:
+  parent_id: 1
+  user_id: 1
+  noteable_type: MyString
+  noteable_id: 1
+  message: MyText
+  message_value: MyString
+  message_type: MyString
+
+two:
+  parent_id: 1
+  user_id: 1
+  noteable_type: MyString
+  noteable_id: 1
+  message: MyText
+  message_value: MyString
+  message_type: MyString

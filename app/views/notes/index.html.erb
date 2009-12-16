@@ -1,0 +1,29 @@
+<% title "Notes" %>
+
+<table>
+  <tr>
+    <th>Parent</th>
+    <th>User</th>
+    <th>Noteable Type</th>
+    <th>Noteable</th>
+    <th>Message</th>
+    <th>Message Value</th>
+    <th>Message Type</th>
+  </tr>
+  <% for note in @notes %>
+    <tr>
+      <td><%=h note.parent_id %></td>
+      <td><%=h note.user.fullname %></td>
+      <td><%=h note.noteable_type %></td>
+      <td><%=h note.noteable_id %></td>
+      <td><%=h note.message %></td>
+      <td><%=h note.message_value %></td>
+      <td><%=h note.message_type %></td>
+      <td><%= link_to "Show", note %></td>
+      <td><%= link_to "Edit", edit_note_path(note) %></td>
+      <td><%= link_to "Destroy", note, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Note", new_note_path %></p>

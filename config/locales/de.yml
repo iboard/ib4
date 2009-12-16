@@ -274,3 +274,4 @@ de:
   subscribe: 'abonnieren'
   subscription_saved: 'Abo wurde gespeichert'
   subscription_destroyed: 'Abo wurde gekündigt'
+  session_history: 'Verbindungsdetails'

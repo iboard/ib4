@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091207124201) do
+ActiveRecord::Schema.define(:version => 20091216001656) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -165,6 +165,18 @@ ActiveRecord::Schema.define(:version => 20091207124201) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+  end
+
+  create_table "notes", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "user_id"
+    t.string   "noteable_type"
+    t.integer  "noteable_id"
+    t.text     "message"
+    t.string   "message_value"
+    t.string   "message_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pages", :force => true do |t|
