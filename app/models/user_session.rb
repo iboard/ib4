@@ -7,7 +7,6 @@ class UserSession < Authlogic::Session::Base
   private
   def create_login_note
     if last_login && last_login.children.empty?
-      logger.info("*** AUTOCLOSE SESSION #{self.inspect}")
       last_login.children.create(:message_type => :end_action, 
                                  :message => 'LOG OUT (autom. session reset at login)', 
                                  :message_value => Time.now.to_i.to_s, 
