@@ -276,3 +276,51 @@ de:
   subscription_destroyed: 'Abo wurde gekündigt'
   session_history: 'Verbindungsdetails'
   no_login_found: 'Es wurde kein Login gefunden'
+  minutes_ago:
+    zero: 'jetzt'
+    one: 'vor einer Minute'
+    other: 'vor {{count}} Minuten'
+  hours_ago:
+    zero: 'in dieser Stunde'
+    one: 'vor einer Stunde'
+    other: 'vor {{count}} Stunden'
+  days_ago:
+    zero: 'heute'
+    one: 'gestern'
+    other: 'vor {{count}} Tagen'
+  weeks_ago:
+    zero: 'diese Woche'
+    one: 'vorige Woche'
+    other: 'vor {{count}} Wochen'
+  months_ago:
+    zero: 'Diesen Monat'
+    one: 'vorigen Monat'
+    other: 'vor {{count}} Monaten'
+  years_ago:
+    zero: 'dieses Jahr'
+    one: 'letztes Jahr'
+    other: 'vor {{count}} Jahren'
+  in_minutes:
+    zero: 'jetzt'
+    one: 'in einer Minute'
+    other: 'in {{count}} Minuten'
+  in_hours:
+    zero: 'in der nächsten Stunde'
+    one: 'in einer Stunde'
+    other: 'in {{count}} Stunden'
+  in_days_ago:
+    zero: 'heute'
+    one: 'morgen'
+    other: 'in {{count}} Tagen'
+  in_weeks_ago:
+    zero: 'diese Woche'
+    one: 'nächste Woche'
+    other: 'in {{count}} Wochen'
+  in_months_ago:
+    zero: 'Dieses Montat'
+    one: 'in einen Monat'
+    other: 'in {{count}} Monaten'
+  in_years_ago:
+    zero: 'heuer'
+    one: 'nächstes Jahr'
+    other: 'in {{count}} Jahren'

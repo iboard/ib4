@@ -280,3 +280,51 @@ en:
   subscription_destroyed: 'Newsletter canceled'
   session_history: 'Session history'
   no_login_found: 'No login mark found'
+  minutes_ago:
+    zero: 'now'
+    one: 'one minute ago'
+    other: '{{count}} minutes ago'
+  hours_ago:
+    zero: 'this hour'
+    one: 'one hour ago'
+    other: '{{count}} hours ago'
+  days_ago:
+    zero: 'today'
+    one: 'one day ago'
+    other: '{{count}} days ago'
+  weeks_ago:
+    zero: 'this week'
+    one: 'one week ago'
+    other: '{{count}} weeks ago'
+  months_ago:
+    zero: 'this month'
+    one: 'one month ago'
+    other: '{{count}} months ago'
+  years_ago:
+    zero: 'this year'
+    one: 'one year ago'
+    other: '{{count}} years ago'
+  in_minutes:
+    zero: 'now'
+    one: 'in one minute'
+    other: 'in {{count}} minutes'
+  in_hours:
+    zero: 'next hour'
+    one: 'in one hour'
+    other: 'in {{count}} hours'
+  in_days_ago:
+    zero: 'today'
+    one: 'in one day'
+    other: 'in {{count}} days'
+  in_weeks_ago:
+    zero: 'this week'
+    one: 'in one week'
+    other: 'in {{count}} weeks'
+  in_months_ago:
+    zero: 'this month'
+    one: 'in one month'
+    other: 'in {{count}} months'
+  in_years_ago:
+    zero: 'this year'
+    one: 'in one year'
+    other: 'in {{count}} years'

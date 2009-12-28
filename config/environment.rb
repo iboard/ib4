@@ -24,6 +24,7 @@ Rails::Initializer.run do |config|
   config.gem 'vestal_versions'
   config.gem "declarative_authorization", :source => "http://gemcutter.org" 
   config.gem "acts_as_tree"
+  config.gem "chronic"
   
   # Timezone and Locale
   config.time_zone = 'UTC'

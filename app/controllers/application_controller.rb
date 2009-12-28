@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
   end
     
   def search  
-    if params[:search_txt].empty?
+    if !params[:search_txt] || params[:search_txt].empty?
         flash[:error] = t(:please_enter_a_searchterm)
         redirect_to root_path
         return false

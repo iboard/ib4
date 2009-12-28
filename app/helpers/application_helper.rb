@@ -35,5 +35,32 @@ module ApplicationHelper
           :update => 'ajax_msg');
    end
    
+   def humanize_time_span(t2,t1=nil)
+     t1 ||= Time.now
+     d = t2 - t1
+     a = d.abs
+     p = :minutes
+     p = :hours if a > 1.hour
+     p = :days  if a > 1.day
+     p = :weeks if a > 1.week
+     p = :months if a> 1.month
+     p = :years if a > 1.year
+     
+     case p
+     when :minutes
+       r = t( ( d.to_i > 0 ? :in_minutes : :minutes_ago), :count => (a/1.minute).round )
+     when :hours
+       r = t( ( d.to_i > 0 ? :in_hours : :hours_ago), :count => (a/1.hour).round )
+     when :days
+       r = t( ( d.to_i > 0 ? :in_days : :days_ago), :count => (a/1.day).round )
+     when :weeks
+       r = t( ( d.to_i > 0 ? :in_weeks : :weeks_ago), :count => (a/1.week).round )
+     when :months
+       r = t( ( d.to_i > 0 ? :in_months : :months_ago), :count => (a/1.month).round )
+     when :years
+       r = t( ( d.to_i > 0 ? :in_years : :years_ago), :count => (a/1.year).round )
+     end
+     r
+   end
       
 end

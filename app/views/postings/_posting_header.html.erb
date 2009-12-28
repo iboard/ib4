@@ -1,6 +1,6 @@
 <div class='title_box'>
   <%= "<b><center>"+t(:draft)+"</b></center>" if posting.draft %>
-  <%= image_tag(posting.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
+  <%= image_tag(posting.user.avatar.url(:icon), :align => :right, :hspace => 1) %>
   <%=link_to("<b>"+h(posting.user.username) + "</b> (#{posting.user.fullname})",posting.user) -%>, <%= posting.updated_at.to_s(:short) %>
   <%- if posting.tags.any? -%>
     <br />
@@ -16,9 +16,7 @@
     <%= link_to "Destroy", posting, :confirm => 'Are you sure?', :method => :delete %>
   <%- end -%>
   <div style="clear:'left';"></div>
-</div>
-
-<h1 class='title_text'>
+</div><h1 class='title_text'>
     <%- if posting.categories.any? %>
         <span class='header_categories'>
           <%= posting.categories.map{|c| link_to(c.name, category_path(c))}.join(", ") -%><br/>

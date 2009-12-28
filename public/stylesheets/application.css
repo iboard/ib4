@@ -389,18 +389,22 @@ input#page_title {
 .title_text {
   margin-bottom: 0px;
 }
+
 .title_box {
   font-size: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   background: #f6f6f6;
-  padding: 5px;
   line-height: normal;
-  padding-left: 0px;
+  padding: 0px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
   margin: 5px;
   margin-top: 20px;
-  margin-left: 0px;
+  margin-left: 5px;
   width: 300px;
   float: right;
+  opacity: 0.4;
 }
 .body_text {
   padding-left: 10px;
