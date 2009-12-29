@@ -11,12 +11,14 @@ class UserSession < Authlogic::Session::Base
                                  :message => 'LOG OUT (autom. session reset at login)', 
                                  :message_value => Time.now.to_i.to_s, 
                                  :parent => last_login, 
+                                 :user_id => user.id,
                                  :noteable_type => 'User', :noteable_id => user.id)
       logout_note.save!
     end
 
     @last_login = user.notes.create(:message_type => :new_action, :message => 'LOG IN', :message_value => Time.now.to_i.to_s, 
                     :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
+    @last_login.save!
   end
   
   def create_logout_note
@@ -25,9 +27,11 @@ class UserSession < Authlogic::Session::Base
                         :message_value => Time.now.to_i.to_s, 
                         :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
       @last_login.save!
+      
     end
-    user.notes.create(:message_type => :end_action, :message => 'LOG OUT', :message_value => Time.now.to_i.to_s, 
-                      :parent => last_login, :noteable_type => 'User', :noteable_id => user.id )
+    n = user.notes.create(:message_type => :end_action, :message => 'LOG OUT', :message_value => Time.now.to_i.to_s, 
+                      :parent => last_login, :noteable_type => 'User', :noteable_id => user.id)
+    n.save!
   end
   
   def last_login
