@@ -1,6 +1,6 @@
-<% title( t(:session_history) + "-" + current_user.fullname) %>
-<h2><%= yield :title -%></h2>
+<% title( t(:session_history) + ": " + current_user.fullname) %>
 <p><%= link_to BACK_TO+NBSP+t(:dashboard), user_path(current_user) %></p>
+<h1><%= t(:session_history) -%></h1>
 
 <table width='100%'>
     <tr><th>Log in</th><th>Log out</th><th>Message</th><th>Duration</th></tr>
