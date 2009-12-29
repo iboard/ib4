@@ -1,15 +1,18 @@
 <% title t(:session_history) + "-" + current_user.fullname %>
 
 <table width='100%'>
-    <tr><th>Log in</th><th>Log out</th><th>Duration</th></tr>
+    <tr><th>Log in</th><th>Log out</th><th>Message</th><th>Duration</th></tr>
     <% sum = 0.0 %>
   <% @notes.each do |note| %>
     <tr>
         <td>
-          <%= note.parent ? Time.at( note.parent.message_value.to_i) : t(:no_login_found) -%>
+          <%= note.parent ? Time.at( note.parent.message_value.to_i).to_s(:short) : t(:no_login_found) -%>
         </td>
         <td>
-            <%= Time.at( note.message_value.to_i ) -%>
+            <%= Time.at( note.message_value.to_i ).to_s(:short) -%>
+        </td>
+        <td>
+            <%= note.message %>
         </td>
         <td align='right'>
             <% if note.parent %>
@@ -24,8 +27,9 @@
     <tr><th>first log in</th><th>last log out</th><th>total logged in</th></tr>
     <% begin %>
     <tr>
-        <td><%= Time.at(@notes.first.parent.message_value.to_i) %></td>
-        <td><%= Time.at(@notes.last.message_value.to_i) %></td>
+        <td><%= Time.at(@notes.first.parent.message_value.to_i).to_s(:short) %></td>
+        <td><%= Time.at(@notes.last.message_value.to_i).to_s(:short) %></td>
+        <td><%= @notes.last.message %></td>
         <td align='right'><%= (sum/60.0).round(2) -%>min</td>
     </tr>
     <% rescue => e %>
