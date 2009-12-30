@@ -41,9 +41,9 @@ class Usergroup < ActiveRecord::Base
   end
   
   def self.joinable_groups(user)
-    with_join_mask(mask_of(['public', 'friends'])).reject { |g|
+    (with_join_mask(mask_of(['public', 'friends'])).reject { |g|
        !(g.joinable_by.include?(:public) || (g.joinable_by.include?(:friends) && user.my_friends.include?(user)))
-    }
+    } + user.usergroups ).uniq.sort { |a,b| a.name <=> b.name }
   end
 
 
