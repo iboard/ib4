@@ -11,8 +11,7 @@ class UsergroupsController < ApplicationController
   end
   
   def new
-    @usergroup = Usergroup.new
-    @usergroup.user = current_user unless is_admin?
+    @usergroup = Usergroup.new(:user => current_user)
   end
   
   def create
