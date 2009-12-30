@@ -8,11 +8,11 @@ class Usergroup < ActiveRecord::Base
   named_scope :with_join_mask, lambda { |mask| {:conditions => "join_mask & #{mask} > 0 "} }  
   
   
-  def members=(members)
-    group_memberships.delete_all
-    members.each do |member|
-      group_memberships.create( :user_id => member.id )
-    end
+  after_create  :create_memberships
+  after_save    :create_memberships
+  
+  def members=(new_members)
+    @save_members = new_members
   end
   
   def members
@@ -43,7 +43,17 @@ class Usergroup < ActiveRecord::Base
        !(g.joinable_by.include?(:public) || (g.joinable_by.include?(:friends) && user.my_friends.include?(user)))
     }
   end
-  
+
+
+  private
+  def create_memberships
+    group_memberships.delete_all
+    if @save_members 
+      @save_members.each do |member|
+        group_memberships.create( :user_id => member )
+      end
+    end
+  end  
 end
 
 

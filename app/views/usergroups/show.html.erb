@@ -21,7 +21,8 @@
 
 <p>
   <strong>Members:</strong>
-  <%=  @usergroup.members.map(&:fullname).join(", ") -%>
+  <%= @usergroup.members.map(&:fullname).join(", ") -%>
+  <%= t(:no_members) if @usergroup.members.empty? %>
 </p>
 
 <h2><%= t(:restricted_items) -%></h2>
