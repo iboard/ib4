@@ -86,5 +86,17 @@ class UsersController < ApplicationController
     redirect_to :action => :index
   end
   
+  def join_group
+    @user = User.find(params[:id])
+    @group= Usergroup.find(params[:usergroup_id])
+    ms = @user.group_memberships.create(:usergroup_id => params[:usergroup_id]) if @user && @group
+  end
+  
+  def leave_group
+    @user = User.find(params[:id])
+    @group= Usergroup.find(params[:usergroup_id])
+    ms = @user.group_memberships.find_by_usergroup_id(params[:usergroup_id]) if @user && @group
+    ms.destroy if ms
+  end
   
 end

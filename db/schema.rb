@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091216001656) do
+ActiveRecord::Schema.define(:version => 20091230151302) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,22 @@ ActiveRecord::Schema.define(:version => 20091216001656) do
 
   add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
   add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
+
+  create_table "group_memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "usergroup_id"
+    t.integer  "assigned_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_restrictions", :force => true do |t|
+    t.string   "restrictable_type"
+    t.integer  "restrictable_id"
+    t.integer  "usergroup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id"
@@ -224,6 +240,14 @@ ActiveRecord::Schema.define(:version => 20091216001656) do
   end
 
   add_index "tags", ["tagable_id", "tagable_type"], :name => "index_tags_on_tagable_id_and_tagable_type"
+
+  create_table "usergroups", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "join_mask"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"

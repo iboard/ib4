@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  restrictable_type: MyString
+  restrictable_id: 1
+  usergroup_id: 1
+
+two:
+  restrictable_type: MyString
+  restrictable_id: 1
+  usergroup_id: 1

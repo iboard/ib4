@@ -17,6 +17,8 @@
   <%- end -%>
   
   
+  
+  
   <div style="clear:'left';"></div>
   Version <%= @page.version || t(:initialized_version) -%>:
   <% if @page.version > 1 %>  
@@ -35,6 +37,13 @@
     <br/> <%= link_to "Edit", edit_page_path(@page) %> |
     <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %>
   <%- end -%>
+  
+  <% if @page.group_restrictions.any? %>
+    <br/>
+        <%= t(:restricted_to_groups)%>: 
+        <%= @page.group_restrictions.map(&:usergroup).map(&:name).join(", ")%>
+  <% end %>
+  
 </div>
 
 <%= render :partial => 'page_short', :locals => {:page => @page } %>

@@ -1,0 +1,25 @@
+<% title "Usergroup" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @usergroup.name %>
+</p>
+<p>
+  <strong>Owner:</strong>
+  <%=h @usergroup.user.fullname %>
+</p>
+<p>
+  <strong>Join Mask:</strong>
+  <%=h @usergroup.joinable_by.map {|r| t('join_role'+r.to_s) }.join(", ") %>
+</p>
+
+<p>
+  <strong>Members:</strong>
+  <%= @usergroup.group_memberships.map {|m| m.user.fullname}.join(", ")-%>
+</p>
+
+<p>
+  <%= link_to( "Edit", edit_usergroup_path(@usergroup) )+" | " if permitted_to?(:edit, @usergroup)%> 
+  <%= link_to( "Destroy", @usergroup, :confirm => 'Are you sure?', :method => :delete)+" | " if permitted_to?(:destroy,@usergroup) %>
+  <%= link_to( "View All", usergroups_path ) if permitted_to?(:index,@usergroup) %>
+</p>

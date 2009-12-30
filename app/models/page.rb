@@ -16,9 +16,11 @@ class Page < ActiveRecord::Base
   has_many    :permalinks, :as => :linkable,
               :dependent => :destroy
   
-  after_create :assign_tags, :add_new_permalinks
+  after_create :assign_tags, :add_new_permalinks, :assign_restrictions
   before_save  :add_new_permalinks
-  after_save   :update_timestamps
+  after_save   :update_timestamps, :assign_restrictions
+  
+  has_many     :group_restrictions, :as => :restrictable, :dependent => :destroy
 
   validates_presence_of :title, :body
   
@@ -52,6 +54,23 @@ class Page < ActiveRecord::Base
     end
   end
   
+  def group_restrictions=(restrictions)
+    @restrictions_to_save = restrictions
+  end
+  
+  def allowed_users
+    if group_restrictions.empty? && self.draft == false
+      logger.info("\n** ALLOW PUBLIC ACCESS TO #{self.title}")
+      return true
+    end
+    rc = [ self.user ]
+    unless self.draft == true
+      rc << group_restrictions.map(&:usergroup).map { |grp| grp.group_memberships.map(&:user)}.flatten
+    end
+    logger.info("\n** ALLOW ACCESS TO #{self.title} TO #{rc.flatten.uniq.map(&:username).join(",")}\n")
+    return rc.flatten.uniq
+  end
+  
   # short title for lists and callback for ...ables
   def list_title(n=40)
     st = title[0..n].to_s
@@ -62,7 +81,15 @@ class Page < ActiveRecord::Base
   # TODO: Check if user allowed to read this posting
   # This callback is used by tagables and therefor it is defined as this simple placeholder yet
   def read_allowed?(user)
-    true
+    return true unless self.group_restrictions.any?
+    return false unless user
+    group_restrictions.each do |r|
+      unless user.group_memberships.find_by_usergroup_id(r.usergroup.id).nil?
+        logger.info("\n**** GRANT ACCESS TO GROUP #{r.usergroup.name}")
+        return true
+      end
+    end
+    return false
   end
   
   def rss_body
@@ -95,5 +122,16 @@ class Page < ActiveRecord::Base
     m = self.tags + self.categorizables 
     m.each  { |t| t.updated_at = self.updated_at; t.save }
   end
+  
+  def assign_restrictions
+      group_restrictions.delete_all
+      if @restrictions_to_save
+        @restrictions_to_save.each do |r|
+          x = group_restrictions.create( :usergroup_id => r[0].to_i )
+          logger.info("\n** ADDED RESTRICTION #{x.inspect}\n")
+        end
+      end
+  end
+
 end
 

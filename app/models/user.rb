@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   
   has_many :notes, :dependent => :delete_all
+  has_many :usergroups
+  has_many :group_memberships, :dependent => :delete_all
   
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
   

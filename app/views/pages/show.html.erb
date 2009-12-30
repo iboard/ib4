@@ -6,7 +6,6 @@
 <% end %>
 
 <%= render @page -%>
-
 <br/><br/>
 
 <!-- COMMENTS -->
@@ -31,3 +30,6 @@
 <p>
   <%= link_to GO_BACK+NBSP+t(:view_all), pages_path %>
 </p>
+
+
+<%= debug @page.allowed_users.inspect %>

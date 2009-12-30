@@ -1,0 +1,9 @@
+one:
+  name: MyString
+  group_id: 1
+  join_mask: 1
+
+two:
+  name: MyString
+  group_id: 1
+  join_mask: 1

@@ -32,15 +32,17 @@
     <h3><%= t(:friendship_requests) -%></h3>
     <% for friendship in (@user.not_confirmed_friendships) %>
       <div class='inline_friend_display'>
-        <%= image_tag friendship.user.avatar.url(:icon), :hspace => 5, :vspace => 0 %> <%= CAN_OPEN -%>
-        <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0 %>
-    
-          <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)<br/>
-          <%= NBSP*14 -%><%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post -%><br/>
-          <%= NBSP*14 -%><%= link_to DELETE_CHAR+NBSP+t(:reject_friendship), friendship, 
-                               :method => :delete, 
-                               :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
-                          -%>
+        <%= friendship.user.fullname -%> (<%= link_to friendship.user.username, friendship.user -%>)<br/>
+        <%= image_tag friendship.user.avatar.url(:icon), :hspace => 5, :vspace => 0, :align => :middle %> <%= CAN_OPEN -%>
+        <%= image_tag friendship.friend.avatar.url(:icon), :hspace => 5, :vspace => 0, :align => :middle %>
+          <% content_tag :div, :style => 'margin-left: 10px; margin-top: 0px; margin-bottom: 10px;' do %>
+            <%= link_to CAN_OPEN+NBSP+t(:add_friend), friendships_path(:friend_id => friendship.user), :method => :post -%> | 
+            <%= link_to DELETE_CHAR+NBSP+t(:reject_friendship), friendship, 
+                                 :method => :delete, 
+                                 :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship)) 
+                            -%>
+          <% end %>
+          </span>
        </div>
     <% end %>
   <% end %>

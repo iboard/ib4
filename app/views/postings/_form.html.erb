@@ -36,6 +36,11 @@
       <%= link_to t(:textilize_help_link), TEXTILIZE_HELP_LINK, :target => :blank, :class => 'small_link'  -%>
     </p>
     
+    <% content_tag :div, :id => 'restrictions' do %>
+       <strong><%= f.label :restrictions -%>:</strong><br/>
+       <%= render :partial => '/layouts/restriction_checkboxes', :locals => { :restrictable => @posting, :user => @posting.user || current_user } -%>
+    <% end %>
+    
     <p><%= f.submit "Submit" %>  <%= f.label :draft %> <%= f.check_box :draft %></p>
     
   </div>

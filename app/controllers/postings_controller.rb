@@ -22,24 +22,24 @@ class PostingsController < ApplicationController
       @category = Category.find(params[:category_id])
       @postings = @category.categorizables.find_all_by_categorizable_type('Posting',
          :conditions => ['draft = ? OR user_id = ?', false, current_user]
-         ).map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+         ).reject {|r| !r.read_allowed?(current_user) }.map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
       # fetch postings of all categories
       if params[:user_id]
         # fetch postings of the given user only
         @user = User.find(params[:user_id])
         @postings = @user.postings.descend_by_updated_at(
-           :conditions => ['draft = ? OR user_id = ?', false, current_user]).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+           :conditions => ['draft = ? OR user_id = ?', false, current_user]).reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
       else
         # fetch all postings in all categories of each user matching the searchlogic
         unless params[:search].blank?
           @postings = Posting.subject_like_any_or_body_like_any(
                         params[:search].split(/[\s|,]+/),
                            :conditions => ['draft is ? OR user_id = ?', false, current_user]
-                      ).descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+                      ).descend_by_updated_at.reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
         else
           # fetch ALL postings
-          @postings = Posting.descend_by_updated_at.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE,
+          @postings = Posting.descend_by_updated_at.reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE,
              :conditions => ['draft = ? OR user_id = ?', false, current_user] )
         end
       end

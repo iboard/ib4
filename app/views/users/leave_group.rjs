@@ -1,0 +1,4 @@
+target = 'join_'+ @group.id.to_s+'_'+@user.id.to_s
+page["#{target}"].replace_html(
+  join_group_links(@group)
+)

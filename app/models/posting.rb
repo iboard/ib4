@@ -16,12 +16,14 @@ class Posting < ActiveRecord::Base
   
   has_many    :comments, :as => :commentable,                       # Comments for this posting
               :dependent => :destroy
-  
-  after_create :assign_tags
+
+  has_many     :group_restrictions, :as => :restrictable, :dependent => :destroy
+
+  after_create :assign_tags,:assign_restrictions
   
   validates_presence_of :subject, :body
   
-  after_save   :update_timestamps
+  after_save   :update_timestamps,:assign_restrictions
   
   def tagstring
     tags.map(&:name).join(", ")
@@ -38,6 +40,9 @@ class Posting < ActiveRecord::Base
     end
   end  
 
+  def group_restrictions=(restrictions)
+     @restrictions_to_save = restrictions
+  end
 
   # short title for lists and callback for ...ables
   def list_title(n=40)
@@ -49,12 +54,36 @@ class Posting < ActiveRecord::Base
   # TODO: Check if user allowed to read this posting
   # This callback is used by tagables and therefor it is defined as this simple placeholder yet
   def read_allowed?(user)
-    true
+    return false if self.draft && self.user != user
+    return true unless self.group_restrictions.any?
+    return false unless user
+    group_restrictions.each do |r|
+      unless user.group_memberships.find_by_usergroup_id(r.usergroup.id).nil?
+        logger.info("\n**** GRANT ACCESS TO GROUP #{r.usergroup.name}")
+        return true
+      end
+    end
+    return false  
+  end
+  
+  def allowed_users
+    if group_restrictions.empty? && self.draft == false
+      logger.info("\n** ALLOW PUBLIC ACCESS TO #{self.subject}")
+      return true
+    end
+    rc = [ self.user ]
+    unless self.draft == true
+      rc << group_restrictions.map(&:usergroup).map { |grp| grp.group_memberships.map(&:user)}.flatten
+    end
+    logger.info("\n** ALLOW ACCESS TO #{self.subject} TO #{rc.flatten.uniq.map(&:username).join(",")}\n")
+    return rc.flatten.uniq
   end
   
   def rss_body
     body.to_s
   end
+  
+  
   
   private
   
@@ -68,4 +97,15 @@ class Posting < ActiveRecord::Base
     m = self.tags + self.categorizables 
     m.each  { |t| t.updated_at = self.updated_at; t.save }
   end
+  
+  def assign_restrictions
+      group_restrictions.delete_all
+      if @restrictions_to_save
+        @restrictions_to_save.each do |r|
+          x = group_restrictions.create( :usergroup_id => r[0].to_i )
+          logger.info("\n** ADDED RESTRICTION #{x.inspect}\n")
+        end
+      end
+  end
+  
 end

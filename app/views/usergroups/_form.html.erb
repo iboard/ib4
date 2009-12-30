@@ -1,0 +1,23 @@
+<% form_for @usergroup do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <% if is_admin? %>
+    <p>
+       <%= f.label :user_id, t(:owner) %><br />
+       <%= f.collection_select :user_id, User.all, :id, :fullname %>
+    </p>
+  <% end %>
+  
+  <p><%= f.label :join_mask, t(:joinable_by) %><br/>
+    <% for join_role in Usergroup::JOINABLES %>  
+      <%= check_box_tag "usergroup[joinable_by][]", join_role, @usergroup.joinable_by.include?(join_role) %>  
+      <%= t('join_role'+join_role.to_s.underscore) %><br/>
+    <% end %>  
+    <%= hidden_field_tag "usergroup[joinable_by][]"%>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

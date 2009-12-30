@@ -1,0 +1,25 @@
+<% title "Usergroups" %>
+
+
+<table width='100%'>
+  <tr>
+    <th>Name</th>
+    <th>Owner</th>
+    <th>Join Mask</th>
+    <th>Join/Leave group</th>
+    <th colspan=4>Actions</th>
+  </tr>
+  <% for usergroup in @usergroups %>
+    <tr>
+      <td><strong><%=h usergroup.name %></strong></td>
+      <td><%=h usergroup.user.fullname %></td>
+      <td><%= usergroup.joinable_by.map{|r| r.to_s.humanize}.join(", ") %></td>
+      <td><%= join_group_links( usergroup ) -%></td>
+      <td><%= link_to "Show", usergroup %></td>
+      <td><%= link_to( "Edit", edit_usergroup_path(usergroup)) if permitted_to?(:edit, usergroup) %></td>
+      <td><%= link_to( "Destroy", usergroup, :confirm => 'Are you sure?', :method => :delete) if permitted_to?(:destroy, usergroup) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to( CAN_OPEN+NBSP+"New Usergroup", new_usergroup_path) if permitted_to? :new, Usergroup.new %></p>

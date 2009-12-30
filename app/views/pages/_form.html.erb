@@ -51,8 +51,7 @@
       <%= f.textile_editor :body, :rows => 15, :cols => 60 %>
     </p>
     <p>
-      <%= f.label :allow_comments %><br />
-      <%= f.check_box :allow_comments %>
+      <%= f.check_box :allow_comments %>&nbsp;<%= f.label :allow_comments %>
     </p>
     <% if is_admin? %>
       <p>
@@ -60,6 +59,12 @@
         <%= f.collection_select :user_id, User.ascend_by_fullname.all, :id, :display_name_and_user -%>
       </p>
     <% end %>
+     
+    <% content_tag :div, :id => 'restrictions' do %>
+        <strong><%= f.label :restrictions -%>:</strong><br/>
+        <%= render :partial => '/layouts/restriction_checkboxes', :locals => { :restrictable => @page, :user => @page.user || current_user } -%>
+    <% end %>
+    
     <p><%= f.submit "Submit" %> <%= f.label :draft %> <%= f.check_box :draft %></p>
   </div>
 <% end %>

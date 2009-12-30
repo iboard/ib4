@@ -1,0 +1,7 @@
+<% for group in user.group_memberships.map(&:usergroup) %>
+    <%= check_box_tag( 
+          restrictable.class.to_s.downcase + "[group_restrictions][#{group.id}]", :on,
+          restrictable.group_restrictions.find_by_usergroup_id(group.id)
+        )
+    -%>&nbsp;<%= group.name %><br/>
+<% end %>

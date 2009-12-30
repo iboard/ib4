@@ -521,6 +521,8 @@ input#page_title {
 .inline_friend_display {
   width: 450px;
   padding: 5px;
+  border: 1px solid #888; 
+  background: #ddd;
 }
 
 .inline_friend_icon {
@@ -550,4 +552,9 @@ input#page_title {
 
 .message_state {
 	float: right;
+}
+
+#restrictions {
+	border: 1px solid black;
+	padding: 10px;
 }

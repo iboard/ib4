@@ -16,6 +16,10 @@
          
          <!-- USERLIST -->
          <%= link_to CAN_OPEN+NBSP+t(:search_and_add_friends_here), users_path -%>
+         
+         <!-- USERGROUPS -->
+         <%= (BR+link_to( CAN_OPEN+NBSP+t(:usergroups), usergroups_path )) if permitted_to? :index, Usergroup.new -%>  
+         
          <!-- INVITE OTHER USERS -->
          <% if @user.invitations_left > 0 %>
            <% toggle_display_link t(:invite_users), 
