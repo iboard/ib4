@@ -6,7 +6,9 @@ class Usergroup < ActiveRecord::Base
   JOINABLES = [:public,:friends]
   
   named_scope :with_join_mask, lambda { |mask| {:conditions => "join_mask & #{mask} > 0 "} }  
-  
+
+  validates_presence_of :name
+  validates_uniqueness_of :name  
   
   after_create  :create_memberships
   after_save    :create_memberships
