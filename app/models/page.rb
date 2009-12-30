@@ -65,7 +65,7 @@ class Page < ActiveRecord::Base
     end
     rc = [ self.user ]
     unless self.draft == true
-      rc << group_restrictions.map(&:usergroup).map { |grp| grp.group_memberships.map(&:user)}.flatten
+      rc << group_restrictions.map(&:usergroup).map { |grp| grp.members}.flatten
     end
     logger.info("\n** ALLOW ACCESS TO #{self.title} TO #{rc.flatten.uniq.map(&:username).join(",")}\n")
     return rc.flatten.uniq

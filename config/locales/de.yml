@@ -333,3 +333,7 @@ de:
   join_group: 'beitreten'
   leave_group: 'abmelden'
   restricted_to_groups: 'Für folgende Gruppen beschränkt'
+  friend_user: 'befreundeter Benutzer'
+  foreign_user: 'fremder Benutzer'
+  unkown_user: 'unbekannter Benutzer'
+  restricted_items: 'Gruppenelemente'

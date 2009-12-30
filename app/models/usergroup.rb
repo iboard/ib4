@@ -1,12 +1,25 @@
 class Usergroup < ActiveRecord::Base
   belongs_to :user
-  has_many   :accessables
-  has_many   :group_memberships
+  has_many   :group_restrictions
+  has_many   :group_memberships, :dependent => :delete_all
   
-  JOINABLES = [:public,:friends,:owner]
+  JOINABLES = [:public,:friends]
   
   named_scope :with_join_mask, lambda { |mask| {:conditions => "join_mask & #{mask} > 0 "} }  
   
+  
+  def members=(members)
+    group_memberships.delete_all
+    members.each do |member|
+      group_memberships.create( :user_id => member.id )
+    end
+  end
+  
+  def members
+    group_memberships.reject {|r| r.user.nil?}.map { |m|
+      m.user
+    }
+  end
   
   def joinable_by=(roles)  
     self.join_mask = Usergroup::mask_of(roles) 

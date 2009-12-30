@@ -60,9 +60,11 @@
       </p>
     <% end %>
      
-    <% content_tag :div, :id => 'restrictions' do %>
-        <strong><%= f.label :restrictions -%>:</strong><br/>
-        <%= render :partial => '/layouts/restriction_checkboxes', :locals => { :restrictable => @page, :user => @page.user || current_user } -%>
+    <% if @page.user.group_memberships.any? %>
+      <% content_tag :div, :id => 'restrictions' do %>
+          <strong><%= f.label :restrictions -%>:</strong><br/>
+          <%= render :partial => '/layouts/restriction_checkboxes', :locals => { :restrictable => @page, :user => @page.user || current_user } -%>
+      <% end %>
     <% end %>
     
     <p><%= f.submit "Submit" %> <%= f.label :draft %> <%= f.check_box :draft %></p>

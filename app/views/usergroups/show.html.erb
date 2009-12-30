@@ -1,13 +1,19 @@
-<% title "Usergroup" %>
+<% title "Usergroup #{@usergroup.name}" %>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%=h @usergroup.name %>
+</h1>
+<p>
+  <%= link_to( "Edit", edit_usergroup_path(@usergroup) )+" | " if permitted_to?(:edit, @usergroup)%> 
+  <%= link_to( "Destroy", @usergroup, :confirm => 'Are you sure?', :method => :delete)+" | " if permitted_to?(:destroy,@usergroup) %>
+  <%= link_to( "View All", usergroups_path ) if permitted_to?(:index,@usergroup) %>
 </p>
+
 <p>
   <strong>Owner:</strong>
   <%=h @usergroup.user.fullname %>
 </p>
+
 <p>
   <strong>Join Mask:</strong>
   <%=h @usergroup.joinable_by.map {|r| t('join_role'+r.to_s) }.join(", ") %>
@@ -15,11 +21,14 @@
 
 <p>
   <strong>Members:</strong>
-  <%= @usergroup.group_memberships.map {|m| m.user.fullname}.join(", ")-%>
+  <%=  @usergroup.members.map(&:fullname).join(", ") -%>
 </p>
 
-<p>
-  <%= link_to( "Edit", edit_usergroup_path(@usergroup) )+" | " if permitted_to?(:edit, @usergroup)%> 
-  <%= link_to( "Destroy", @usergroup, :confirm => 'Are you sure?', :method => :delete)+" | " if permitted_to?(:destroy,@usergroup) %>
-  <%= link_to( "View All", usergroups_path ) if permitted_to?(:index,@usergroup) %>
-</p>
+<h2><%= t(:restricted_items) -%></h2>
+<ol>
+<% for restriction in @usergroup.group_restrictions %>
+  <li><b><%= link_to restriction.restrictable.list_title(40), restriction.restrictable %></b>
+      (<%= restriction.restrictable.class.to_s.humanize -%>)
+  </li>
+<% end %>
+</ol>

@@ -19,5 +19,15 @@
     <% end %>  
     <%= hidden_field_tag "usergroup[joinable_by][]"%>
   </p>
+  
+  <p>
+    <%= f.label :members %><br/>
+    <% for member in [@usergroup.members, @usergroup.user.my_friends].flatten.uniq %>
+       <%= check_box_tag "usergroup[members][]", member.id, @usergroup.members.include?(member) %>&nbsp;<%= member.fullname %>
+       <span style='font-size: 10px;'><%= @usergroup.user.my_friends.include?(member) ? t(:friend_user) : t(:foreign_user) -%></span>
+       <br/>
+    <% end %>
+    <%= hidden_field_tag "usergroup[members][]"%>
+  </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

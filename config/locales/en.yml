@@ -337,3 +337,7 @@ en:
   join_group: 'join'
   leave_group: 'leave'
   restricted_to_groups: 'restricted to group(s)'
+  friend_user: 'friendly user'
+  foreign_user: 'foreign user'
+  unkown_user: 'unknown user'
+  restricted_items: "group's elements"
