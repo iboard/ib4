@@ -21,7 +21,7 @@ class UserSession < Authlogic::Session::Base
                       :user_id => user.id, :noteable_type => 'User', :noteable_id => user.id)
       @last_login.save!
     rescue
-      logger.info("*** FIRST SESSION CREATE AFTER REGISTRATION ***")
+      #logger.info("*** FIRST SESSION CREATE AFTER REGISTRATION ***")
     end
   end
   
@@ -38,7 +38,7 @@ class UserSession < Authlogic::Session::Base
                         :parent => last_login, :noteable_type => 'User', :noteable_id => user.id)
       n.save!
     rescue
-      logger.info("*** FIRST SESSION DESTROY AFTER REGISTRATION ***")
+      #logger.info("*** FIRST SESSION DESTROY AFTER REGISTRATION ***")
     end
   end
   
