@@ -346,3 +346,4 @@ de:
   show: 'Anzeigen'
   delete_this_record: 'diesen Eintrag löschen'
   no_item_found: 'Keine Einträge vorhanden'
+  name: 'Name'
