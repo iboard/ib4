@@ -109,4 +109,25 @@ module LayoutHelper
      )
   end  
   
+  def record_links(record,index_path,show_path,edit_path,destroy_path)
+    Markaby::Builder.new( {}, self ) do
+      div.record_links do
+        ul do
+          if permitted_to?(:show, record) && show_path
+            li { link_to(I18n.translate(:show), show_path) }
+          end
+          if permitted_to?(:edit, record) && edit_path
+            li { link_to(I18n.translate(:edit), edit_path) }
+          end
+          if permitted_to?(:destroy,record) && destroy_path
+            li { link_to(I18n.translate(:destroy), destroy_path, :confirm => I18n.translate(:are_you_sure, :what => I18n.translate(:delete_this_record)), :method => :delete) }
+          end
+          if permitted_to?(:index,record) && index_path
+            li { link_to(I18n.translate(:view_all), index_path) }
+          end
+        end
+      end
+      br(:clear => :left)
+    end
+  end
 end

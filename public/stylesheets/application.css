@@ -558,3 +558,54 @@ input#page_title {
 	border: 1px solid black;
 	padding: 10px;
 }
+
+.standard_table {
+  border: 1px solid black;
+}
+
+.standard_table tr th {
+	background: #4A4A4A;
+	color: white;
+}
+
+.standard_table tr.odd {
+	background: white;
+	margin:0px;
+}
+.standard_table tr.odd {
+	background: #BCDDFF;
+	margin:0px;
+}
+
+.standard_table td {
+	margin: 0px;
+	padding: 3px;
+}
+
+.record_links {
+	font-size: 11px;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.record_links ul {
+	display: block;
+	margin: 0px;
+	padding:0px;
+}
+
+.record_links li {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding:0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: 1px solid black;
+	background: #BCDDFF;
+}
+
+.record_links li a {
+  line-height: 13px;
+}

@@ -26,4 +26,53 @@ module UsergroupsHelper
     
   end
   
+  def usergroups_index(usergroups)
+    Markaby::Builder.new( {}, self ) do
+      table.standard_table :width => '100%', :cellpadding => 0, :cellspacing => 0 do
+        tr.table_header do
+          th I18n.translate(:name)
+          th I18n.translate(:owner)
+          th I18n.translate(:join_mask)
+          th I18n.translate(:join_leave_group)
+          th(:colspan => 3) { I18n.translate(:actions) }
+        end
+        for usergroup in usergroups do
+          tr :class => cycle(:odd,:even) do
+            td { 
+              strong { link_to CAN_OPEN+NBSP+usergroup.name, usergroup }
+            }
+            td usergroup.user.fullname
+            td usergroup.joinable_by.map{|r| r.to_s.humanize}.join(", ") 
+            td {join_group_links( usergroup )}
+            if permitted_to?(:edit, usergroup)
+              td { link_to( "Edit", edit_usergroup_path(usergroup).to_s ) }
+            end
+            if  permitted_to?(:destroy, usergroup) 
+              td { link_to( "Destroy", usergroup, :confirm => 'Are you sure?', :method => :delete) }
+            end
+          end
+        end
+      end
+    end    
+  end
+  
+  def list_restricted_items(items)
+    Markaby::Builder.new({},self) do
+      if items.any?
+        ol do
+          for item in items
+            li { 
+              b { link_to(item.restrictable.list_title(40), item.restrictable) }
+              small { " " + item.restrictable.class.to_s.humanize }
+            }
+          end
+        end
+      else
+        ul do
+          li I18n.translate(:no_item_found)
+        end
+      end
+    end
+  end  
+
 end

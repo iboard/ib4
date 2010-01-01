@@ -1,8 +1,6 @@
 <% title "Edit Usergroup" %>
 
-<%= render :partial => 'form' %>
+<h1><%= t(:edit_usergroup) -%></h1>
+<%= record_links( @usergroup,usergroups_path, usergroup_path(@usergroup), nil, usergroup_path(@usergroup)  ) -%>
 
-<p>
-  <%= link_to "Show", @usergroup %> |
-  <%= link_to "View All", usergroups_path %>
-</p>
+<%= render :partial => 'form' %>

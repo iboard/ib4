@@ -1,6 +1,6 @@
 class Usergroup < ActiveRecord::Base
   belongs_to :user
-  has_many   :group_restrictions
+  has_many   :group_restrictions, :dependent => :delete_all
   has_many   :group_memberships, :dependent => :delete_all
   
   JOINABLES = [:public,:friends]

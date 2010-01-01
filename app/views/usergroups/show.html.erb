@@ -1,17 +1,14 @@
 <% title "Usergroup #{@usergroup.name}" %>
 
 <h1>
-  <%=h @usergroup.name %>
+  <%= t(:usergroup)+":"+NBSP+h(@usergroup.name) %>
 </h1>
-<p>
-  <%= link_to( "Edit", edit_usergroup_path(@usergroup) )+" | " if permitted_to?(:edit, @usergroup)%> 
-  <%= link_to( "Destroy", @usergroup, :confirm => 'Are you sure?', :method => :delete)+" | " if permitted_to?(:destroy,@usergroup) %>
-  <%= link_to( "View All", usergroups_path ) if permitted_to?(:index,@usergroup) %>
-</p>
+
+<%= record_links( @usergroup,usergroups_path, nil, edit_usergroup_path(@usergroup), usergroup_path(@usergroup)  ) -%>
 
 <p>
   <strong>Owner:</strong>
-  <%=h @usergroup.user.fullname %>
+  <%=link_to(h(@usergroup.user.fullname),@usergroup.user) %>
 </p>
 
 <p>
@@ -26,10 +23,4 @@
 </p>
 
 <h2><%= t(:restricted_items) -%></h2>
-<ol>
-<% for restriction in @usergroup.group_restrictions %>
-  <li><b><%= link_to restriction.restrictable.list_title(40), restriction.restrictable %></b>
-      (<%= restriction.restrictable.class.to_s.humanize -%>)
-  </li>
-<% end %>
-</ol>
+<%= list_restricted_items(@usergroup.group_restrictions) -%>
