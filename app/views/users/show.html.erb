@@ -56,7 +56,7 @@
   <h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
   <% if @user != current_user %>
   <p>
-      <%= EMAIL_ICON+NBSP+link_to( t(:send_message_to), new_user_message_path(@user)) %>
+      <%= EMAIL_ICON+NBSP+link_to( t(:send_message_to), new_user_message_path(current_user, :recipient=>@user )) %>
   </p>
   <% end %>
   

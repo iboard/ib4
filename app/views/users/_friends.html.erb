@@ -16,7 +16,7 @@
                          :confirm => t(:are_you_sure,:what => t(:sure_remove_friendship))
                 ) if is_current_user?(@user) || is_admin?
             -%><br/>
-            <%= link_to EMAIL_ICON+NBSP+t(:send_message_to), new_user_message_path(friendship.user, 
+            <%= link_to EMAIL_ICON+NBSP+t(:send_message_to), new_user_message_path(current_user, 
                  :recipient => (current_user == friendship.user) ? friendship.friend.id : friendship.user.id,
                  :back_to => user_path(@user) ) -%>
           <% end %>
