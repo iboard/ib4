@@ -109,6 +109,7 @@ module LayoutHelper
      )
   end  
   
+  # Display links to show restful method links for a record
   def record_links(record,index_path,show_path,edit_path,destroy_path)
     Markaby::Builder.new( {}, self ) do
       div.record_links do
