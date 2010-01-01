@@ -1,5 +1,6 @@
-<% title "Usergroups" %>
-
+<% title t(:usergroups) %>
+<%= link_to BACK_TO+NBSP+t(:dashboard_for_user, :username => current_user.fullname), current_user %>
+<h1><%= t(:usergroups)+NBSP+current_user.fullname-%></h1>
 
 <%= usergroups_index(@usergroups) -%>
 

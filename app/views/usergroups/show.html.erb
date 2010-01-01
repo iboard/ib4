@@ -1,4 +1,5 @@
-<% title "Usergroup #{@usergroup.name}" %>
+<% title t(:usergroups) %>
+<%= link_to BACK_TO+NBSP+t(:usergroups), usergroups_path  %>
 
 <h1>
   <%= t(:usergroup)+":"+NBSP+h(@usergroup.name) %>
