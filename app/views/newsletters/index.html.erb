@@ -13,7 +13,7 @@
   <h1><%=h newsletter.title %></h1>
   <blockquote>
       <h1 style='font-size: 42px; color: #888;'>#<%= newsletter.newsletter_issues.length -%>
-      <%= image_tag( newsletter.banner.url(:default), :align => :right, :hspace => 10 ) if newsletter.banner -%>
+      <%= image_tag( newsletter.banner.url(:default), :align => :right, :hspace => 10, :width => '700' ) if newsletter.banner -%>
       </h1>
       <%= link_to( t(:newsletter_issues), newsletter_newsletter_issues_path(newsletter) ) -%>
       <% if is_admin? %> |
