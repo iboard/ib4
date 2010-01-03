@@ -19,8 +19,10 @@
     <li><%= link_to "Edit", edit_category_path(@category) %></li>
     <li><%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %></li>
     <li><%= link_to "View All", categories_path %></li>
-  <% end %><br/>
+  <% end %><br clear='left'/>
 <%- end -%>
+
+    <h1><%= t(:count_entries, :count => @category.categorizables.size ) -%> …</h1>
 
 <%= will_paginate @items %>
 
