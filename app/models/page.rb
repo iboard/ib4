@@ -80,7 +80,7 @@ class Page < ActiveRecord::Base
   end
   
   def prefixed_title
-    ancestors.any? ? ancestors.map(&:title).join(' > ')+' > '+title : title
+    ancestors.any? ? ancestors.reverse.map(&:title).join(' > ')+' > '+title : title
   end
   
   def self.tree(page)
