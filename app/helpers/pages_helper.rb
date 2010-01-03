@@ -31,8 +31,8 @@ module PagesHelper
       div.page_subnavigation! do
         ul.page_subnavigation_list! do
           if page.parent
-            li( :id => 'page_subnavigation_'+page.id.to_s ) do
-              "<span class='handle'>#{handle}</span>"+NBSP+link_to(page.parent.title,page.parent)
+            li do
+              link_to(I18n.translate(:back),page.parent)
             end
           else
             li( :id => 'page_subnavigation_'+page.id.to_s ) do
