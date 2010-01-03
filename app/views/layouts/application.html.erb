@@ -79,6 +79,8 @@
           </div>
         </div>
         <div id='container'>
+          <%= page_navigation %>
+          <%= page_subnavigation(@page) if @page %>
           <%- if is_admin? -%>
              <div id='rootmenu'>
                <% toggle_display_link 'Administration', 

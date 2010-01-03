@@ -609,3 +609,54 @@ input#page_title {
 .record_links li a {
   line-height: 13px;
 }
+
+#page_navigation {
+	padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+#page_navigation ul {
+	display: block;
+	margin: 0px;
+	padding:0px;
+}
+
+#page_navigation li {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding:0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#page_navigation li a {
+    line-height: 13px;
+}
+
+#page_subnavigation {
+	padding: 0px;
+    margin: 0px;
+    list-style: none;
+    font-size: 11px;
+}
+
+#page_subnavigation ul {
+	display: block;
+	margin: 0px;
+	padding:0px;
+}
+
+#page_subnavigation li {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding:0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#page_subnavigation li a {
+    line-height: 13px;
+}

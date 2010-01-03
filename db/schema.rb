@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091230151302) do
+ActiveRecord::Schema.define(:version => 20100103080843) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -204,6 +204,8 @@ ActiveRecord::Schema.define(:version => 20091230151302) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "draft",          :default => false
+    t.integer  "parent_id"
+    t.integer  "position"
   end
 
   add_index "pages", ["user_id"], :name => "index_pages_on_user_id"

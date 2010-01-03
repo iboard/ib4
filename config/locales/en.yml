@@ -358,3 +358,4 @@ en:
   first_login: 'First log in'
   last_logout: 'Last log out'
   total_logged_in: 'Total time logged in'
+  root_item: '-- Top level --'

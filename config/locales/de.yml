@@ -354,3 +354,4 @@ de:
   first_login: 'Erste Anmeldung'
   last_logout: 'Letzte Abmeldung'
   total_logged_in: 'Gesamtzeit'
+  root_item: '-- Toplevel --'
