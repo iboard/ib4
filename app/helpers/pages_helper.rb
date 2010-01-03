@@ -39,8 +39,9 @@ module PagesHelper
             strong { CAN_OPEN+NBSP+page.title }
           end
         end
-        ul.page_subnavigation_list! do
-          if page.children.any?          
+        if page.children.any?
+          br(:clear => :left)
+          ul.page_subnavigation_list! do
             page.children.each do |page|
               if permitted_to?(:show,page)
                 li :id => 'page_subnavigation_'+page.id.to_s do
