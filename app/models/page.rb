@@ -89,7 +89,7 @@ class Page < ActiveRecord::Base
       tree_items << pg
       tree_items << parent_select(pg,tree_items)
     end
-    tree_items.flatten.uniq.reject { |r| r == page || page.ancestors.include?(r)}
+    tree_items.flatten.uniq.reject { |r| r == page || page.children.include?(r) }
   end
   
   def self.parent_select(page,parents)
