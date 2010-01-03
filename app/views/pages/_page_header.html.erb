@@ -8,17 +8,19 @@
 </h1>
 
 <% unless page.permalinks.empty? %>
+  <% content_tag :div, :style=>'font-size: 11px;' do %>
     <%- toggle_display_link(t(:permalinks)) do -%>
       <blockquote>
       <%= render :partial => page.permalinks %>
       </blockquote>
     <%- end -%>
+  <% end %>
 <% end %>
 
 
 <div class='page_edit_buttons'>
   <%- if is_owner_or_admin?(page) -%>
-    <%= CAN_OPEN+NBSP+link_to( "Edit", edit_page_path(page)) %> |
+    <%= link_to( "Edit", edit_page_path(page)) %> |
     <%= link_to "Destroy", page, :confirm => 'Are you sure?', :method => :delete %>
   <%- end -%>
   <div style="clear:'left';"></div>

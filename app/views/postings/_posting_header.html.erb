@@ -22,7 +22,8 @@
   <% end %>
   
   <div style="clear:'left';"></div>
-</div><h1 class='title_text'>
+</div>
+<h1 class='title_text'>
     <%- if posting.categories.any? %>
         <span class='header_categories'>
           <%= posting.categories.map{|c| link_to(c.name, category_path(c))}.join(", ") -%><br/>

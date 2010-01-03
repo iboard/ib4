@@ -2,11 +2,13 @@
 
 <h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small></h1>
 <% unless @category.permalinks.empty? %>
+  <% content_tag :div, :style=>'font-size: 11px;' do %>
     <%- toggle_display_link(t(:permalinks)) do -%>
       <blockquote>
         <%= render :partial => @category.permalinks %>
       </blockquote>
     <%- end -%>
+  <% end %>
 <% end %>
 <%- if is_admin? %>
   <p>

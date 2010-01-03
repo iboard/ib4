@@ -9,7 +9,7 @@
 <% for posting in @postings %>
   <div class='posting'>
     <%= render :partial => 'posting_short', :locals => { :posting => posting } %>
-    <%= CAN_OPEN+NBSP+link_to(t(:read_txt), posting) if posting.body.strip.split("\n").length > 1 -%>
+    <%= link_to(t(:read_txt), posting) if posting.body.strip.split("\n").length > 1 -%>
   </div>
   <div class='horiz_break'></div>
 <% end %>
