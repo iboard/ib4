@@ -508,7 +508,7 @@ input#page_title {
 
 .user_profile_right {
   float: right; 
-  width: 400px; 
+  width: 200px; 
   margin-left: 10px;
   padding-left: 20px;
 }
@@ -526,8 +526,7 @@ input#page_title {
 .inline_friend_display {
   width: 450px;
   padding: 5px;
-  border: 1px solid #888; 
-  background: #ddd;
+  
 }
 
 .inline_friend_icon {
