@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   delegate :list_title, :to => :commentable  
   delegate :read_allowed, :to => :commentable
 
+  validates_presence_of :comment
   
   def deliver_comment_notification(t_subject,commentable_url)
     unless commentable.user.nil? || user.nil?
