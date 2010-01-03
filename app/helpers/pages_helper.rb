@@ -30,7 +30,7 @@ module PagesHelper
     Markaby::Builder.new( {}, self ) do
       div.page_subnavigation! do
         ul.page_prefix_navigation do
-          page.ancestors.each do |sibling|
+          page.ancestors.reverse.each do |sibling|
             li do
               CAN_OPEN + NBSP + link_to(sibling.title,page.parent)
             end
