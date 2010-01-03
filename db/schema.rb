@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100103080843) do
+ActiveRecord::Schema.define(:version => 20100103080845) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(:version => 20100103080843) do
     t.datetime "updated_at"
   end
 
+  add_index "group_memberships", ["user_id"], :name => "index_group_memberships_on_user_id"
+  add_index "group_memberships", ["usergroup_id"], :name => "index_group_memberships_on_usergroup_id"
+
   create_table "group_restrictions", :force => true do |t|
     t.string   "restrictable_type"
     t.integer  "restrictable_id"
@@ -94,6 +97,9 @@ ActiveRecord::Schema.define(:version => 20100103080843) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "group_restrictions", ["restrictable_id", "restrictable_type"], :name => "index_group_restrictions_on_restrictable_id_and_restrictable_type"
+  add_index "group_restrictions", ["usergroup_id"], :name => "index_group_restrictions_on_usergroup_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "sender_id"
@@ -195,6 +201,10 @@ ActiveRecord::Schema.define(:version => 20100103080843) do
     t.datetime "updated_at"
   end
 
+  add_index "notes", ["noteable_id", "noteable_type"], :name => "index_notes_on_noteable_id_and_noteable_type"
+  add_index "notes", ["parent_id"], :name => "index_notes_on_parent_id"
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -208,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20100103080843) do
     t.integer  "position"
   end
 
+  add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
   add_index "pages", ["user_id"], :name => "index_pages_on_user_id"
 
   create_table "permalinks", :force => true do |t|
@@ -250,6 +261,8 @@ ActiveRecord::Schema.define(:version => 20100103080843) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "usergroups", ["user_id"], :name => "index_usergroups_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
