@@ -360,3 +360,7 @@ en:
   total_logged_in: 'Total time logged in'
   root_item: '-- Top level --'
   back_to: "<sapn title='Back to {{title}}'>Back</span>"
+  members:
+    zero: 'no members'
+    one: 'one member'
+    other: '{{count}} members'

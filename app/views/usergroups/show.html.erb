@@ -3,25 +3,18 @@
 
 <h1>
   <%= t(:usergroup)+":"+NBSP+h(@usergroup.name) %>
+  <span style='font-size: 12px;'>
+    <%=link_to(h(@usergroup.user.fullname),@usergroup.user) %>
+    (<%=h @usergroup.joinable_by.map {|r| t('join_role'+r.to_s) }.join(", ") %>)
+  </span>
 </h1>
-
+<% toggle_display_link t(:members,:count => @usergroup.members.length) do %>
+  <ol>
+    <%= @usergroup.members.map { |m| "<li>"+link_to( m.fullname,m )+"</li>"} -%>
+  </ol>
+  <%= t(:no_members) if @usergroup.members.empty? %>
+<% end %>
 <%= record_links( @usergroup,usergroups_path, nil, edit_usergroup_path(@usergroup), usergroup_path(@usergroup)  ) -%>
 
-<p>
-  <strong>Owner:</strong>
-  <%=link_to(h(@usergroup.user.fullname),@usergroup.user) %>
-</p>
-
-<p>
-  <strong>Join Mask:</strong>
-  <%=h @usergroup.joinable_by.map {|r| t('join_role'+r.to_s) }.join(", ") %>
-</p>
-
-<p>
-  <strong>Members:</strong>
-  <%= @usergroup.members.map(&:fullname).join(", ") -%>
-  <%= t(:no_members) if @usergroup.members.empty? %>
-</p>
-
-<h2><%= t(:restricted_items) -%></h2>
+<h1><%= t(:restricted_items) -%></h1>
 <%= list_restricted_items(@usergroup.group_restrictions) -%>

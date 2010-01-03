@@ -356,3 +356,7 @@ de:
   total_logged_in: 'Gesamtzeit'
   root_item: '-- Toplevel --'
   back_to: "<sapn title='Zurück zu {{title}}'>Zurück</span>"
+  members:
+    zero: 'keine Mitglieder'
+    one: 'Ein Mitglied'
+    other: '{{count}} Mitglieder'
