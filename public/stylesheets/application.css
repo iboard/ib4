@@ -668,3 +668,12 @@ input#page_title {
 #main_content {
 	width: 750px;
 }
+
+#page_navigation_seperator {
+	height: 10px;
+	font-size: 9px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 10px;
+	margin-top: -10px;
+	padding: 0px;
+}

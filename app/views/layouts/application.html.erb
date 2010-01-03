@@ -96,7 +96,7 @@
              </div>
              <div style='clear:right;'></div>
           <%- end -%>
-        
+          <div id='page_navigation_seperator'>&nbsp;</div>
           <div id='flash'>
             <%- flash.each do |name,msg| -%>
               <%= content_tag :div, msg, :id => "flash_#{name}" %>
