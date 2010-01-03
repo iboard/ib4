@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20100103080845) do
     t.datetime "updated_at"
   end
 
-  add_index "group_restrictions", ["restrictable_id", "restrictable_type"], :name => "index_group_restrictions_on_restrictable_id_and_restrictable_type"
+  add_index "group_restrictions", ["restrictable_id", "restrictable_type"], :name => "group_restrictions_index_manual"
   add_index "group_restrictions", ["usergroup_id"], :name => "index_group_restrictions_on_usergroup_id"
 
   create_table "invitations", :force => true do |t|

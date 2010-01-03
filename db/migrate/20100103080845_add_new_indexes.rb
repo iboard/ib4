@@ -17,7 +17,7 @@ class AddNewIndexes < ActiveRecord::Migration
     add_index :notes, [:noteable_id, :noteable_type]
     add_index :notes, :parent_id
     add_index :pages, :parent_id
-    add_index :group_restrictions, [:restrictable_id, :restrictable_type]
+    add_index :group_restrictions, [:restrictable_id, :restrictable_type], :name => 'group_restrictions_index_manual'
     add_index :group_restrictions, :usergroup_id
     add_index :group_memberships, :user_id
     add_index :group_memberships, :usergroup_id
@@ -29,7 +29,7 @@ class AddNewIndexes < ActiveRecord::Migration
     remove_index :notes, :column => [:noteable_id, :noteable_type]
     remove_index :notes, :parent_id
     remove_index :pages, :parent_id
-    remove_index :group_restrictions, :column => [:restrictable_id, :restrictable_type]
+    remove_index :group_restrictions, :column => [:restrictable_id, :restrictable_type],:name => 'group_restrictions_index_manual'
     remove_index :group_restrictions, :usergroup_id
     remove_index :group_memberships, :user_id
     remove_index :group_memberships, :usergroup_id
