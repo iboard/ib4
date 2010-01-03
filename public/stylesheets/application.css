@@ -565,6 +565,7 @@ input#page_title {
 
 .standard_table {
   border: 1px solid black;
+  width: 95%;
 }
 
 .standard_table tr th {

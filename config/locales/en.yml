@@ -16,8 +16,8 @@ en:
     zero: ""
     one:  "<span style='color:red';>After one failed login attampt</span>" 
     other: "<span style='color:red';>After {{count}} failed login attampts</span>" 
-  login: 'Log in'
-  logout: 'Log out'
+  login: 'Log&nbsp;in'
+  logout: 'Log&nbsp;out'
   login_button: 'Log in…'
   edit_profile: 'Edit profile'
   profile_successfully_updated: 'Profile successfully updated'
@@ -351,8 +351,8 @@ en:
   show: 'Show'
   delete_this_record: 'delete this record'
   no_item_found: 'No item found'
-  log_in: 'Log in'
-  log_out: 'Log out'
+  log_in: 'Log&nbsp;in'
+  log_out: 'Log&nbsp;out'
   message: 'Message'
   duration: 'Duration'
   first_login: 'First log in'

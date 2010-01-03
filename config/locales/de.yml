@@ -62,7 +62,7 @@ de:
   show_all: 'alle zeigen'
   sort_by: 'Sortierung'
   dashboard: 'Profil'
-  dashboard_for_user: 'Armaturenbrett: {{username}}'
+  dashboard_for_user: 'Profil: {{username}}'
   edit_profile_for_user: 'Profil {{username}} bearbeiten'
   read_more: '<span style="font-size: smaller; font-style: italic;">lesen...</span>'
   read: 'lesen'

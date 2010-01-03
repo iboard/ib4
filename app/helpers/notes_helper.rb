@@ -3,7 +3,7 @@ module NotesHelper
   
   def session_table(notes) 
     Markaby::Builder.new( {}, self ) do
-       table.standard_table :width => '100%', :cellpadding => 0, :cellspacing => 0 do
+       table.standard_table :cellpadding => 0, :cellspacing => 0 do
          tr.table_header do
            th I18n.translate(:log_in)
            th I18n.translate(:log_out)

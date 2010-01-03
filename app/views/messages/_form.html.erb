@@ -1,3 +1,4 @@
+<h1><%= yield :title -%></h1>
 <% if @recipients.any? %>
   <% form_for [current_user, @message] do |f| %>
   
@@ -14,7 +15,7 @@
     </p>
     <p>
       <%= f.label :message %><br />
-      <%= f.textile_editor :message, :cols => '125' %>
+      <%= f.textile_editor :message, :cols => '95' %>
     </p>
     <p><%= f.submit "Submit" %> <%= link_to( t(:back), params[:back_to] ) if params[:back_to] %></p>
   <% end %>

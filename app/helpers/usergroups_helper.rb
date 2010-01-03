@@ -28,7 +28,7 @@ module UsergroupsHelper
   
   def usergroups_index(usergroups)
     Markaby::Builder.new( {}, self ) do
-      table.standard_table :width => '100%', :cellpadding => 0, :cellspacing => 0 do
+      table.standard_table :cellpadding => 0, :cellspacing => 0 do
         tr.table_header do
           th I18n.translate(:name)
           th I18n.translate(:owner)
