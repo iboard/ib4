@@ -1,4 +1,4 @@
-<h1 class='title_text'>
+<h1 class='title_text' style='clear: left;'>
   <%- if page.categories.any? %>
       <span class='header_categories'>
         <%= page.categories.map{|c| link_to(c.name, category_path(c))}.join(", ") -%><br/>
