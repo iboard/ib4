@@ -3,7 +3,8 @@
 <%= CAN_OPEN+NBSP+
     link_to( t(:add_issue), new_newsletter_newsletter_issue_path ) if is_admin? %>
 
-
+<h1><%= yield :title %></h1>
+<%= image_tag(@newsletter.banner.url(:default), :align => :right, :hspace => 10, :width => '700' ) if @newsletter.banner %>
 <table class='smalltable'>
   <tr>
     <th>Date</th>
