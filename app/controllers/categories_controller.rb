@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   after_filter  :clear_cache, :only => [:create,:update,:destroy]
   
   def index
-    @categories = Category.ascend_by_name.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+    @categories = Category.ascend_by_name.paginate(:page => params[:page], :per_page => CATEGORIES_PER_PAGE)
   end
   
   # Show this category and all records of categorizable models

@@ -61,6 +61,7 @@ FILE_LOCKED_PATH='/images/file_locked.png'       unless defined? FILE_LOCKED_PAT
 
 POSTINGS_PER_PAGE=4               unless defined? POSTINGS_PER_PAGE
 BINARIES_PER_PAGE=10              unless defined? BINARIES_PER_PAGE
+CATEGORIES_PER_PAGE=10            unless defined? CATEGORIES_PER_PAGE
 USERS_PER_PAGE=4                  unless defined? USERS_PER_PAGE
 RIGHT_BOX_DEFAULT_WIDTH="25%"     unless defined? RIGHT_BOX_DEFAULT_WIDTH
 DEFAULT_TRUNCATED_BODY_LENGTH=512 unless defined? DEFAULT_TRUNCATED_BODY_LENGTH
