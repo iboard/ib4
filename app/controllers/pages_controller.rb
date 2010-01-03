@@ -42,7 +42,7 @@ class PagesController < ApplicationController
   end
   
   def new
-    @page = Page.new
+    @page = Page.new(:user_id => current_user)
   end
   
   def create
