@@ -80,7 +80,23 @@ class Page < ActiveRecord::Base
   end
   
   def prefixed_title
-    "- "*ancestors.length+title
+    ancestors.any? ? ancestors.map(&:title).join(' > ')+' > '+title : title
+  end
+  
+  def self.tree(page)
+    tree_items = []
+    roots.each do |pg|
+      tree_items << pg
+      tree_items << parent_select(pg,tree_items)
+    end
+    tree_items.flatten.uniq.reject { |r| r == page || page.ancestors.include?(r)}
+  end
+  
+  def self.parent_select(page,parents)
+    for child in page.children do
+      parents << child
+      parents << parent_select(child,parents)
+    end
   end
   
   # TODO: Check if user allowed to read this posting
