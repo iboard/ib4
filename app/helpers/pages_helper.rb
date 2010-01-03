@@ -29,16 +29,17 @@ module PagesHelper
     handle = is_admin? ? SORT_HANDLE : CAN_OPEN
     Markaby::Builder.new( {}, self ) do
       div.page_subnavigation! do
-        ul.page_subnavigation_list! do
-          if page.parent
+        ul.page_prefix_navigation do
+          page.siblings.each do |sibling|
             li do
-              CAN_OPEN + NBSP + link_to(I18n.translate(:back_to, :title => page.parent.title),page.parent)
-            end
-          else
-            li( :id => 'page_subnavigation_'+page.id.to_s ) do
-              page.title
+              CAN_OPEN + NBSP + link_to(sibling.title,page.parent)
             end
           end
+          li do
+            strong { CAN_OPEN+NBSP+page.title }
+          end
+        end
+        ul.page_subnavigation_list! do
           if page.children.any?          
             page.children.each do |page|
               if permitted_to?(:show,page)
