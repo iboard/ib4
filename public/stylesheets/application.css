@@ -677,3 +677,33 @@ input#page_title {
 	margin-top: -10px;
 	padding: 0px;
 }
+
+.category_description {
+	margin: 0px;
+	padding: 0px;
+	line-height: 100%;
+}
+
+.category_description p {
+   margin: 0px;
+   font-size: 12px;
+}
+
+.category_description h1 {
+	font-size: 16px;
+	margin-bottom: 0px;
+}
+
+.permalinks {
+	margin-left: 0px;
+	font-size: 11px;
+}
+
+.edit_buttons {
+	margin: 0px;
+	font-size: 11px;
+}
+
+.category_description {
+	line-height: 100%;
+}

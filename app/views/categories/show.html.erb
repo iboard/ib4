@@ -1,25 +1,26 @@
 <% title t(:category_show, :category => h(@category.name)) %>
 
-<h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small></h1>
+<% content_tag :h1, :class=>'category_description' do %>
+  <%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small>
+<% end %>
+<% content_tag :div, :class => 'category_description' do%>
+  <%= @category.description.to_txt %>
+<% end %>
+
 <% unless @category.permalinks.empty? %>
-  <% content_tag :div, :style=>'font-size: 11px;' do %>
+  <% content_tag :div, :class=>'permalinks' do %>
     <%- toggle_display_link(t(:permalinks)) do -%>
-      <blockquote>
         <%= render :partial => @category.permalinks %>
-      </blockquote>
     <%- end -%>
   <% end %>
 <% end %>
 <%- if is_admin? %>
-  <p>
-    <%= link_to "Edit", edit_category_path(@category) %> |
-    <%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %> |
-    <%= link_to "View All", categories_path %>
-  </p>
+  <% content_tag :ul, :class => 'record_links' do %>
+    <li><%= link_to "Edit", edit_category_path(@category) %></li>
+    <li><%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %></li>
+    <li><%= link_to "View All", categories_path %></li>
+  <% end %><br/>
 <%- end -%>
-
-<%=@category.description.to_txt %>
-
 
 <%= will_paginate @items %>
 
