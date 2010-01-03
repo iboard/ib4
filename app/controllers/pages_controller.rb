@@ -1,7 +1,11 @@
 class PagesController < ApplicationController
   
   before_filter   :find_permalink, :only => [:show]
-  filter_resource_access
+  filter_access_to :all, :attribute_check => true, :load_method => lambda { 
+    if params[:id]
+      @page = Page.find(params[:id])
+    end
+  }
   after_filter    :clear_cache, :only => [:create,:update,:destroy]
     
   def index
@@ -70,6 +74,20 @@ class PagesController < ApplicationController
     @page.destroy
     flash[:notice] = "Successfully destroyed page."
     redirect_to pages_url
+  end
+  
+  def sort_roots
+    params[:page_navigation_list].each_with_index do |id,index|
+      Page.update_all(['position=?',index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+  
+  def sort_children
+    params[:page_subnavigation_list].each_with_index do |id,index|
+      Page.update_all(['position=?',index+1], ['id=?', id])
+    end
+    render :nothing => true
   end
   
   private

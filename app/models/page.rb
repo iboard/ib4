@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   
   versioned
-  acts_as_tree
+  acts_as_tree :order => :position
   
   belongs_to  :user                                                 # the user a posting was written by
   

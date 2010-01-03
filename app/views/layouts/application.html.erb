@@ -82,6 +82,8 @@
           <%= page_navigation %>
           <%= page_subnavigation(@page) if @page %>
           <%- if is_admin? -%>
+            <%= sortable_element('page_navigation_list', :url => sort_roots_pages_path, :handle => 'handle' ) -%>
+            <%= sortable_element('page_subnavigation_list', :url => sort_children_pages_path, :handle => 'handle' ) if @page -%>
              <div id='rootmenu'>
                <% toggle_display_link 'Administration', 
                     :minwidth => "200px",

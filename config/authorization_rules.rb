@@ -3,7 +3,7 @@ authorization do
   
   role :admin do
     has_permission_on [:users], :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
-    has_permission_on :pages, :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
+    has_permission_on :pages, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:sort_roots,:sort_children]
     has_permission_on :binaries, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :postings, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
