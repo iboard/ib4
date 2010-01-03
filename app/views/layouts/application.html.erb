@@ -101,11 +101,15 @@
             <%- end -%>
           </div>
           
-          <% if current_user && current_user.new_messages.any? %>
-            <%= render :partial => current_user.new_messages %>
-          <% end %>
+          <%= render :partial => '/layouts/sidebar' -%>
           
-          <%= yield -%>
+          <% content_tag :div, :id => 'main_content' do %>
+            <% if current_user && current_user.new_messages.any? %>
+              <%= render :partial => current_user.new_messages %>
+            <% end %>
+            
+            <%= yield -%>
+          <% end %>
         
           <div style='clear:both'></div>
         </div>

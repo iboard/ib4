@@ -1,4 +1,4 @@
-<% box_float_right("200px") do %>
+<% box_float_right("130px") do %>
   <p>
     <%= link_to CAN_OPEN+NBSP+t(:pages), pages_path -%><br/>
     <%= link_to CAN_OPEN+NBSP+t(:postings), postings_path -%><br/>
@@ -11,7 +11,7 @@
       <%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %>
     </p>
   <%- end -%>
-  <h3><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></h3>
+  <b><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></b>
   <ul>
     <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_pages), pages_path -%> (<%= Page.all.length -%>)</li>
     <% cache(:categories_index_pages) do %>
@@ -25,7 +25,7 @@
     <% end %>
   </ul>
   
-  <h3><br/><%= link_to CAN_OPEN+NBSP+t(:tags), tags_path -%></h3>
+  <b><%= link_to CAN_OPEN+NBSP+t(:tags), tags_path -%></b><br/>
   <%= render :partial => '/tags/tag_index' -%>
 
 <% end %>

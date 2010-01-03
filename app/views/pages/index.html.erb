@@ -4,8 +4,6 @@
   <%- title t(:pages) -%>
 <%- end -%>
 
-<%= render :partial => '/layouts/sidebar' -%>
-
 <%= will_paginate @pages -%>
 
 <% for page in @pages %>

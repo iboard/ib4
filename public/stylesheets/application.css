@@ -373,11 +373,16 @@ input#page_title {
 
 .box_float_right {
   float: right; 
-  font-size: 12px; 
-  padding: 10px; 
+  font-size: 11px; 
+  padding: 0px; 
+  padding-left: 10px;
   /*border-left: 1px dotted #AAA; */
   margin-left: 20px; 
   margin-bottom: 20px;
+}
+
+.box_float_right p {
+	font-size: 11px;
 }
 
 .box_tiny,
@@ -659,4 +664,8 @@ input#page_title {
 
 #page_subnavigation li a {
     line-height: 13px;
+}
+
+#main_content {
+	width: 750px;
 }

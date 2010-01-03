@@ -4,8 +4,6 @@
   <%- title "Postings" -%>
 <%- end -%>
 
-<%= render :partial => '/layouts/sidebar' -%>
-
 <%= will_paginate @postings -%>
 
 <% for posting in @postings %>
