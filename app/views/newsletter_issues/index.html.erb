@@ -15,7 +15,7 @@
   <% for newsletter_issue in @newsletter_issues %>
     <tr>
       <td valign="top"><%=h newsletter_issue.updated_at.to_s(:short) %></td>
-      <td valign="top"><%=h newsletter_issue.subject %></td>
+      <td valign="top"><b><%=h newsletter_issue.subject %></b></td>
       <%- if is_admin? -%>
         <td valign="top" align="center">
           <%= periodically_call_remote( 
