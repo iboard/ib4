@@ -63,17 +63,17 @@
             <%- if current_user -%>  
               <%=
                 [
-                   {:label => :dashboard,    :url => user_path(current_user)},
-                   {:label => :edit_profile, :url => edit_user_path(current_user)},
-                   {:label => :logout,       :url => logout_path }
+                   {:label => t(:dashboard),    :url => user_path(current_user)},
+                   {:label => t(:edit_profile), :url => edit_user_path(current_user)},
+                   {:label => t(:logout),       :url => logout_path }
                 ].map { |item|
                    mark_active_link(item,request.request_uri)
                 }.join("")
               %>
             <%- else -%>
               <%= 
-                 mark_active_link({:label => :register, :url => new_user_path},request.request_uri) +
-                 mark_active_link({:label=>:login,:url=>login_path},request.request_uri) 
+                 mark_active_link({:label => t(:register), :url => new_user_path},request.request_uri) +
+                 mark_active_link({:label=>t(:login),:url=>login_path},request.request_uri) 
               -%>
             <%- end -%>
           </div>
@@ -117,7 +117,7 @@
       </div>
       
       <div id='copyright' class='copyright'>
-        <p>© 2003-2009 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
+        <p>© 2003-2010 by <%= link_to 'Andreas Altendorfer', 'http://www.altendorfer.at/' -%></p>
         <p>
             <a href="http://validator.w3.org/check?uri=referer"><img
                 src="http://www.w3.org/Icons/valid-xhtml10-blue"

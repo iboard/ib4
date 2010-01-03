@@ -1,4 +1,4 @@
 <%= ADMIN_MENU_ITEMS.map { |item|
-      mark_active_link(item,request.request_uri)
+      mark_active_link({:label => t(item[:label].to_sym), :url => item[:url]},request.request_uri)
   }.join("")
 -%>
