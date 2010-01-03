@@ -1,16 +1,16 @@
 module PagesHelper
   
   
-  def page_navigation
+  def page_navigation(displayed_page)
     handle = is_admin? ? SORT_HANDLE : CAN_OPEN
     Markaby::Builder.new( {}, self ) do
       div.page_navigation! do
         ul.page_navigation_list! do
           Page.roots.each do |page|
             if permitted_to?(:show,page)
-              if current_page?(page)
+              if current_page?(page) || (displayed_page && displayed_page.ancestors.include?(page))
                 li( :id => 'page_navigation_'+page.id.to_s) do
-                  "<span class='handle'>#{handle}</span>"+ NBSP + b { page.title } 
+                  "<span class='handle'>#{handle}</span>"+ NBSP + b { link_to(page.title,page) } 
                 end
               else
                 li( :id => 'page_navigation_'+page.id.to_s )do

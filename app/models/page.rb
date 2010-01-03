@@ -79,6 +79,10 @@ class Page < ActiveRecord::Base
     st
   end
   
+  def prefixed_title
+    "- "*ancestors.length+title
+  end
+  
   # TODO: Check if user allowed to read this posting
   # This callback is used by tagables and therefor it is defined as this simple placeholder yet
   def read_allowed?(user)

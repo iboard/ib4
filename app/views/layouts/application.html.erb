@@ -79,7 +79,7 @@
           </div>
         </div>
         <div id='container'>
-          <%= page_navigation %>
+          <%= page_navigation(@page) %>
           <%= page_subnavigation(@page) if @page && !@page.new_record? %>
           <div id='page_navigation_seperator'>&nbsp;</div>
           <%- if is_admin? -%>

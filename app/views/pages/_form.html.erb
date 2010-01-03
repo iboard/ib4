@@ -42,7 +42,7 @@
         <%= f.label :parent_id %>
         <%= f.collection_select :parent_id, Page.all(:order => :parent_id).reject {|r|
             r.id == @page.id || r.ancestors.include?(@page)
-        }, :id, :title, :include_blank => t(:root_item) -%>
+        }, :id, :prefixed_title, :include_blank => t(:root_item) -%>
     </p>
     <p>
       <%= f.label :title %><br />
