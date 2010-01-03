@@ -359,3 +359,4 @@ en:
   last_logout: 'Last log out'
   total_logged_in: 'Total time logged in'
   root_item: '-- Top level --'
+  back_to: "<sapn title='Back to {{title}}'>Back</span>"
