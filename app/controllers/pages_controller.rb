@@ -4,6 +4,8 @@ class PagesController < ApplicationController
   filter_access_to :all, :attribute_check => true, :load_method => lambda { 
     if params[:id]
       @page = Page.find(params[:id])
+    else
+      @page = Page.new
     end
   }
   after_filter    :clear_cache, :only => [:create,:update,:destroy]
