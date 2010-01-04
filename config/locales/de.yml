@@ -360,3 +360,4 @@ de:
     zero: 'keine Mitglieder'
     one: 'Ein Mitglied'
     other: '{{count}} Mitglieder'
+  files: 'Dateien'

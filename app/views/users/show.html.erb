@@ -54,6 +54,7 @@
 
 <% content_tag :div, :class => 'user_profile_left' do %>
   <h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
+  <%= link_to t(:edit_profile), edit_user_path(current_user) if current_user == @user -%>
   <% if @user != current_user %>
   <p>
       <%= EMAIL_ICON+NBSP+link_to( t(:send_message_to), new_user_message_path(current_user, :recipient=>@user )) %>

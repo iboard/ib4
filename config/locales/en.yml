@@ -364,3 +364,4 @@ en:
     zero: 'no members'
     one: 'one member'
     other: '{{count}} members'
+  files: 'Files'
