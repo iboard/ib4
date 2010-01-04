@@ -1,18 +1,19 @@
 <% form_for @usergroup do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :name %><br />
+    <b><%= f.label :name %></b><br />
     <%= f.text_field :name %>
   </p>
   
   <% if is_admin? %>
     <p>
-       <%= f.label :user_id, t(:owner) %><br />
+       <b><%= f.label :user_id, t(:owner) %></b><br />
        <%= f.collection_select :user_id, User.all, :id, :fullname %>
     </p>
   <% end %>
   
-  <p><%= f.label :join_mask, t(:joinable_by) %><br/>
+  <p>
+    <b><%= f.label :join_mask, t(:joinable_by) %></b><br/>
     <% for join_role in Usergroup::JOINABLES %>  
       <%= check_box_tag "usergroup[joinable_by][]", join_role, @usergroup.joinable_by.include?(join_role) %>  
       <%= t('join_role'+join_role.to_s.underscore) %><br/>
@@ -21,10 +22,10 @@
   </p>
   
   <p>
-    <%= f.label :members %><br/>
-    <% for member in [@usergroup.members, @usergroup.user.my_friends].flatten.uniq %>
+    <b><%= f.label :members %></b><br/>
+    <% for member in [@usergroup.members + @usergroup.user.my_friends].flatten.uniq %>
        <%= check_box_tag "usergroup[members][]", member.id, @usergroup.members.include?(member) %>&nbsp;<%= member.fullname %>
-       <span style='font-size: 10px;'><%= @usergroup.user.my_friends.include?(member) ? t(:friend_user) : t(:foreign_user) -%></span>
+       <span style='font-size: 10px;'><%= t(@usergroup.user.kind_of_friend(member)) -%></span>
        <br/>
     <% end %>
     <%= hidden_field_tag "usergroup[members][]"%>

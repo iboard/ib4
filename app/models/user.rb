@@ -97,4 +97,8 @@ class User < ActiveRecord::Base
     message_notifications.new_notifications.map { |n| n.message }
   end
   
+  def kind_of_friend(other_user)
+    my_friends.include?(other_user) ? :friend_user : :foreign_user
+  end
+  
 end
