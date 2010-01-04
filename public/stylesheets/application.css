@@ -509,13 +509,14 @@ input#page_title {
 
 .user_profile_right {
   float: right; 
-  width: 200px; 
+  width: 295px; 
   margin-left: 10px;
   padding-left: 20px;
+  font-size: 12px;
 }
 
 .user_profile_left {
-  width: 450px;
+  width: 395px;
 }
 
 .current_user_display {

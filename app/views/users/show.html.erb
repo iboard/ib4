@@ -7,8 +7,7 @@
     <%= t(:users_contents,:username => @user.username) unless is_current_user?(@user)  -%>
   </h2>
   <%- if is_current_user?(@user) -%>
-     <div class='user_profile_right'>
-         
+     <div class='user_profile_right_inner'>
          <!-- MESSAGES -->
          <%= link_to CAN_OPEN+NBSP+t(:messages), user_messages_path(@user) -%>
            (<b><%= @user.new_messages.size %></b> / <%= @user.message_notifications.size -%> / <%= @user.messages.size -%>)<br/>
@@ -51,7 +50,6 @@
     <%- end -%>
     <%= link_to CAN_OPEN+NBSP+t(:your_files)+" (#{@user.binaries .length})", user_binaries_path(@user) -%>
 </div>
-
 <% content_tag :div, :class => 'user_profile_left' do %>
   <h1><%= yield :title -%> (<%= @user.fullname %>)</h1>
   <%= link_to t(:edit_profile), edit_user_path(current_user) if current_user == @user -%>
