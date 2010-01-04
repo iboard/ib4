@@ -80,12 +80,7 @@
           </div>
         </div>
         <div id='container'>
-          <%= page_navigation(@page) %>
-          <%= page_subnavigation(@page) if @page && !@page.new_record? %>
-          <div id='page_navigation_seperator'>&nbsp;</div>
-          <%- if is_admin? -%>
-            <%= sortable_element('page_navigation_list', :url => sort_roots_pages_path, :handle => 'handle' ) -%>
-            <%= sortable_element('page_subnavigation_list', :url => sort_children_pages_path, :handle => 'handle' ) if @page && !@page.new_record? -%>
+          <% if is_admin? %>
              <div id='rootmenu'>
                <% toggle_display_link 'Administration', 
                     :minwidth => "200px",
@@ -96,9 +91,18 @@
                  <%= render :partial => '/users/adminmenu' -%>
                <% end %>
              </div>
-             <div style='clear:right;'></div>
-          <%- end -%>
-          <!-- div style='margin-top: 10px;'>&nbsp;</div -->
+          <% end %>
+          <% content_tag :div, :style => 'float: left;' do%>
+            <%= page_navigation(@page) %>
+            <%= page_subnavigation(@page) if @page && !@page.new_record? %>
+            <%- if is_admin? -%>
+              <%= sortable_element('page_navigation_list', :url => sort_roots_pages_path, :handle => 'handle' ) -%>
+              <%= sortable_element('page_subnavigation_list', :url => sort_children_pages_path, :handle => 'handle' ) if @page && !@page.new_record? -%>  
+            <%- end -%>
+          <% end %>
+          <br clear='all' />
+          <div id='page_navigation_seperator'>&nbsp;</div>          
+          
           <div id='flash'>
             <%- flash.each do |name,msg| -%>
               <%= content_tag :div, msg, :id => "flash_#{name}" %>

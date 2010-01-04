@@ -350,6 +350,7 @@ input#page_title {
 
 #rootmenu {
   padding: 10px;
+  padding-top: 0px;
   text-align: right;
   float:right;
 /*
@@ -673,10 +674,10 @@ input#page_title {
 #page_navigation_seperator {
 	height: 10px;
 	font-size: 9px;
-	border-bottom: 1px solid #ddd;
+	margin: 0px;
 	margin-bottom: 10px;
-	margin-top: -10px;
 	padding: 0px;
+	border-bottom: 1px solid #ddd;
 }
 
 .category_description {
