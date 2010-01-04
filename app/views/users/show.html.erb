@@ -18,6 +18,9 @@
          
          <!-- USERGROUPS -->
          <%= (BR+link_to( CAN_OPEN+NBSP+t(:usergroups), usergroups_path )) if permitted_to? :index, Usergroup.new -%>  
+
+         <!-- NEWSLETERS -->
+         <%= (BR+link_to( CAN_OPEN+NBSP+t(:newsletters), newsletters_path )) if current_user -%>  
          
          <!-- INVITE OTHER USERS -->
          <% if @user.invitations_left > 0 %>

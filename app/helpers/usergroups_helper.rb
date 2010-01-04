@@ -75,4 +75,18 @@ module UsergroupsHelper
     end
   end  
 
+  def usergroup_header(usergroup)
+    Markaby::Builder.new( {}, self ) do
+      h1 do 
+        (I18n.translate(:usergroup) + ":" + NBSP + usergroup.name).to_s + NBSP +
+        span(:style=>'font-size: 12px') do
+          (
+            link_to(usergroup.user.fullname,usergroup.user) + 
+            " (" + usergroup.joinable_by.map {|r| I18n.translate('join_role'+r.to_s) }.join(", ") + ")"
+          ).to_s
+        end
+      end
+    end
+  end
+
 end

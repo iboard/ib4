@@ -1,17 +1,12 @@
 <% title t(:usergroups) %>
 <%= link_to BACK_TO+NBSP+t(:usergroups), usergroups_path  %>
 
-<h1>
-  <%= t(:usergroup)+":"+NBSP+h(@usergroup.name) %>
-  <span style='font-size: 12px;'>
-    <%=link_to(h(@usergroup.user.fullname),@usergroup.user) %>
-    (<%=h @usergroup.joinable_by.map {|r| t('join_role'+r.to_s) }.join(", ") %>)
-  </span>
-</h1>
+<%= usergroup_header(@usergroup) -%>
+
 <% toggle_display_link t(:members,:count => @usergroup.members.length) do %>
-  <ol>
+  <% content_tag :ol do %>
     <%= @usergroup.members.map { |m| "<li>"+link_to( m.fullname,m )+"</li>"} -%>
-  </ol>
+  <% end %>
   <%= t(:no_members) if @usergroup.members.empty? %>
 <% end %>
 <%= record_links( @usergroup,usergroups_path, nil, edit_usergroup_path(@usergroup), usergroup_path(@usergroup)  ) -%>
