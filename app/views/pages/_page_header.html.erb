@@ -10,9 +10,7 @@
 <% unless page.permalinks.empty? %>
   <% content_tag :div, :style=>'font-size: 11px;' do %>
     <%- toggle_display_link(t(:permalinks)) do -%>
-      <blockquote>
       <%= render :partial => page.permalinks %>
-      </blockquote>
     <%- end -%>
   <% end %>
 <% end %>

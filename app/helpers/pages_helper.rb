@@ -36,15 +36,22 @@ module PagesHelper
             end
           end
           li do
-            strong { CAN_OPEN+NBSP+page.title }
+            strong { CAN_OPEN+NBSP+(page.title || t(:new_page)) }
           end
         end
+      end
+    end
+  end
+  
+  def page_children_navigation(page)
+    handle = is_admin? ? SORT_HANDLE : CAN_OPEN
+    Markaby::Builder.new( {}, self ) do
+      div.page_children_navigation! do
         if page.children.any?
-          br(:clear => :left)
-          ul.page_subnavigation_list! do
+          ul.page_children_navigation_list! do
             page.children.each do |page|
               if permitted_to?(:show,page)
-                li :id => 'page_subnavigation_'+page.id.to_s do
+                li :id => 'page_children_navigation_'+page.id.to_s do
                    "<span class='handle'>#{handle}</span>"+NBSP+link_to(page.title,page) 
                 end
               end
@@ -54,5 +61,5 @@ module PagesHelper
       end
     end
   end
-  
+
 end

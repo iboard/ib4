@@ -76,7 +76,7 @@ IS_OPEN        = "&#9660;" unless defined? IS_OPEN
 CLOSE_UP       = "&#9650;" unless defined? CLOSE_UP
 GO_BACK        = "&#9664;" unless defined? GO_BACK
 BACK_TO        = GO_BACK
-SORT_HANDLE    = "&#10711;"
+SORT_HANDLE    = "<span style='cursor:crosshair;'>&#10711;</span>"
 BACKSPACE_CHAR = "&#9003;" unless defined? BACKSPACE_CHAR
 DELETE_CHAR    = "&#9003;" unless defined? DELETE_CHAR
 COMMENT_HAND   = "&#9997;" unless defined? COMMENT_HAND

@@ -681,6 +681,38 @@ input#page_title {
 	border-bottom: 1px solid #ddd;
 }
 
+
+#page_children_navigation {
+	padding: 0px;
+    margin: 0px;
+    list-style: none;
+    font-size: 11px;
+}
+
+#page_children_navigation ul {
+	display: block;
+	margin: 0px;
+	padding:0px;
+}
+
+#page_children_navigation li {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding:0px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#page_children_navigation li a {
+    line-height: 13px;
+}
+
+
+#main_content {
+	width: 750px;
+}
+
 .category_description {
 	margin: 0px;
 	padding: 0px;

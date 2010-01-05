@@ -1,6 +1,9 @@
+<!-- 
+    ***** BOX RIGHT - Owner *********
+-->
 <div class='title_box' style='width: 350px; float: right;'>
   
-  <%= image_tag(@page.user.avatar.url(:icon), :align => :left, :hspace => 10) %>
+  <%= image_tag(@page.user.avatar.url(:icon), :align => :right, :hspace => 10) %>
   <%=link_to("<b>"+h(@page.user.username) + "</b> (#{@page.user.fullname})",@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
   <%- if @page.categories.any? %>
     <br/><b><%= t(:categories) -%></b>: <%= @page.categories.map{|c| link_to(c.name, category_pages_path(c))}.join(", ") -%>
@@ -15,8 +18,9 @@
         -%>
   <%- end -%>
   
-  <div style="clear:'left';"></div>
+  <div style="clear:'left';">&nbsp;</div>
   
+  <!-- Version Navigation for owner -->
   <% if is_owner_or_admin?(@page) %>
      Version <%= @page.version || t(:initialized_version) -%>:
      <% if @page.version > 1 %>  
@@ -44,13 +48,19 @@
   <% end %>
 </div>
 
+
+<!-- 
+    ***** Title and Body *********
+-->
 <%= render :partial => 'page_short', :locals => {:page => @page } %>
 
 
 <%= @page.body.to_txt %>
 
-
-<% if @page.user == current_user && @page.versions.length > 1 %>
+<!-- 
+    ***** Versions and Changes for owner and admins *********
+-->
+<% if (@page.user == current_user || is_admin?) && @page.versions.length > 1 %>
   <div>
     <% toggle_display_link t(:changes), :id => 'show_changes', :sticky => session[:stickies][:show_changes] do %>
       <% @page.versions.each do |version| %>

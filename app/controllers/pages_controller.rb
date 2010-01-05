@@ -86,7 +86,7 @@ class PagesController < ApplicationController
   end
   
   def sort_children
-    params[:page_subnavigation_list].each_with_index do |id,index|
+    params[:page_children_navigation_list].each_with_index do |id,index|
       Page.update_all(['position=?',index+1], ['id=?', id])
     end
     render :nothing => true

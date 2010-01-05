@@ -94,10 +94,16 @@
           <% end %>
           <% content_tag :div, :style => 'float: left;' do%>
             <%= page_navigation(@page) %>
-            <%= page_subnavigation(@page) if @page && !@page.new_record? %>
+            <%= page_subnavigation(@page) if @page %>
+            <% if @page && @page.children.any? %>
+              <% content_tag :div, :style=>'clear: left; padding-left: 30px;' do %>
+                <%= page_children_navigation(@page)  %>
+              <% end %>
+            <% end %>
+            <br clear='left' />
             <%- if is_admin? -%>
               <%= sortable_element('page_navigation_list', :url => sort_roots_pages_path, :handle => 'handle' ) -%>
-              <%= sortable_element('page_subnavigation_list', :url => sort_children_pages_path, :handle => 'handle' ) if @page && !@page.new_record? -%>  
+              <%= sortable_element('page_children_navigation_list', :url => sort_children_pages_path, :handle => 'handle' ) if @page && !@page.new_record? -%>  
             <%- end -%>
           <% end %>
           <br clear='all' />

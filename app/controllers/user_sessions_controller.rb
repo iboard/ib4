@@ -73,5 +73,5 @@ class UserSessionsController < ApplicationController
     session[:stickies][params[:id].to_sym] = false
     render :nothing => true  
   end
- 
+  
 end

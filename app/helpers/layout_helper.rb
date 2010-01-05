@@ -80,14 +80,14 @@ module LayoutHelper
           onclick=\"Element.blindDown(\'#{ids}\');Element.hide(\'can_open_#{ids}\');"+
           "Element.show(\'can_close_#{ids}\');"+
           set_sticky +
-          ";return false;\">#{CAN_OPEN}&nbsp;#{label}</a>" +
+          ";return false;\"><small>#{CAN_OPEN}</small>&nbsp;#{label}</a>" +
         "</div>" +
         "<div id='can_close_#{ids}'  #{sticky} >
           <a href='##{ids}' 
           onclick=\"Element.blindUp(\'#{ids}\');  "+"
             Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');"+
             set_unsticky +
-            ";return false;\">#{IS_OPEN}&nbsp;#{label}</a>" +
+            ";return false;\"><small>#{IS_OPEN}</small>&nbsp;#{label}</a>" +
         "</div>"+
         "<div id='#{ids}' #{sticky}>"
      )
@@ -101,7 +101,7 @@ module LayoutHelper
          <a href='##{ids}' 
          onclick=\"Element.blindUp(\'#{ids}\');  Element.hide(\'can_close_#{ids}\');Element.show(\'can_open_#{ids}\');"+
          set_unsticky+
-         ";return false;\">#{CLOSE_UP}&nbsp;#{label}</a>"
+         ";return false;\"><small>#{CLOSE_UP}</small>&nbsp;#{label}</a>"
        )
      end
      
