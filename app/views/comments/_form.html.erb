@@ -15,6 +15,8 @@
       <%= f.label :comment %><br />
       <%= f.textile_editor :comment, :cols => 60 %>
     </p>
-    <p><%= f.submit "Submit" %></p>
+    <p>
+      <%= save_and_cancel_buttons(f, @comment, @comment.new_record? ? comments_path : comment_path(@comment), comments_path ) %>
+    </p>
   <% end %>
 </div>
