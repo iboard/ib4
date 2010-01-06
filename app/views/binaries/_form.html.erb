@@ -23,6 +23,6 @@
     <%= f.label :filesize %>: <%= @binary.filesize.to_s.humanize if @binary.filesize%>
   </p>
   <p>
-      <%= save_and_cancel_buttons(f, @binary, binary_path(@binary), binaries_path ) %>
+      <%= save_and_cancel_buttons(f, @binary, @binary.new_record? ? binaries_path : binary_path(@binary), binaries_path ) %>
   </p>
 <% end %>

@@ -43,7 +43,7 @@
     
     <p>
       <%= f.check_box :draft %>&nbsp;<%= f.label :draft %> 
-      <%= save_and_cancel_buttons(f, @posting, posting_path(@posting), postings_path ) %>
+      <%= save_and_cancel_buttons(f, @posting, @posting.new_record? ? postings_path : posting_path(@posting), postings_path ) %>
     </p>
     
   </div>
