@@ -2,7 +2,7 @@ module PagesHelper
   
   
   def page_navigation(displayed_page)
-    handle = is_admin? ? SORT_HANDLE : CAN_OPEN
+    handle = is_admin? ? SORT_HANDLE : NBSP
     Markaby::Builder.new( {}, self ) do
       div.page_navigation! do
         ul.page_navigation_list! do
