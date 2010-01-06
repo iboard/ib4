@@ -75,7 +75,7 @@ module ApplicationHelper
      when :years
        r = t( ( d.to_i > 0 ? :in_years : :years_ago), :count => (a/1.year).round )
      end
-     "<span title='#{t2.to_s(:short)}'>#{r}</span>"
+     "<span title='#{t2.to_s(:short)}' style='cursor:help;'>#{r}</span>"
    end
 
    

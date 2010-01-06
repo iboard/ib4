@@ -375,3 +375,6 @@ de:
   clear_log: 'Log löschen'
   session_history_cleared: 'Verbindungsdetails gelöscht'
   no_history_available: 'Keine Details vorhanden'
+  kind: 'Art'
+  title: 'Titel'
+  date_updated: 'Geändert'

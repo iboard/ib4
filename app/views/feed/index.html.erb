@@ -1,7 +1,23 @@
-<% for item in @items do %>
-  <% if item.respond_to? 'list_title' %>
-    <h1><%= item.list_title 250 %></h1>
-    <p><%= link_to CAN_OPEN+t(:read_more), item %></p>
-  <% end %>
+<% title 'RSS-Feed' %>
 
+<h1><%= yield(:title) -%></h1>
+<div style='float: right; margin-right: 35px;'><%= link_to CAN_OPEN+NBSP+t(:subscribe), rss_path -%></div>
+<br/>
+
+<% content_tag :table, :class => 'standard_table' do %>
+  <tr>
+    <th><%= t(:title) %></th>
+    <th><%= t(:kind) %></th>
+    <th><%= t(:date_updated) %></th>
+  </tr>
+  <% for item in @items do %>
+    <% if item.respond_to? 'list_title' %>
+      <% color = cycle(:odd,:even) %>
+      <% content_tag :tr, :class => color do %>
+          <td><b><%= link_to item.list_title(50), item -%></b></td>
+          <td width='150' align='center'><%= t(item.class.to_s.to_sym) -%></td>
+          <td width='150'><%= humanize_time_span(item.updated_at,Time.now()) -%></td>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>

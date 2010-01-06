@@ -93,7 +93,7 @@ en:
     other: '{{count}} entries'
   home: Home
   explain_registration_flow: "<b>Registration:</b><br/>On the left side choose a username and enter your e-mail-address. You will receive a mail with an activation-link where you can set your password.<br/><b>Avatar:</b><br/>Above upload your avatar-image. It will be resized and corped to fit."
-  comma_or_blank_delimited_plural: "Please use singular form for Tags.<br/>Comma or spaces delimiters<br/>eg. 'Music,Gasoline,Announcment'<br/>But not: <s>Announcment<b>s</b><em>;</em>Car<b>s</b></s><br/>AND NEVER USE 'new' AS A TAG! » Your posting will be marked 'new' forever ;-)"
+  comma_or_blank_delimited_plural: "Please use singular form for Tags.<br/>Comma delimit more tags<br/>eg. 'Music,Gasoline,Announcment'<br/>NEVER USE 'new' AS A TAG! » Your posting will be marked 'new' forever ;-)"
   add_a_comment: 'Add a comment'
   submit: 'Submit'
   count_comments: 
@@ -379,3 +379,6 @@ en:
   clear_log: 'Clear Log'
   session_history_cleared: 'Session history cleared'
   no_history_available: 'No history available'
+  kind: 'Kind'
+  title: 'Title'
+  date_updated: 'Updated'
