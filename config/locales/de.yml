@@ -361,3 +361,5 @@ de:
     one: 'Ein Mitglied'
     other: '{{count}} Mitglieder'
   files: 'Dateien'
+  subpages: 'Weitere Seiten'
+  sibling_pages: 'Siehe auch'

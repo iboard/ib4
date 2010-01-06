@@ -61,5 +61,35 @@ module PagesHelper
       end
     end
   end
+  
+  def list_children(page,header=nil)
+    if page.children.any?
+      Markaby::Builder.new( {}, self ) do
+        div.page_children! do
+          p { strong { header } } if header
+          ul do
+            page.children.each do |child|
+              li { link_to child.title, child }
+            end  
+          end
+        end
+      end
+    end
+  end
+  
+  def list_siblings(page,header=nil)
+    if page.siblings.any?
+      Markaby::Builder.new( {}, self ) do
+        div.page_siblings! do
+          p { strong { header } } if header
+          ul do
+            page.siblings.each do |sibling|
+              li { link_to sibling.title, sibling }
+            end  
+          end
+        end
+      end
+    end
+  end
 
 end

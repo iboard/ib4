@@ -55,7 +55,11 @@
 <%= render :partial => 'page_short', :locals => {:page => @page } %>
 
 
-<%= @page.body.to_txt %>
+<%= @page.body.to_txt.gsub(
+                       "{{children}}", list_children(@page, t(:subpages)).to_s
+                     ).gsub(
+                       "{{siblings}}", list_siblings(@page, t(:sibling_pages)).to_s
+                     ) %>
 
 <!-- 
     ***** Versions and Changes for owner and admins *********

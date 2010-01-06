@@ -365,3 +365,5 @@ en:
     one: 'one member'
     other: '{{count}} members'
   files: 'Files'
+  subpages: 'Subpages'
+  sibling_pages: 'more…'
