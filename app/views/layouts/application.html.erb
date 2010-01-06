@@ -95,7 +95,7 @@
           <% content_tag :div, :style => 'float: left;' do%>
             <%= page_navigation(@page) %>
             <%= page_subnavigation(@page) if @page && @page.title %>
-            <%= yield(:title) unless @page && @page.title %>
+            <%= "&#10144;"+NBSP+yield(:title) unless @page && @page.title %>
             <%= "("+t(:page_no, :count => params[:page].to_i)+")" if params[:page] && params[:page].class == String %>
             <% if @page && @page.children.any? %>
               <% content_tag :div, :style=>'clear: left; padding-left: 30px;' do %>
