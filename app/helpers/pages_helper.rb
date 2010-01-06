@@ -32,7 +32,7 @@ module PagesHelper
         ul.page_prefix_navigation do
           page.ancestors.reverse.each do |sibling|
             li do
-              CAN_OPEN + NBSP + link_to(sibling.title,page.parent)
+              CAN_OPEN + NBSP + link_to(sibling.title,sibling)
             end
           end
           li do
