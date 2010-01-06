@@ -369,3 +369,5 @@ de:
     zero: 'Seite {{count}}'
     one: 'Erste Seite'
     other: 'Seite #{{count}}'
+  save: 'Speichern'
+  cancel: 'Abbrechen'

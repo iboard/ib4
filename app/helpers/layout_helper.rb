@@ -131,4 +131,18 @@ module LayoutHelper
       br(:clear => :left)
     end
   end
+
+  # Display a save and cancel button. if _record_ is new cancel will redirect to _cancel_create_path_ otherwise to _cancel_update_path_
+  def save_and_cancel_buttons(form_builder_handle, record, cancel_update_path, cancel_create_path)
+     Markaby::Builder.new({},self) do
+       div.form_buttons do
+         form_builder_handle.submit( I18n.translate(:save), :default => true ) + NBSP*4 +
+         if record.new_record?
+           form_builder_handle.submit( I18n.translate(:cancel), :onclick => "window.open('#{cancel_create_path}','_top');return false;")
+         else
+           form_builder_handle.submit( I18n.translate(:cancel), :onclick => "window.open('#{cancel_update_path}','_top');return false;")
+         end
+       end
+     end
+  end
 end

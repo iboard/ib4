@@ -373,3 +373,5 @@ en:
     zero: 'Page {{count}}'
     one: 'First Page'
     other: 'Page #{{count}}'
+  save: 'Save'
+  cancel: 'Cancel'

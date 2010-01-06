@@ -68,7 +68,9 @@
       </p>
     <%- end -%>
     
-    <p><%= f.submit "Submit" %></p>
+    <p>
+        <%= save_and_cancel_buttons(f, @user, user_path(@user), users_path ) %>
+    </p>
   </div>
 <%- end -%>
 <br clear=all />
