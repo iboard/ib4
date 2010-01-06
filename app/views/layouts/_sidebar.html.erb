@@ -1,10 +1,10 @@
 <% box_float_right("130px") do %>
   <p>
     <%= link_to t(:pages), pages_path -%>
-    <%= ", "+link_to( t(:new_page), new_page_path) if current_user %>
+    <%= BR+NBSP*3+link_to( t(:new_page), new_page_path) if current_user %>
     <br/>
     <%= link_to t(:postings), postings_path -%>
-    <%= ", "+link_to( t(:new_posting), new_posting_path) if current_user %>
+    <%= BR+NBSP*3+link_to( t(:new_posting), new_posting_path) if current_user %>
     <br/>
     <%= link_to t(:subscribe_rss_feed), rss_path -%>    
   </p>
@@ -14,7 +14,7 @@
        { 
          :id => 'cat_list',
          :no_bottom_link => true,
-         :sticky => session[:stickies][:cat_list].nil? ? true : session[:stickies][:cat_list]
+         :sticky => session[:stickies][:cat_list].nil? ? false : session[:stickies][:cat_list]
        }) do %>
     <b><%= link_to t(:all_categories), categories_path -%></b>
     <ul>
