@@ -71,7 +71,10 @@
       <% end %>
     <% end %>
     
-    <p><%= f.submit "Submit" %> <%= f.label :draft %> <%= f.check_box :draft %></p>
+    <p>
+       <%= f.label :draft %> <%= f.check_box :draft %>
+       <%= save_and_cancel_buttons(f, @page, page_path(@page), pages_path ) %>
+    </p>
   </div>
 <% end %>
 

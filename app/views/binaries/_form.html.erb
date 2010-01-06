@@ -22,5 +22,7 @@
     <%= f.label :mime_type %>: <%= @binary.mime_type %><br/>
     <%= f.label :filesize %>: <%= @binary.filesize.to_s.humanize if @binary.filesize%>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p>
+      <%= save_and_cancel_buttons(f, @binary, binary_path(@binary), binaries_path ) %>
+  </p>
 <% end %>

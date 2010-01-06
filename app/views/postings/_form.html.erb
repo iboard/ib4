@@ -41,7 +41,12 @@
        <%= render :partial => '/layouts/restriction_checkboxes', :locals => { :restrictable => @posting, :user => @posting.user || current_user } -%>
     <% end %>
     
-    <p><%= f.submit "Submit" %>  <%= f.label :draft %> <%= f.check_box :draft %></p>
+    <p>
+      <%= f.label :draft %> <%= f.check_box :draft %>
+      
+      <%= save_and_cancel_buttons(f, @posting, posting_path(@posting), postings_path ) %>
+      
+    </p>
     
   </div>
 <% end %>
