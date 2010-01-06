@@ -94,7 +94,8 @@
           <% end %>
           <% content_tag :div, :style => 'float: left;' do%>
             <%= page_navigation(@page) %>
-            <%= page_subnavigation(@page) if @page && @page.title%>
+            <%= page_subnavigation(@page) if @page && @page.title %>
+            <%= yield(:title) unless @page && @page.title %>
             <% if @page && @page.children.any? %>
               <% content_tag :div, :style=>'clear: left; padding-left: 30px;' do %>
                 <%= page_children_navigation(@page) if @page && !@page.new_record? %>
