@@ -30,7 +30,9 @@ module UsergroupsHelper
     Markaby::Builder.new( {}, self ) do
       table.standard_table :cellpadding => 0, :cellspacing => 0 do
         tr.table_header do
-          th I18n.translate(:name)
+          th do
+             I18n.translate(:name)
+           end
           th I18n.translate(:owner)
           th I18n.translate(:join_mask)
           th I18n.translate(:join_leave_group)
@@ -38,9 +40,9 @@ module UsergroupsHelper
         end
         for usergroup in usergroups do
           tr :class => cycle(:odd,:even) do
-            td { 
-              strong { link_to CAN_OPEN+NBSP+usergroup.name, usergroup }
-            }
+            td( :width => '200px', :style => "padding-left: 5px;" ) do 
+              strong { link_to usergroup.name, usergroup }
+            end
             td usergroup.user.fullname
             td usergroup.joinable_by.map{|r| r.to_s.humanize}.join(", ") 
             td {join_group_links( usergroup )}

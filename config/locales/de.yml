@@ -371,3 +371,7 @@ de:
     other: 'Seite #{{count}}'
   save: 'Speichern'
   cancel: 'Abbrechen'
+  clear_your_log: 'Log löschen (nicht widerrufbar)'
+  clear_log: 'Log löschen'
+  session_history_cleared: 'Verbindungsdetails gelöscht'
+  no_history_available: 'Keine Details vorhanden'

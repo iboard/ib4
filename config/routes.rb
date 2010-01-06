@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :usergroups
-  map.resources :notes
+  map.resources :notes, :collection => { :clear_session_log => :get }
   map.resources :message_notifications, :belongs_to => [:user,:message]
   map.resources :messages, :belongs_to => :user
   map.resources :binaries, :member => { :download => :get }

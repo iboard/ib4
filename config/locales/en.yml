@@ -375,3 +375,7 @@ en:
     other: 'Page #{{count}}'
   save: 'Save'
   cancel: 'Cancel'
+  clear_your_log: 'clear your logfile (not reverseable)'
+  clear_log: 'Clear Log'
+  session_history_cleared: 'Session history cleared'
+  no_history_available: 'No history available'

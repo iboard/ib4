@@ -34,17 +34,23 @@ module NotesHelper
             end
          end
          tr do
-           begin
-             td {Time.at(notes.first.parent.message_value.to_i).to_s(:short) }
-             td {Time.at(notes.last.message_value.to_i).to_s(:short)}
-             td {notes.last.message}
-             td :align=>:right do
-                (notes.sum { |note| 
-                  note.parent ?  note.message_value.to_i-note.parent.message_value.to_i : 0 
-                }/60).to_s+" min"
+           if notes.any?
+             begin
+               td {Time.at(notes.first.parent.message_value.to_i).to_s(:short) }
+               td {Time.at(notes.last.message_value.to_i).to_s(:short)}
+               td {notes.last.message}
+               td :align=>:right do
+                  (notes.sum { |note| 
+                    note.parent ?  note.message_value.to_i-note.parent.message_value.to_i : 0 
+                  }/60).to_s+" min"
+               end
+             rescue => e
+               td { e.to_s }
              end
-           rescue => e
-             td { e.to_s }
+           else
+              td :colspan => 4, :align => :center do
+                I18n.translate(:no_history_available)
+              end
            end
          end             
        end  

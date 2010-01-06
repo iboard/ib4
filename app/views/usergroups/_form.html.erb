@@ -30,5 +30,7 @@
     <% end %>
     <%= hidden_field_tag "usergroup[members][]"%>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p>
+   <%= save_and_cancel_buttons(f, @usergroup, @usergroup.new_record? ? usergroups_path : usergroup_path(@usergroup), usergroups_path ) %>
+  </p>
 <% end %>

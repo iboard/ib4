@@ -53,6 +53,17 @@ class NotesController < ApplicationController
     redirect_to notes_url
   end
   
+  def clear_session_log
+    if params[:message_type] == 'end_action' && params[:noteable_type] == 'User'
+      @notes = @user.notes.find(:all, :conditions => ['noteable_type = ? and message_type = ?', 'User',:end_action])
+    else
+      @notes = @user.notes.all if is_admin?
+    end
+    @notes.each(&:delete)
+    flash[:notice] = t(:session_history_cleared)
+    redirect_to user_notes_path(current_user,:message_type=>'end_action',:noteable_type=>'User')
+  end
+  
   private
   def load_user
     @user = is_admin? ? User.find(params[:user_id]) : current_user

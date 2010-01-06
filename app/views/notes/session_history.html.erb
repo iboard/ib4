@@ -1,5 +1,9 @@
 <% title t(:session_history)  %>
 <p><%= link_to BACK_TO+NBSP+t(:dashboard), user_path(current_user) %></p>
 <h1><%= t(:session_history) + ": " + current_user.fullname -%></h1>
-
+<% content_tag :div, :style => 'float: right; display: inline; margin-right: 30px;' do %>
+  <%= link_to t(:clear_log), clear_session_log_notes_path(:user_id => current_user), :confirm => t(:are_you_sure, :what => t(:clear_your_log)) %>
+<% end %>
+<br/>
 <%= session_table(@notes)%>
+
