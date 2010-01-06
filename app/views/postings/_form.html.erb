@@ -42,10 +42,8 @@
     <% end %>
     
     <p>
-      <%= f.label :draft %> <%= f.check_box :draft %>
-      
+      <%= f.check_box :draft %>&nbsp;<%= f.label :draft %> 
       <%= save_and_cancel_buttons(f, @posting, posting_path(@posting), postings_path ) %>
-      
     </p>
     
   </div>
