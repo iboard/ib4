@@ -36,7 +36,7 @@ module PagesHelper
             end
           end
           li do
-            strong { CAN_OPEN+NBSP+(page.title || t(:new_page)) }
+            strong { CAN_OPEN+NBSP+(page.title || I18n.translate(:new_page)) }
           end
         end
       end
@@ -90,6 +90,41 @@ module PagesHelper
         end
       end
     end
+  end
+  
+  def interpret_body(txt)  /\[\[[\w|\s]+\]\]/
+    i=100
+    
+    ## interpret children,title
+    while i> 0 && txt.sub!( /\{\{children([,].*)\}\}/ ) { |param|
+      list_children(@page,param.gsub(/[\{|\{|\}|\}|]/, "").gsub(/^children,/,"").strip)
+    } do
+      i -= 1
+    end
+    ## interpret children
+    while i> 0 && txt.sub!( /\{\{children([,].*)*\}\}/ ) { |param|
+      list_children(@page,t(:subpages))
+    } do
+      i -= 1
+    end
+    
+    ## interpret siblings,title
+    while i> 0 && txt.sub!( /\{\{siblings([,].*)\}\}/ ) { |param|
+      list_siblings(@page,param.gsub(/[\{|\{|\}|\}|]/, "").gsub(/^siblings,/,"").strip)
+    } do
+      i -= 1
+    end
+    ## interpret siblings
+    while i> 0 && txt.sub!( /\{\{siblings([,].*)*\}\}/ ) { |param|
+      list_siblings(@page,t(:subpages))
+    } do
+      i -= 1
+    end
+    
+    if i == 0
+      txt += "<span style='color:red;'>LOOP BREAK AFTER 100 ITERATIONS</span>"
+    end
+    txt
   end
 
 end
