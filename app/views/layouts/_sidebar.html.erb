@@ -1,31 +1,44 @@
 <% box_float_right("130px") do %>
   <p>
-    <%= link_to CAN_OPEN+NBSP+t(:pages), pages_path -%><br/>
-    <%= link_to CAN_OPEN+NBSP+t(:postings), postings_path -%><br/>
-    <%= link_to CAN_OPEN+NBSP+t(:subscribe_rss_feed), rss_path -%>    
+    <%= link_to t(:pages), pages_path -%>
+    <%= ", "+link_to( t(:new_posting), new_posting_path) if current_user %>
+    <br/>
+    <%= link_to t(:postings), postings_path -%>
+    <%= ", "+link_to( t(:new_page), new_page_path) if current_user %>
+    <br/>
+    <%= link_to t(:subscribe_rss_feed), rss_path -%>    
   </p>
 
-  <%- if current_user %>
-    <p>
-      <%= CAN_OPEN+NBSP+link_to( t(:new_posting), new_posting_path) %><br/>
-      <%= CAN_OPEN+NBSP+link_to( t(:new_page), new_page_path) %>
-    </p>
-  <%- end -%>
-  <b><%= link_to CAN_OPEN+NBSP+t(:categories), categories_path -%></b>
-  <ul>
-    <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_pages), pages_path -%> (<%= Page.all.length -%>)</li>
-    <% cache(:categories_index_pages) do %>
-      <%- Category.ascend_by_name.each do |category| -%>
-        <li style='padding-left: 0px;margin-left:-15px;'>
-          <%= link_to category.name,category_path(category) -%> 
-          (<%= category.categorizables.categorizable_type_is('Posting').length -%>/
-          <%= category.categorizables.categorizable_type_is('Page').length -%>)
-        </li>
-      <%- end -%>
-    <% end %>
-  </ul>
   
-  <b><%= link_to CAN_OPEN+NBSP+t(:tags), tags_path -%></b><br/>
-  <%= render :partial => '/tags/tag_index' -%>
-
+  <% toggle_display_link( t(:categories), 
+       { 
+         :id => 'cat_list',
+         :no_bottom_link => true,
+         :sticky => session[:stickies][:cat_list].nil? ? true : session[:stickies][:cat_list]
+       }) do %>
+    <b><%= link_to t(:all_categories), categories_path -%></b>
+    <ul>
+      <% cache(:categories_index_pages) do %>
+        <%- Category.ascend_by_name.each do |category| -%>
+          <li style='padding-left: 0px;margin-left:-15px;'>
+            <%= link_to category.name,category_path(category) -%> 
+            (<%= category.categorizables.categorizable_type_is('Posting').length -%>/
+            <%= category.categorizables.categorizable_type_is('Page').length -%>)
+          </li>
+        <%- end -%>
+      <% end %>
+      <li style='padding-left: 0px;margin-left:-15px;'><%= link_to t(:all_pages), pages_path -%> (<%= Page.all.length -%>)</li>
+    </ul>
+  <% end %>
+  
+  <% toggle_display_link( t(:tags),
+      { 
+          :no_bottom_link => true,
+          :id => 'tags_list',
+          :sticky => session[:stickies][:tags_list].nil? ? true : session[:stickies][:tags_list]
+       }) do %>
+    <%= render :partial => '/tags/tag_index' -%>
+    <b><%= link_to t(:all_tags), tags_path -%></b><br/>
+  <% end %>
+  
 <% end %>
