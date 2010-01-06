@@ -1,21 +1,19 @@
 <div class='form_left_500'>
   <% form_for @comment do |f| %>
     <%= f.error_messages %>
-    <p>
-      <%= f.label :user_id %><br />
-      <%= f.text_field :user_id %>
-    </p>
-    <p>
-      <%= f.label :commentable_id %><br />
-      <%= f.text_field :commentable_id %>
-    </p>
-    <p>
-      <%= f.label :commentable_type %><br />
-      <%= f.text_field :commentable_type %>
+    <% if is_admin? %>
+      <p>
+        <%= f.label :user_id %>
+        <%= f.collection_select :user_id, User.ascend_by_fullname, :id, :fullname %>
+      </p>
+    <% end %>
+      <p>
+      <%= f.label :commentable_id, @comment.commentable.class.to_s.humanize  %>:
+      <%= link_to @comment.commentable.list_title(50), @comment.commentable %>
     </p>
     <p>
       <%= f.label :comment %><br />
-      <%= f.textile_editor :comment %>
+      <%= f.textile_editor :comment, :cols => 60 %>
     </p>
     <p><%= f.submit "Submit" %></p>
   <% end %>

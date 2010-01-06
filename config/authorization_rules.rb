@@ -6,6 +6,7 @@ authorization do
     has_permission_on :pages, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:sort_roots,:sort_children]
     has_permission_on :binaries, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :postings, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
+    has_permission_on :comments, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :usergroups, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
@@ -19,6 +20,9 @@ authorization do
       if_attribute :access_roles =>  contains {  'public' }
     end
     has_permission_on :postings, :to => [:index,:show] do
+      if_attribute :allowed_users => is { true }
+    end
+    has_permission_on :comments, :to => [:index,:show] do
       if_attribute :allowed_users => is { true }
     end
   end
@@ -62,6 +66,19 @@ authorization do
     has_permission_on :pages, :to => [:show,:index] do
       if_attribute :user => is {  Authorization.current_user  }
     end
+    
+    # COMMENT
+    has_permission_on :comments, :to => [:new,:create]
+    has_permission_on :comments, :to => [:edit,:update,:destroy] do
+      if_attribute :user => is { Authorization.current_user }
+    end
+    has_permission_on :comments, :to => [:show,:index] do
+      if_attribute :allowed_users => contains { Authorization.current_user }
+    end
+    has_permission_on :comments, :to => [:show,:index] do
+      if_attribute :user => is {  Authorization.current_user  }
+    end
+    
     
     # BINARY
     has_permission_on :binaries, :to => [:show] do 

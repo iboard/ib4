@@ -743,3 +743,8 @@ input#page_title {
 .category_description {
 	line-height: 100%;
 }
+
+.comment_listing p {
+	font-size: 12px;
+	padding-left: 40px;
+}

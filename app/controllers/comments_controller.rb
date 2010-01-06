@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   
   before_filter :require_user, :except => [:index,:show]
+  filter_resource_access
   
   def index
     unless params[:user_id]

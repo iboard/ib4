@@ -17,4 +17,8 @@ class Comment < ActiveRecord::Base
     comment.to_s
   end
   
+  def allowed_users
+    @allowed_users ||= [commentable.allowed_users,user.my_friends,user].flatten.uniq
+  end
+  
 end

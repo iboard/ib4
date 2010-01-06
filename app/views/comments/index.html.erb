@@ -5,27 +5,30 @@
 </p>
 
 <% for comment in @comments %>
-  <h2>
-      <%= CAN_OPEN+link_to(h(comment.commentable.list_title), comment.commentable) -%>
-      (<%= t(comment.commentable_type)-%>)
-  </h2>
-  <% if is_owner_or_admin?(comment) %>
-      <%= link_to "Show", comment %></td>
-      <%= link_to "Edit", edit_comment_path(comment) %></td>
-      <%= link_to "Destroy", comment, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  <small>
-    <%= t(:comment_days_ago, 
-          :count => ((Time.now-comment.updated_at)/1.day).round,
-          :fullname => comment.user.fullname, 
-          :username => comment.user.username ) 
-    -%>
-  </small>
 
-  <blockquote>
-    <%= comment.comment.to_txt %>
-  </blockquote>
-
+  <% content_tag :div, :class => 'comments' do %>  
+      <%= t(:comment_days_ago, 
+            :count => ((Time.now-comment.updated_at)/1.day).round,
+            :fullname => "<b>"+comment.user.fullname+"</b>", 
+            :username => comment.user.username ) 
+      -%>
+      <% if is_owner_or_admin?(comment) %>
+            <%= record_links(comment,nil,nil,edit_comment_path(comment),comment_path(comment)) -%>
+      <% end %>
+    <div class='comment_listing'>
+      <%= comment.comment.to_txt %>
+      <p>
+        <%= link_to(t(:read_more), comment.commentable) -%>
+        (<%= t(comment.commentable_type)-%>
+        <%= link_to(comment.commentable.list_title(50), comment.commentable) -%>)
+        
+      </p>
+    </div>
+    
+      
+  
+  
+  <% end %>
 <% end %>
 
 <p>
