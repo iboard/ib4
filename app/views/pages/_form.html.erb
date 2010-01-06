@@ -73,7 +73,7 @@
     
     <p>
        <%= f.check_box :draft %>&nbsp;<%= f.label :draft %> 
-       <%= save_and_cancel_buttons(f, @page, @page.new_record? ? pages_path : pages_path(@page), pages_path ) %>
+       <%= save_and_cancel_buttons(f, @page, @page.new_record? ? pages_path : page_path(@page), pages_path ) %>
     </p>
   </div>
 <% end %>
