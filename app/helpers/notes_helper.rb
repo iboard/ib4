@@ -5,10 +5,10 @@ module NotesHelper
     Markaby::Builder.new( {}, self ) do
        table.standard_table :cellpadding => 0, :cellspacing => 0 do
          tr.table_header do
-           th I18n.translate(:log_in)
-           th I18n.translate(:log_out)
-           th I18n.translate(:message)
-           th I18n.translate(:duration)
+           th { I18n.translate(:log_in)  }
+           th { I18n.translate(:log_out) }
+           th { I18n.translate(:message) }
+           th { I18n.translate(:duration)}
          end
          for note in notes do
            tr :class => cycle(:odd,:even) do
