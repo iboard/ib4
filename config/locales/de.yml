@@ -365,3 +365,7 @@ de:
   sibling_pages: 'Siehe auch'
   all_categories: 'Alle Kategorien…'
   all_tags: 'Alle Tags…'
+  page_no:
+    zero: 'Seite {{count}}'
+    one: 'Erste Seite'
+    other: 'Seite #{{count}}'

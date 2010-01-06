@@ -369,3 +369,7 @@ en:
   sibling_pages: 'more…'
   all_categories: 'All Categories…'
   all_tags: 'All Tags…'
+  page_no:
+    zero: 'Page {{count}}'
+    one: 'First Page'
+    other: 'Page #{{count}}'
