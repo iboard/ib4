@@ -80,7 +80,15 @@ class Page < ActiveRecord::Base
   end
   
   def prefixed_title
-    ancestors.any? ? ancestors.reverse.map(&:title).join(' > ')+' > '+title : title
+    if ancestors.any? 
+      ary = ancestors.reverse
+      names = ary.map { |a|
+        a.title.shorten(10,'…')
+      }
+    else
+      names = [title]
+    end
+    names.join(' > ')
   end
   
   def self.tree(page)

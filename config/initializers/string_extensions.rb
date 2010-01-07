@@ -13,5 +13,15 @@ class String
     end
     fp
   }
+  
+  define_method(:shorten) { |len,rpl|
+    len = 4 if len < 4
+    if self.length > len
+      rpl ||= '…'
+      s = self[0..(len/2).round] + rpl + self[(self.length-(len/2).round)..self.length-1]
+      return s
+    end
+    return self.to_s
+  }
 
 end
