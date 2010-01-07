@@ -80,14 +80,14 @@ class Page < ActiveRecord::Base
   end
   
   def prefixed_title
+    names = []
     if ancestors.any? 
       ary = ancestors.reverse
-      names = ary.map { |a|
+      names << ary.map { |a|
         a.title.shorten(10,'…')
       }
-    else
-      names = [title]
     end
+    names += [title]
     names.join(' > ')
   end
   
