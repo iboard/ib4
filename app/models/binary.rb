@@ -6,8 +6,9 @@ class Binary < ActiveRecord::Base
   validates_presence_of :description
   
   before_destroy :remember_file
-  after_destroy :remove_file
+  after_destroy  :remove_file
   
+  after_create  :save_file
   after_save    :save_file
 
   ACCESS_ROLES = [:private,:friends,:public]
@@ -18,7 +19,10 @@ class Binary < ActiveRecord::Base
       self.filename  =  file.original_filename.gsub(/\s+/,"_").downcase
       self.mime_type = file.content_type
       self.filesize  = file.size
-      @data          = file.read
+      f = File::open(file.path,"r")
+      @data          = f.read
+      f.close
+      logger.info("\n*** READ #{@data.length} bytes from stream\n")
     end
   end
     
@@ -62,10 +66,11 @@ class Binary < ActiveRecord::Base
   
   def save_file
     return unless @data
-    File::unlink(@oldfilename) if File::exist?(@oldfilename)
+    File::unlink(@oldfilename) if @oldfile && File::exist?(@oldfilename)
     f = File.open(get_or_create_path,'w')
     f << @data
     f.close
+    logger.info("\n** FILE SAVED TO #{get_or_create_path} (#{@data.length})\n")
   end
 
   def remember_file
