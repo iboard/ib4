@@ -137,7 +137,7 @@ de:
   all_pages: "Alle Seiten..."
   please_override_USER_MENU_ITEMS_in_your_environment_rb: "Please override USER_MENU_ITEMS array in your environments/<em>environment</em>.rb"
   about: "Intro..."
-  read_txt: "lesen..."
+  read_txt: "<em>lesen</em>…"
   language_changed_message: 'Interface-Sprache auf {{locale}} geändert. Beachten sie bitte, dass dies keinen Einfluss auf den Inhalt hat.'
   previous_label: "« zurück"
   next_label: "weiter »"

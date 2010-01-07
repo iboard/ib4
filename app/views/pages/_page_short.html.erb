@@ -1,5 +1,5 @@
 <%= render :partial => '/pages/page_header', :locals => {:page => page} %>
 <div class='page_description'>
-  <%= page.description.to_txt %>
+  <%= (page.description.strip+( defined?(append) ? append.to_s : '')).to_txt %>
 </div>
 
