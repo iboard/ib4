@@ -6,10 +6,12 @@
     <%= link_to h(invitation.sender.username), invitation.sender -%> -> <%= invitation.recipient_email %>
     <small>
       <%= invitation.created_at -%>
+      <br/><%= NBSP*4 -%>
       <% if invitation.recipient %>
-        <br/>
-        <%= NBSP*4 -%><%= t(:accepted) -%> (<%= invitation.updated_at -%>) -> 
+        <%= t(:accepted) -%> (<%= invitation.updated_at -%>) -> 
         <%= link_to h(invitation.recipient.username), invitation.recipient -%>
+      <% else %>
+        <%= link_to( t(:delete), invitation, :confirm => t(:are_you_sure, :what => t(:reject_invitation)), :method => :delete) -%>
       <% end %>
     </small>
   </h3>
