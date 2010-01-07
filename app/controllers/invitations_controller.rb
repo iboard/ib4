@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
   before_filter :require_admin, :except => [:new,:create]
   def index
-    @invitations = Invitation.descend_by_updated_at.paginate(:page => params[:page], :per_page => 20 )
+    @invitations = Invitation.ascend_by_recipient_id.paginate(:page => params[:page], :per_page => 20 )
   end
   
   def show
