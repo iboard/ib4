@@ -64,6 +64,7 @@
               <%=
                 [
                    {:label => t(:dashboard),    :url => user_path(current_user)},
+                   {:label => t(:messages),    :url => user_messages_path(current_user)},
                    {:label => t(:usergroups), :url => usergroups_path},
                    {:label => t(:files), :url => user_binaries_path(current_user)},
                    {:label => t(:logout),       :url => logout_path }
