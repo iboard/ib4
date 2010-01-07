@@ -61,7 +61,7 @@ class Page < ActiveRecord::Base
     
   def allowed_users
     if self.group_restrictions.empty? && (self.draft == false)
-      return true unless Authorization.current_user.class == Authorization::GuestUser && self.categories.detect { |c| !c.public }
+      return true unless ((Authorization.current_user.class == Authorization::GuestUser) && self.categories.detect { |c| c.public != true })
     end
     rc = [ self.user ]
     unless self.draft == true

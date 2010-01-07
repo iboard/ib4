@@ -69,7 +69,7 @@ class Posting < ActiveRecord::Base
   end
   
   def allowed_users
-    all_cagegories_public = (self.categories.detect { |c| !c.public }).empty?
+    all_categories_public = (self.categories.detect { |c| !c.public }).nil?
     if group_restrictions.empty? && self.draft == false && all_categories_public
       logger.info("\n** ALLOW PUBLIC ACCESS TO #{self.subject}")
       return true
