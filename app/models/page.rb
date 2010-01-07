@@ -84,7 +84,7 @@ class Page < ActiveRecord::Base
     if ancestors.any? 
       ary = ancestors.reverse
       names << ary.map { |a|
-        a.title.shorten(8,'…')
+        a.title.shorten(8,'~')
       }
     end
     names += [title]
