@@ -384,3 +384,4 @@ en:
   date_updated: 'Updated'
   write_message: 'Write a new message'
   reject_invitation: 'Reject Invitation'
+  this_category_is_not_public: 'Category {{name}} is not public. Please log in with an authorized user.'

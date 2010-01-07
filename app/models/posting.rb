@@ -55,7 +55,9 @@ class Posting < ActiveRecord::Base
   # This callback is used by tagables and therefor it is defined as this simple placeholder yet
   def read_allowed?(user)
     return false if self.draft && self.user != user
-    return true unless self.group_restrictions.any?
+    all_categories_public = (self.categories.detect { |c| !c.public }).nil?
+    return true unless self.group_restrictions.any? || (user.nil? && !all_categories_public)
+    return true if self.group_restrictions.empty? && user && all_categories_public
     return false unless user
     group_restrictions.each do |r|
       unless user.group_memberships.find_by_usergroup_id(r.usergroup.id).nil?
@@ -67,7 +69,8 @@ class Posting < ActiveRecord::Base
   end
   
   def allowed_users
-    if group_restrictions.empty? && self.draft == false
+    all_cagegories_public = (self.categories.detect { |c| !c.public }).empty?
+    if group_restrictions.empty? && self.draft == false && all_categories_public
       logger.info("\n** ALLOW PUBLIC ACCESS TO #{self.subject}")
       return true
     end

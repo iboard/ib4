@@ -4,8 +4,7 @@
 
 <% @items.each do |item| %>
   <p>
-    <%= CAN_OPEN+NBSP -%>
-    <%= link_to item.list_title(60), item -%>
+    <b><%= link_to item.list_title(60), item -%></b>
     (<%= t(item.class) -%>)<small style='line-height: 80%;'><br><%= NBSP*6 -%><%= humanize_time_span(item.updated_at) -%></small>
   </p>
 <% end %>

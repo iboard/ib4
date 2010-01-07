@@ -1,8 +1,12 @@
 <% title t(:edit_category) %>
 
+<%= record_links(
+   @category, 
+   categories_path,
+   (@category.new_record? ? categories_path : category_path(@category)),
+   (@category.new_record? ? categories_path : edit_category_path(@category)),
+   (@category.new_record? ? categories_path : category_path(@category))
+) -%>
+
 <%= render :partial => 'form' %>
 
-<p>
-  <%= link_to "Show", @category %> |
-  <%= link_to "View All", categories_path %>
-</p>

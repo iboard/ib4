@@ -1,7 +1,7 @@
 <% form_for @category do |f| %>
 
   <% box_float_right('300px') do %>
-    <div id='edit_permalinks'>
+    <% content_tag :div, :id=>'edit_permalinks' do %>
       <p>
           <%= render :partial => '/permalinks/edit_links', :locals => { :linkable => @category } -%>
       </p>
@@ -9,9 +9,10 @@
           <%= label_tag t(:new_permalink) -%>:<br/>
           <%= text_field_tag   'category[new_permalink]', '', :size => 25 -%>
       </p>
-    </div>
+    <% end %>
   <% end %>
-  <div class='form_left_500'>  
+  
+  <% content_tag :div, :class=>'form_left_500' do %>  
     <%= f.error_messages %>
     <p>
       <%= f.label :name %><br />
@@ -25,7 +26,8 @@
       <%= f.label :public %><br />
       <%= f.check_box :public %>
     </p>
-    <p><%= f.submit "Submit" %></p>
-  </div>
+    <p><%=  save_and_cancel_buttons(f, @category, (@category.new_record? ? categories_path : category_path(@category)), categories_path) -%></p>
+  <% end %>
+  
 <% end %>
   

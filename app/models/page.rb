@@ -58,11 +58,10 @@ class Page < ActiveRecord::Base
   def group_restrictions=(restrictions)
     @restrictions_to_save = restrictions
   end
-  
+    
   def allowed_users
-    if group_restrictions.empty? && self.draft == false
-      logger.info("\n** ALLOW PUBLIC ACCESS TO #{self.title}")
-      return true
+    if self.group_restrictions.empty? && (self.draft == false)
+      return true unless Authorization.current_user.class == Authorization::GuestUser && self.categories.detect { |c| !c.public }
     end
     rc = [ self.user ]
     unless self.draft == true
@@ -110,10 +109,10 @@ class Page < ActiveRecord::Base
   # TODO: Check if user allowed to read this posting
   # This callback is used by tagables and therefor it is defined as this simple placeholder yet
   def read_allowed?(user)
-    return true unless self.group_restrictions.any?
+    return true unless self.group_restrictions.any? || (user.nil? && self.categories.detect { |c| !c.public })
     return false unless user
     group_restrictions.each do |r|
-      unless user.group_memberships.find_by_usergroup_id(r.usergroup.id).nil?
+      unless user.group_memberships.find_by_usergroup_id(r.usergroup.id).nil? 
         logger.info("\n**** GRANT ACCESS TO GROUP #{r.usergroup.name}")
         return true
       end

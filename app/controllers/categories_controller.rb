@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   after_filter  :clear_cache, :only => [:create,:update,:destroy]
   
   def index
-    @categories = Category.ascend_by_name.paginate(:page => params[:page], :per_page => CATEGORIES_PER_PAGE)
+    @categories = Category.ascend_by_name.reject {|r| !r.public && current_user.nil? }.paginate(:page => params[:page], :per_page => CATEGORIES_PER_PAGE)
   end
   
   # Show this category and all records of categorizable models
@@ -25,9 +25,14 @@ class CategoriesController < ApplicationController
     else
       @category = Category.find(params[:id])
     end
-    # Fetch Postings
-    @items = @category.categorizables.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
-    # Append other 'categorizable' models to @items here...
+    if @category.public || current_user
+      # Fetch Postings
+      @items = @category.categorizables.descend_by_updated_at.paginate(:page => params[:page], :per_page => POSTINGS_PER_PAGE)
+      # Append other 'categorizable' models to @items here...
+    else
+      flash[:error] = t(:this_category_is_not_public,:name => @category.name)
+      redirect_to categories_path
+    end
   end
   
   def new

@@ -6,33 +6,32 @@
 <% if current_user && current_user == @user %>
   <p><%= link_to CAN_OPEN+NBSP+t(:new_file), new_user_binary_path(@user) %></p>
 <% end %>
+
 <p><%= will_paginate @binaries %></p>
 
 <% for binary in @binaries %>
     <h2><%=h binary.title %> (<%=h binary.mime_type %>)</h2>
-
     <div style='float: right; padding:0px; margin: 0px; width: 60%;'>
       <% content_tag :div, :class => :box_tiny do %>
         <% toggle_display_link t(:details), :no_bottom_link => true  do %>
-          <b><%= t(:description) -%></b>: <%= binary.description %> <br/>
-          <b><%= t(:path)      -%></b>: <%=h binary.path.gsub(RAILS_ROOT,"...")  -%><br/>
+          <b><%= t(:description)   -%></b>: <%= binary.description %> <br/>
+          <b><%= t(:path)          -%></b>: <%=h binary.path.gsub(RAILS_ROOT,"...")  -%><br/>
           <b><%= t(:accessable_by) -%></b>: <%=h binary.access_roles.map(&:humanize).join(", ") -%><br/>
-          <b><%= t(:filename)  -%></b>: <%=h binary.filename %><br/>
-          <b><%= t(:filesize)  -%></b>: <%=( binary.filesize.to_i/1024.round ).to_s+" KB" if binary.filesize -%>
+          <b><%= t(:filename)      -%></b>: <%=h binary.filename %><br/>
+          <b><%= t(:filesize)      -%></b>: <%=( binary.filesize.to_i/1024.round ).to_s+" KB" if binary.filesize -%>
         <% end %>
         <p>
-        OPEN URL: <%= user_binary_path(@user,binary) %><br/>
-        DOWNLOAD URL: <%= user_binary_path(@user,binary,:download => true) -%>
+          OPEN URL: <%= user_binary_path(@user,binary) %><br/>
+          DOWNLOAD URL: <%= user_binary_path(@user,binary,:download => true) -%>
         </p>
         <p>
-           <%= link_to "download", user_binary_path(@user,binary,:download => true) -%> |
-           <%= link_to t(:open),   user_binary_path(@user,binary) -%> |
+           <%= link_to "download",  user_binary_path(@user,binary,:download => true) -%> |
+           <%= link_to t(:open),    user_binary_path(@user,binary) -%> |
            <%= link_to t(:edit),    edit_user_binary_path(@user,binary) %> | 
            <%= link_to t(:destroy), user_binary_path(@user,binary), :confirm => t(:are_you_sure,:what => t(:to_delete_file)), :method => :delete %>
         </p>
       <% end %>
     </div>
-    
     <div style='float: left; padding: 10; border: 5px solid #888; margin-right: 10px; width: 30%; text-align: center'>
         <% if binary.mime_type.include?('image') %>
           <%= image_tag( user_binary_path(@user,binary),                   :width => 200, :height => 100 ) -%>
@@ -40,7 +39,6 @@
           <%= image_tag( "/images/#{binary.mime_type.gsub(/\//,"_")}.png", :width => 150, :height => 100 ) -%>
         <% end %>
     </div>
-    
     <div style='clear: left;'></div>
 <% end %>
 

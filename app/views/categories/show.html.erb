@@ -1,39 +1,27 @@
 <% title t(:category_show, :category => h(@category.name)) %>
 
-<% content_tag :h1, :class=>'category_description' do %>
-  <%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small>
-<% end %>
-<% content_tag :div, :class => 'category_description' do%>
-  <%= @category.description.to_txt %>
+
+<% content_tag :div, :class=>'category_description' do %>
+  <h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small></h1>
+  <%= record_links(@category,categories_path,category_path(@category),edit_category_path(@category),category_path(@category)) if is_admin? %>
+  <%= @category.description.to_txt %>  
 <% end %>
 
-<% unless @category.permalinks.empty? %>
-  <% content_tag :div, :class=>'permalinks' do %>
-    <%- toggle_display_link(t(:permalinks)) do -%>
-        <%= render :partial => @category.permalinks %>
-    <%- end -%>
-  <% end %>
+<% toggle_display_link t(:permalinks) do %>
+  <%= render :partial =>  @category.permalinks %>
 <% end %>
-<%- if is_admin? %>
-  <% content_tag :ul, :class => 'record_links' do %>
-    <li><%= link_to "Edit", edit_category_path(@category) %></li>
-    <li><%= link_to "Destroy", @category, :confirm => 'Are you sure?', :method => :delete %></li>
-    <li><%= link_to "View All", categories_path %></li>
-  <% end %><br clear='left'/>
-<%- end -%>
 
-    <h1><%= t(:count_entries, :count => @category.categorizables.size ) -%> …</h1>
-
+<h1><%= t(:count_entries, :count => @category.categorizables.size ) -%> …</h1>
 <%= will_paginate @items %>
 
 <% @items.each do |item| %>
   <% if item.categorizable %>
-  <div class='posting' id='posting_<%= item.id.to_s -%>'>
-    <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
-               :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } 
-    %>
-    <%= link_to(t(:read_txt), item.categorizable) -%>
-  </div>
+    <div class='posting' id='posting_<%= item.id.to_s -%>'>
+      <%= render :partial => "/#{item.categorizable.class.to_s.pluralize.downcase}/#{item.categorizable.class.to_s.downcase}_short", 
+                 :locals => { item.categorizable.class.to_s.downcase.to_sym => item.categorizable } 
+      %>
+      <%= link_to(t(:read_txt), item.categorizable) -%>
+    </div>
   <% else %>
     <%= t(:item_deleted, :item => debug(item)) %>
   <% end %>

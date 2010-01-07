@@ -9,6 +9,7 @@ authorization do
     has_permission_on :comments, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :usergroups, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
+    has_permission_on :categories, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
 
   role :guest do
@@ -24,6 +25,9 @@ authorization do
     end
     has_permission_on :comments, :to => [:index,:show] do
       if_attribute :allowed_users => is { true }
+    end
+    has_permission_on :categories, :to => [:index,:show] do
+      if_attribute :public => is { :true }
     end
   end
 
