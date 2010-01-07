@@ -68,8 +68,8 @@
       </p>
     <%- end -%>
     
-    <p>
-        <%= save_and_cancel_buttons(f, @user, user_path(@user), users_path ) %>
+    <p>    
+        <%= save_and_cancel_buttons(f, @user, @user.new_record? ? root_path : user_path(@user), root_path ) %>
     </p>
   </div>
 <%- end -%>
