@@ -4,11 +4,11 @@
   <h1><em><%= t(:draft) -%></em></h1>
 <% end %>
 
-<% if @page.projects.any? %>
+<% if @page.projects.any? && permitted_to?(:index, Project.new) %>
   <strong><%= t(:project ) -%></strong>:
   <%= 
       @page.projects.map { |project| 
-        link_to project.name, project 
+        link_to( project.name, project ) if permitted_to?(:show,project)
       }.join(", ")
   -%>
 <% end %>
