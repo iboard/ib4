@@ -4,6 +4,7 @@ class Page < ActiveRecord::Base
   acts_as_tree :order => :position
   
   belongs_to  :user                                                 # the user a posting was written by
+  has_many    :projects                                             # if it's a 'Project-Description-Page'
   
   has_many    :categorizables, :as => :categorizable,               
               :dependent => :destroy                                # Jointable for categories
@@ -98,7 +99,22 @@ class Page < ActiveRecord::Base
     end
     tree_items.flatten.uniq.reject { |r| r == page || page.children.include?(r) }
   end
+
+  def self.all_pages_select
+    all_pages = []
+    Page.roots.each do |rp|
+      rp.add_with_children(all_pages)
+    end
+    all_pages.flatten.reject { |r| r.nil? }
+  end
   
+  def add_with_children(collector)
+    collector << self
+    children.each do |c|
+      c.add_with_children(collector)
+    end
+  end
+      
   def self.parent_select(page,parents)
     for child in page.children do
       parents << child
@@ -144,8 +160,7 @@ class Page < ActiveRecord::Base
       self.errors.add( :new_permalink, t(:permalink_exists))
     end
   end
-  
-  
+    
   def update_timestamps
     m = self.tags + self.categorizables 
     m.each  { |t| t.updated_at = self.updated_at; t.save }

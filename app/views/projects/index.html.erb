@@ -1,0 +1,8 @@
+<% title t(:projects) %>
+
+<h1><%= yield :title -%></h1>
+<p><%= link_to t(:new_project), new_project_path %></p>
+
+
+<%= project_index(@projects) %>
+

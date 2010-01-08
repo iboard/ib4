@@ -10,6 +10,7 @@ authorization do
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :usergroups, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :categories, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
+    has_permission_on :projects, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
 
   role :guest do
@@ -19,6 +20,9 @@ authorization do
     end
     has_permission_on :binaries, :to => [:show] do 
       if_attribute :access_roles =>  contains {  'public' }
+    end
+    has_permission_on :projects, :to => [:show] do 
+        if_attribute :access_roles =>  contains {  'public' }
     end
     has_permission_on :postings, :to => [:index,:show] do
       if_attribute :allowed_users => is { true }
@@ -89,11 +93,19 @@ authorization do
       if_attribute :access_roles => contains { 'public' }
       if_attribute :friends_access =>  contains {  Authorization.current_user }
     end
-      
     has_permission_on :binaries, :to => [:index,:new,:create,:update,:destroy,:edit] do 
       if_attribute :user =>  is {  Authorization.current_user }
     end
-
+    
+    # PROJECTS
+    has_permission_on :projects, :to => [:show] do 
+      if_attribute :access_roles => contains { 'public' }
+      if_attribute :friends_access =>  contains {  Authorization.current_user }
+    end
+    has_permission_on :projects, :to => [:index,:new,:create,:update,:destroy,:edit] do 
+      if_attribute :user =>  is {  Authorization.current_user }
+    end
+    
     # Usergroups
     has_permission_on :usergroups, :to => [:index,:new,:create,:show] 
     has_permission_on :usergroups, :to => [:update,:edit,:destroy] do

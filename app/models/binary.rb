@@ -13,6 +13,11 @@ class Binary < ActiveRecord::Base
 
   ACCESS_ROLES = [:private,:friends,:public]
   
+  
+  def possible_access_roles
+    ACCESS_ROLES
+  end
+  
   def uploaded_file=(file)
     if file
       @oldfilename   =  path

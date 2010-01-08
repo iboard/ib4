@@ -1,0 +1,21 @@
+<% title "Project Memberships" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Project</th>
+    <th>Role</th>
+  </tr>
+  <% for project_membership in @project_memberships %>
+    <tr>
+      <td><%=h project_membership.user_id %></td>
+      <td><%=h project_membership.project_id %></td>
+      <td><%=h project_membership.role %></td>
+      <td><%= link_to "Show", project_membership %></td>
+      <td><%= link_to "Edit", edit_project_membership_path(project_membership) %></td>
+      <td><%= link_to "Destroy", project_membership, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Project Membership", new_project_membership_path %></p>

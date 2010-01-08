@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :binaries, :dependent => :delete_all
   has_many :messages, :dependent => :delete_all
   has_many :message_notifications, :dependent => :delete_all
+  has_many :project_memberships, :dependent => :delete_all
   
   has_many :sent_invitations,     :class_name => 'Invitation', :foreign_key => 'sender_id',     :dependent => :delete_all
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => 'recipient_id',  :dependent => :delete_all

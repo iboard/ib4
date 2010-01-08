@@ -1,0 +1,8 @@
+<% title t(:new_project) %>
+
+
+<h1><%= yield :title -%></h1>
+
+<%= render :partial => 'form' %>
+
+<p><%= link_to t(:view_all), projects_path %></p>

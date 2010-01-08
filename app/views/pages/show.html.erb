@@ -3,6 +3,16 @@
 <% if @page.draft %>
   <h1><em><%= t(:draft) -%></em></h1>
 <% end %>
+
+<% if @page.projects.any? %>
+  <strong><%= t(:project ) -%></strong>:
+  <%= 
+      @page.projects.map { |project| 
+        link_to project.name, project 
+      }.join(", ")
+  -%>
+<% end %>
+
 <%= render @page -%>
 <br/><br/>
 

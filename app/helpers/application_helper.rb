@@ -78,5 +78,15 @@ module ApplicationHelper
      "<span title='#{t2.to_s(:short)}' style='cursor:help;'>#{r}</span>"
    end
 
+   def access_mask_buttons(item)
+     item.possible_access_roles.map { |a|
+       if a.to_s == 'private'
+         check_box_tag( "#{item.class.to_s.downcase}[access_mask_ids][#{a}]", "1",1, :onclick => "return false;" )+NBSP+t(:yourself)+" (#{t(:always_on)})"
+       else
+         check_box_tag( "#{item.class.to_s.downcase}[access_mask_ids][#{a}]", "1", item.accessable_by?(a) )+NBSP+t(a)
+       end
+     }.join( "<br/>") +
+     hidden_field_tag ("#{item.class.to_s.downcase}[access_mask_ids][none]", "")
+   end
    
 end

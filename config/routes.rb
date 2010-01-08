@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :project_memberships
+
+  map.resources :projects
   map.resources :usergroups
   map.resources :notes, :collection => { :clear_session_log => :get }
   map.resources :message_notifications, :belongs_to => [:user,:message]
@@ -21,7 +24,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect   '/search', :controller => 'application', :action => 'search'
   map.resources :user_sessions
   map.resources :users, 
-                  :has_many => [:postings,:pages,:invitations,:comments,:binaries,:messages,:notes,:group_memberships],
+                  :has_many => [
+                    :postings,:pages,:invitations,:comments,
+                    :binaries,:messages,:notes,:group_memberships,:projects
+                  ],
                   :member => { :join_group => :get, :leave_group => :get }
   map.resources :newsletters, 
                  :has_many => [:newsletter_subscriptions, :newsletter_issues],

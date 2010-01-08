@@ -1,0 +1,41 @@
+<% form_for @project do |f| %>
+  <%= f.error_messages %>
+  <% content_tag :div, :class => 'project_memberships' do %>
+     <h4><%= t(:project_members) -%></h4>
+     <%= project_membership_checkboxes(@project) %>
+  <% end %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :page_id, t(:description_page) %><br />
+    <%= f.collection_select :page_id, Page.all_pages_select, :id, :prefixed_title, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :user_id, t(:owner) %><br />
+    <% if is_owner_or_admin?(@project) %>
+      <%= f.collection_select :user_id,  User.ascend_by_fullname, :id, :fullname -%>
+    <% else %>
+      <%= @project.user.fullname if @project.user %>
+    <% end %>
+  </p>
+  <p>
+      <%= f.label :access -%><br/>
+      <%= access_mask_buttons(@project) %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.select :status, Project::PROJECT_STATI.map { |s| [s.to_s.humanize, Project::PROJECT_STATI.index(s)] } %>
+  </p>
+  
+  <% if @project.user && @project.user.group_memberships.any? %>
+    <% content_tag :div, :id => 'restrictions' do %>
+        <strong><%= f.label :restrictions -%>:</strong><br/>
+        <%= render :partial => '/layouts/restriction_checkboxes', :locals => { :restrictable => @project, :user => @project.user || current_user } -%>
+    <% end %>
+  <% end %>
+  
+  <%= save_and_cancel_buttons(f, @project, @project.new_record? ? projects_path : project_path(@project), projects_path ) %>
+  
+<% end %>

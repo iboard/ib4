@@ -749,3 +749,16 @@ input#page_title {
 	font-size: 12px;
 	padding-left: 40px;
 }
+
+.project_memberships {
+	width: 300px;
+	float: right;
+	padding: 10px;
+	margin: 0px;
+	margin-left: 20px;
+	border: 1px dotted #444;
+}
+
+#membership_checkboxes ul {
+	list-style: none;
+}
