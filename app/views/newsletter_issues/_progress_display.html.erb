@@ -1,0 +1,38 @@
+<% content_tag :div, :style => 'width: 200px;' do %>
+      <%= periodically_call_remote( 
+            :url => deliver_issue_newsletter_path(@newsletter, :newsletter_issue_id => @newsletter_issue),
+            :method => :get,
+            :update => "delivery_#{@newsletter_issue.id.to_s}",
+            :frequency => '10' )
+      -%>
+      <strong><%= t(:delivered_to)%>:</strong><br/>
+      <div id="delivery_<%= @newsletter_issue.id.to_s -%>">
+      <%= @newsletter_issue.print_state_column -%><br/>
+       <%-
+           @newsletter_issue.html_body = @newsletter_issue.body.to_txt
+           @newsletter_issue.save!
+        -%>
+      <%= link_to_remote( 
+               t(:start_delivering), 
+               :url => deliver_newsletter_issue_path( 
+                           @newsletter_issue, 
+                           :body_html => @newsletter_issue.body.to_txt
+                       ),
+               :method => :get,
+               :update => "delivery_#{@newsletter_issue.id.to_s}",
+               :confirm => t(:are_you_sure,:what => "start delivering to #{@newsletter_issue.newsletter.newsletter_subscriptions.length} recipients")
+          )  
+      -%><br/>
+      </div>
+      <%= link_to_remote( 
+                 t(:send_test_mail, :mail => @newsletter.reply_to), 
+                 :url => deliver_test_newsletter_issue_path(
+                             @newsletter_issue, 
+                             :body_html => @newsletter_issue.body.to_txt
+                         ),
+                 :method => :get,
+                 :update => "delivery_#{@newsletter_issue.id.to_s}",
+                 :confirm => t(:are_you_sure,:what => "send testmail to #{@newsletter_issue.newsletter.reply_to}")
+            )  
+      -%>
+<% end %>

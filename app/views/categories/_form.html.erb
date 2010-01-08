@@ -2,12 +2,11 @@
 
   <% box_float_right('300px') do %>
     <% content_tag :div, :id=>'edit_permalinks' do %>
+      <p><%= render :partial => '/permalinks/edit_links', :locals => { :linkable => @category } -%></p>
       <p>
-          <%= render :partial => '/permalinks/edit_links', :locals => { :linkable => @category } -%>
-      </p>
-      <p>
-          <%= label_tag t(:new_permalink) -%>:<br/>
-          <%= text_field_tag   'category[new_permalink]', '', :size => 25 -%>
+         <%= label_tag t(:new_permalink) -%>:
+         <br/>
+         <%= text_field_tag   'category[new_permalink]', '', :size => 25 -%>
       </p>
     <% end %>
   <% end %>

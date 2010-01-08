@@ -381,3 +381,4 @@ de:
   write_message: 'Neue Nachricht schreiben'
   reject_invitation: 'Einladung zurückziehen'
   this_category_is_not_public: 'Die Kategorie {{name}} ist nicht öffentlich. Sie müssen als Benutzer angemeldet sein.'
+  delivery_protocol: 'Sendeprotokoll'

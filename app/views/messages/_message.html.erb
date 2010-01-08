@@ -14,27 +14,17 @@
       <% if message.user != current_user %>
          <%= link_to t(:reply), new_message_path(:recipient => message.user.id.to_s), :back => request.env['QUERY_STRING'] -%> |
       <% end %>
-      <% if message.user == current_user %>
-        <%= link_to_remote( t(:delete), 
-              :url => {
-                  :controller => 'messages', :action => 'destroy', :id => message.id
-              },
-              :method => :delete,
-              :complete => "Element.fade('message#{message.id.to_s}');",
-              :error => "alert('ERROR DELETING MESSAGE');"
-            ) 
-        -%>
-       <% else %>
-         <%= link_to_remote( t(:delete), 
-               :url => {
-                   :controller => 'message_notifications', :action => 'destroy', :id => notification.id
-               },
-               :method => :delete,
-               :complete => "Element.fade('message#{message.id.to_s}');",
-               :error => "alert('ERROR DELETING MESSAGE');"
-             )  if notification
-         -%>
-       <% end %>
+      
+      <% url = (message.user == current_user) ? { :controller => 'messages', :action => 'destroy', :id => message.id } : 
+               { :controller => 'message_notifications', :action => 'destroy', :id => notification.id } -%>
+      
+      <%= link_to_remote( t(:delete), 
+            :url => url,
+            :method => :delete,
+            :complete => "Element.fade('message#{message.id.to_s}');",
+            :error => "alert('ERROR DELETING MESSAGE');"
+          ) if (message.user == current_user) || notification
+      -%>
     <% end %>
     <% if notification %>
       <%= t(:user_wrote_at_to, :time => message.updated_at.to_s(:short), :user => message.user.fullname, :to => notification.user.fullname) %><br/>

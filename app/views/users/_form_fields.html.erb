@@ -1,0 +1,43 @@
+<!-- DATA FIELDS (left) -->
+<%= f.error_messages %>
+
+<%= hidden_field_tag :token, params[:token] -%>
+
+<p>
+  <%= f.label :username %><br />
+  <%= f.text_field :username %>
+</p>
+<p>
+  <%= f.label :fullname %><br />
+  <%= f.text_field :fullname %>
+</p>
+<p>
+  <%= f.label :email %><br />
+  <%= f.text_field :email %><br/><%= f.check_box :send_mail_notifications %>&nbsp;<%= t(:send_mail_notifications) -%>
+</p>
+<%- unless user.new_record? -%>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+<%- end -%>
+
+<%- if is_admin? -%>
+  <p>
+    <%= f.label :is_admin %><br />
+    <%= f.check_box :is_admin %>
+  </p>
+  
+  <p>
+      <%= f.label :invitations_left %><br/>
+      <%= f.text_field :invitations_left, :size => 5 %>
+  </p>
+<%- end -%>
+
+<p>    
+    <%= save_and_cancel_buttons(f, user, user.new_record? ? root_path : user_path(user), root_path ) %>
+</p>

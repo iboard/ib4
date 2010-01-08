@@ -3,7 +3,10 @@
 
 <% content_tag :div, :class=>'category_description' do %>
   <h1><%= h(@category.name) -%><small> (<%= t(:count_entries, :count => @category.categorizables.size ) -%>)</small></h1>
-  <%= record_links(@category,categories_path,category_path(@category),edit_category_path(@category),category_path(@category)) if is_admin? %>
+  <%= record_links(@category,
+                   categories_path,category_path(@category),
+                   edit_category_path(@category),category_path(@category)) if is_admin? 
+  -%>
   <%= @category.description.to_txt %>  
 <% end %>
 
@@ -12,6 +15,7 @@
 <% end %>
 
 <h1><%= t(:count_entries, :count => @category.categorizables.size ) -%> …</h1>
+
 <%= will_paginate @items %>
 
 <% @items.each do |item| %>

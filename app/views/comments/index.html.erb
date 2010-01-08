@@ -7,14 +7,14 @@
 <% for comment in @comments %>
 
   <% content_tag :div, :class => 'comments' do %>  
-      <%= t(:comment_days_ago, 
-            :count => ((Time.now-comment.updated_at)/1.day).round,
-            :fullname => "<b>"+comment.user.fullname+"</b>", 
-            :username => comment.user.username ) 
-      -%>
-      <% if is_owner_or_admin?(comment) %>
-            <%= record_links(comment,nil,nil,edit_comment_path(comment),comment_path(comment)) -%>
-      <% end %>
+    <%= t(:comment_days_ago, 
+          :count => ((Time.now-comment.updated_at)/1.day).round,
+          :fullname => "<b>"+comment.user.fullname+"</b>", 
+          :username => comment.user.username ) 
+    -%>
+    <% if is_owner_or_admin?(comment) %>
+          <%= record_links(comment,nil,nil,edit_comment_path(comment),comment_path(comment)) -%>
+    <% end %>
     <div class='comment_listing'>
       <%= comment.comment.to_txt %>
       <p>
@@ -24,10 +24,6 @@
         
       </p>
     </div>
-    
-      
-  
-  
   <% end %>
 <% end %>
 

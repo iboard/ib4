@@ -1,24 +1,22 @@
-<% title "Comment" %>
+<% title t(:omment) %>
+
+<h1><%= t(comment) -%> - <%=h @comment.commentable.list_title(50) -%></h1>
+<%= record_links(
+   @comment, 
+   comments_path,
+   (@comment.new_record? ? comments_path : comment_path(@comment)),
+   (@comment.new_record? ? comments_path : edit_comment_path(@comment)),
+   (@comment.new_record? ? comments_path : comment_path(@comment))
+) -%>
 
 <p>
   <strong>User:</strong>
-  <%=h @comment.user_id %>
+  <%=h @comment.user.fullname if @comment.user %>
 </p>
 <p>
   <strong>Commentable:</strong>
-  <%=h @comment.commentable_id %>
-</p>
-<p>
-  <strong>Commentable Type:</strong>
-  <%=h @comment.commentable_type %>
-</p>
-<p>
-  <strong>Comment:</strong>
-  <%=h @comment.comment %>
+  <%=h @comment.commentable_type %> - <%=h @comment.commentable.list_title(50) -%>
 </p>
 
-<p>
-  <%= link_to "Edit", edit_comment_path(@comment) %> |
-  <%= link_to "Destroy", @comment, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", comments_path %>
-</p>
+<%=h @comment.comment.to_txt %>
+

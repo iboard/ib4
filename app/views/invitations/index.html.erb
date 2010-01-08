@@ -1,4 +1,4 @@
-<% title "Invitations" %>
+<% title t(:invitations) %>
 <%= will_paginate @invitations %>
 
 <% for invitation in @invitations do %>
@@ -19,5 +19,5 @@
 <%= will_paginate @invitations %>
 
 <p>
-    <%= link_to CAN_OPEN+NBSP+t(:send_new_invitations_from_your_profile ), current_user %>
+    <%= link_to t(:send_new_invitations_from_your_profile ), current_user %>
 </p>

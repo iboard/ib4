@@ -10,7 +10,8 @@
   <%= render :partial => 'page_short', :locals => { :page => page } %>
   <div class='posting'>
     <%= link_to t(:read_more), page_path(page) -%><br/>
-    <%= link_to( COMMENT_HAND+"<small>"+NBSP+t(:count_comments, :count => page.comments.size ), page_path(page)+"#comments" )+"</small>" if page.comments.any? -%>
+    <%= link_to( COMMENT_HAND+"<small>"+NBSP+t(:count_comments, 
+           :count => page.comments.size ), page_path(page)+"#comments" )+"</small>" if page.comments.any? -%>
   </div>
 <% end %>
 
