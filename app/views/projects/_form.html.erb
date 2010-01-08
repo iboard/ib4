@@ -1,9 +1,5 @@
 <% form_for @project do |f| %>
   <%= f.error_messages %>
-  <% content_tag :div, :class => 'project_memberships' do %>
-     <h4><%= t(:project_members) -%></h4>
-     <%= project_membership_checkboxes(@project) %>
-  <% end %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -12,6 +8,12 @@
     <%= f.label :page_id, t(:description_page) %><br />
     <%= f.collection_select :page_id, Page.all_pages_select, :id, :prefixed_title, :include_blank => true %>
   </p>
+ 
+  <% content_tag :div, :class => 'project_memberships' do %>
+      <h4><%= t(:project_members) -%></h4>
+      <%= project_membership_checkboxes(@project) %>
+  <% end %>
+  
   <p>
     <%= f.label :user_id, t(:owner) %><br />
     <% if is_owner_or_admin?(@project) %>
