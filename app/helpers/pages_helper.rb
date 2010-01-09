@@ -92,8 +92,8 @@ module PagesHelper
     end
   end
   
-  def interpret_body(txt)  /\[\[[\w|\s]+\]\]/
-    i=100
+  def interpret_body(txt)
+    i=100  #prevent from infinite loop
     
     ## interpret children,title
     while i> 0 && txt.sub!( /\{\{children([,].*)\}\}/ ) { |param|

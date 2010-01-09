@@ -1,9 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :project_memberships
-
-  map.resources :projects
+  map.resources :projects, :has_many => [:notes]
   map.resources :usergroups
-  map.resources :notes, :collection => { :clear_session_log => :get }
+  map.resources :notes, :collection => { :clear_session_log => :get, :mark_all_read => :get },
+                        :member => { :mark_read => :put }
   map.resources :message_notifications, :belongs_to => [:user,:message]
   map.resources :messages, :belongs_to => :user
   map.resources :binaries, :member => { :download => :get }

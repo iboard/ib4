@@ -124,9 +124,12 @@
           <%= render :partial => '/layouts/sidebar' -%>
           
           <% content_tag :div, :id => 'main_content' do %>
+          
             <% if current_user && current_user.new_messages.any? %>
               <%= render :partial => current_user.new_messages %>
             <% end %>
+            
+            <%= user_project_notes(current_user) if current_user %>
             
             <%= yield -%>
           <% end %>

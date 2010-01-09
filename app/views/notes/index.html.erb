@@ -1,29 +1,59 @@
-<% title "Notes" %>
+<% title "Notes " + @notes.map{|n| t(n.noteable_type.downcase.to_sym)+" "+( n.noteable.respond_to?(:name) ? n.noteable.name : '') }.uniq.join(", ") %>
 
-<table>
-  <tr>
-    <th>Parent</th>
-    <th>User</th>
-    <th>Noteable Type</th>
-    <th>Noteable</th>
-    <th>Message</th>
-    <th>Message Value</th>
-    <th>Message Type</th>
-  </tr>
-  <% for note in @notes %>
-    <tr>
-      <td><%=h note.parent_id %></td>
-      <td><%=h note.user.fullname %></td>
-      <td><%=h note.noteable_type %></td>
-      <td><%=h note.noteable_id %></td>
-      <td><%=h note.message %></td>
-      <td><%=h note.message_value %></td>
-      <td><%=h note.message_type %></td>
-      <td><%= link_to "Show", note %></td>
-      <td><%= link_to "Edit", edit_note_path(note) %></td>
-      <td><%= link_to "Destroy", note, :user_id => note.user, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+<h1><%= yield :title -%></h1>
+
+<% if is_admin? %>
+  <% toggle_display_link t(:administration), :sticky => session[:stickies][:note_administration], :id => 'note_administration' do %>
+    <table class='standard_table'>
+      <tr>
+        <th><%= t(:user) -%></th>
+        <th><%= t(:noteable) -%></th>
+        <th><%= t(:noteable) -%></th>
+        <th><%= t(:message) -%></th>
+        <th><%= t(:message_value) -%> </th>
+        <th><%= t(:message_type) -%></th>
+        <th colspan="3"><%= t(:actions) -%></th>
+      </tr>
+      <% for note in @notes %>
+        <tr>
+          <td><%=h note.user.fullname if note.user %></td>
+          <td><%=link_to h(t(note.noteable_type.downcase)),note.noteable %></td>
+          <td><%=h note.noteable_id %></td>
+          <td><%=h note.message %></td>
+          <td><%= note.message_value if note.message_value %></td>
+          <td><%= note.message_type if note.message_type %></td>
+          <td><%= link_to "Show", note %></td>
+          <td><%= link_to "Edit", edit_note_path(note) %></td>
+          <td><%= link_to "Destroy", note, :user_id => note.user, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+    <p><%= link_to "New Note", new_note_path -%></p>
+  <% end %>  
+<% end %>
+
+<% unless params[:noteable_type] == 'User' -%>
+  
+  <% object_ids = @notes.map(&:noteable_id).uniq  %>
+  <% if object_ids.count == 1 %>
+    <% object_id = object_ids.first %>
+    <% object_type = @notes.first.noteable_type %>
+    <% label = "#{object_type}.find(#{object_id}).try(:name)" %>
+    <% url = "#{object_type}.find(#{object_id})" %>  
+    <h1><%= link_to CAN_OPEN+NBSP+object_type+NBSP+eval(label), eval(url)%></h1>
   <% end %>
-</table>
+  
+  <p>
+      <%= t(:order) -%>: 
+      <%= order @search, :by => :updated_at, :as => t(:updated_at) -%> | 
+      <%= order @search, :by => :message_type, :as => t(:message_type) -%> |
+      <%= order @search, :by => :user, :as => t(:user) -%> 
+      <%= will_paginate @notes %>
+  </p>
+  
+  <%= display_notes_for(@notes)  %>
+    
+<% end %>
 
-<p><%= link_to "New Note", new_note_path %></p>
+<%= will_paginate @notes %>
+

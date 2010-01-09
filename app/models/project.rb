@@ -8,14 +8,14 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :user_id
 
   has_many     :group_restrictions, :as => :restrictable, :dependent => :destroy
-
+  has_many     :notes, :as => :noteable,  :dependent => :destroy
 
   ACCESS_ROLES = [:private,:friends,:public]
   PROJECT_STATI= [:new,:busy,:paused,:finished,:canceled]
 
   after_create :assign_restrictions, :assign_members
   after_save   :assign_restrictions, :assign_members
-
+  
 
   def project_member_ids=(new_members)
     @project_members = new_members

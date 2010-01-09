@@ -9,4 +9,6 @@ class Note < ActiveRecord::Base
   serialize   :message_type
   serialize   :message_value
   
+  validates_presence_of :message
+  
 end

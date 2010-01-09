@@ -1,0 +1,1 @@
+page.replace_html :project_notes, latest_project_notes

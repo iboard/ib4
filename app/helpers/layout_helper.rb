@@ -145,4 +145,14 @@ module LayoutHelper
        end
      end
   end
+
+  # used for Markaby
+  def blank
+    " "
+  end
+  
+  def confirm_delete
+    t(:are_you_sure, :what => t(:delete_this_record))
+  end
+  
 end

@@ -1,0 +1,3 @@
+page[:new_note].reset unless @note.errors.any?
+page.replace_html :notes_response, flash[:notice]
+flash.discard

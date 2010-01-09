@@ -1,0 +1,12 @@
+<% content_tag :div, :class => 'project_note' do %>
+    <dt>
+        <b>
+          <%= t(:user_did_on, :user => note.user.fullname, 
+          :what => t("message_type_#{note.message_type}".to_sym), 
+          :time => humanize_time_span(note.updated_at)) %>
+        </b>
+    </dt>
+    <dd>
+      <%= note.message -%>
+    </dd>
+<% end %>

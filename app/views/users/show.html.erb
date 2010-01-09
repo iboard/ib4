@@ -20,7 +20,7 @@
          <%= (BR+link_to( CAN_OPEN+NBSP+t(:usergroups), usergroups_path )) if permitted_to? :index, Usergroup.new -%>  
 
          <!-- PROJECTS -->
-         <%= (BR+link_to( CAN_OPEN+NBSP+t(:projects), projects_path )) if permitted_to? :index, Project.new -%>  
+         <%= (BR+link_to( CAN_OPEN+NBSP+t(:projects), projects_path )) if permitted_to? :create, Project.new -%>  
          (<%= @user.project_memberships.length %>)
 
          <!-- NEWSLETERS -->

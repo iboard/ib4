@@ -1,24 +1,51 @@
 <% title t(:project)+" "+h(@project.name) %>
 
 
-<h1><%= yield :title %> (<small><%= link_to CAN_OPEN+NBSP+h(@project.user.fullname), @project.user %>,
-  <%= @project.access_roles.map(&:to_s).join(', ')%></small>)</h1>
-<%= record_links @project, projects_path, nil, edit_project_path(@project), project_path(@project) %>
-<p>
-  <strong><%= t(:state) -%></strong>: <%=h @project.status_as_string %>
-  <%=link_to(CAN_OPEN+NBSP+t(:description_page), @project.page) if @project.page %>
-</p>
-<% if @project.group_restrictions.any? %>
-  <p>
-    <strong><%= t(:group_restrictions) -%></strong>:
-    <%= @project.group_restrictions.map(&:usergroup).map(&:name).join(", ")%>
-  </p>
-<% else %>
-<p>
-  <strong><%= t(:no_group_restrictions) -%></strong>
-</p>
+<% content_tag :div, :id => 'project_notes' do %>
+  <script>
+    <%= remote_function(:url => project_notes_path(@project),:method => :get) -%>
+  </script>
 <% end %>
-<p>
+     
+<%= periodically_call_remote(
+      :frequency => '5',
+      :url => project_notes_path(@project),
+      :method => :get
+     ) 
+-%>
+
+<h1><%= yield :title %></h1>
+
+<% content_tag :div, :class=>'projects' do %>
+  <%= record_links @project, projects_path, nil, edit_project_path(@project), project_path(@project) %>
+  <p>
+      <strong><%= t(:state) -%></strong>: <%=h @project.status_as_string %>
+      <%=link_to(CAN_OPEN+NBSP+t(:description_page), @project.page) if @project.page %>
+    </p>
+  <p>
+    <strong><%= t(:owner) -%></strong>: <%= link_to CAN_OPEN+NBSP+h(@project.user.fullname), @project.user %>
+        (<small><%= @project.access_roles.map(&:to_s).join(', ')%></small>)
+      
+  </p>
+  
+  <% if @project.group_restrictions.any? %>
+    <p>
+      <strong><%= t(:group_restrictions) -%></strong>:
+      <%= @project.group_restrictions.map(&:usergroup).map(&:name).join(", ") %>
+    </p>
+  <% else %>
+    <p>
+      <strong><%= t(:no_group_restrictions) -%></strong>
+    </p>
+  <% end %>
+  
+  <p>
     <strong><%= t(:members, :count => @project.members.length )%></strong>:
-    <%= @project.members.map(&:fullname).join(', ')%>
-</p>
+    <%= @project.members.map(&:fullname).join(', ') -%>
+  </p>
+<% end %>
+
+<%= render :partial => 'add_project_note', :locals => { :project => @project }%>
+
+
+<h1>Tasks</h1>

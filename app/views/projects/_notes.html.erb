@@ -1,0 +1,24 @@
+<div id='notes_response'></div>
+
+<% for note in notes do %>
+  <% content_tag :div, :class => 'project_note' do %>
+    <dt>
+        <b>
+          <%= t(:user_did_on, :user => note.user.fullname, 
+          :what => t("message_type_#{note.message_type}".to_sym), 
+          :time => humanize_time_span(note.updated_at)) %>
+        </b>
+    </dt>
+    <dd id='note_<%= note.id -%>'>
+      <%= note.message -%>
+      <% if  note.user == current_user || is_admin?  %>
+          <%= NBSP*3+link_to_remote(I18n.translate(:delete),
+                             :url => note_path(note, :user_id => note.user_id).to_s,
+                             :confirm => confirm_delete, 
+                             :method => :delete
+                             ) 
+           -%>
+       <% end %>
+    </dd>
+  <% end %>
+<% end %>

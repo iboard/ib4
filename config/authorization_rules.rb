@@ -10,7 +10,8 @@ authorization do
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :usergroups, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :categories, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
-    has_permission_on :projects, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
+    has_permission_on :projects, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:notes]
+    has_permission_on :notes, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
 
   role :guest do
@@ -21,7 +22,7 @@ authorization do
     has_permission_on :binaries, :to => [:show] do 
       if_attribute :access_roles =>  contains {  'public' }
     end
-    has_permission_on :projects, :to => [:show] do 
+    has_permission_on :projects, :to => [:show,:activity_notes] do 
         if_attribute :access_roles =>  contains {  'public' }
     end
     has_permission_on :postings, :to => [:index,:show] do
@@ -87,6 +88,12 @@ authorization do
       if_attribute :user => is {  Authorization.current_user  }
     end
     
+    # NOTES
+    has_permission_on :notes, :to => [:edit,:update,:destroy] do
+      if_attribute :user => is {  Authorization.current_user  }
+    end
+    has_permission_on :notes, :to => [:mark_read]    
+    
     
     # BINARY
     has_permission_on :binaries, :to => [:show] do 
@@ -98,10 +105,11 @@ authorization do
     end
     
     # PROJECTS
-    has_permission_on :projects, :to => [:show] do 
+    has_permission_on :projects, :to => [:show,:notes] do 
       if_attribute :access_roles => contains { 'public' }
       if_attribute :friends_access =>  contains {  Authorization.current_user }
     end
+    has_permission_on :projects, :to => [:new,:create]
     has_permission_on :projects, :to => [:index,:new,:create,:update,:destroy,:edit] do 
       if_attribute :user =>  is {  Authorization.current_user }
     end

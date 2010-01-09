@@ -36,8 +36,8 @@ module NotesHelper
          tr do
            if notes.any?
              begin
-               td {Time.at(notes.first.parent.message_value.to_i).to_s(:short) }
-               td {Time.at(notes.last.message_value.to_i).to_s(:short)}
+               td {Time.at(notes.first.parent.message_value.to_i).to_s(:short) if notes.first.parent }
+               td {Time.at(notes.last.message_value.to_i).to_s(:short)  if notes.last }
                td {notes.last.message}
                td :align=>:right do
                   (notes.sum { |note| 
@@ -54,6 +54,60 @@ module NotesHelper
            end
          end             
        end  
+    end
+  end
+  
+  def display_notes_for(notes)
+    unique_types = notes.map { |n| n.noteable_type }.uniq
+    if unique_types.length == 1
+      render :partial => "/#{unique_types[0].downcase.pluralize}/notes", 
+        :locals => { 
+                     :notes => notes, 
+                     :object_type => unique_types.first
+                   }
+    else
+      render :partial => notes
+    end
+  end
+
+  def user_project_notes(user)
+    if user.project_notes.any?
+      Markaby::Builder.new({},self) do
+        div.new_project_notes! do
+          h3 I18n.translate(:project_activities)
+          address :style => 'float: right; padding: 5px; background: white;' do
+            link_to_remote( I18n.translate(:mark_all_read),
+              :url => {
+                :user_id => user,
+                :controller => :notes,
+                :action => 'mark_all_read'
+              },
+              :complete => "Element.blindUp('new_project_notes');"
+            ).to_s
+          end
+          user.project_notes.each do |note|
+            div :id => 'note_'+note.id.to_s, :style=>"background: #{cycle('#EFE8C9', '#FFF9DA')};padding: 3px;" do
+              link_to_remote( I18n.translate(:mark_read)+NBSP*3,
+                :url => {
+                  :id => note.id,
+                  :user_id => user,
+                  :controller => 'notes',
+                  :action => 'mark_read'
+                },
+                :method => :put,
+                :complete => "Element.fade('note_#{note.id}');"
+              )
+              b { I18n.translate(:new_project_note_with_project, :user =>  note.user.fullname, 
+                :time => humanize_time_span(note.updated_at),
+                :project => link_to(note.noteable.name, note.noteable ).to_s,
+                :what => I18n.translate("message_type_"+note.message_type)) }
+              blockquote do
+                note.message
+              end
+            end
+          end
+        end
+      end
     end
   end
   

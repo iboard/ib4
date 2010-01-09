@@ -750,6 +750,23 @@ input#page_title {
 	padding-left: 40px;
 }
 
+.projects { }
+.projects p { 
+	line-height: 100%; 
+	margin-top: 5px;
+	margin-bottom: 0px;
+	font-size: 12px;
+}
+
+#project_notes {
+	width: 300px;
+	float: right;
+}
+#project_notes p {
+	font-size: 12px;
+	line-height: 100%;
+}
+
 .project_memberships {
 	width: 300px;
 	float: right;
@@ -761,4 +778,21 @@ input#page_title {
 
 #membership_checkboxes ul {
 	list-style: none;
+}
+
+#new_project_notes {
+	font-size: 12px;
+	line-height: 100%;
+	margin: 5px;
+	padding: 5px;
+	border: 1px dotted #444;
+	background: #EFE8C9;
+}
+#new_project_notes h3 {
+	margin: 0px;
+	font-size: 14px;
+}
+#new_project_notes blockquote {
+	display: inline;
+	margin-left: 5px;
 }

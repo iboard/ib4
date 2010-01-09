@@ -60,6 +60,7 @@ FILE_NOT_FOUND_PATH='/images/file_not_found.png' unless defined? FILE_NOT_FOUND_
 FILE_LOCKED_PATH='/images/file_locked.png'       unless defined? FILE_LOCKED_PATH
 
 POSTINGS_PER_PAGE=4               unless defined? POSTINGS_PER_PAGE
+PROJECT_NOTES_PER_PAGE=10         unless defined? PROJECT_NOTES_PER_PAGE
 BINARIES_PER_PAGE=10              unless defined? BINARIES_PER_PAGE
 CATEGORIES_PER_PAGE=10            unless defined? CATEGORIES_PER_PAGE
 USERS_PER_PAGE=4                  unless defined? USERS_PER_PAGE

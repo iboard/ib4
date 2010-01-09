@@ -101,5 +101,15 @@ class User < ActiveRecord::Base
   def kind_of_friend(other_user)
     my_friends.include?(other_user) ? :friend_user : :foreign_user
   end
-  
+
+  def project_notes
+    new_notes = []
+    for membership in  project_memberships
+      new_notes << membership.project.notes.find(:all,:conditions => ['message_type <> ? and updated_at >= ?', 'confirm_read',
+          Authorization.current_user.last_login_at]).reject { |r|
+          r.children.find(:first,:conditions => ['message_type = ? and user_id = ?', 'confirm_read', Authorization.current_user])
+        }
+    end
+    new_notes.flatten.sort! { |b,a| a.updated_at <=> b.updated_at }
+  end  
 end

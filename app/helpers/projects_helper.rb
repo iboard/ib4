@@ -1,36 +1,26 @@
 module ProjectsHelper
   
-  
   def project_index(projects)
+    
     Markaby::Builder.new({}, self) do
       table.standard_table do
         tr do
           th do
-            I18n.translate(:name) + "/" +
-            I18n.translate(:description) + "/" +
-            I18n.translate(:owner)
+            I18n.translate(:name)
           end
-          th I18n.translate(:project_access_mask)
+          th I18n.translate(:description_page)
           th I18n.translate(:state)
         end
         for project in projects
           tr :class => cycle(:odd,:even) do
             td :width => 200 do 
               span :style => 'font-size: 14px; font-weight: bold;' do 
-                link_to(h(project.name),project)
-              end
-              if project && project.id
-                div :style => 'margin: 0px; padding: 0px;display: inline;' do 
-                  record_links(project, nil, project_path(project).to_s, edit_project_path(project).to_s, project_path(project).to_s).to_s
-                end
-              end
-              div :style => 'margin: 0px; padding:0px; padding-left: 10px;' do
-                (project.page_id ? link_to(I18n.translate(:description_page),project.page) : I18n.translate(:project_has_no_description_page)) +
-                BR + 
-                link_to(h(project.user.fullname),project.user)
+                link_to(CAN_OPEN+NBSP+h(project.name),project)
               end
             end
-            td :align => :center, :width => 100 do  project.access_roles.map(&:to_s).join(', ') end
+            td :align => :center, :width => 100 do
+              (project.page_id ? link_to(I18n.translate(:description_page),project.page.list_title(50)) : I18n.translate(:project_has_no_description_page))
+            end
             td :align => :center, :width => 100 do  project.status_as_string end
           end
         end
@@ -43,6 +33,7 @@ module ProjectsHelper
         end
       end
     end
+    
   end
 
   def project_membership_checkboxes(project)
@@ -64,5 +55,43 @@ module ProjectsHelper
       end
     end
   end  
+  
+  def latest_project_notes
+    project = Project.find(params[:project_id])
+    Markaby::Builder.new( {}, self ) do
+      h1 I18n.translate(:latest_project_notes)
+      for note in project.notes.find(:all, :order => 'updated_at desc',
+        :conditions => 'parent_id is null', :limit => 5)
+        p do
+          span do
+            I18n.translate(:user_did_on, 
+              :what => I18n.translate("message_type_#{note.message_type}".to_sym),
+              :time => humanize_time_span(note.updated_at),
+              :user => note.user.fullname
+            )
+          end
+          br
+          span :id => 'note_'+note.id.to_s, :style => 'padding-left: 10px' do 
+            note.message.to_s + NBSP*3 +
+            ( note.user == current_user || is_admin?  ? 
+              link_to_remote(I18n.translate(:delete),
+                :url => note_path(note, :user_id => note.user_id).to_s,
+                :confirm => confirm_delete, 
+                :method => :delete
+              ) : "" 
+             )
+          end
+        end
+      end
+      if project.notes.length > 5
+        p do
+          link_to(I18n.translate(:view_all), project_notes_path(project).to_s )
+        end
+      end
+      unless project.notes.any?
+        p I18n.translate(:no_item_found)
+      end
+    end
+  end
   
 end

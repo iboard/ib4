@@ -1,0 +1,11 @@
+<h3><%= t(:post_a_project_note) -%></h3>
+
+<% remote_form_for [project,project.notes.build] do |f| %>
+
+  <%= f.text_area :message, :cols => 50, :rows => 3 %>
+  <%= f.hidden_field :message_type, :value=>'Comment' -%>
+  <br/>
+  <div id='notes_response'></div>
+  <%= f.submit t(:submit) -%>
+
+<% end %>

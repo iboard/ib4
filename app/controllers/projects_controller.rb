@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   filter_resource_access
-
+  
   def index
     @projects ||= Project.all
   end
@@ -44,4 +44,5 @@ class ProjectsController < ApplicationController
     flash[:notice] = "Successfully destroyed project."
     redirect_to projects_url
   end
+  
 end

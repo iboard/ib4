@@ -1,0 +1,4 @@
+page.replace_html :notes_response, flash[:notice]
+flash.discard
+page.Element.highlight(:notes_response)
+page.replace_html 'note_'+params[:id], "<em>#{t(:deleted)}</em>"
