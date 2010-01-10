@@ -562,8 +562,9 @@ input#page_title {
 }
 
 #restrictions {
-	border: 1px solid black;
+	border: 1px dotted #ddd;
 	padding: 10px;
+	width: 95%;
 }
 
 .standard_table {
