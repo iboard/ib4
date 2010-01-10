@@ -562,9 +562,9 @@ input#page_title {
 }
 
 #restrictions {
-	border: 1px dotted #aaa;
-	padding: 10px;
-	display: block;
+    border: 1px dotted #aaa;
+    padding: 10px;
+    margin-right: 340px;
 }
 
 .standard_table {
@@ -797,4 +797,12 @@ input#page_title {
 #new_project_notes blockquote {
 	display: inline;
 	margin-left: 5px;
+}
+
+#selected_task {
+	width: 300px;
+	float: right;
+	border: 1px dotted #aaa;
+	padding: 10px;
+	margin-left: 10px;
 }

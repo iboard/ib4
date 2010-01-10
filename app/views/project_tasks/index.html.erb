@@ -1,0 +1,31 @@
+<% title "Project Tasks" %>
+
+<table>
+  <tr>
+    <th>Parent</th>
+    <th>Position</th>
+    <th>Project</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>State Mask</th>
+    <th>Date Due</th>
+    <th>Flag Mask</th>
+  </tr>
+  <% for project_task in @project_tasks %>
+    <tr>
+      <td><%=h project_task.parent_id %></td>
+      <td><%=h project_task.position %></td>
+      <td><%=h project_task.project_id %></td>
+      <td><%=h project_task.name %></td>
+      <td><%=h project_task.description %></td>
+      <td><%=h project_task.state_mask %></td>
+      <td><%=h project_task.date_due %></td>
+      <td><%=h project_task.flag_mask %></td>
+      <td><%= link_to "Show", project_task %></td>
+      <td><%= link_to "Edit", edit_project_task_path(project_task) %></td>
+      <td><%= link_to "Destroy", project_task, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Project Task", new_project_task_path %></p>

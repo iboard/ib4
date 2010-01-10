@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100108150212) do
+ActiveRecord::Schema.define(:version => 20100110094548) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -246,6 +246,19 @@ ActiveRecord::Schema.define(:version => 20100108150212) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_tasks", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "position"
+    t.integer  "project_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "state_mask"
+    t.datetime "date_due"
+    t.integer  "flag_mask"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

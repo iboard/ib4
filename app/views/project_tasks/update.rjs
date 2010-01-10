@@ -1,0 +1,8 @@
+page.replace_html :selected_task, selected_task_form(@project,@project_task).to_s
+page.replace_html :project_tasks_list, show_project_tasks(@project)
+flash.discard
+page['selected_task'].highlight
+for other_task in @project.project_tasks
+  page['project_task_'+other_task.id.to_s].set_style('font-weight: normal;')
+end
+page['project_task_'+@project_task.id.to_s].set_style('font-weight: bold;')

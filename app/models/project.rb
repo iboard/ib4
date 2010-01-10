@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
 
   has_many     :group_restrictions, :as => :restrictable, :dependent => :destroy
   has_many     :notes, :as => :noteable,  :dependent => :destroy
+  has_many     :project_tasks, :order => :position
 
   ACCESS_ROLES = [:private,:friends,:public]
   PROJECT_STATI= [:new,:active,:featured,:paused,:finished,:canceled]
