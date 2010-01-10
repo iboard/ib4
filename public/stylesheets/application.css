@@ -562,9 +562,9 @@ input#page_title {
 }
 
 #restrictions {
-	border: 1px dotted #ddd;
+	border: 1px dotted #aaa;
 	padding: 10px;
-	width: 95%;
+	display: block;
 }
 
 .standard_table {
@@ -775,6 +775,7 @@ input#page_title {
 	margin: 0px;
 	margin-left: 20px;
 	border: 1px dotted #444;
+	display: inline;
 }
 
 #membership_checkboxes ul {
