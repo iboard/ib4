@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   has_many     :notes, :as => :noteable,  :dependent => :destroy
 
   ACCESS_ROLES = [:private,:friends,:public]
-  PROJECT_STATI= [:new,:busy,:paused,:finished,:canceled]
+  PROJECT_STATI= [:new,:active,:featured,:paused,:finished,:canceled]
 
   after_create :assign_restrictions, :assign_members
   after_save   :assign_restrictions, :assign_members
@@ -66,6 +66,7 @@ class Project < ActiveRecord::Base
   end
     
   def allowed_users
+    return [Authorization.current_user] if new_record?
     if group_restrictions.empty?
       if accessable_by?(:public)
         return User.ascend_by_fullname.all 

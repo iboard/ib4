@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   filter_resource_access
   
   def index
-    @projects ||= Project.all
+    @projects ||= Project.ascend_by_name.reject {|r| !permitted_to?(:show,r)}
   end
   
   def show
@@ -11,10 +11,11 @@ class ProjectsController < ApplicationController
   end
   
   def new
-    @project ||= Project.new
+    @project ||= current_user.projects.build(Project.new)
   end
   
   def create
+    params[:project][:user_id] = (is_admin? && params[:project][:user_id]) ? params[:project][:user_id] : current_user
     @project = Project.new(params[:project])
     if @project.save
       flash[:notice] = "Successfully created project."

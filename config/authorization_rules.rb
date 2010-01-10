@@ -105,11 +105,11 @@ authorization do
     end
     
     # PROJECTS
+    has_permission_on :projects, :to => [:new,:create]
     has_permission_on :projects, :to => [:show,:notes] do 
       if_attribute :access_roles => contains { 'public' }
-      if_attribute :friends_access =>  contains {  Authorization.current_user }
+      if_attribute :members =>  contains {  Authorization.current_user }
     end
-    has_permission_on :projects, :to => [:new,:create]
     has_permission_on :projects, :to => [:index,:new,:create,:update,:destroy,:edit] do 
       if_attribute :user =>  is {  Authorization.current_user }
     end
