@@ -1,6 +1,6 @@
 <% title t(:project)+" "+h(@project.name) %>
 
-
+<!-- FLOAT RIGHT LATEST ACTIVITIES -->
 <% content_tag :div, :id => 'project_notes' do %>
   <script>
     <%= remote_function(:url => project_notes_path(@project),:method => :get) -%>
@@ -8,12 +8,13 @@
 <% end %>
      
 <%= periodically_call_remote(
-      :frequency => '5',
+      :frequency => PROJECT_ACTIVITY_RELOAD_FREQ,
       :url => project_notes_path(@project),
       :method => :get
      ) 
 -%>
 
+<!-- PROJECT DETAILS -->
 <h1><%= yield :title %></h1>
 
 <% content_tag :div, :class=>'projects' do %>
@@ -47,5 +48,5 @@
 
 <%= render :partial => 'add_project_note', :locals => { :project => @project }%>
 
-
+<!-- TASKS -->
 <h1>Tasks</h1>

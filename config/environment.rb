@@ -61,6 +61,7 @@ FILE_LOCKED_PATH='/images/file_locked.png'       unless defined? FILE_LOCKED_PAT
 
 POSTINGS_PER_PAGE=4               unless defined? POSTINGS_PER_PAGE
 PROJECT_NOTES_PER_PAGE=10         unless defined? PROJECT_NOTES_PER_PAGE
+PROJECT_ACTIVITY_RELOAD_FREQ=30   unless defined? PROJECT_ACTIVITY_RELOAD_FREQ
 BINARIES_PER_PAGE=10              unless defined? BINARIES_PER_PAGE
 CATEGORIES_PER_PAGE=10            unless defined? CATEGORIES_PER_PAGE
 USERS_PER_PAGE=4                  unless defined? USERS_PER_PAGE
