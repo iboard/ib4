@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :project_tasks, :belongs_to => [:project]
   map.resources :project_memberships
-  map.resources :projects, :has_many => [:notes,:project_tasks], :member => { :sort_tasks => :post }
+  map.resources :projects, :has_many => [:notes,:project_tasks], 
+                :member => { :sort_tasks => :post, :update_tasklist => :post }
   map.resources :usergroups
   map.resources :notes, :collection => { :clear_session_log => :get, :mark_all_read => :get },
                         :member => { :mark_read => :put }

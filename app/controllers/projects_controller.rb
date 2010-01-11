@@ -56,4 +56,9 @@ class ProjectsController < ApplicationController
     render :nothing => true
   end 
    
+  def update_tasklist
+    @project ||= Project.find(params[:id])
+    @use_filter = params[:filter]
+  end
+  
 end

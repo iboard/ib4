@@ -1,0 +1,1 @@
+page.replace_html :project_tasks_list, show_project_tasks(@project,'project_task_sortlist',@use_filter)

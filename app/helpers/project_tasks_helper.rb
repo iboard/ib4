@@ -1,18 +1,16 @@
 module ProjectTasksHelper
   
   
-  def show_project_task_in_project(project_task)
+  def show_project_task_in_project(project_task,my_filter)
     color = project_task.date_due && project_task.date_due < Time::now ? '#D41E0F' : '#4D4D4D'
     color = '#80AC00' if project_task.state?(:done)
     color = '#dddddd' if project_task.state?(:canceled)
     color = '#aaaaaa' if project_task.state?(:paused)
     color = '#215799' if project_task.state?(:new)
+    bgcolor = cycle('#eeeeee','#E8E3CE')
     Markaby::Builder.new({},self) {
-        li :id => 'project_task_'+project_task.id.to_s, :class => 'project_task' do
-          span :class => 'handle', :style => 'cursor:move;' do
-            '['+I18n.translate(:drag).to_s+']'+NBSP
-          end
-          span do
+        li :id => 'project_task_'+project_task.id.to_s, :class => 'project_task', :style => 'padding-left: 5px; width: 99%; background:'+bgcolor do
+          span :style => 'font-size: 14px;' do
             link_to_remote( project_task.name,
              :url =>  project_project_task_path(project_task.project.id,project_task.id).to_s,
              :method => :get,
@@ -20,17 +18,20 @@ module ProjectTasksHelper
              :complete => "Element.highlight('selected_task');"
              )
            end
-           span :title => '[new/active/paused/done/canceled/count]',
-                :style => 'cursor:help; float:right; margin-left: 10px; margin-right:auto; color:'+color do
-             (project_task.date_due ? (humanize_time_span(project_task.date_due)) : "")+
-             (project_task.date_due ? NBSP : "")+
-             project_task.complete_map.join("/")
-           end
            br
+          span :class => 'handle', :style => 'cursor:move;' do
+            '['+I18n.translate(:drag).to_s+']'+NBSP
+          end
+          span :title => 'date new/active/paused/done/canceled/count',
+               :style => 'float: right; cursor:help; text-align:right; padding-left: 50px; color:'+color do
+            (project_task.date_due ? (humanize_time_span(project_task.date_due)) : "")+
+            (project_task.date_due ? NBSP : "")+
+            project_task.complete_map.join("/")
+          end
          if project_task.children.any?
-           ul :id => 'children_sort_list_'+project_task.id.to_s do
+           ol :id => 'children_sort_list_'+project_task.id.to_s do
              for child in project_task.children
-               show_project_task_in_project(child) 
+               show_project_task_in_project(child,my_filter) if my_filter.blank? || project_task.state?(my_filter.to_sym)
              end
            end
            id_str = 'children_sort_list_'+project_task.id.to_s
@@ -40,12 +41,12 @@ module ProjectTasksHelper
     }.to_s
   end
   
-  def show_project_tasks(project,id='project_task_sortlist')
+  def show_project_tasks(project,id='project_task_sortlist',my_filter='',width='340px')
     Markaby::Builder.new({},self) do 
       if project.project_tasks.any?
-        ul :id => id do
+        ol :id => id, :style => "width: #{width}" do
           for project_task in project.project_tasks.roots
-              show_project_task_in_project(project_task)
+              show_project_task_in_project(project_task,my_filter) if my_filter.blank? || project_task.state?(my_filter.to_sym)
           end 
         end
         sortable_element(id, :url => sort_tasks_project_path(project,:list_id => id).to_s, :handle => 'handle' )
