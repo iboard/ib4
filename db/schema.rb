@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100110094548) do
+ActiveRecord::Schema.define(:version => 2010011112043333) do
 
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
@@ -250,6 +250,9 @@ ActiveRecord::Schema.define(:version => 20100110094548) do
     t.datetime "updated_at"
   end
 
+  add_index "project_memberships", ["project_id"], :name => "index_project_memberships_on_project_id"
+  add_index "project_memberships", ["user_id"], :name => "index_project_memberships_on_user_id"
+
   create_table "project_tasks", :force => true do |t|
     t.integer  "parent_id"
     t.integer  "position"
@@ -263,6 +266,9 @@ ActiveRecord::Schema.define(:version => 20100110094548) do
     t.datetime "updated_at"
   end
 
+  add_index "project_tasks", ["parent_id"], :name => "index_project_tasks_on_parent_id"
+  add_index "project_tasks", ["project_id"], :name => "index_project_tasks_on_project_id"
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.integer  "page_id"
@@ -272,6 +278,9 @@ ActiveRecord::Schema.define(:version => 20100110094548) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "projects", ["page_id"], :name => "index_projects_on_page_id"
+  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "tags", :force => true do |t|
     t.integer  "tagable_id"
