@@ -1,6 +1,6 @@
 class ProjectTask < ActiveRecord::Base
   belongs_to :project
-  acts_as_tree
+  acts_as_tree :order => :position
   validates_presence_of :name
   delegate :members, :to => :project
   

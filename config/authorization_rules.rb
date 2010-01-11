@@ -10,7 +10,7 @@ authorization do
     has_permission_on :messages, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :usergroups, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :categories, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
-    has_permission_on :projects, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:notes]
+    has_permission_on :projects, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:notes,:sort_tasks]
     has_permission_on :project_tasks, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :notes, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
@@ -111,7 +111,7 @@ authorization do
       if_attribute :access_roles => contains { 'public' }
       if_attribute :members =>  contains {  Authorization.current_user }
     end
-    has_permission_on :projects, :to => [:index,:new,:create,:update,:destroy,:edit] do 
+    has_permission_on :projects, :to => [:index,:new,:create,:update,:destroy,:edit,:sort_tasks] do 
       if_attribute :user =>  is {  Authorization.current_user }
     end
     

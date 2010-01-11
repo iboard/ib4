@@ -9,6 +9,9 @@ module ProjectTasksHelper
     color = '#215799' if project_task.state?(:new)
     Markaby::Builder.new({},self) {
         li :id => 'project_task_'+project_task.id.to_s, :class => 'project_task' do
+          span :class => 'handle', :style => 'cursor:move;' do
+            '['+I18n.translate(:drag).to_s+']'+NBSP
+          end
           span do
             link_to_remote( project_task.name,
              :url =>  project_project_task_path(project_task.project.id,project_task.id).to_s,
@@ -25,27 +28,30 @@ module ProjectTasksHelper
            end
            br
          if project_task.children.any?
-           ul do
+           ul :id => 'children_sort_list_'+project_task.id.to_s do
              for child in project_task.children
                show_project_task_in_project(child) 
              end
            end
+           id_str = 'children_sort_list_'+project_task.id.to_s
+           sortable_element(id_str, :url => sort_tasks_project_path(project,:list_id => id_str).to_s, :handle => 'handle' )           
          end
         end
     }.to_s
   end
   
-  def show_project_tasks(project)
+  def show_project_tasks(project,id='project_task_sortlist')
     Markaby::Builder.new({},self) do 
       if project.project_tasks.any?
-        for project_task in project.project_tasks.roots 
-          ul do
-            show_project_task_in_project(project_task).to_s
-          end
-        end 
+        ul :id => id do
+          for project_task in project.project_tasks.roots
+              show_project_task_in_project(project_task)
+          end 
+        end
+        sortable_element(id, :url => sort_tasks_project_path(project,:list_id => id).to_s, :handle => 'handle' )
       else
         ul I18n.translate(:no_item_found)
-      end  
+      end
     end
   end
   

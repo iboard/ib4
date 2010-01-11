@@ -45,5 +45,15 @@ class ProjectsController < ApplicationController
     flash[:notice] = "Successfully destroyed project."
     redirect_to projects_url
   end
-  
+
+  def sort_tasks
+    @project ||= Project.find(params[:id])
+    params[params[:list_id]].each_with_index do |id,index|
+      task = @project.project_tasks.find(id)
+      task.position = index+1
+      task.save
+    end
+    render :nothing => true
+  end 
+   
 end
