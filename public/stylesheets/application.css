@@ -564,7 +564,7 @@ input#page_title {
 #restrictions {
     border: 1px dotted #aaa;
     padding: 10px;
-    margin-right: 340px;
+    width: 370px;
 }
 
 .standard_table {
