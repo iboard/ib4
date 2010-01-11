@@ -25,7 +25,9 @@ Rails::Initializer.run do |config|
   config.gem "declarative_authorization", :source => "http://gemcutter.org" 
   config.gem "acts_as_tree"
   config.gem "chronic"
+  config.gem "calendar_date_select"
   
+    
   # Timezone and Locale
   config.time_zone = 'UTC'
   config.time_zone = 'Vienna'
@@ -79,12 +81,14 @@ CLOSE_UP       = "&#9650;" unless defined? CLOSE_UP
 GO_BACK        = "&#9664;" unless defined? GO_BACK
 BACK_TO        = GO_BACK
 SORT_HANDLE    = "<span style='cursor:crosshair;'>&#10711;</span>"
-BACKSPACE_CHAR = "&#9003;" unless defined? BACKSPACE_CHAR
-DELETE_CHAR    = "&#9003;" unless defined? DELETE_CHAR
-COMMENT_HAND   = "&#9997;" unless defined? COMMENT_HAND
+BACKSPACE_CHAR = "&#09003;" unless defined? BACKSPACE_CHAR
+DELETE_CHAR    = "&#09003;" unless defined? DELETE_CHAR
+COMMENT_HAND   = "&#09997;" unless defined? COMMENT_HAND
 CHECK_OK       = "&#10004;" unless defined? CHECK_OK
 CHECK_NOT_OK   = "&#10008;" unless defined? CHECK_NOT_OK
-EMAIL_ICON     = "&#9993;" unless defined? EMAIL_ICON
+EMAIL_ICON     = "&#09993;" unless defined? EMAIL_ICON
+POINTER_LEFT   = "&#08656;" unless defined? POINTER_LEFT
+POINTER_RIGHT  = "&#08658;" unless defined? POINTER_RIGHT
 
 def current_locale
   I18n::locale

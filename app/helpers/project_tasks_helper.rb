@@ -2,6 +2,11 @@ module ProjectTasksHelper
   
   
   def show_project_task_in_project(project_task)
+    color = project_task.date_due && project_task.date_due < Time::now ? '#D41E0F' : '#4D4D4D'
+    color = '#80AC00' if project_task.state?(:done)
+    color = '#dddddd' if project_task.state?(:canceled)
+    color = '#aaaaaa' if project_task.state?(:paused)
+    color = '#215799' if project_task.state?(:new)
     Markaby::Builder.new({},self) {
         li :id => 'project_task_'+project_task.id.to_s, :class => 'project_task' do
           span do
@@ -13,7 +18,9 @@ module ProjectTasksHelper
              )
            end
            span :title => '[new/active/paused/done/canceled/count]',
-                :style => 'cursor:help; float:right; margin-left: 10px; margin-right:auto;' do
+                :style => 'cursor:help; float:right; margin-left: 10px; margin-right:auto; color:'+color do
+             (project_task.date_due ? (humanize_time_span(project_task.date_due)) : "")+
+             (project_task.date_due ? NBSP : "")+
              project_task.complete_map.join("/")
            end
            br

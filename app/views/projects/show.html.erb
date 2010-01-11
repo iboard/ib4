@@ -2,6 +2,10 @@
 
 <!-- FLOAT RIGHT LATEST ACTIVITIES -->
 <% content_tag :div, :id => 'project_notes' do %>
+  <center>
+    <%= "<br/>"*5 -%>
+    <%= image_tag '/images/spinner.gif'%>
+  </center>
   <script>
     <%= remote_function(:url => project_notes_path(@project),:method => :get) -%>
   </script>

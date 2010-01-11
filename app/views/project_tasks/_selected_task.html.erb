@@ -3,11 +3,11 @@
 <% remote_form_for [project,project_task] do |f| %>
 <%= f.error_messages %>
 
-  <strong><%= f.label :name %></strong><br/>
+  <strong><%= f.label :name %></strong>
   <%= f.text_field :name %>
   
   <p>
-      <strong><%= f.label :parent_id %></strong><br />
+      <strong><%= f.label :parent_id %></strong>
       <%= f.collection_select :parent_id, 
             (project.project_tasks.roots +
             project_task.ancestors+
@@ -19,8 +19,14 @@
   </p>
   
   <p>
-    <strong><%= f.label :state_mask, t(:state) -%></strong><br/>
+    <strong><%= f.label :state_mask, t(:state) -%></strong>
     <%= f.select :state_mask, ProjectTask::TASK_STATES.map {|s| [s.to_s.humanize,ProjectTask::TASK_STATES.index(s)] } %>
-  
+
+  <p>
+    <strong><%= f.label :date_due, t(:due) -%></strong>
+    <%= f.calendar_date_select :date_due, :time => :mixed, :hidden => false, :size => 18 -%>
+  </p>
+
+
   <p><%= f.submit t(:update) -%></p>
 <% end %>

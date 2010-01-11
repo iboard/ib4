@@ -308,19 +308,19 @@ de:
     zero: 'in der nächsten Stunde'
     one: 'in einer Stunde'
     other: 'in {{count}} Stunden'
-  in_days_ago:
+  in_days:
     zero: 'heute'
     one: 'morgen'
     other: 'in {{count}} Tagen'
-  in_weeks_ago:
+  in_weeks:
     zero: 'diese Woche'
     one: 'nächste Woche'
     other: 'in {{count}} Wochen'
-  in_months_ago:
+  in_months:
     zero: 'Dieses Montat'
     one: 'in einen Monat'
     other: 'in {{count}} Monaten'
-  in_years_ago:
+  in_years:
     zero: 'heuer'
     one: 'nächstes Jahr'
     other: 'in {{count}} Jahren'
@@ -424,3 +424,4 @@ de:
   add_task: 'Arbeitsschritt hinzufügen'
   update: 'Aktualisieren'
   please_select_a_task: 'Bitte wählen sie einen Arbeitsschritt…'
+  due: 'Termin'

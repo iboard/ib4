@@ -9,6 +9,11 @@ class ProjectTask < ActiveRecord::Base
   def self.states
     TASK_STATES.map(&:to_sym)
   end
+  
+  def state?(s)
+    i = TASK_STATES.index(s)
+    return (state_mask == i)
+  end
     
   def complete_map
     unless children.any?

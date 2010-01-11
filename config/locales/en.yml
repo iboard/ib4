@@ -312,19 +312,19 @@ en:
     zero: 'next hour'
     one: 'in one hour'
     other: 'in {{count}} hours'
-  in_days_ago:
+  in_days:
     zero: 'today'
     one: 'in one day'
     other: 'in {{count}} days'
-  in_weeks_ago:
+  in_weeks:
     zero: 'this week'
     one: 'in one week'
     other: 'in {{count}} weeks'
-  in_months_ago:
+  in_months:
     zero: 'this month'
     one: 'in one month'
     other: 'in {{count}} months'
-  in_years_ago:
+  in_years:
     zero: 'this year'
     one: 'in one year'
     other: 'in {{count}} years'
@@ -427,3 +427,4 @@ en:
   add_task: 'Add Task'
   update: 'Update'
   please_select_a_task: 'Please select a task…'
+  due: 'Due'

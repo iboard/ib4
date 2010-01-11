@@ -815,9 +815,11 @@ input#page_title {
 	border: 1px dotted #aaa;
 	padding: 10px;
 	margin-left: 10px;
+	font-size: 11px;
 	clear: left;
 }
 
 #project_tasks_list { 
+	font-size: 11px;
 	width: 400px;
 }
