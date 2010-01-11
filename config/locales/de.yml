@@ -404,7 +404,7 @@ de:
   message_type: 'Typ'
   deleted: 'gelöscht'
   user_wrote_on: '{{user}} schrieb {{time}}'
-  user_did_on: '{{user}} {{what}} {{time}}' 
+  user_did_on: '{{user}} {{what}} ({{time}})' 
   administration: 'Administration'
   message_type_: ''
   message_type_Comment: 'schrieb folgenden Kommentar'

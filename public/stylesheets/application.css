@@ -760,11 +760,21 @@ input#page_title {
 }
 
 #project_notes {
-	width: 300px;
+	width: 320px;
+	height: 290px;
+	overflow-y: scroll;
 	float: right;
 }
-#project_notes p {
-	font-size: 12px;
+#project_notes p.odd {
+	background:  #EFE8C9;
+	font-size: 11px;
+	padding: 5px;
+	line-height: 100%;
+}
+#project_notes p.even {
+	padding: 5px;
+	background:  #FFFFFF;
+	font-size: 11px;
 	line-height: 100%;
 }
 
@@ -805,4 +815,9 @@ input#page_title {
 	border: 1px dotted #aaa;
 	padding: 10px;
 	margin-left: 10px;
+	clear: left;
+}
+
+#project_tasks_list { 
+	width: 400px;
 }

@@ -9,9 +9,9 @@
   <p>
       <strong><%= f.label :parent_id %></strong><br />
       <%= f.collection_select :parent_id, 
-            project.project_tasks.roots +
+            (project.project_tasks.roots +
             project_task.ancestors+
-            project_task.siblings, :id, :name , :include_blank => t(:root_item) -%>
+            project_task.siblings).uniq.reject {|r| r == project_task}, :id, :name , :include_blank => t(:root_item) -%>
   </p>
   <p>
     <strong><%= f.label :description %></strong><br />
@@ -20,7 +20,7 @@
   
   <p>
     <strong><%= f.label :state_mask, t(:state) -%></strong><br/>
-    <%= f.collection_select :state_mask, ProjectTask::states, :to_sym, :to_s %>
+    <%= f.select :state_mask, ProjectTask::TASK_STATES.map {|s| [s.to_s.humanize,ProjectTask::TASK_STATES.index(s)] } %>
   
   <p><%= f.submit t(:update) -%></p>
 <% end %>

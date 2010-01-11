@@ -60,9 +60,12 @@ module ProjectsHelper
     project = Project.find(params[:project_id])
     Markaby::Builder.new( {}, self ) do
       h1 I18n.translate(:latest_project_notes)
+      p do
+          link_to(I18n.translate(:view_all), project_notes_path(project).to_s )
+      end
       for note in project.notes.find(:all, :order => 'updated_at desc',
-        :conditions => 'parent_id is null', :limit => 5)
-        p do
+        :conditions => 'parent_id is null', :limit => 10)
+        p :class => cycle(:odd,:even) do
           span do
             I18n.translate(:user_did_on, 
               :what => I18n.translate("message_type_#{note.message_type}".to_sym),
@@ -83,13 +86,12 @@ module ProjectsHelper
           end
         end
       end
-      if project.notes.length > 5
-        p do
-          link_to(I18n.translate(:view_all), project_notes_path(project).to_s )
-        end
-      end
       unless project.notes.any?
         p I18n.translate(:no_item_found)
+      else
+        p do
+            link_to(I18n.translate(:view_all), project_notes_path(project).to_s )
+        end
       end
     end
   end
