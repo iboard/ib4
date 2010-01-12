@@ -133,11 +133,12 @@
               <%= render :partial => current_user.new_messages %>
             <% end %>
             
-            <% cache( "messages_#{current_user.id.to_s}") do %>
-              <%= user_project_notes(current_user) if current_user %>
-              <% session['message_cache_time'] = Time.now() %>
+            <% if current_user %>
+              <% cache( "messages_#{current_user.id.to_s}") do %>
+                <%= user_project_notes(current_user) if current_user %>
+                <% session['message_cache_time'] = Time.now() %>
+              <% end %>          
             <% end %>          
-            
             <%= yield -%>
           <% end %>
         

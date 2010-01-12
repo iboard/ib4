@@ -151,7 +151,7 @@ class ApplicationController < ActionController::Base
 
   def clear_message_cache
       if session && session['message_cache_time'] && (Time.now()-session['message_cache_time']) > MESSAGE_CHACHE_MINUTES 
-        expire_fragment( "messages_#{current_user.id.to_s}" ) 
+        expire_fragment( "messages_#{current_user.id.to_s}" ) if current_user
       end
   end
 end
