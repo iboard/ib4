@@ -27,6 +27,17 @@
     <%= f.calendar_date_select :date_due, :time => :mixed, :hidden => false, :size => 18 -%>
   </p>
 
+  <% if permitted_to?(:destroy,project_task)%>
+  <div style='float: right;'>
+    <%= link_to_remote( t(:delete_task),
+         :url =>  project_task_path(project_task,:project_id => project), 
+         :confirm => t(:are_you_sure, :what => t(:delete_this_record)), 
+         :method => :delete
+    )-%>
+  </div>
+  <% end %>
 
-  <p><%= f.submit t(:update) -%></p>
+  <p>
+    <%= f.submit t(:update) -%>
+  </p>
 <% end %>

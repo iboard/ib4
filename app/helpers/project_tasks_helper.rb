@@ -10,17 +10,16 @@ module ProjectTasksHelper
     bgcolor = cycle('#eeeeee','#E8E3CE')
     Markaby::Builder.new({},self) {
         li :id => 'project_task_'+project_task.id.to_s, :class => 'project_task', :style => 'padding-left: 5px; width: 99%; background:'+bgcolor do
-          span :style => 'font-size: 14px;' do
+          span :class => 'project_task_link' do
             link_to_remote( project_task.name,
              :url =>  project_project_task_path(project_task.project.id,project_task.id).to_s,
              :method => :get,
              :with => "project_id='#{project_task.project.id.to_s}'", :id=>"id='#{project_task.id.to_s}'",
              :complete => "Element.highlight('selected_task');"
              )
-           end
-           br
+          end
           span :class => 'handle', :style => 'cursor:move;' do
-            '['+I18n.translate(:drag).to_s+']'+NBSP
+            BR+'['+I18n.translate(:drag).to_s+']'+NBSP
           end
           span :title => 'date new/active/paused/done/canceled/count',
                :style => 'float: right; cursor:help; text-align:right; padding-left: 50px; color:'+color do
@@ -43,10 +42,11 @@ module ProjectTasksHelper
   
   def show_project_tasks(project,id='project_task_sortlist',my_filter='',width='340px')
     Markaby::Builder.new({},self) do 
-      if project.project_tasks.any?
+      roots = my_filter.blank? ? project.project_tasks.roots : project.project_tasks.roots.reject { |t| !t.state?(my_filter.to_sym)}
+      if roots.any?
         ol :id => id, :style => "width: #{width}" do
-          for project_task in project.project_tasks.roots
-              show_project_task_in_project(project_task,my_filter) if my_filter.blank? || project_task.state?(my_filter.to_sym)
+          for project_task in roots
+              show_project_task_in_project(project_task,'') if my_filter.blank? || project_task.state?(my_filter.to_sym)
           end 
         end
         sortable_element(id, :url => sort_tasks_project_path(project,:list_id => id).to_s, :handle => 'handle' )

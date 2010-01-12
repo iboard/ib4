@@ -761,21 +761,29 @@ input#page_title {
 
 #project_notes {
 	width: 320px;
-	height: 290px;
+	height: 400px;
 	overflow-y: scroll;
 	float: right;
+	border: 1px solid #888;
+	padding: 5px;
+	background: #FFFAEC;
+	margin: 0px;
 }
+
+
 #project_notes p.odd {
 	background:  #EFE8C9;
 	font-size: 11px;
 	padding: 5px;
 	line-height: 100%;
+	margin: 0px;
 }
 #project_notes p.even {
 	padding: 5px;
 	background:  #FFFFFF;
 	font-size: 11px;
 	line-height: 100%;
+	margin: 0px;
 }
 
 .project_memberships {
@@ -783,7 +791,6 @@ input#page_title {
 	float: right;
 	padding: 10px;
 	margin: 0px;
-	margin-left: 20px;
 	border: 1px dotted #444;
 	display: inline;
 }
@@ -810,16 +817,57 @@ input#page_title {
 }
 
 #selected_task {
-	width: 300px;
+	width: 310px;
+	min-height: 320px;
 	float: right;
 	border: 1px dotted #aaa;
 	padding: 10px;
+	margin-top: 10px;
 	margin-left: 10px;
 	font-size: 11px;
 	clear: left;
 }
 
+.project_task {
+	padding-top: 5px;
+	font-size: 10px;
+}
+.project_task li {
+    padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.project_task_link {
+	font-size: 12px;
+}
+
 #project_tasks_list { 
-	font-size: 11px;
+	font-size: 10px;
 	width: 400px;
+	line-height:140%;
+}
+
+#project_tasks_table {
+	font-size: 10px;
+}
+
+#project_tasks_table th {
+	background: #444;
+	color: white;
+}
+
+#project_tasks_table td {
+	vertical-align: top;
+	padding: 5px;
+	padding-top: 2px;
+	padding-bottom: 3px;
+	margin: 0px;
+}
+
+#project_tasks_table tr.odd {
+	background: white;
+}
+
+#project_tasks_table tr.even {
+	background: #C8DEF6;
 }

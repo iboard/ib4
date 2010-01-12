@@ -1,31 +1,38 @@
-<% title "Project Tasks" %>
+<% title t(:project_tasks) + " " + @project.name %>
+<%= link_to BACK_TO+NBSP+t(:project), @project %>
 
-<table>
+
+
+<% form_for @search do |f| %>
+  <p>
+    <%= hidden_field_tag :project_id, @project.id -%>
+    <%= f.label :name_like, "Name" %><br />
+    <%= f.text_field :name_like %>
+  <%= f.submit t(:search) %>
+  </p>
+<% end %>
+
+
+<table id='project_tasks_table' width='98%'>
   <tr>
-    <th>Parent</th>
-    <th>Position</th>
-    <th>Project</th>
-    <th>Name</th>
+    <th><%= order @search, :by => :name, :project_id => @project.id -%></th>
+    <th><%= order @search, :by => :parent_id, :project_id => @project.id -%></th>
     <th>Description</th>
-    <th>State Mask</th>
-    <th>Date Due</th>
-    <th>Flag Mask</th>
+    <th><%= order @search, :by => :date_due, :project_id => @project.id -%></th>
+    <th><%= order @search, :by => :state_mask, :project_id => @project.id -%></th>
+    <th>Actions</th>
   </tr>
   <% for project_task in @project_tasks %>
-    <tr>
-      <td><%=h project_task.parent_id %></td>
-      <td><%=h project_task.position %></td>
-      <td><%=h project_task.project_id %></td>
-      <td><%=h project_task.name %></td>
+    <tr class='<%= cycle :odd, :even -%>'>
+      <td><%= link_to h(project_task.name), edit_project_project_task_path(@project.id,project_task.id) %></td>
+      <td><%= project_task.parent.name if project_task.parent  %>
+          <%= project_task.project.name unless project_task.parent %>&nbsp;<%=h project_task.position %></td>
       <td><%=h project_task.description %></td>
-      <td><%=h project_task.state_mask %></td>
-      <td><%=h project_task.date_due %></td>
-      <td><%=h project_task.flag_mask %></td>
-      <td><%= link_to "Show", project_task %></td>
-      <td><%= link_to "Edit", edit_project_task_path(project_task) %></td>
-      <td><%= link_to "Destroy", project_task, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%=humanize_time_span(project_task.date_due) if project_task.date_due %></td>
+      <td><%=t(project_task.state) %></td>
+      <td><%= link_to "Destroy", project_task_path(project_task,:project_id => @project.id), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Project Task", new_project_task_path %></p>
+<p><%= link_to "New Project Task", new_project_task_path(:project_id => @project) %></p>

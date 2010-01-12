@@ -1,39 +1,34 @@
 <div style='margin-top: 30px;'>
   <h1><%= t(:project_tasks) -%></h1>
-      <div id='selected_task'>
-          <%= POINTER_LEFT + NBSP*3 + t(:please_select_a_task) -%>
-      </div>
-      
-      <form>
-          <b>Filter:</b>
-          <%= select_tag('filter', ["<OPTION VALUE=''>-- #{t(:all)} --</OPTION>"]+ProjectTask.states.map { |o|
-                "<option value='#{o.to_s}'>#{o.to_s}</option>"
-              },
-               :onchange => remote_function(
-                 :url => update_tasklist_project_path(@project,:css_id=>'project_tasks_list'),
-                 :with => "'filter=' + $('filter').value",
-                 :before => update_page do |page|
-                    page['project_tasks_list'].replace_html(image_tag('/images/spinner.gif'))
-                 end
-               )             
-             )
-          -%>
-                
-              
-          
-      </form>
-      
-      <div id='project_tasks_list'>
-        <%= show_project_tasks(@project,'project_task_sortlist',params[:filter]) -%>
-      </div>
   
   <h3><%= t(:add_task) -%></h3>
-  <% remote_form_for [@project,@project.project_tasks.build] do |f| %>
-  <p>
-      <strong><%= f.label :name %></strong><br/>
-      <%= f.text_field :name %>
-  </p>
-  
-  <p><%= f.submit t(:create) -%></p>
+   <% remote_form_for [@project,@project.project_tasks.build] do |f| %>
+     <blockquote>
+         <%= f.text_field :name %>
+         <%= f.submit t(:create) -%>
+     </blockquote>
+   <% end %>
+   <form>
+       <b>Filter:</b>
+       <%= select_tag('filter', ["<OPTION VALUE=''>-- #{t(:all)} --</OPTION>"]+ProjectTask.states.map { |o|
+             "<option value='#{o.to_s}'>#{o.to_s}</option>"
+           },
+            :onchange => remote_function(
+              :url => update_tasklist_project_path(@project,:css_id=>'project_tasks_list'),
+              :with => "'filter=' + $('filter').value",
+              :before => update_page do |page|
+                 page['project_tasks_list'].replace_html(image_tag('/images/spinner.gif'))
+              end
+            )             
+          )
+       -%>
+       <%= NBSP*5 -%>
+       <%= link_to t(:tableview), project_project_tasks_path(@project) -%>
+   </form>
+   <div id='selected_task'>
+        <%= POINTER_LEFT + NBSP*3 + t(:please_select_a_task) -%>
+   </div>
+   <div id='project_tasks_list'>
+     <%= show_project_tasks(@project,'project_task_sortlist',params[:filter]) -%>
+   </div>
 </div>
-<% end %>

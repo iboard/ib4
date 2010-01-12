@@ -1,1 +1,2 @@
 page.replace_html :project_tasks_list, show_project_tasks(@project,'project_task_sortlist',@use_filter)
+page.replace_html :selected_task, t(:please_select_a_task)

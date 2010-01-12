@@ -71,7 +71,7 @@ module NotesHelper
   end
 
   def user_project_notes(user)
-    if user.project_notes.any?
+    if user.latest_project_notes.any?
       Markaby::Builder.new({},self) do
         div.new_project_notes! do
           h3 I18n.translate(:project_activities)
@@ -85,7 +85,7 @@ module NotesHelper
               :complete => "Element.blindUp('new_project_notes');"
             ).to_s
           end
-          user.project_notes.each do |note|
+          user.latest_project_notes.each do |note|
             div :id => 'note_'+note.id.to_s, :style=>"background: #{cycle('#EFE8C9', '#FFF9DA')};padding: 3px;" do
               link_to_remote( I18n.translate(:mark_read)+NBSP*3,
                 :url => {

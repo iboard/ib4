@@ -1,36 +1,41 @@
-<% form_for @project_task do |f| %>
+<p><%= link_to BACK_TO+NBSP+@project.name, project_project_tasks_path(@project) %></p>
+<% form_for [@project,@project_task] do |f| %>
   <%= f.error_messages %>
+  
+  <strong><%= f.label :name %></strong>
+  <%= f.text_field :name %>
+  
   <p>
-    <%= f.label :parent_id %><br />
-    <%= f.text_field :parent_id %>
+      <strong><%= f.label :parent_id %></strong>
+      <%= f.collection_select :parent_id, 
+            (@project.project_tasks.roots +
+            @project_task.ancestors+
+            @project_task.siblings).uniq.reject {|r| r == @project_task}, :id, :name , :include_blank => t(:root_item) -%>
   </p>
   <p>
-    <%= f.label :position %><br />
-    <%= f.text_field :position %>
+    <strong><%= f.label :description %></strong><br />
+    <%= f.text_area :description, :rows => 5, :cols => 39 %>
   </p>
+  
   <p>
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
-  </p>
+    <strong><%= f.label :state_mask, t(:state) -%></strong>
+    <%= f.select :state_mask, ProjectTask::TASK_STATES.map {|s| [s.to_s.humanize,ProjectTask::TASK_STATES.index(s)] } %>
+  
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <strong><%= f.label :date_due, t(:due) -%></strong>
+    <%= f.calendar_date_select :date_due, :time => :mixed, :hidden => false, :size => 18 -%>
   </p>
+  
+  <% if permitted_to?(:destroy,@project_task)%>
+  <div style='float: right;'>
+    <%= link_to( t(:delete_task), project_task_path(@project_task.id,:project_id => @project.id), 
+         :confirm => t(:are_you_sure, :what => t(:delete_this_record)), 
+         :method => :delete
+    ) unless @project_task.new_record?-%>
+  </div>
+  <% end %>
+  
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.submit t(:update) -%>
   </p>
-  <p>
-    <%= f.label :state_mask %><br />
-    <%= f.text_field :state_mask %>
-  </p>
-  <p>
-    <%= f.label :date_due %><br />
-    <%= f.datetime_select :date_due %>
-  </p>
-  <p>
-    <%= f.label :flag_mask %><br />
-    <%= f.text_field :flag_mask %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
 <% end %>

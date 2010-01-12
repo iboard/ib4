@@ -59,12 +59,13 @@ module ProjectsHelper
   def latest_project_notes
     project = Project.find(params[:project_id])
     Markaby::Builder.new( {}, self ) do
-      h1 I18n.translate(:latest_project_notes)
-      p do
-          link_to(I18n.translate(:view_all), project_notes_path(project).to_s )
+      h1 do 
+        I18n.translate(:latest_project_notes)+
+        blank+
+        link_to(I18n.translate(:view_all), project_notes_path(project).to_s )
       end
       for note in project.notes.find(:all, :order => 'updated_at desc',
-        :conditions => 'parent_id is null', :limit => 10)
+        :conditions => ['parent_id is ? and updated_at > ?', nil, Time::now-1.week], :limit => 10)
         p :class => cycle(:odd,:even) do
           span do
             I18n.translate(:user_did_on, 

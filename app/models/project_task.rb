@@ -10,6 +10,9 @@ class ProjectTask < ActiveRecord::Base
     TASK_STATES.map(&:to_sym)
   end
   
+  def state 
+    TASK_STATES[state_mask].to_sym
+  end
   def state?(s)
     i = TASK_STATES.index(s)
     return (state_mask == i)

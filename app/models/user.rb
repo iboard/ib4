@@ -114,4 +114,17 @@ class User < ActiveRecord::Base
     end
     new_notes.flatten.sort! { |b,a| a.updated_at <=> b.updated_at }
   end  
+
+  def latest_project_notes
+    new_notes = []
+    for membership in  project_memberships
+      if membership.project && membership.project.notes
+        new_notes << membership.project.notes.find(:all,:conditions => ['message_type <> ? and updated_at >= ? and updated_at > ?', 'confirm_read',
+            Authorization.current_user.last_login_at, Time::now-1.week]).reject { |r|
+            r.children.find(:first,:conditions => ['message_type = ? and user_id = ?', 'confirm_read', Authorization.current_user])
+        }
+      end
+    end
+    new_notes.flatten.sort! { |b,a| a.updated_at <=> b.updated_at }
+  end
 end
