@@ -56,7 +56,7 @@ ADMIN_MENU_ITEMS = [
 ] unless defined? ADMIN_MENU_ITEMS
 
 MAX_FEED_ITEMS=1024 unless defined? MAX_FEED_ITEMS
-
+MESSAGE_CHACHE_MINUTES=3.minutes
 # Constants for layout
 FILE_NOT_FOUND_PATH='/images/file_not_found.png' unless defined? FILE_NOT_FOUND_PATH
 FILE_LOCKED_PATH='/images/file_locked.png'       unless defined? FILE_LOCKED_PATH

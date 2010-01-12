@@ -27,6 +27,8 @@ class ApplicationController < ActionController::Base
     Authorization.current_user = c.current_user 
   }
   
+  before_filter :clear_message_cache
+  
   # Redirect to login_path if no current user    
   def require_user
     unless current_user
@@ -147,6 +149,11 @@ class ApplicationController < ActionController::Base
     session[:stickies] ||= {}
   end
 
+  def clear_message_cache
+      if session && session['message_cache_time'] && (Time.now()-session['message_cache_time']) > MESSAGE_CHACHE_MINUTES 
+        expire_fragment( "messages_#{current_user.id.to_s}" ) 
+      end
+  end
 end
 
 # End of File:    application_controller.rb
