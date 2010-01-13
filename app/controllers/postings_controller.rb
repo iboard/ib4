@@ -21,26 +21,31 @@ class PostingsController < ApplicationController
       # fetch postings of this category only...
       @category = Category.find(params[:category_id])
       @postings = @category.categorizables.find_all_by_categorizable_type('Posting',
-         :conditions => ['draft = ? OR user_id = ?', false, current_user]
+         :conditions => ['draft = ? OR user_id = ?', false, current_user],
+         :include => [:user,:group_restrictions,:comments,:tags,:categories]
          ).reject {|r| !r.read_allowed?(current_user) }.map(&:categorizable).paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
       # fetch postings of all categories
       if params[:user_id]
         # fetch postings of the given user only
-        @user = User.find(params[:user_id],:include  => :postings)
+        @user = User.find(params[:user_id])
         @postings = @user.postings.descend_by_updated_at(
-           :conditions => ['draft = ? OR user_id = ?', false, current_user]).reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+           :conditions => ['draft = ? OR user_id = ?', false, current_user],
+            :include => [:user,:tags,:categories]).reject {|r| !r.read_allowed?(current_user) }.paginate( :include => [:categories, :user, :tags],:page => params[:page], :per_page => POSTINGS_PER_PAGE )
       else
         # fetch all postings in all categories of each user matching the searchlogic
         unless params[:search].blank?
           @postings = Posting.subject_like_any_or_body_like_any(
                         params[:search].split(/[\s|,]+/),
-                           :conditions => ['draft is ? OR user_id = ?', false, current_user]
-                      ).descend_by_updated_at.reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
+                           :conditions => ['draft is ? OR user_id = ?', false, current_user],
+                            :include => [:user,:tags,:categories]
+                      ).descend_by_updated_at.reject {|r| !r.read_allowed?(current_user) }.paginate(:include => [:categories, :user, :tags], :page => params[:page], :per_page => POSTINGS_PER_PAGE )
         else
           # fetch ALL postings
-          @postings = Posting.descend_by_updated_at(:include => [:comments,:permalinks,:tags,:user]).reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE,
-             :conditions => ['draft = ? OR user_id = ?', false, current_user] )
+          @postings = Posting.find(:all,:order => 'updated_at desc',:include => [:tags,:user,:categories]).reject {|r|
+             !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE,
+             :include => [:categories, :user, :tags],
+             :conditions => ['postings.draft = ? OR postings.user_id = ?', false, current_user] )
         end
       end
     end
@@ -48,7 +53,7 @@ class PostingsController < ApplicationController
   
   
   def show
-    @posting = Posting.find(params[:id])
+    @posting = Posting.find(params[:id],:include => [:comments,:tags,:user,:categories,:group_restrictions])
   end
   
   def new
@@ -91,7 +96,7 @@ class PostingsController < ApplicationController
   
   private
   def require_owner_or_admin
-    @posting ||= Posting.find(params[:id])
+    @posting ||= Posting.find(params[:id],:include => :user)
     unless is_owner_or_admin?(@posting)
       flash[:error] = t(:access_denied_edit)
       render :show

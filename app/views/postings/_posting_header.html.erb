@@ -1,7 +1,7 @@
 <div class='title_box'>
   <%= "<b><center>"+t(:draft)+"</b></center>" if posting.draft %>
   <%= image_tag(posting.user.avatar.url(:icon), :align => :right, :hspace => 1) %>
-  <%= humanize_time_span(posting.updated_at) %>, <%=link_to("<b>"+h(posting.user.username) + "</b> (#{posting.user.fullname})",posting.user) -%>
+  <%= humanize_time_span(posting.updated_at) %>, <%=link_to(posting.user.fullname,posting.user) -%>
   <%- if posting.tags.any? -%>
     <br />
     <b><%= t(:tags) -%></b>: 

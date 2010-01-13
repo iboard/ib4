@@ -4,7 +4,7 @@
 <div class='title_box' style='width: 350px; float: right;'>
   
   <%= image_tag(@page.user.avatar.url(:icon), :align => :right, :hspace => 10) %>
-  <%=link_to("<b>"+h(@page.user.username) + "</b> (#{@page.user.fullname})",@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
+  <%=link_to(@page.user.fullname,@page.user) -%>, <%= @page.updated_at.to_s(:short) %>
   <%- if @page.categories.any? %>
     <br/><b><%= t(:categories) -%></b>: <%= @page.categories.map{|c| link_to(c.name, category_pages_path(c))}.join(", ") -%>
   <%- end -%>

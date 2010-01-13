@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_filter   :find_permalink, :only => [:show]
   filter_access_to :all, :attribute_check => true, :load_method => lambda { 
     if params[:id]
-      @page = Page.find(params[:id])
+      @page = Page.find(params[:id],:include => [:user,:comments,:group_restrictions])
     else
       @page = Page.new
     end
@@ -15,7 +15,8 @@ class PagesController < ApplicationController
       # fetch postings of this category only...
       @category = Category.find(params[:category_id])
       @pages = @category.categorizables.find_all_by_categorizable_type('Page', 
-         :conditions => ['draft = ? OR user_id = ?', false, current_user]).map(&:categorizable).reject {|r| 
+         :conditions => ['draft = ? OR user_id = ?', false, current_user],
+         :include => [:comments,:group_restrictions,:user]).map(&:categorizable).reject {|r| 
            !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
       # fetch postings of all categories
