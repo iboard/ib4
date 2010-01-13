@@ -27,7 +27,7 @@ class PostingsController < ApplicationController
       # fetch postings of all categories
       if params[:user_id]
         # fetch postings of the given user only
-        @user = User.find(params[:user_id])
+        @user = User.find(params[:user_id],:include  => :postings)
         @postings = @user.postings.descend_by_updated_at(
            :conditions => ['draft = ? OR user_id = ?', false, current_user]).reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
       else
