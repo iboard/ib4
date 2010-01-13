@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   config.gem "acts_as_tree"
   config.gem "chronic"
   config.gem "calendar_date_select"
-  
+  config.gem "slim_scrooge"
     
   # Timezone and Locale
   config.time_zone = 'UTC'

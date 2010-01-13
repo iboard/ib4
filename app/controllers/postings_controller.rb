@@ -39,7 +39,7 @@ class PostingsController < ApplicationController
                       ).descend_by_updated_at.reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
         else
           # fetch ALL postings
-          @postings = Posting.descend_by_updated_at.reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE,
+          @postings = Posting.descend_by_updated_at(:include => [:comments,:permalinks,:tags,:user]).reject {|r| !r.read_allowed?(current_user) }.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE,
              :conditions => ['draft = ? OR user_id = ?', false, current_user] )
         end
       end
