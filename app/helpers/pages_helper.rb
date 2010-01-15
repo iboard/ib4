@@ -6,7 +6,7 @@ module PagesHelper
     Markaby::Builder.new( {}, self ) do
       div.page_navigation! do
         ul.page_navigation_list! do
-          Page.roots.each do |page|
+          Page.find(:all, :conditions => ['parent_id = ?',nil], :include => [:categories, :group_restrictions] ).each do |page|
             if permitted_to?(:show,page)
               if current_page?(page) || (displayed_page && displayed_page.ancestors.include?(page))
                 li( :id => 'page_navigation_'+page.id.to_s) do

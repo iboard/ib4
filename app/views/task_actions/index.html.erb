@@ -1,0 +1,7 @@
+<% title "Task Actions" %>
+
+<h1><%= t(:task_actions_of_user, :user => @user.fullname ) -%></h1>
+
+<%= task_actions_table(@user,@task_actions) %>
+
+<p><%= link_to "New Task Action", new_user_task_action_path(@user) %></p>

@@ -7,11 +7,11 @@ class ProjectTasksController < ApplicationController
     params[:search] ||= {  }
     params[:search][:project_id] = @project.id
     @search =ProjectTask.search(params[:search])
-    @project_tasks ||= @search.all
+    @project_tasks ||= @search.all(:include => [:children,:project])
   end
   
   def show
-    @project_task = @project.project_tasks.find(params[:id])
+    @project_task = @project.project_tasks.find(params[:id],:include => [:children,:project])
     respond_to do |format|
       format.html { redirect_to project_project_tasks_path(@project)}
       format.js

@@ -51,6 +51,9 @@ module ApplicationHelper
    end
    
    def humanize_time_span(t2,t1=nil)
+     
+     return "" unless t2
+     
      t1 ||= Time.now
      d = t2 - t1
      a = d.abs

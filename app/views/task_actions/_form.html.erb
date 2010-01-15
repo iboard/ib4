@@ -1,0 +1,32 @@
+<% form_for @task_action do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :context_string %><br/>
+    <%= f.select :context_strings, current_user.used_context_names, {},
+          :multiple => true, :size => 5 -%><br/>
+    <%= f.label :new_context_string -%>:
+    <%= f.text_field :new_context_string -%>
+  </p>
+  <% if @task_action.project_task.nil? %>
+    <p>
+      <%= f.label :project_task_id %><br />
+      <%= f.collection_select :project_task_id, 
+             ProjectTask.all.reject { |p| !p.project.members.include?(current_user)}, :id, :project_prefix %>
+    </p>
+  <% end %>
+  <% if is_admin? %>
+    <p>
+      <%= f.label :user_id %><br />
+      <%= f.collection_select :user_id, User.ascend_by_fullname, :id, :fullname %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.label :notice %><br />
+    <%= f.text_area :notice, :rows => 5 %>
+  </p>
+  <p>
+    <%= f.label :state_flag %><br />
+    <%= f.select :state, TaskAction::STATES.map {|s| [t(s),s] } %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

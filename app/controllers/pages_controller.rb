@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   
   before_filter   :find_permalink, :only => [:show]
   filter_access_to :all, :attribute_check => true, :load_method => lambda { 
-    if params[:id]
-      @page = Page.find(params[:id],:include => [:user,:comments,:group_restrictions])
+    if params[:id]  
+      @page = Page.find(params[:id],:include => [:categories,:permalinks,:group_restrictions,:user])
     else
       @page = Page.new
     end
@@ -16,23 +16,26 @@ class PagesController < ApplicationController
       @category = Category.find(params[:category_id])
       @pages = @category.categorizables.find_all_by_categorizable_type('Page', 
          :conditions => ['draft = ? OR user_id = ?', false, current_user],
-         :include => [:comments,:group_restrictions,:user]).map(&:categorizable).reject {|r| 
+         :include => [:comments,:group_restrictions,:user,:categories,:permalinks]).map(&:categorizable).reject {|r| 
            !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE )
     else
       # fetch postings of all categories
       if params[:user_id]
         # fetch postings of the given user only
         @user = User.find(params[:user_id])
-        @pages = @user.pages.descend_by_updated_at.reject {|r| !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
+        @pages = @user.pages.find(:all,:include => [:categories,:permalinks],:order => 'pages.updated_at desc').reject {|r| !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
       else
         # fetch all postings in all categories of each user matching the searchlogic
         unless params[:search].blank?
           @pages = Page.title_like_any_or_description_like_any_or_body_like_any(
-                        params[:search].split(/[\s|,]+/)
+                        params[:search].split(/[\s|,]+/),
+                        :include => [:categories,:user,:group_restrictions]
                       ).descend_by_updated_at.reject {|r| !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
         else
           # fetch ALL postings
-          @pages = Page.descend_by_updated_at.reject {|r| !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
+          @pages = Page.descend_by_updated_at(
+          :include => [:categories,:user,:group_restrictions,:permalinks]
+          ).reject {|r| !r.read_allowed?(current_user)}.paginate( :page => params[:page], :per_page => POSTINGS_PER_PAGE, :conditions => ['draft = ? OR user_id = ?', false, current_user] )
         end
       end
     end  
@@ -109,7 +112,7 @@ class PagesController < ApplicationController
   def find_permalink
     if params[:id].to_i < 1
       pl = Permalink.find_by_url(params[:id])
-      p = pl ? pl.linkable : Page.first
+      p = pl ? pl.linkable : Page.first( :include => [:categories,:permalinks])
       params[:id] = p.id
     end
   end

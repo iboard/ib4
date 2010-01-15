@@ -1,0 +1,34 @@
+<% title "Task Action" %>
+
+<p>
+  <strong>Project Task:</strong>
+  <%= @task_action.project_task_id %>
+  <%= link_to CAN_OPEN+NBSP+@task_action.project_task.project.name, @task_action.project_task.project %> 
+  <%= link_to CAN_OPEN+NBSP+link_to(@task_action.user.fullname,user_task_actions_path(@task_action.user)) %>
+  <%= CAN_OPEN+NBSP+@task_action.project_task.name %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @task_action.user.fullname %>
+</p>
+<p>
+    <strong><%= t(:contexts) -%></strong>
+    <ul>
+        <% @task_action.context_strings.each do |c| %>
+          <li><%= c -%></li>
+        <% end %>
+    </ul>
+</p>
+<p>
+  <strong>Notice:</strong>
+  <%=h @task_action.notice %>
+</p>
+<p>
+  <strong>State Flag:</strong>
+  <%=h t(@task_action.state) %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_task_action_path(@task_action) %> |
+  <%= link_to "Destroy", @task_action, :confirm => 'Are you sure?', :method => :delete %> 
+</p>

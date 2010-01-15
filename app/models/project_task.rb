@@ -1,10 +1,17 @@
 class ProjectTask < ActiveRecord::Base
   belongs_to :project
+  has_many   :task_actions, :dependent => :delete_all
+  
   acts_as_tree :order => :position
   validates_presence_of :name
   delegate :members, :to => :project
   
   TASK_STATES = [:new,:active,:paused,:done,:canceled]
+  
+  
+  def project_prefix
+    project ? project.name.shorten(10,'~') + " > #{name}" : name.shorten(20,'~')
+  end
   
   def self.states
     TASK_STATES.map(&:to_sym)

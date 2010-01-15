@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 2010011112043333) do
 
+  create_table "action_contexts", :force => true do |t|
+    t.string   "name"
+    t.integer  "task_action_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "binaries", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -237,7 +244,9 @@ ActiveRecord::Schema.define(:version => 2010011112043333) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "draft",      :default => false
+    t.boolean  "draft",                    :default => false
+    t.integer  "group_restrictions_count", :default => 0
+    t.integer  "comments_count",           :default => 0
   end
 
   add_index "postings", ["user_id"], :name => "index_postings_on_user_id"
@@ -277,6 +286,7 @@ ActiveRecord::Schema.define(:version => 2010011112043333) do
     t.integer  "access_mask"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_restrictions_count", :default => 0
   end
 
   add_index "projects", ["page_id"], :name => "index_projects_on_page_id"
@@ -293,6 +303,15 @@ ActiveRecord::Schema.define(:version => 2010011112043333) do
   end
 
   add_index "tags", ["tagable_id", "tagable_type"], :name => "index_tags_on_tagable_id_and_tagable_type"
+
+  create_table "task_actions", :force => true do |t|
+    t.integer  "project_task_id"
+    t.integer  "user_id"
+    t.text     "notice"
+    t.integer  "state_flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "usergroups", :force => true do |t|
     t.string   "name"

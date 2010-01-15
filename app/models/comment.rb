@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :commentable, :polymorphic => true
+  belongs_to :commentable, :polymorphic => true, :counter_cache => true
   belongs_to :user
   
   delegate :list_title, :to => :commentable  

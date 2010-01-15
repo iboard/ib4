@@ -1,6 +1,12 @@
 <% title t(:projects) %>
 
 <h1><%= yield :title -%></h1>
-<p><%= link_to t(:new_project), new_project_path %></p>
+
+   <% menu = [] 
+       menu << link_to( t(:new_project), new_project_path) if permitted_to?(:create, Project.new(:user_id => current_user.id))
+       menu << link_to( t(:action_view), user_task_actions_path(current_user)) if current_user
+    %>
+    <%= inline_menu(menu) -%>
+</p>
 
 <%= project_index(@projects) %>

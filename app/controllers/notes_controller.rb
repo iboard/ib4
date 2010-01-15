@@ -37,6 +37,7 @@ class NotesController < ApplicationController
     if @note.save
       flash.now[:notice] = "Successfully created note."
     end
+    expire_fragment "messages_#{current_user.id.to_s}"
   end
   
   def edit
@@ -47,6 +48,7 @@ class NotesController < ApplicationController
     @note = @user.notes.find(params[:id])
     if @note.update_attributes(params[:note])
       flash[:notice] = "Successfully updated note."
+      expire_fragment "messages_#{current_user.id.to_s}"
       redirect_to @note
     else
       render :action => 'edit'
@@ -85,6 +87,7 @@ class NotesController < ApplicationController
       :user_id => @user.id
     )
     confirm_note.save(false)
+    expire_fragment "messages_#{current_user.id.to_s}"
     render :text => params.inspect, :layout => false
   end
   
@@ -100,6 +103,7 @@ class NotesController < ApplicationController
       )
       confirm_note.save(false)
     end
+    expire_fragment "messages_#{current_user.id.to_s}"
   end
   
   private

@@ -1,13 +1,15 @@
 class ProjectsController < ApplicationController
 
-  filter_resource_access
+  filter_resource_access :attribute_check => true, :load_method  => lambda {
+    @project =   Project.find(params[:id],:include => [:page,:project_tasks]) if params[:id]
+  }
   
   def index
-    @projects ||= Project.ascend_by_name.reject {|r| !permitted_to?(:show,r)}
+    @projects = Project.find(:all, :order => 'name asc', 
+      :include => [:page]).reject {|r| !permitted_to?(:show,r)}
   end
   
   def show
-    @project ||= Project.find(params[:id])
   end
   
   def new

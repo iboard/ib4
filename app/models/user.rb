@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
   has_many :usergroups
   has_many :group_memberships, :dependent => :delete_all
   
+  has_many :task_actions, :dependent => :delete_all
+  has_many :action_contexts, :through => :task_actions
+  
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
   
   # Roles for declarative authorization
@@ -127,4 +130,9 @@ class User < ActiveRecord::Base
     end
     new_notes.flatten.sort! { |b,a| a.updated_at <=> b.updated_at }
   end
+
+  def used_context_names
+    action_contexts.find(:all,:order => :name).map { |a| a.name }.uniq
+  end
+  
 end

@@ -131,6 +131,19 @@ module LayoutHelper
       br(:clear => :left)
     end
   end
+  
+  def inline_menu(items)
+    Markaby::Builder.new({},self) do
+      div.record_links do
+        ul do
+          items.each do |item|
+            li {item}
+          end
+        end
+        br(:clear => :left)
+      end
+    end
+  end
 
   # Display a save and cancel button. if _record_ is new cancel will redirect to _cancel_create_path_ otherwise to _cancel_update_path_
   def save_and_cancel_buttons(form_builder_handle, record, cancel_update_path, cancel_create_path)
