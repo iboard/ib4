@@ -55,7 +55,7 @@ module ProjectTasksHelper
       if roots.any?
         ol :id => id, :style => "width: #{width}" do
           for project_task in roots
-              show_project_task_in_project(project_task,'') if my_filter.blank? || project_task.state?(my_filter.to_sym)
+              show_project_task_in_project(project_task,'')
           end 
         end
         sortable_element(id, :url => sort_tasks_project_path(project,:list_id => id).to_s, :handle => 'handle' )
