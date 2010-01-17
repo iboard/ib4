@@ -2,10 +2,11 @@
   <h1><%= t(:project_tasks) -%></h1>
   
   <h3><%= t(:add_task) -%></h3>
-   <% remote_form_for [@project,@project.project_tasks.build] do |f| %>
+   <% remote_form_for [@project,@project.project_tasks.build(:state_mask => 0)] do |f| %>
      <blockquote>
          <%= f.text_field :name %>
          <%= f.submit t(:create) -%>
+         <%= f.hidden_field :state_mask %>
      </blockquote>
    <% end %>
    <form>
