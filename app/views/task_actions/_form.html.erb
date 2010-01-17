@@ -22,7 +22,7 @@
     <% if @task_action.project %>
       <%= f.collection_select :user_id, @task_action.project.members, :id, :fullname %>
     <% else %>
-      <%= f.collection_select :user_id, @user.projects.map {|p| p.members }.flatten.uniq, :id, :fullname %>
+      <%= f.collection_select :user_id, @user.projects.map {|p| p.members.all }.flatten.uniq, :id, :fullname %>
     <% end %>
   </p>
   <p>
