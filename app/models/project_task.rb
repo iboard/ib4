@@ -12,7 +12,7 @@ class ProjectTask < ActiveRecord::Base
   before_save   :assign_project
   
   accepts_nested_attributes_for :task_actions, :allow_destroy => true
-  
+    
   def project_prefix
     project ? project.name.shorten(10,'~') + " > #{name}" : name.shorten(20,'~')
   end
@@ -51,8 +51,8 @@ class ProjectTask < ActiveRecord::Base
 
   private
   def assign_project
-    unless project
-      project = project.acestors.last if parent_id
+    unless project_id
+      self.project = project.acestors.last if parent_id
     end
   end  
 end

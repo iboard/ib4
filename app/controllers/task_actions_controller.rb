@@ -1,10 +1,11 @@
 class TaskActionsController < ApplicationController
   
   before_filter :load_user
+  
   filter_resource_access 
   
   def index
-    @task_actions = @user.task_actions.all(:include => [:action_contexts,:user])
+    @task_actions = @user.task_actions.find(:all,:include => [:action_contexts,:user])
   end
   
   def show
@@ -12,8 +13,13 @@ class TaskActionsController < ApplicationController
   end
   
   def new
-    @task_action = @user.task_actions.build(:project_task_id => params[:project_task_id])
-    @task_action.date_due = @task_action.project_task.date_due if @task_action.project_task
+    if params[:project_task_id]
+      task = ProjectTask.find(params[:project_task_id])
+      @task_action = @user.task_actions.build(:project_task_id => params[:project_task_id])
+      @task_action.date_due = @task_action.project_task.date_due if @task_action.project_task
+    else
+      @task_action = @user.task_actions.build
+    end
   end
   
   def create

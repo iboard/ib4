@@ -8,16 +8,23 @@
     <%= f.text_field :new_context_string -%>
   </div>
   <p>
-    <%= f.label :project_task_id, link_to(t(:project),@task_action.project)+"-"+t(:task) %><br/>
-    <%= f.collection_select :project_task_id, @user.project_tasks, :id, :project_prefix -%>
+    <% if @task_action.project %>
+      <%= f.label :project_task_id, link_to(t(:project),@task_action.project )+"-"+t(:task) %><br/>
+      <%= f.collection_select :project_task_id, @task_action.project.project_tasks, :id, :project_prefix -%>
+    <% else %>
+      <%= f.label :project_task_id, t(:task) %><br/>
+      <%= f.collection_select :project_task_id, @user.project_tasks, :id, :project_prefix -%>
+    <% end %>
   </p>
   
-  <% if is_admin? && @task_action.project %>
-    <p>
-      <%= f.label :user_id %>
+  <p>
+    <%= f.label :user_id %>
+    <% if @task_action.project %>
       <%= f.collection_select :user_id, @task_action.project.members, :id, :fullname %>
-    </p>
-  <% end %>
+    <% else %>
+      <%= f.collection_select :user_id, @user.projects.map {|p| p.members.map.flatten }.flatten.uniq, :id, :fullname %>
+    <% end %>
+  </p>
   <p>
     <%= f.label :notice %><br />
     <%= f.text_area :notice, :rows => 5 %>
