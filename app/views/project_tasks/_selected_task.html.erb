@@ -41,9 +41,12 @@
     <% end %>
   <% end %>
   
-  <p>
-    <%= link_to t(:new_action),
-           new_user_task_action_path(current_user,:project_task_id => project_task) -%>
+  <%= inline_menu( [
+           link_to( t(:new_action), new_user_task_action_path(current_user,:project_task_id => project_task)),
+           link_to( t(:detail), edit_project_project_task_path(project,project_task))
+         ]
+       )
+  -%>
   </p>
   
 

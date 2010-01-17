@@ -10,12 +10,16 @@ class Project < ActiveRecord::Base
   has_many     :group_restrictions, :as => :restrictable, :dependent => :delete_all
   has_many     :notes, :as => :noteable,  :dependent => :delete_all
   has_many     :project_tasks, :order => :position, :dependent => :delete_all
-
+  has_many     :task_actions, :through => :project_tasks
+  
   ACCESS_ROLES = [:private,:friends,:public]
   PROJECT_STATI= [:new,:active,:featured,:paused,:finished,:canceled]
 
   after_create :assign_restrictions, :assign_members
   after_save   :assign_restrictions, :assign_members
+  
+  accepts_nested_attributes_for :task_actions, :allow_destroy => true
+  
   
   def project_member_ids=(new_members)
     @project_members = new_members

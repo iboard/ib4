@@ -447,3 +447,6 @@ en:
   not_assigned_to_a_project: 'Not assigned'
   update: 'Update'
   new_action: 'Add new action'
+  action_tasks: 'Tasks'
+  detail: 'Detail'
+  edit_project_task: 'Edit Project-task'

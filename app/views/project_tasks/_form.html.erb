@@ -1,6 +1,27 @@
-<p><%= link_to BACK_TO+NBSP+@project.name, project_project_tasks_path(@project) %></p>
+<p>
+  <%= link_to t(:action_tasks),   project_project_tasks_path(@project) %> |
+  <%= link_to t(:project)+": "+@project.name, project_path(@project) %>
+</p>
 <% form_for [@project,@project_task] do |f| %>
   <%= f.error_messages %>
+  
+  <% content_tag :ol, :class => 'task_actions' do %>
+    <% f.fields_for :task_actions do |ta| %>
+      <% content_tag :li, :id => 'task_action_'+ta.object.id.to_s, :class => 'list_'+cycle(:odd,:even) do %>
+        <%= ta.label :user_id, t(:user) %>:
+        <%= ta.collection_select :user_id, @project.members, :id, :fullname %><br/>
+        <%= ta.label :context_strings_str, t(:context) %>:
+        <%= ta.text_field :context_strings_str %><br/>
+        <%= ta.label :notice %>:<br/>
+        <%= ta.text_area :notice, :rows=>2,:cols =>38 %><br/>
+        <%= ta.label :date_due %>:
+        <%= ta.calendar_date_select :date_due, :time => :mixed, :hidden => false, :size => 18 -%><br/>
+        <%= ta.label :state %>:
+        <%= ta.select :state, TaskAction::STATES.map {|s| [t(s),s] } %>
+        <%= ta.check_box :_delete -%> <%= ta.label :_delete %>
+      <% end %>
+    <% end %>
+  <% end %>
   
   <strong><%= f.label :name %></strong>
   <%= f.text_field :name %>
@@ -34,8 +55,13 @@
     ) unless @project_task.new_record?-%>
   </div>
   <% end %>
-  
+  <br clear='right'>
   <p>
-    <%= f.submit t(:update) -%>
+    <%= link_to t(:action_tasks),   project_project_tasks_path(@project) %> |
+    <%= link_to t(:project)+": "+@project.name, project_path(@project) %>
   </p>
+  
+  <center>
+    <%= f.submit t(:update) -%>
+  </center>
 <% end %>

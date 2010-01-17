@@ -935,4 +935,22 @@ input#page_title {
 	padding: 2px;
 }
 
+.task_actions {
+	width: 300px;
+	float: right;
+}
 
+.list_odd {
+	background: #ACC8BD;
+	padding: 5px;
+	font-size: 11px;
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #000;
+}
+.list_even {
+	background: #C4D7D2;
+	padding: 5px;
+	font-size: 11px;
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #000;
+}

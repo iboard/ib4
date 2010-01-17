@@ -444,3 +444,6 @@ de:
   rejected: 'Abgelehnt'
   update: 'Aktualisieren'
   new_action: 'Arbeitsschritt hinzufügen'
+  action_tasks: 'Aufgaben'
+  detail: 'Details'
+  edit_project_task: 'Projektschritt bearbeiten'
