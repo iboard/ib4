@@ -17,7 +17,6 @@ class Project < ActiveRecord::Base
   after_create :assign_restrictions, :assign_members
   after_save   :assign_restrictions, :assign_members
   
-
   def project_member_ids=(new_members)
     @project_members = new_members
   end

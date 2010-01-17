@@ -57,14 +57,18 @@ class UsersController < ApplicationController
   end
   
   def update
-     @user.is_admin = params[:user][:is_admin] if is_admin?
-     @user.invitations_left = params[:user][:invitations_left] if is_admin?
+     @user.is_admin = params[:user][:is_admin] if is_admin? && params[:user][:is_admin]
+     @user.invitations_left = params[:user][:invitations_left] if is_admin?  && params[:user][:invitations_left]
      if @user.update_attributes(params[:user])
       flash[:notice] = t(:profile_successfully_updated)
-      redirect_to root_url
-    else
-      render :action => 'edit'
-    end
+      if params[:user][:task_actions_attributes]
+        redirect_to user_task_actions_path(@user)
+      else
+        redirect_to root_url
+      end
+     else
+       render :action => 'edit'
+     end
   end
   
   def remove_avatar
@@ -98,5 +102,14 @@ class UsersController < ApplicationController
     ms = @user.group_memberships.find_by_usergroup_id(params[:usergroup_id]) if @user && @group
     ms.destroy if ms
   end
-  
+
+  def sort_task_actions
+    logger.info("\n*** SORT TASK ACTIONS #{params.inspect}\n")
+    params[:task_list].each_with_index do |t,i|
+      task = TaskAction.find(t)
+      task.position=i
+      task.save
+    end
+    render :nothing => true
+  end  
 end

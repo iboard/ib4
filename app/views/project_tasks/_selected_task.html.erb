@@ -27,16 +27,35 @@
     <%= f.calendar_date_select :date_due, :time => :mixed, :hidden => false, :size => 18 -%>
   </p>
 
-  <% if permitted_to?(:destroy,project_task)%>
-  <div style='float: right;'>
-    <%= link_to_remote( t(:delete_task),
-         :url =>  project_task_path(project_task,:project_id => project), 
-         :confirm => t(:are_you_sure, :what => t(:delete_this_record)), 
-         :method => :delete
-    )-%>
-  </div>
+  <h2><%= t(:actions) -%></h2>
+  <% for act in project_task.task_actions  %>
+    <% content_tag :div, :class => "task_list_"+cycle(:odd,:even) do %>
+      <p>
+          <%= link_to( "<b>"+act.user.fullname+"</b>" + NBSP+"("+act.context_strings_str+")"+ NBSP+"<b>"+ 
+                 act.state.to_s + "</b>:"+NBSP + act.notice,
+                 edit_user_task_action_path(act.user,act)
+              )
+          -%>
+          <%= humanize_time_span(act.date_due) if act.date_due %>
+      </p>
+    <% end %>
   <% end %>
+  
+  <p>
+    <%= link_to t(:new_action),
+           new_user_task_action_path(current_user,:project_task_id => project_task) -%>
+  </p>
+  
 
+  <% if permitted_to?(:destroy,project_task)%>
+   <div style='float: right;'>
+     <%= link_to_remote( t(:delete_task),
+          :url =>  project_task_path(project_task,:project_id => project), 
+          :confirm => t(:are_you_sure, :what => t(:delete_this_record)), 
+          :method => :delete
+     )-%>
+   </div>
+  <% end %>
   <p>
     <%= f.submit t(:update) -%>
   </p>

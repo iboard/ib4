@@ -1,5 +1,8 @@
-<% title "New Task Action" %>
+<% title t(:new_action) %>
 
 <%= render :partial => 'form' %>
 
-<p><%= link_to t(:view_all), user_task_actions_path(@user) %></p>
+<p>
+  <%= link_to t(:project), @task_action.project %> |
+  <%= link_to t(:actions), user_task_actions_path(@task_action.user) %>
+</p>

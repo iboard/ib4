@@ -77,6 +77,6 @@ class ProjectTasksController < ApplicationController
     #raise params.inspect
     params[:project_id] ||= params[:project_task][:project_id] if params[:project_task]
     params[:project_id] ||= params[:search][:project_id] if params[:search] && params[:search][:project_id]
-    @project ||= Project.find(params[:project_id])
+    @project ||= Project.find(params[:project_id],:include => [:user,:project_tasks])
   end
 end

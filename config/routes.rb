@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :task_actions,  :belongs_to => [:project,:user]
-
   map.resources :project_tasks, :belongs_to => [:project]
   map.resources :project_memberships
   map.resources :projects, :has_many => [:notes,:project_tasks], 
@@ -33,7 +32,11 @@ ActionController::Routing::Routes.draw do |map|
                     :binaries,:messages,:notes,:group_memberships,:projects,
                     :task_actions
                   ],
-                  :member => { :join_group => :get, :leave_group => :get }
+                  :member => { 
+                    :join_group => :get, 
+                    :leave_group => :get,
+                    :sort_task_actions => :put,
+                  }
   map.resources :newsletters, 
                  :has_many => [:newsletter_subscriptions, :newsletter_issues],
                  :member => {

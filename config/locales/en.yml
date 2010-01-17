@@ -442,3 +442,8 @@ en:
   task: 'Task'
   date_due: 'Due'
   contexts: 'Contexts'
+  delete_action: 'Delete Action'
+  context: 'Context'
+  not_assigned_to_a_project: 'Not assigned'
+  update: 'Update'
+  new_action: 'Add new action'

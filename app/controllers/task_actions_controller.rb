@@ -1,6 +1,7 @@
 class TaskActionsController < ApplicationController
   
   before_filter :load_user
+  filter_resource_access 
   
   def index
     @task_actions = @user.task_actions.all(:include => [:action_contexts,:user])
@@ -11,7 +12,8 @@ class TaskActionsController < ApplicationController
   end
   
   def new
-    @task_action = TaskAction.new
+    @task_action = @user.task_actions.build(:project_task_id => params[:project_task_id])
+    @task_action.date_due = @task_action.project_task.date_due if @task_action.project_task
   end
   
   def create
@@ -43,7 +45,10 @@ class TaskActionsController < ApplicationController
     @task_action = TaskAction.find(params[:id])
     @task_action.destroy
     flash[:notice] = "Successfully destroyed taskaction."
-    redirect_to task_actions_url
+    respond_to do |format|
+      format.html { redirect_to task_actions_url }
+      format.js {}
+    end
   end
   
   private

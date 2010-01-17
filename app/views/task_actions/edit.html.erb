@@ -1,8 +1,16 @@
 <% title "Edit Task Action" %>
 
+<p>
+    <strong><%= t(:project ) %></strong>:
+    <%= link_to( @task_action.project_task.project.name, @task_action.project_task.project )%>
+</p>
+<p>
+    <strong><%= t(:task) %></strong>:
+    <%= @task_action.project_task.name -%>
+</p>
 <%= render :partial => 'form' %>
 
 <p>
-  <%= link_to "Show", @task_action %> |
-  <%= link_to "View All", task_actions_path %>
+  <%= link_to t(:project), @task_action.project %> |
+  <%= link_to t(:actions), user_task_actions_path(@task_action.user) %>
 </p>

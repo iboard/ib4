@@ -1,23 +1,21 @@
 <% form_for @task_action do |f| %>
   <%= f.error_messages %>
-  <p>
+  <div style='float: left; margin-right: 20px;'>
     <%= f.label :context_string %><br/>
     <%= f.select :context_strings, current_user.used_context_names, {},
-          :multiple => true, :size => 5 -%><br/>
-    <%= f.label :new_context_string -%>:
+          :multiple => true, :size => 5, :style => 'width: 220px;' -%><br/>
+    <%= f.label :new_context_string -%>:<br/>
     <%= f.text_field :new_context_string -%>
+  </div>
+  <p>
+    <%= f.label :project_task_id, link_to(t(:project),@task_action.project)+"-"+t(:task) %><br/>
+    <%= f.collection_select :project_task_id, @user.project_tasks, :id, :project_prefix -%>
   </p>
-  <% if @task_action.project_task.nil? %>
+  
+  <% if is_admin? && @task_action.project %>
     <p>
-      <%= f.label :project_task_id %><br />
-      <%= f.collection_select :project_task_id, 
-             ProjectTask.all.reject { |p| !p.project.members.include?(current_user)}, :id, :project_prefix %>
-    </p>
-  <% end %>
-  <% if is_admin? %>
-    <p>
-      <%= f.label :user_id %><br />
-      <%= f.collection_select :user_id, User.ascend_by_fullname, :id, :fullname %>
+      <%= f.label :user_id %>
+      <%= f.collection_select :user_id, @task_action.project.members, :id, :fullname %>
     </p>
   <% end %>
   <p>
@@ -25,8 +23,13 @@
     <%= f.text_area :notice, :rows => 5 %>
   </p>
   <p>
-    <%= f.label :state_flag %><br />
+    <%= f.label :state_flag %>
     <%= f.select :state, TaskAction::STATES.map {|s| [t(s),s] } %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p>
+    <strong><%= f.label :date_due, t(:due) -%></strong>
+    <%= f.calendar_date_select :date_due, :time => :mixed, :hidden => false, :size => 18 -%>
+  </p>
+  
+  <p><%= f.submit t(:save) %></p>
 <% end %>

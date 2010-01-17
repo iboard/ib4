@@ -7,7 +7,7 @@ class NotesController < ApplicationController
   def index
     if params[:message_type] == 'end_action' && params[:noteable_type] == 'User'
       # Session History
-      @notes = @user.notes.find(:all, :conditions => ['noteable_type = ? and message_type = ?', 'User',:end_action]
+      @notes = @user.notes.find(:all, :include => :user, :conditions => ['noteable_type = ? and message_type = ?', 'User',:end_action]
                                ).paginate(:page => params[:page], :per_page => PROJECT_NOTES_PER_PAGE)
       render :session_history
       return

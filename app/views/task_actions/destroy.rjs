@@ -1,0 +1,1 @@
+page.replace_html "action_task_#{@task_action.id}", "<!-- deleted -->"

@@ -97,4 +97,33 @@ module ProjectsHelper
     end
   end
   
+  def task_actions(project_task)
+    Markaby::Builder.new( {}, self ) do
+      div.task_actions! do
+        project_task.task_actions.each do |a|
+          div :id => "action_task_#{a.id}" do
+            div :style => 'float: right;' do
+              if permitted_to?(:destroy,a)
+                link_to_remote( I18n.translate(:destroy), 
+                   :url => user_task_action_path(a.user,a).to_s,
+                   :confirm => confirm_delete,
+                   :method => :delete
+                 )
+              else
+                a.user.fullname
+              end
+            end
+            div do
+              em do
+                "#{I18n.translate(a.state)} "
+              end
+              unless a.notice.blank?
+                span do NBSP+"–"+NBSP+a.notice end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end

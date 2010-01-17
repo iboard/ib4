@@ -311,6 +311,8 @@ ActiveRecord::Schema.define(:version => 2010011112043333) do
     t.integer  "state_flag"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
+    t.datetime "date_due"
   end
 
   create_table "usergroups", :force => true do |t|

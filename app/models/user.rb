@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :messages, :dependent => :delete_all
   has_many :message_notifications, :dependent => :delete_all
   has_many :project_memberships, :dependent => :delete_all
+  has_many :projects, :through => :project_memberships
   
   has_many :sent_invitations,     :class_name => 'Invitation', :foreign_key => 'sender_id',     :dependent => :delete_all
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => 'recipient_id',  :dependent => :delete_all
@@ -35,10 +36,11 @@ class User < ActiveRecord::Base
   has_many :usergroups
   has_many :group_memberships, :dependent => :delete_all
   
-  has_many :task_actions, :dependent => :delete_all
-  has_many :action_contexts, :through => :task_actions
-  
-  attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar
+  has_many :task_actions, :dependent => :delete_all, :order => :position
+  has_many :action_contexts, :through => :task_actions, :order => :name
+    
+  accepts_nested_attributes_for :task_actions, :allow_destroy => true
+  attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar, :task_actions_attributes
   
   # Roles for declarative authorization
   def role_symbols
@@ -134,5 +136,10 @@ class User < ActiveRecord::Base
   def used_context_names
     action_contexts.find(:all,:order => :name).map { |a| a.name }.uniq
   end
-  
+ 
+  def project_tasks
+    projects.map { |p|
+      p.project_tasks(:order => :position).flatten
+    }.flatten
+  end  
 end

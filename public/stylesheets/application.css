@@ -871,3 +871,68 @@ input#page_title {
 #project_tasks_table tr.even {
 	background: #C8DEF6;
 }
+
+#task_actions p,
+#task_actions {
+	font-size: 10px;
+	margin: 5px;
+}
+
+.task_action_index_odd * { 
+	background: #C4D7D2; 
+	font-size: 10px;
+    padding: 1px;
+}
+.task_action_index_even * { 
+	background: #ACC8BD; 
+    font-size: 10px;
+	padding: 1px;
+}
+
+.task_action_index_odd { 
+	background: #C4D7D2; 
+	clear: left;
+	height: 150px;
+	list-style-position: inside;
+	margin-left:0px;
+	padding-left: 5px;
+}
+.task_action_index_even  { 
+	background: #ACC8BD; 
+	clear: left;
+	height: 150px;
+	list-style-position: inside;
+	margin-left:0px;
+	padding-left: 5px;
+}
+.task_action_index_even input,
+.task_action_index_odd input,
+.task_action_index_even textarea,
+.task_action_index_odd textarea {
+	background: white;
+}
+
+#task_list {
+  border: 1px solid #444;
+  padding: 0px;
+  margin: 0px;
+}
+
+.handle {
+  cursor: move;
+}
+
+.task_list_odd * {
+	font-size: 10px;
+	background: #ACC8BD;
+	margin:0px;
+	padding: 2px;
+}
+.task_list_even * {
+	font-size: 10px;
+	background: #C4D7D2;
+	margin: 0px;
+	padding: 2px;
+}
+
+

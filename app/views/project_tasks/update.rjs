@@ -3,6 +3,9 @@ page.replace_html :project_tasks_list, show_project_tasks(@project)
 flash.discard
 page['selected_task'].highlight
 for other_task in @project.project_tasks
-  page['project_task_'+other_task.id.to_s].set_style('font-weight: normal;')
+  begin 
+    page['project_task_'+other_task.id.to_s].set_style('font-weight: normal;')
+  rescue
+  end
 end
 page['project_task_'+@project_task.id.to_s].set_style('font-weight: bold;')

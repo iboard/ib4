@@ -2,6 +2,50 @@
 
 <h1><%= t(:task_actions_of_user, :user => @user.fullname ) -%></h1>
 
-<%= task_actions_table(@user,@task_actions) %>
+<%= inline_menu(
+      [
+        link_to( t(:new_action), new_user_task_action_path(@user)),
+        link_to( t(:projects), user_projects_path(@user))
+      ]
+    )
+-%>
+<br clear='left'>
 
-<p><%= link_to "New Task Action", new_user_task_action_path(@user) %></p>
+
+
+
+<% # task_actions_table(@user,@task_actions) %>
+<% form_for @user do |f| %>
+  <% content_tag :ol, :id => 'task_list' do %>
+    <% f.fields_for :task_actions do |builder| %>
+      <% content_tag :li, :class => "task_action_index_"+cycle(:odd,:even).to_s, 
+                     :id => "taks_#{builder.object.id}" do %>
+        <div style='float: right;' class='handle'><%= t(:drag) -%></div>
+        <br/>
+        <div style='float:left; width: 300px'>
+           <%= builder.label :context_strings_str, t(:context) -%>:<br/>
+           <%= builder.text_field :context_strings_str -%>
+        </div>
+        <div style='float:left;'>
+           <%= builder.label :notice %>:<br/>
+           <%= builder.text_area :notice, :rows => 3 %>
+        </div>
+        <div style='float: left; width: 300px;'>
+            <%= builder.label :state_flag %>
+            <%= builder.select :state, TaskAction::STATES.map {|s| [t(s),s] } %>
+            <%= builder.object.state.to_s -%>
+            <br/>
+            <%= builder.check_box :_delete %> <%= builder.label :_delete, t(:delete_action)%>
+        </div>
+        <div style='float: left; width: 300px;'>
+              <%= builder.label( :project_task_id ) -%>:
+              <%= link_to(builder.object.project.name,builder.object.project)+BR if builder.object.project -%>
+              <%= builder.collection_select :project_task_id, @user.project_tasks, :id, :project_prefix %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <br clear='left'>
+  <%= sortable_element( 'task_list', :url => sort_task_actions_user_path(@user),:method => :put, :handle => 'handle' ) -%>
+  <center><%= f.submit t(:update) -%></center>
+<% end %>

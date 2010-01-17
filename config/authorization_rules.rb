@@ -2,7 +2,7 @@ authorization do
   
   
   role :admin do
-    has_permission_on [:users], :to => [:index,:show,:new,:create,:edit,:update,:destroy ]
+    has_permission_on [:users], :to => [:index,:show,:new,:create,:edit,:update,:destroy,:sort_task_actions ]
     has_permission_on :pages, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:sort_roots,:sort_children]
     has_permission_on :binaries, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :postings, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
@@ -13,6 +13,7 @@ authorization do
     has_permission_on :projects, :to => [:index,:show,:new,:create,:edit,:update,:destroy,:notes,:sort_tasks,:update_tasklist]
     has_permission_on :project_tasks, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
     has_permission_on :notes, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
+    has_permission_on :task_actions, :to => [:index,:show,:new,:create,:edit,:update,:destroy]
   end
 
   role :guest do
@@ -120,6 +121,10 @@ authorization do
       if_attribute :members =>  is {  Authorization.current_user }
     end
     
+    # TASK_ACTION
+    has_permission_on :task_actions, :to => [:index,:show,:new,:create,:update,:destroy,:edit,:sort_task_actions] do 
+      if_attribute :user =>  is {  Authorization.current_user }
+    end
     
     # Usergroups
     has_permission_on :usergroups, :to => [:index,:new,:create,:show] 
