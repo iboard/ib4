@@ -19,7 +19,8 @@ class ProjectTask < ActiveRecord::Base
   end
   
   def state 
-    TASK_STATES[state_mask].to_sym
+    TASK_STATES[state_mask].to_sym if state_mask
+    TASK_STATES[0].to_sym unless state_mask
   end
   
   def state?(s)
