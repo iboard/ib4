@@ -29,7 +29,7 @@
           <%= project_task.project.name unless project_task.parent %>&nbsp;<%=h project_task.position %></td>
       <td><%=h project_task.description %></td>
       <td><%=humanize_time_span(project_task.date_due) if project_task.date_due %></td>
-      <td><%=t(project_task.state) %></td>
+      <td><%=t(project_task.state) if project_task.state%></td>
       <td><%= link_to "Destroy", project_task_path(project_task,:project_id => @project.id), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
