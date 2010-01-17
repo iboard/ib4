@@ -8,6 +8,9 @@ class ProjectTask < ActiveRecord::Base
   
   TASK_STATES = [:new,:active,:paused,:done,:canceled]
   
+  before_create :assign_project
+  before_save   :assign_project
+  
   accepts_nested_attributes_for :task_actions, :allow_destroy => true
   
   def project_prefix
@@ -45,5 +48,11 @@ class ProjectTask < ActiveRecord::Base
     end
     return rc
   end
-  
+
+  private
+  def assign_project
+    unless project
+      project = project.acestors.last if parent_id
+    end
+  end  
 end
