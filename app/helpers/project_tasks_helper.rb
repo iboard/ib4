@@ -43,9 +43,14 @@ module ProjectTasksHelper
   def show_project_tasks(project,id='project_task_sortlist',my_filter='',width='340px')
     Markaby::Builder.new({},self) do 
       if my_filter.blank?
-        roots = project.project_tasks(:include=>[:children,:project],:conditions => ["project_tasks.parent_id = ?",nil]).reject { |t| !t.parent_id.nil? }
+        roots = project.project_tasks.find(:all,
+                              :conditions => ["parent_id is null"])
       else
-        roots = project.project_tasks(:include=>[:children,:project],:conditions => ["project_tasks.parent_id = ?",nil]).reject { |t| !t.parent_id.nil? || !t.state?(my_filter.to_sym)}
+        roots = project.project_tasks.find(:all,
+          :conditions => ["project_tasks.parent_id is null AND project_tasks.state_mask = ?",
+                          ProjectTask::TASK_STATES.index(my_filter.to_sym)
+                         ]
+        )
       end
       if roots.any?
         ol :id => id, :style => "width: #{width}" do

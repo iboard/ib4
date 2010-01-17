@@ -7,9 +7,9 @@ class Project < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :user_id
 
-  has_many     :group_restrictions, :as => :restrictable, :dependent => :destroy
-  has_many     :notes, :as => :noteable,  :dependent => :destroy
-  has_many     :project_tasks, :order => :position
+  has_many     :group_restrictions, :as => :restrictable, :dependent => :delete_all
+  has_many     :notes, :as => :noteable,  :dependent => :delete_all
+  has_many     :project_tasks, :order => :position, :dependent => :delete_all
 
   ACCESS_ROLES = [:private,:friends,:public]
   PROJECT_STATI= [:new,:active,:featured,:paused,:finished,:canceled]
