@@ -1,5 +1,12 @@
 <div style='margin-top: 30px;'>
   <h1><%= t(:project_tasks) -%></h1>
+  <%= inline_menu(
+    [
+      link_to( t(:tableview), project_project_tasks_path(@project).to_s),   
+      link_to( t(:user_action_view), user_task_actions_path(current_user).to_s)
+    ])
+  -%>
+  <br clear='left'/>
   
   <h3><%= t(:add_task) -%></h3>
    <% remote_form_for [@project,@project.project_tasks.build(:state_mask => 0)] do |f| %>
@@ -9,7 +16,7 @@
          <%= f.hidden_field :state_mask %>
      </blockquote>
    <% end %>
-   <form>
+   <form style='width:400px;'>       
        <b>Filter:</b>
        <%= select_tag('filter', ["<OPTION VALUE=''>-- #{t(:all)} --</OPTION>"]+ProjectTask.states.map { |o|
              "<option value='#{o.to_s}'>#{o.to_s}</option>"
@@ -22,16 +29,7 @@
               end
             )             
           )
-       -%>
-    
-       <% content_tag :div, :style => 'float: right;margin-right: 30px;' do %>
-       <%= inline_menu(
-           [
-             link_to( t(:tableview), project_project_tasks_path(@project).to_s),   
-             link_to( t(:action_view), user_task_actions_path(current_user).to_s)
-           ])
-         -%>
-        <% end %>
+       -%>    
    </form>
    <div id='selected_task'>
         <%= POINTER_LEFT + NBSP*3 + t(:please_select_a_task) -%>
