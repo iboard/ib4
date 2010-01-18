@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :group_memberships, :dependent => :delete_all
   
   has_many :task_actions, :dependent => :delete_all, :order => :position
-  has_many :action_contexts, :through => :task_actions, :order => :name
+  has_many :action_contexts, :through => :task_actions
     
   accepts_nested_attributes_for :task_actions, :allow_destroy => true
   attr_accessible :username, :email, :password, :password_confirmation, :fullname, :avatar, :task_actions_attributes

@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :action_contexts, :belongs_to => [:user,:task_action]
   map.resources :task_actions,  :belongs_to => [:project,:user]
   map.resources :project_tasks, :belongs_to => [:project]
   map.resources :project_memberships
@@ -30,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
                   :has_many => [
                     :postings,:pages,:invitations,:comments,
                     :binaries,:messages,:notes,:group_memberships,:projects,
-                    :task_actions
+                    :task_actions,:action_contexts
                   ],
                   :member => { 
                     :join_group => :get, 

@@ -448,3 +448,7 @@ de:
   detail: 'Details'
   edit_project_task: 'Projektschritt bearbeiten'
   user_action_view: 'Benutzeraufgaben'
+  view_by_context: 'Kontext-Ansicht'
+  action_contexts: 'Kontext Aktionen'
+  notice: 'Notiz'
+  view_actions: 'Aktionen anzeigen'

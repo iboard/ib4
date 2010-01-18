@@ -5,6 +5,7 @@
 <%= inline_menu(
       [
         link_to( t(:new_action), new_user_task_action_path(@user)),
+        link_to( t(:view_by_context), user_action_contexts_path(@user)),
         link_to( t(:projects), user_projects_path(@user))
       ]
     )

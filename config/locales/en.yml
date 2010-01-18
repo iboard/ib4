@@ -451,3 +451,7 @@ en:
   detail: 'Detail'
   edit_project_task: 'Edit Project-task'
   user_action_view: 'User actions'
+  view_by_context: 'View by context'
+  action_contexts: 'Actions by Contexts'
+  notice: 'Notice'
+  view_actions: 'View by Actions'

@@ -1,0 +1,38 @@
+<% title t(:action_contexts) %>
+<h1><%= yield :title%> - <%= @user.fullname %></h1>
+<%= inline_menu([ 
+      link_to(t(:view_actions), user_task_actions_path(@user)),
+      link_to(t(:projects), projects_path)
+    ])
+-%>
+<div style='float: left;margin-right: 10px;'>
+<% form_for @search do |f| %>
+  <%= f.select :name_like_any, @user.action_contexts.all.map(&:name).uniq.sort, {},
+     :prompt => t(:view_all),
+     :size => 4,    
+     :multiple => true, 
+     :onchange => 'submit();' 
+   -%>
+<% end %>
+</div>
+<%= will_paginate @action_contexts %>
+
+
+<% content_tag :table, :id => 'action_contexts_list', :class => 'standard_table', :style => 'width: 600px;' do %>
+  <tr>
+      <th><%= order @search, :by => 'name', :as => t(:context) -%></th>
+      <th><%= t(:project) -%></th>
+      <th><%= t(:task) -%></th>
+      <th><%= t(:notice)%></th>
+  </tr>
+  <% @action_contexts.each do |context| %>
+    <% content_tag :tr, :id => "action_context_#{context.id}" do %>
+      <td><%= context.name %></td>
+      <td><%= link_to context.task_action.project_task.project.name, context.task_action.project_task.project %></td>
+      <td><%= link_to context.task_action.project_task.name, project_project_tasks_path(context.task_action.project_task.project) %></td>
+      <td><%= context.task_action.notice %></td>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= will_paginate @action_contexts %>
