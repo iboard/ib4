@@ -424,6 +424,7 @@ en:
   project_activities: 'Latest Project Activities'
   mark_all_read: 'Mark all as read'
   project_tasks: 'Project Tasks'
+  tasks: 'Tasks'
   create: 'Create'
   add_task: 'Add Task'
   update: 'Update'

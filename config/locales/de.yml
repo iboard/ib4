@@ -421,6 +421,7 @@ de:
   mark_read: 'Alle als gelesen markieren'
   mark_all_read: 'Alle als gelesen markieren'
   project_tasks: 'Arbeitsschritte'
+  tasks: 'Arbeitsschritte'
   create: 'Speichern'
   add_task: 'Arbeitsschritt hinzufügen'
   update: 'Aktualisieren'
