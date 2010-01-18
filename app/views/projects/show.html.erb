@@ -20,7 +20,11 @@
 
 <!-- PROJECT DETAILS -->
 <h1><%= yield :title %></h1>
-
+<%= inline_menu([
+      link_to(t(:projects),projects_path),
+      link_to(t(:view_by_context), user_action_contexts_path(current_user)),
+      link_to(t(:tasks),   user_task_actions_path(current_user))
+    ])%>
 <% content_tag :div, :class=>'projects' do %>
   <%= record_links @project, projects_path, nil, edit_project_path(@project), project_path(@project) %>
   <p>

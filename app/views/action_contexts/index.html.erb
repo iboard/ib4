@@ -1,5 +1,5 @@
 <% title t(:action_contexts) %>
-<h1><%= yield :title%> - <%= @user.fullname %></h1>
+<h1><%= yield :title %> - <%= @user.fullname %></h1>
 <%= inline_menu([ 
       link_to(t(:view_actions), user_task_actions_path(@user)),
       link_to(t(:projects), projects_path)
@@ -9,12 +9,14 @@
 <% form_for @search do |f| %>
   <%= f.select :name_like_any, @user.action_contexts.all.map(&:name).uniq.sort, {},
      :prompt => t(:view_all),
-     :size => 4,    
+     :size => 16,    
      :multiple => true, 
-     :onchange => 'submit();' 
+     :onchange => 'submit();',
+     :style => 'width: 100px;max-width: 100px;'
    -%>
 <% end %>
 </div>
+
 <%= will_paginate @action_contexts %>
 
 
@@ -26,7 +28,7 @@
       <th><%= t(:notice)%></th>
   </tr>
   <% @action_contexts.each do |context| %>
-    <% content_tag :tr, :id => "action_context_#{context.id}" do %>
+    <% content_tag :tr, :id => "action_context_#{context.id}", :class => cycle(:odd,:even) do %>
       <td><%= context.name %></td>
       <td><%= link_to context.task_action.project_task.project.name, context.task_action.project_task.project %></td>
       <td><%= link_to context.task_action.project_task.name, project_project_tasks_path(context.task_action.project_task.project) %></td>

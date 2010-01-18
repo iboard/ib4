@@ -5,6 +5,7 @@
    <% menu = [] 
        menu << link_to( t(:new_project), new_project_path) if permitted_to?(:create, Project.new(:user_id => current_user.id))
        menu << link_to( t(:action_view), user_task_actions_path(current_user)) if current_user
+       menu << link_to( t(:view_by_context),user_action_contexts_path(current_user)) if current_user
     %>
     <%= inline_menu(menu) -%>
 </p>
